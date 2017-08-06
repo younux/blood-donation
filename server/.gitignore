@@ -1,0 +1,9 @@
+bin/
+include/
+lib/
+pip-selfcheck.json
+.idea/
+Include/
+Lib/
+Scripts/
+tcl/
