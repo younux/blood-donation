@@ -5,13 +5,13 @@ from django.dispatch import receiver
 # Create your models here.
 
 class Address(models.Model):
-    street = models.CharField(verbose_name = "Street", max_length=1024)
-    city = models.CharField(verbose_name= "City", max_length=64)
-    country = models.CharField(verbose_name = "Country", max_length=64)
-    zip_code = models.CharField(verbose_name = "Zip code", max_length=5)
+    street      = models.CharField(verbose_name = "Street", max_length=1024)
+    city        = models.CharField(verbose_name= "City", max_length=64)
+    country     = models.CharField(verbose_name = "Country", max_length=64)
+    zip_code    = models.CharField(verbose_name = "Zip code", max_length=5)
 
     class Meta:
-        verbose_name = "Address"
+        verbose_name        = "Address"
         verbose_name_plural = "Addresses"
 
     def __str__(self):
@@ -40,14 +40,14 @@ class UserProfile(models.Model):
 
     # This line is required. Links UserProfile to a User model instance.
     # For its fields see https://docs.djangoproject.com/fr/1.11/ref/contrib/auth/#user-model
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user                = models.OneToOneField(User, on_delete=models.CASCADE)
     # The additional attributes we wish to include.
-    phone_number = models.CharField(verbose_name="Phone number", max_length=10)
-    address = models.OneToOneField(Address, on_delete=models.CASCADE)
-    birth_date = models.DateField(verbose_name="Birth date")
-    blood_type = models.CharField(verbose_name="Blood type", max_length=10, choices=BLOOD_TYPE_CHOICES)
-    email_notification = models.BooleanField(verbose_name="Email notification", default=False)
-    sms_notification = models.BooleanField(verbose_name="SMS notification", default=False)
+    phone_number        = models.CharField(verbose_name="Phone number", max_length=10)
+    address             = models.OneToOneField(Address, on_delete=models.CASCADE)
+    birth_date          = models.DateField(verbose_name="Birth date")
+    blood_type          = models.CharField(verbose_name="Blood type", max_length=10, choices=BLOOD_TYPE_CHOICES)
+    email_notification  = models.BooleanField(verbose_name="Email notification", default=False)
+    sms_notification    = models.BooleanField(verbose_name="SMS notification", default=False)
 
     # Override the __unicode__() method to return out something meaningful!
     #  Remember if you use Python 2.7.x, define __unicode__ too!
