@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import UserProfile
+from accounts.models import Profile
 
 # Create your models here.
 
@@ -15,7 +15,7 @@ class Donation(models.Model):
     )
 
     created_on      = models.DateTimeField(verbose_name="Creation date", auto_now_add=True)
-    applicant       = models.ForeignKey(UserProfile, verbose_name="Applicant", on_delete=models.CASCADE)
+    applicant       = models.ForeignKey(Profile, verbose_name="Applicant", on_delete=models.CASCADE)
     deadline        = models.DateTimeField(verbose_name="Deadline")
     description     = models.TextField(verbose_name="Description")
     city            = models.CharField(verbose_name= "City", max_length=64)

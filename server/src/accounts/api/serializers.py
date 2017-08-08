@@ -1,21 +1,131 @@
-# from rest_framework.serializers import (
-#         EmailField,
-#         CharField,
-#         ModelSerializer,
-#         HyperlinkedIdentityField,
-#         SerializerMethodField,
-#         ValidationError,
-#         )
-# from django.contrib.contenttypes.models import ContentType
-# from django.contrib.auth import (
-#         get_user_model,
-#         authenticate,
-#         login,
-#         logout,
-#         )
-# from django.db.models import Q
-# from rest_framework_jwt.settings import api_settings
-# User = get_user_model()
+from rest_framework.serializers import (
+        EmailField,
+        CharField,
+        ModelSerializer,
+        HyperlinkedIdentityField,
+        SerializerMethodField,
+        ValidationError,
+        )
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth import (
+        get_user_model,
+        authenticate,
+        login,
+        logout,
+        )
+from django.db.models import Q
+from rest_framework_jwt.settings import api_settings
+from django.contrib.auth.models import User
+from ..models import Address, Profile
+
+
+
+
+class AddressSerializer(ModelSerializer):
+    class Meta:
+        model = Address
+        fields = [
+            'street',
+            'city',
+            'country',
+            'zip_code',
+        ]
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+        ]
+
+class ProfileDetailSerializer(ModelSerializer):
+    address = AddressSerializer(read_only = True)
+    user = UserSerializer(read_only = True)
+    class Meta:
+        model = Profile
+        fields = [
+            'user',
+            'phone_number',
+            'address',
+            'birth_date',
+            'blood_type',
+            'email_notification',
+            'sms_notification',
+        ]
+
+# class ProfileCreateSerialzer(ModelSerializer):
+#     username = SerializerMethodField()
+#     email = EmailField(label="Email address")
+#     email2 = EmailField(label="Confirm email", write_only=True)
+#     password = SerializerMethodField()
+#     first_name = SerializerMethodField()
+#     last_name = SerializerMethodField()
+#     address = AddressSerializer()
+#     # possible de mettre : user = UserSerializer() au lieu des SerializerMethodField ?
+#
+#     class Meta:
+#         model = Profile
+#         fields = [
+#             'username',
+#             'email',
+#             'email2',
+#             'password',
+#             'first_name',
+#             'last_name',
+#             'phone_number',
+#             'address',
+#             'birth_date',
+#             'blood_type',
+#             'email_notification',
+#             'sms_notification',
+#         ]
+#         extra_kwargs = {
+#             "password": {"write_only": True},
+#
+#         }
+#     def get_username(self, obj):
+#         return obj.user.username
+#
+#     def get_password(self, obj):
+#         return obj.user.password
+#
+#     def get_first_name(self, obj):
+#         return obj.user.first_name
+#
+#     def get_last_name(self, obj):
+#         return obj.user.last_name
+#
+#     def validate(self, data):
+#         # email = data.get("email")
+#         # user_qs = User.objects.filter(email = email)
+#         # if user_qs.exists():
+#         #     raise ValidationError("A user with that email adress already exists.")
+#         return data
+#
+#     def validate_email2(self, value):
+#         data = self.initial_data
+#         email1 = data.get("email")
+#         email2 = value
+#         if email1 != email2:
+#             raise ValidationError("Emails must match : email confirmation is not correct.")
+#         user_qs = User.objects.filter(email=email2)
+#         if user_qs.exists():
+#             raise ValidationError("A user with that email adress already exists.")
+#         return value
+#
+#     def create(self, validated_data):
+#         username = validated_data.get("username")
+#         email = validated_data.get("email")
+#         password = validated_data.get("password")
+#         user_obj = User.objects.create(username=username,
+#                                        email=email,
+#                                        )
+#         user_obj.set_password(password)
+#         user_obj.save()
+#         return user_obj
 #
 #
 # class UserCreateSerializer(ModelSerializer):
@@ -111,15 +221,6 @@
 #
 #         return data
 #
-# class UserDetailSerializer(ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = [
-#             'username',
-#             'email',
-#             'first_name',
-#             'last_name',
-#         ]
 #
 #
 #

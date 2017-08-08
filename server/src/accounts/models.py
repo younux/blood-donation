@@ -17,7 +17,7 @@ class Address(models.Model):
     def __str__(self):
         return self.street + " - " + self.city
 
-class UserProfile(models.Model):
+class Profile(models.Model):
     # Blood Types
     O_POS = 'O+'
     O_NEG = 'O-'
@@ -38,7 +38,7 @@ class UserProfile(models.Model):
         (AB_POS, 'AB+'),
     )
 
-    # This line is required. Links UserProfile to a User model instance.
+    # This line is required. Links Profile to a User model instance.
     # For its fields see https://docs.djangoproject.com/fr/1.11/ref/contrib/auth/#user-model
     user                = models.OneToOneField(User, on_delete=models.CASCADE)
     # The additional attributes we wish to include.
@@ -54,9 +54,9 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-# After deleting a userprofile we should delete its address and its user
-@receiver(models.signals.post_delete, sender=UserProfile)
-def auto_delete_address_and_user_with_UserProfile(sender, instance, *args, **kwargs):
+# After deleting a profile we should delete its address and its user
+@receiver(models.signals.post_delete, sender=Profile)
+def auto_delete_address_and_user_with_Profile(sender, instance, *args, **kwargs):
     if instance.address :
         instance.address.delete()
     if instance.user :
