@@ -24,3 +24,6 @@ class Donation(models.Model):
 
     def __str__(self):
         return "Donation - "+ self.applicant.user.username + " - " + self.applicant.blood_type
+
+    def get_blood_type(self):
+        return self.applicant.blood_type

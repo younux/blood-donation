@@ -1,21 +1,14 @@
+import re
 from rest_framework.serializers import (
         EmailField,
         CharField,
         ModelSerializer,
-        HyperlinkedIdentityField,
-        SerializerMethodField,
         ValidationError,
-        )
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth import (
-        get_user_model,
-        authenticate,
-        login,
-        logout,
         )
 from django.db.models import Q
 from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
+
 from ..models import Address, Profile
 
 
@@ -65,7 +58,7 @@ class UserCreateSerializer(ModelSerializer):
             raise ValidationError("Emails must match : email confirmation is not correct.")
         user_qs = User.objects.filter(email=email2)
         if user_qs.exists():
-            raise ValidationError("A user with that email adress already exists.")
+            raise ValidationError("A user with that email address already exists.")
         return data
 
     def validate_first_name(self, value):
@@ -113,7 +106,9 @@ class ProfileCreateSerialzer(ModelSerializer):
         ]
 
     def validate_phone_number(self, value):
-        # TODO
+        phone_re = re.compile(r'0\d{9}$')
+        if phone_re.match(value) is None:
+            raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
         return value
 
     def create(self, validated_data):
