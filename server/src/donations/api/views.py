@@ -31,6 +31,7 @@ from accounts.models import Profile
 class DonationDetailAPIView(RetrieveAPIView):
     queryset = Donation.objects.all()
     serializer_class = DonationDetailSerializer
+    permission_classes = [IsAuthenticated]
 
 class DonationListAPIView(ListAPIView):
     queryset = Donation.objects.all()
@@ -41,6 +42,8 @@ class DonationListAPIView(ListAPIView):
                      'applicant__user__first_name', 'applicant__user__last_name',
                      'applicant__blood_type', 'deadline', 'city',
                      ]
+    permission_classes = []
+
 
 
 class DonationCreateAPIView(CreateAPIView):

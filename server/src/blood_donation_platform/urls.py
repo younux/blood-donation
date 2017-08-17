@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+from rest_framework_jwt.views import (
+        obtain_jwt_token,
+        refresh_jwt_token,
+        verify_jwt_token,
+        )
 
 
 urlpatterns = [
@@ -23,6 +27,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/auth/token/', obtain_jwt_token),
     url(r'^api/auth/token-refresh/', refresh_jwt_token),
+    url(r'^api/auth/token-verify/', verify_jwt_token),
     url(r'^api/accounts/', include('accounts.api.urls', namespace='accounts-api')),
     url(r'^api/donations/', include('donations.api.urls', namespace='donations-api')),
 ]

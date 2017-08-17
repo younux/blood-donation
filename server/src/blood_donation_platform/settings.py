@@ -55,6 +55,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # My middlewares :
+    'accounts.api.middlewares.JWTTokenMiddleware',
 ]
 
 ROOT_URLCONF = 'blood_donation_platform.urls'
@@ -128,17 +131,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-
+# REST framework settings
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': (
     #     'rest_framework.permissions.IsAuthenticated',
     #     'rest_framework.permissions.IsAdminUser',
     # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
     ),
     'PAGE_SIZE': 10,
 }
 
+# JWT Token settings :
+JWT_AUTH = {
+    # By default : 'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
+    'JWT_ALLOW_REFRESH': True,
+    # By default : 'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}

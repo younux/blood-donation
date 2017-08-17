@@ -6,12 +6,9 @@ from rest_framework.serializers import (
         ValidationError,
         )
 from django.db.models import Q
-from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import User
 
 from ..models import Address, Profile
-
-
 
 
 class AddressSerializer(ModelSerializer):
@@ -91,8 +88,8 @@ class ProfileDetailSerializer(ModelSerializer):
         ]
 
 class ProfileCreateSerialzer(ModelSerializer):
-    user = UserCreateSerializer()
-    address = AddressSerializer()
+    user = UserCreateSerializer(write_only=True)
+    address = AddressSerializer(write_only=True)
     class Meta:
         model = Profile
         fields = [
@@ -104,6 +101,13 @@ class ProfileCreateSerialzer(ModelSerializer):
             'email_notification',
             'sms_notification',
         ]
+        extra_kwargs = {
+            "phone_number" : {"write_only": True},
+            "birth_date" : {"write_only": True},
+            "blood_type" : {"write_only": True},
+            "email_notification" : {"write_only": True},
+            "sms_notification" :  {"write_only": True},
+        }
 
     def validate_phone_number(self, value):
         phone_re = re.compile(r'0\d{9}$')
@@ -147,14 +151,12 @@ class ProfileLoginSerializer(ModelSerializer):
     username = CharField(allow_blank=True, required=False, write_only=True)
     email = EmailField(label="Email address", allow_blank=True, required=False, write_only=True)
     password = CharField(style={'input_type': 'password'}, write_only=True)
-    token = CharField(allow_blank=True, read_only= True)
     class Meta :
         model = Profile
         fields = [
             'username',
             'email',
             'password',
-            'token',
         ]
 
     def validate(self, data):
@@ -176,11 +178,7 @@ class ProfileLoginSerializer(ModelSerializer):
         if user_obj:
             if not user_obj.check_password(password):
                 raise ValidationError("Incorrect credentials, please try again.")
-        # Token generation
-        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-        payload = jwt_payload_handler(user_obj)
-        token = jwt_encode_handler(payload)
-        data["token"] = token
+        if not Profile.objects.filter(user = user_obj).exists() :
+            raise ValidationError("This user is created but has no profile in the platform")
 
         return data
