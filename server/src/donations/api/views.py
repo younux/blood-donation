@@ -62,6 +62,6 @@ class DonationUpdateAPIView(RetrieveUpdateAPIView):
 
 class DonationDeleteAPIView(DestroyAPIView):
     queryset = Donation.objects.all()
-    serializer_class = DonationDetailSerializer()
+    serializer_class = DonationDetailSerializer
     permission_classes = [IsDonationOwnerOrReadOnly]
 

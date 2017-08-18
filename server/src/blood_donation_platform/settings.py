@@ -40,7 +40,10 @@ INSTALLED_APPS = [
 
     # django rest framework
     'rest_framework',
+    # django rest jwt token
     'rest_framework_jwt',
+    # django rest swagger (api doc)
+    'rest_framework_swagger',
 
     # developped apps
     'accounts',
@@ -139,7 +142,7 @@ REST_FRAMEWORK = {
     # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
     ),
     'PAGE_SIZE': 10,
@@ -150,4 +153,20 @@ JWT_AUTH = {
     # By default : 'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
     'JWT_ALLOW_REFRESH': True,
     # By default : 'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+}
+
+# Swagger settings
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    },
+    'LOGIN_URL' : 'rest_framework:login',
+    'LOGOUT_URL' : 'rest_framework:logout',
+    'JSON_EDITOR' : False,
+    'SHOW_REQUEST_HEADERS' : False,
+
 }

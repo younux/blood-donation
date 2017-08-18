@@ -20,6 +20,8 @@ from rest_framework_jwt.views import (
         refresh_jwt_token,
         verify_jwt_token,
         )
+from rest_framework_swagger.views import get_swagger_view
+
 
 
 urlpatterns = [
@@ -30,4 +32,7 @@ urlpatterns = [
     url(r'^api/auth/token-verify/', verify_jwt_token),
     url(r'^api/accounts/', include('accounts.api.urls', namespace='accounts-api')),
     url(r'^api/donations/', include('donations.api.urls', namespace='donations-api')),
+
+    # API Doc swagger
+    url(r'^swagger/$', get_swagger_view(title='API Doc')),
 ]
