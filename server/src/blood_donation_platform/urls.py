@@ -20,6 +20,7 @@ from rest_framework_jwt.views import (
         refresh_jwt_token,
         verify_jwt_token,
         )
+from rest_framework.documentation import include_docs_urls
 from rest_framework_swagger.views import get_swagger_view
 
 
@@ -33,6 +34,8 @@ urlpatterns = [
     url(r'^api/accounts/', include('accounts.api.urls', namespace='accounts-api')),
     url(r'^api/donations/', include('donations.api.urls', namespace='donations-api')),
 
-    # API Doc swagger
-    url(r'^swagger/$', get_swagger_view(title='API Doc')),
+    # DRF docs
+    url(r'^docs/', include_docs_urls(title='My API title')),
+    # Swagger docs
+    url(r'^swagger/$', get_swagger_view(title='My API title')),
 ]

@@ -40,9 +40,9 @@ INSTALLED_APPS = [
 
     # django rest framework
     'rest_framework',
-    # django rest jwt token
+    # DRF JWT token
     'rest_framework_jwt',
-    # django rest swagger (api doc)
+    # django swagger
     'rest_framework_swagger',
 
     # developped apps
