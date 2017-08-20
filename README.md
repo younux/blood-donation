@@ -6,7 +6,7 @@
 The table below includes only fields we are using, to see all existing User fields, see https://docs.djangoproject.com/en/1.11/ref/contrib/auth/
 
     +========================+
-    |      user (model)      |
+    |      User (model)      |
     +========================+
     | username (CharField)   |
     +------------------------+
@@ -22,7 +22,7 @@ The table below includes only fields we are using, to see all existing User fiel
 ### Address model 
 
     +======================+
-    |   address (model)    |
+    |   Address (model)    |
     +======================+
     | street (CharField)   |
     +----------------------+
