@@ -1,6 +1,3 @@
-#TODO
- 1. Implement camelCase undersocre_case conversion in parser and renderer https://github.com/vbabiy/djangorestframework-camel-case
-
 # blood_donation_platform
 
 ## This is the backend of the blood donation platform built using Python 3.6.1, Django and Django REST framework.

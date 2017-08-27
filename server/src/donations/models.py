@@ -23,7 +23,7 @@ class Donation(models.Model):
     status          = models.CharField(verbose_name="Status", max_length=20, choices=DONATION_STATUS)
 
     def __str__(self):
-        return "Donation - "+ self.applicant.user.username + " - " + self.applicant.blood_type
+        return "Donation - "+ self.applicant.username + " - " + self.applicant.blood_type
 
     def get_blood_type(self):
         return self.applicant.blood_type

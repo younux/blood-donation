@@ -139,16 +139,31 @@ AUTH_USER_MODEL = 'accounts.Profile'
 
 # REST framework settings
 REST_FRAMEWORK = {
+
     # 'DEFAULT_PERMISSION_CLASSES': (
     #     'rest_framework.permissions.IsAuthenticated',
     #     'rest_framework.permissions.IsAdminUser',
     # ),
+
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
     ),
+
     'PAGE_SIZE': 10,
+
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_camel_case.parsers.CamelCaseJSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+    ),
+
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_camel_case.renderers.CamelCaseJSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+
 }
 
 # JWT Token settings :

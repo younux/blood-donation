@@ -40,14 +40,14 @@ class ProfileDetailSerializer(ModelSerializer):
 
 class ProfileCreateSerialzer(ModelSerializer):
     email = EmailField(label="Email address")
-    email2 = EmailField(label="Confirm email", write_only=True)
+    email_2 = EmailField(label="Confirm email", write_only=True)
     address = AddressSerializer()
     class Meta:
         model = Profile
         fields = [
             'username',
             'email',
-            'email2',
+            'email_2',
             'password',
             'first_name',
             'last_name',
@@ -64,10 +64,10 @@ class ProfileCreateSerialzer(ModelSerializer):
 
     def validate(self, data):
         email1 = data.get("email")
-        email2 = data.get("email2")
-        if email1 != email2 :
+        email_2 = data.get("email_2")
+        if email1 != email_2 :
             raise ValidationError("Emails must match : email confirmation is not correct.")
-        profile_qs = Profile.objects.filter(email=email2)
+        profile_qs = Profile.objects.filter(email=email_2)
         if profile_qs.exists():
             raise ValidationError("A profile with that email address already exists.")
         return data
