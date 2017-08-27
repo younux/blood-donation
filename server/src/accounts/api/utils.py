@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from calendar import timegm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models import Q
 from rest_framework_jwt.settings import api_settings
 from rest_framework.authentication import get_authorization_header
@@ -8,6 +8,9 @@ from django.utils.encoding import smart_text
 from rest_framework import exceptions
 import jwt
 
+# Should always use get_user_model to get User because it could be different from
+# django.contrib.auth.models.User when we costumize User
+User = get_user_model()
 
 # This is inspired from https://github.com/GetBlimp/django-rest-framework-jwt/tree/master/rest_framework_jwt
 

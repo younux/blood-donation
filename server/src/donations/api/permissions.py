@@ -13,19 +13,5 @@ class IsDonationOwnerOrReadOnly(BasePermission):
         # so we'll always allow GET, HEAD or OPTIONS requests.
         if request.method in permissions.SAFE_METHODS:
             return True
-        # Instance must have an attribute named `user`.
-        return obj.applicant.user == request.user
+        return obj.applicant == request.user
 
-class HasProfile(BasePermission):
-    """
-       Object-level permission to only allow owners of an object to edit it.
-       Assumes the model instance has an `owner` attribute.
-    """
-    message = "Action not allowed. You must have a profile in the platform !"
-    def has_permission(self, request, view):
-        user = request.user
-        # First, the user must be authenticated
-        if not user.is_authenticated :
-            return False
-        # Second, the user must have a profile in the platform
-        return Profile.objects.filter(user = user).exists()

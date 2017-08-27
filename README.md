@@ -2,23 +2,6 @@
   
 ## Profile data model (Profile)
 
-### User model (built-in django model)
-The table below includes only fields we are using, to see all existing User fields, see https://docs.djangoproject.com/en/1.11/ref/contrib/auth/
-
-    +========================+
-    |      User (model)      |
-    +========================+
-    | username (CharField)   |
-    +------------------------+
-    | email (emailField)     |
-    +------------------------+
-    | password (CharField)   |
-    +------------------------+
-    | first_name (CharField) |
-    +------------------------+
-    | last_name (CharField)  |
-    +------------------------+
-
 ### Address model 
 
     +======================+
@@ -34,11 +17,20 @@ The table below includes only fields we are using, to see all existing User fiel
     +----------------------+
 
 ### Profile model
+Profile model extends Django AbstractUser model. For more information see : https://docs.djangoproject.com/fr/1.11/topics/auth/customizing/#auth-custom-user
 
     +====================================+
     |          Profile (model)           |
     +====================================+
-    | user (User model)                  |
+    | username (CharField)               |
+    +------------------------------------+
+    | email (emailField)                 |
+    +------------------------------------+
+    | password (CharField)               |
+    +------------------------------------+
+    | first_name (CharField)             |
+    +------------------------------------+
+    | last_name (CharField)              |
     +------------------------------------+
     | phone_number (CharField)           |
     +------------------------------------+
@@ -52,26 +44,25 @@ The table below includes only fields we are using, to see all existing User fiel
     +------------------------------------+
     | sms_notification  (BooleanField)   |
     +------------------------------------+
+    
 
 Here is ana example of Profile model in JSON format :
     
     {
-        "user": {
-            "username": "",
-            "email": "",
-            "password": "",
-            "first_name": "",
-            "last_name": ""
-        },
-        "phone_number": "",
+        "username": "user3",
+        "email": "user3@gmail.com",
+        "password": "xxxx",
+        "first_name": "user3",
+        "last_name": "user3",
+        "phone_number": "0626682675",
         "address": {
-            "street": "",
-            "city": "",
-            "country": "",
-            "zip_code": ""
+            "street": "8 Avenue de Mars",
+            "city": "Paris",
+            "country": "France",
+            "zip_code": "75000"
         },
-        "birth_date": null,
-        "blood_type": null,
+        "birth_date": "2017-08-12",
+        "blood_type": "O-",
         "email_notification": false,
         "sms_notification": false
     }
@@ -98,33 +89,32 @@ Here is ana example of Profile model in JSON format :
 
 Here is an example of Donation model in JSON format :
     
-       {
-           "created_on": "2017-08-17T21:00:05.820257Z",
-           "applicant": {
-               "user": {
-                   "username": "alex",
-                   "email": "alex@gmail.com",
-                   "first_name": "alex",
-                   "last_name": "lokim"
-               },
-               "phone_number": "12222",
-               "address": {
-                   "street": "baker street",
-                   "city": "London",
-                   "country": "England",
-                   "zip_code": "23908"
-               },
-               "birth_date": "2017-08-18",
-               "blood_type": "O-",
-               "email_notification": false,
-               "sms_notification": false
-           },
-           "deadline": "2017-08-18T20:55:41Z",
-           "description": "mydesc",
-           "city": "Marra",
-           "phone_number": "0626682675",
-           "status": "URG"
-       }
+    {
+        "created_on": "2017-08-27T10:27:56.325217Z",
+        "applicant": {
+            "username": "user1",
+            "email": "user1@gmail.com",
+            "first_name": "user1",
+            "last_name": "user1",
+            "phone_number": "0626682675",
+            "address": {
+                "street": "200 Avenue de Mars",
+                "city": "Paris",
+                "country": "France",
+                "zip_code": "75000"
+            },
+            "birth_date": "2017-08-11",
+            "blood_type": "O-",
+            "email_notification": false,
+            "sms_notification": false
+        },
+        "blood_type": "O-",
+        "deadline": "2019-02-12T22:23:00Z",
+        "description": "e\"\"",
+        "city": "r\"d\"",
+        "phone_number": "0626682675",
+        "status": "URG"
+    }
 
 
  

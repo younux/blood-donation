@@ -9,9 +9,9 @@ from ..models import Donation
 from accounts.api.serializers import ProfileDetailSerializer
 
 
-class DonationDetailSerializer(ModelSerializer):
-    applicant = ProfileDetailSerializer()
-    blood_type = SerializerMethodField()
+class DonationCreateDetailSerializer(ModelSerializer):
+    applicant = ProfileDetailSerializer(read_only = True)
+    blood_type = SerializerMethodField(read_only = True)
     class Meta :
         model = Donation
         fields = [
@@ -25,15 +25,31 @@ class DonationDetailSerializer(ModelSerializer):
             'phone_number',
             'status',
         ]
+        extra_kwargs = {
+            "created_on": {"read_only": True},
+        }
+
     def get_blood_type(self, obj):
         return obj.get_blood_type()
+
+    def validate_deadline(self, value):
+            current_datetime = datetime.datetime.now()
+            if value.timestamp() <= current_datetime.timestamp():
+                raise ValidationError("This deadline is in the past, please enter a valid one")
+            return value
+
+    def validate_phone_number(self, value):
+        phone_re = re.compile(r'0\d{9}$')
+        if phone_re.match(value) is None:
+            raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
+        return value
 
 class DonationListSerializer(ModelSerializer):
     applicant_first_name = SerializerMethodField()
     applicant_last_name = SerializerMethodField()
     blood_type = SerializerMethodField()
     url = HyperlinkedIdentityField(
-        view_name="donations-api:detail",
+        view_name="donations-api:detail-update-delete",
         lookup_field="pk",
     )
     class Meta :
@@ -53,30 +69,9 @@ class DonationListSerializer(ModelSerializer):
         return obj.get_blood_type()
 
     def get_applicant_first_name(self, obj):
-        return obj.applicant.user.first_name
+        return obj.applicant.first_name
 
     def get_applicant_last_name(self, obj):
-        return obj.applicant.user.last_name
+        return obj.applicant.last_name
 
-class DonationCreateSerializer(ModelSerializer):
-    class Meta:
-        model = Donation
-        fields = [
-            'deadline',
-            'description',
-            'city',
-            'phone_number',
-            'status',
-        ]
 
-    def validate_deadline(self, value):
-            current_datetime = datetime.datetime.now()
-            if value.timestamp() <= current_datetime.timestamp():
-                raise ValidationError("This deadline is in the past, please enter a valid one")
-            return value
-
-    def validate_phone_number(self, value):
-        phone_re = re.compile(r'0\d{9}$')
-        if phone_re.match(value) is None:
-            raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
-        return value

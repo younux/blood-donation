@@ -28,9 +28,9 @@ from rest_framework_swagger.views import get_swagger_view
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^api/auth/token/', obtain_jwt_token),
-    url(r'^api/auth/token-refresh/', refresh_jwt_token),
-    url(r'^api/auth/token-verify/', verify_jwt_token),
+    # url(r'^api/auth/token/', obtain_jwt_token),
+    # url(r'^api/auth/token-refresh/', refresh_jwt_token),
+    # url(r'^api/auth/token-verify/', verify_jwt_token),
     url(r'^api/accounts/', include('accounts.api.urls', namespace='accounts-api')),
     url(r'^api/donations/', include('donations.api.urls', namespace='donations-api')),
 

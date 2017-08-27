@@ -6,7 +6,6 @@ from rest_framework.serializers import (
         ValidationError,
         )
 from django.db.models import Q
-from django.contrib.auth.models import User
 
 from ..models import Address, Profile
 
@@ -21,21 +20,30 @@ class AddressSerializer(ModelSerializer):
             'zip_code',
         ]
 
-class UserDetailSerializer(ModelSerializer):
+
+class ProfileDetailSerializer(ModelSerializer):
+    address = AddressSerializer(read_only = True)
     class Meta:
-        model = User
+        model = Profile
         fields = [
             'username',
             'email',
             'first_name',
             'last_name',
+            'phone_number',
+            'address',
+            'birth_date',
+            'blood_type',
+            'email_notification',
+            'sms_notification',
         ]
 
-class UserCreateSerializer(ModelSerializer):
+class ProfileCreateSerialzer(ModelSerializer):
     email = EmailField(label="Email address")
     email2 = EmailField(label="Confirm email", write_only=True)
+    address = AddressSerializer()
     class Meta:
-        model = User
+        model = Profile
         fields = [
             'username',
             'email',
@@ -43,6 +51,12 @@ class UserCreateSerializer(ModelSerializer):
             'password',
             'first_name',
             'last_name',
+            'phone_number',
+            'address',
+            'birth_date',
+            'blood_type',
+            'email_notification',
+            'sms_notification',
         ]
         extra_kwargs = {
             "password": {"write_only": True},
@@ -53,9 +67,9 @@ class UserCreateSerializer(ModelSerializer):
         email2 = data.get("email2")
         if email1 != email2 :
             raise ValidationError("Emails must match : email confirmation is not correct.")
-        user_qs = User.objects.filter(email=email2)
-        if user_qs.exists():
-            raise ValidationError("A user with that email address already exists.")
+        profile_qs = Profile.objects.filter(email=email2)
+        if profile_qs.exists():
+            raise ValidationError("A profile with that email address already exists.")
         return data
 
     def validate_first_name(self, value):
@@ -72,28 +86,59 @@ class UserCreateSerializer(ModelSerializer):
             raise ValidationError("This name is too short to be valid")
         return value
 
-class ProfileDetailSerializer(ModelSerializer):
-    address = AddressSerializer(read_only = True)
-    user = UserDetailSerializer(read_only = True)
-    class Meta:
-        model = Profile
-        fields = [
-            'user',
-            'phone_number',
-            'address',
-            'birth_date',
-            'blood_type',
-            'email_notification',
-            'sms_notification',
-        ]
+    def validate_phone_number(self, value):
+        phone_re = re.compile(r'0\d{9}$')
+        if phone_re.match(value) is None:
+            raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
+        return value
 
-class ProfileCreateSerialzer(ModelSerializer):
-    user = UserCreateSerializer(write_only=True)
-    address = AddressSerializer(write_only=True)
-    class Meta:
+    def validate_birth_date(self, value):
+        if not value:
+            raise ValidationError("This field may not be blank.")
+        return value
+
+    def create(self, validated_data):
+        username = validated_data.get("username")
+        email = validated_data.get("email")
+        password = validated_data.get("password")
+        first_name = validated_data.get("first_name")
+        last_name = validated_data.get("last_name")
+        phone_number = validated_data.get("phone_number")
+        address = validated_data.get("address")
+        birth_date = validated_data.get("birth_date")
+        blood_type = validated_data.get("blood_type")
+        email_notification = validated_data.get("email_notification")
+        sms_notification = validated_data.get("sms_notification")
+
+        address_obj = Address.objects.create(**address)
+        profile_obj = Profile.objects.create(username = username,
+                                            email = email,
+                                            first_name = first_name,
+                                            last_name = last_name,
+                                            phone_number = phone_number,
+                                            address = address_obj,
+                                            birth_date = birth_date,
+                                            blood_type = blood_type,
+                                            email_notification = email_notification,
+                                            sms_notification = sms_notification,
+                                         )
+        profile_obj.set_password(password)
+        profile_obj.save()
+        return profile_obj
+
+class ProfileLoginSerializer(ModelSerializer):
+    username = CharField(allow_blank=True, required=False)
+    email = EmailField(label="Email address", allow_blank=True, required=False)
+    password = CharField(style={'input_type': 'password'}, write_only=True)
+    address = AddressSerializer(read_only=True)
+    class Meta :
         model = Profile
         fields = [
-            'user',
+            'username',
+            'email',
+            'password',
+            'first_name',
+            'last_name',
             'phone_number',
             'address',
             'birth_date',
@@ -102,83 +147,36 @@ class ProfileCreateSerialzer(ModelSerializer):
             'sms_notification',
         ]
         extra_kwargs = {
-            "phone_number" : {"write_only": True},
-            "birth_date" : {"write_only": True},
-            "blood_type" : {"write_only": True},
-            "email_notification" : {"write_only": True},
-            "sms_notification" :  {"write_only": True},
+            "first_name": {"read_only": True},
+            "last_name": {"read_only": True},
+            "phone_number": {"read_only": True},
+            "birth_date": {"read_only": True},
+            "blood_type": {"read_only": True},
+            "email_notification": {"read_only": True},
+            "sms_notification": {"read_only": True},
+
         }
 
-    def validate_phone_number(self, value):
-        phone_re = re.compile(r'0\d{9}$')
-        if phone_re.match(value) is None:
-            raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
-        return value
-
-    def create(self, validated_data):
-        username = validated_data.get("user").get("username")
-        email = validated_data.get("user").get("email")
-        password = validated_data.get("user").get("password")
-        first_name = validated_data.get("user").get("first_name")
-        last_name = validated_data.get("user").get("last_name")
-        phone_number = validated_data.get("phone_number")
-        address = validated_data.get("address")
-        birth_date = validated_data.get("birth_date")
-        blood_type = validated_data.get("blood_type")
-        email_notification = validated_data.get("email_notification")
-        sms_notification = validated_data.get("sms_notification")
-
-
-        user_obj = User.objects.create(username = username,
-                                       email = email,
-                                       first_name = first_name,
-                                       last_name = last_name,
-                                       )
-        user_obj.set_password(password)
-        user_obj.save()
-        address_obj = Address.objects.create(**address)
-        profile_obj = Profile.objects.create(user = user_obj,
-                                         phone_number = phone_number,
-                                         address = address_obj,
-                                         birth_date = birth_date,
-                                         blood_type = blood_type,
-                                         email_notification = email_notification,
-                                         sms_notification = sms_notification,
-                                         )
-        return profile_obj
-
-class ProfileLoginSerializer(ModelSerializer):
-    username = CharField(allow_blank=True, required=False, write_only=True)
-    email = EmailField(label="Email address", allow_blank=True, required=False, write_only=True)
-    password = CharField(style={'input_type': 'password'}, write_only=True)
-    class Meta :
-        model = Profile
-        fields = [
-            'username',
-            'email',
-            'password',
-        ]
 
     def validate(self, data):
-        user_obj = None
+        profile_obj = None
         username = data.get("username", None)
         email = data.get("email", None)
         password = data.get("password")
         if not email and not username:
             raise ValidationError("A username or an email is required to login.")
-        user_qs = User.objects.filter(
+        profile_qs = Profile.objects.filter(
                 Q(username = username)|
                 Q(email = email)
             ).distinct()
-        user_qs = user_qs.exclude(email__isnull = True).exclude(email__iexact='')
-        if user_qs.exists() and user_qs.count() == 1:
-            user_obj = user_qs.first()
+        profile_qs = profile_qs.exclude(email__isnull = True).exclude(email__iexact='')
+        if profile_qs.exists() and profile_qs.count() == 1:
+            profile_obj = profile_qs.first()
         else:
             raise ValidationError("This username / email is not valid.")
-        if user_obj:
-            if not user_obj.check_password(password):
+        if profile_obj:
+            if not profile_obj.check_password(password):
                 raise ValidationError("Incorrect credentials, please try again.")
-        if not Profile.objects.filter(user = user_obj).exists() :
-            raise ValidationError("This user is created but has no profile in the platform")
+            data = ProfileDetailSerializer(profile_obj).data
 
         return data

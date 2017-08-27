@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
 
 # Create your models here.
@@ -17,7 +17,9 @@ class Address(models.Model):
     def __str__(self):
         return self.street + " - " + self.city
 
-class Profile(models.Model):
+class Profile(AbstractUser):
+    # See https://docs.djangoproject.com/fr/1.11/topics/auth/customizing/#auth-custom-user For using AbstractUser
+
     # Blood Types
     O_POS = 'O+'
     O_NEG = 'O-'
@@ -38,28 +40,32 @@ class Profile(models.Model):
         (AB_POS, 'AB+'),
     )
 
-    # This line is required. Links Profile to a User model instance.
-    # For its fields see https://docs.djangoproject.com/fr/1.11/ref/contrib/auth/#user-model
-    user                = models.OneToOneField(User, on_delete=models.CASCADE)
     # The additional attributes we wish to include.
     phone_number        = models.CharField(verbose_name="Phone number", max_length=10)
-    address             = models.OneToOneField(Address, on_delete=models.CASCADE)
-    birth_date          = models.DateField(verbose_name="Birth date")
+    address             = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
+    birth_date          = models.DateField(verbose_name="Birth date", null=True)
     blood_type          = models.CharField(verbose_name="Blood type", max_length=10, choices=BLOOD_TYPE_CHOICES)
     email_notification  = models.BooleanField(verbose_name="Email notification", default=False)
     sms_notification    = models.BooleanField(verbose_name="SMS notification", default=False)
 
+    class Meta:
+        verbose_name        = "Profile"
+        verbose_name_plural = "Profiles"
+
     # Override the __unicode__() method to return out something meaningful!
     #  Remember if you use Python 2.7.x, define __unicode__ too!
     def __str__(self):
-        return self.user.username
+        return self.username
 
-# After deleting a profile we should delete its address and its user
+
+# After deleting a profile we should delete its address
 @receiver(models.signals.post_delete, sender=Profile)
-def auto_delete_address_and_user_with_Profile(sender, instance, *args, **kwargs):
-    if instance.address :
-        instance.address.delete()
-    if instance.user :
-        instance.user.delete()
+def auto_delete_address_with_Profile(sender, instance, *args, **kwargs):
+    try :
+        if instance.address :
+            instance.address.delete()
+    except :
+        pass
+
 
 

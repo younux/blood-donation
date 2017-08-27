@@ -134,6 +134,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+# The model to use to represent a User. (Default: 'auth.User')
+AUTH_USER_MODEL = 'accounts.Profile'
+
 # REST framework settings
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': (

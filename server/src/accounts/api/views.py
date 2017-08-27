@@ -15,7 +15,6 @@ from rest_framework.status import (
         HTTP_201_CREATED,
         )
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
 
 
 from ..models import Profile
@@ -38,7 +37,7 @@ class ProfileCreateAPIView(GenericAPIView):
         # existing instance was passed when instantiating the serializer class:
         profile_obj = serializer.save()
         # Generate Token and add it to response header
-        token = generate_token(user=profile_obj.user)
+        token = generate_token(user=profile_obj)
         headers = {}
         headers['Authorization'] = JWT_AUTH_HEADER_PREFIX + " " + token
         return Response(data=serializer.data, status=HTTP_201_CREATED, headers=headers)
