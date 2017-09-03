@@ -1,0 +1,30 @@
+@import "generic-generator";
+
+$default-margins-sizes: ('xs': $margin-xs-size, 'sm': $margin-sm-size, 'md': $margin-md-size, 'lg': $margin-lg-size);
+
+//Mixin to generate margins css classes
+//ex: generate-margins($sizes: (12px: '12'), $sides: top, $breakpoint: (md: 120px)); for specific margin using specific breakpoints
+//ex: generate-margins(); for default margins ($margin-xs-size, $margin-sm-size, $margin-md-size, $margin-lg-size)
+//ex: generate-margins($breakpoints: null); if you don't need breakpoint
+
+@mixin generate-margins($sizes: $default-margins-sizes, $sides: $default-margins-sides, $breakpoints: $grid-breakpoints) {
+	@each $breakpointKey, $breakpointValue in $breakpoints {
+		@each $key, $value in $sizes {
+			$breakpointMap: null;
+			@if ($breakpoints) {
+				$breakpointMap: ($breakpointKey: $breakpointValue);
+			}
+
+			//We generate without sides
+			@include css-generator('margin', margin, ($key: $value), null);
+			@include css-generator('margin', margin, ($key: $value), $breakpointMap);
+			//We generate for each sides
+			@if $sides {
+				@each $side in $sides {
+					@include css-generator(unquote('margin-' + $side), margin-#{$side}, ($key: $value), null);
+					@include css-generator(unquote('margin-' + $side), margin-#{$side}, ($key: $value), $breakpointMap);
+				}
+			}
+		}
+	}
+}
