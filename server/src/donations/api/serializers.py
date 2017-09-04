@@ -9,13 +9,18 @@ from ..models import Donation
 from accounts.api.serializers import ProfileDetailSerializer
 
 
-class DonationCreateDetailSerializer(ModelSerializer):
+class DonationSerializer(ModelSerializer):
     applicant = ProfileDetailSerializer(read_only = True)
     blood_type = SerializerMethodField(read_only = True)
+    url = HyperlinkedIdentityField(
+        view_name="donations-api:detail-update-delete",
+        lookup_field="pk",
+    )
     class Meta :
         model = Donation
         fields = [
-            #'id',
+            'id',
+            'url',
             'created_on',
             'applicant',
             'blood_type',
@@ -26,6 +31,7 @@ class DonationCreateDetailSerializer(ModelSerializer):
             'status',
         ]
         extra_kwargs = {
+            "id": {"read_only": True},
             "created_on": {"read_only": True},
         }
 
@@ -44,34 +50,5 @@ class DonationCreateDetailSerializer(ModelSerializer):
             raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
         return value
 
-class DonationListSerializer(ModelSerializer):
-    applicant_first_name = SerializerMethodField()
-    applicant_last_name = SerializerMethodField()
-    blood_type = SerializerMethodField()
-    url = HyperlinkedIdentityField(
-        view_name="donations-api:detail-update-delete",
-        lookup_field="pk",
-    )
-    class Meta :
-        model = Donation
-        fields = [
-            #'id',
-            'url',
-            'created_on',
-            'applicant_first_name',
-            'applicant_last_name',
-            'blood_type',
-            'deadline',
-            'city',
-            'status',
-        ]
-    def get_blood_type(self, obj):
-        return obj.get_blood_type()
-
-    def get_applicant_first_name(self, obj):
-        return obj.applicant.first_name
-
-    def get_applicant_last_name(self, obj):
-        return obj.applicant.last_name
 
 

@@ -60,6 +60,7 @@ class ProfileCreateSerialzer(ModelSerializer):
         ]
         extra_kwargs = {
             "password": {"write_only": True},
+
         }
 
     def validate(self, data):

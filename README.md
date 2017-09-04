@@ -1,5 +1,5 @@
 # TODO 
-User postgreSQL in development instead of SQLLite.
+Use postgreSQL in development instead of SQLite.
 
 # blood-donation-platform  
   
@@ -52,21 +52,21 @@ Profile model extends Django AbstractUser model. For more information see : http
 Here is ana example of Profile model in JSON format (after rendering) :
     
     {
-        "username": "user3",
-        "email": "user3@gmail.com",
-        "firstName": "user3",
-        "lastName": "user3",
-        "phoneNumber": "0626682675",
+        "username": "alain",
+        "email": "alain@gmail.com",
+        "firstName": "Alain",
+        "lastName": "Alo",
+        "phoneNumber": "0626382125",
         "address": {
-            "street": "8 Avenue de Mars",
-            "city": "Paris",
+            "street": "10 rue de lune",
+            "city": "Rennes",
             "country": "France",
-            "zipCode": "75000"
+            "zipCode": "40000"
         },
-        "birthDate": "2017-08-01",
-        "bloodType": "A+",
+        "birthDate": "1994-02-12",
+        "bloodType": "AB+",
         "emailNotification": true,
-        "smsNotification": false
+        "smsNotification": true
     }
   
 ## Donation data model (Donation)
@@ -92,13 +92,15 @@ Here is ana example of Profile model in JSON format (after rendering) :
 Here is an example of Donation model in JSON format (after rendering) :
     
     {
+        "id": 1,
+        "url": "http://127.0.0.1:8000/api/donations/1/",
         "createdOn": "2017-08-27T14:43:20.747354Z",
         "applicant": {
             "username": "user1",
             "email": "user1@gmail.com",
             "firstName": "user1",
             "lastName": "user1",
-            "phoneNumber": "0626682675",
+            "phoneNumber": "0626782685",
             "address": {
                 "street": "derb 2",
                 "city": "Marrakech",
@@ -117,7 +119,6 @@ Here is an example of Donation model in JSON format (after rendering) :
         "phoneNumber": "0626682675",
         "status": "URG"
     }
-
 
  ## Notes
  

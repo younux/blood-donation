@@ -16,8 +16,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 from .serializers import (
-    DonationListSerializer,
-    DonationCreateDetailSerializer,
+    DonationSerializer,
 )
 from .permissions import (
     IsDonationOwnerOrReadOnly,
@@ -29,7 +28,7 @@ from accounts.models import Profile
 
 class DonationCreateAPIView(CreateAPIView):
     queryset = Donation.objects.all()
-    serializer_class = DonationCreateDetailSerializer
+    serializer_class = DonationSerializer
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
@@ -38,7 +37,7 @@ class DonationCreateAPIView(CreateAPIView):
 
 class DonationListAPIView(ListAPIView):
     queryset = Donation.objects.all()
-    serializer_class = DonationListSerializer
+    serializer_class = DonationSerializer
     # search example : http://127.0.0.1:8000/api/donations/?search=alex&ordering=-city
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['applicant__username', 'applicant__email',
@@ -50,6 +49,6 @@ class DonationListAPIView(ListAPIView):
 
 class DonationDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Donation.objects.all()
-    serializer_class = DonationCreateDetailSerializer
+    serializer_class = DonationSerializer
     permission_classes = [IsAuthenticated, IsDonationOwnerOrReadOnly]
 
