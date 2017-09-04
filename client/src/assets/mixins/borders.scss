@@ -5,17 +5,22 @@
 	@each $colorKey, $colorValue in $colors {
 		@each $key, $value in $values {
 			//We generate without sides
-			@include css-generator('border', border, (join(($colorKey: $colorValue), join(($key: $value), $type), comma)), $breakpoints);
-			//We generate for each sides
+			@include css-generator('border', border, (($key: $value), $type, ($colorKey: $colorValue)), null);
+			@include css-generator('border', border, (($key: $value), $type, ($colorKey: $colorValue)), $breakpoints);
+
+      //We generate for each sides
 			@each $side in top, right, bottom, left {
-				@include css-generator(unquote('border-' + $side), border-#{$side}, (join(($colorKey: $colorValue), join(($key: $value), $type), comma)), $breakpoints);
+        @include css-generator(unquote('border-' + $side), border-#{$side}, (($key: $value), $type, ($colorKey: $colorValue)), null);
+        @include css-generator(unquote('border-' + $side), border-#{$side}, (($key: $value), $type, ($colorKey: $colorValue)), $breakpoints);
 			}
 		}
 	}
 
+	@include css-generator('border', border, ('none': 0), null);
 	@include css-generator('border', border, ('none': 0), $breakpoints);
 
 	@each $side in top, right, bottom, left {
+		@include css-generator(unquote('border-' + $side), border-#{$side}, ('none': 0), null);
 		@include css-generator(unquote('border-' + $side), border-#{$side}, ('none': 0), $breakpoints);
 	}
 }

@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/mixins/variables";
-@import "./assets/mixins/borders";
 @import "./assets/mixins/breakpoints-utils";
+@import "./assets/mixins/generic-generator";
+@import "./assets/mixins/borders";
 @import "./assets/mixins/colors";
 @import "./assets/mixins/float";
-@import "./assets/mixins/generic-generator";
 @import "./assets/mixins/lineheights";
 @import "./assets/mixins/margins";
 @import "./assets/mixins/paddings";
@@ -14,25 +14,45 @@
 
 // Colors
 $primary: #00ABB9;
+$primary-dark: #303A49;
 $secondary: #EEEEEE;
+$secondary-dark: #E7E7E7;
 
 @include generate-colors(('primary': $primary));
+@include generate-colors(('primary-dark': $primary-dark));
 @include generate-colors(('secondary': $secondary));
+@include generate-colors(('secondary-dark': $secondary-dark));
 @include generate-colors(('white': white));
+
+// Borders
+@include generate-borders(('primary': $primary, 'primary-dark': $primary-dark));
+@include generate-borders(('secondary': $secondary, 'secondary-dark': $secondary-dark));
+@include generate-borders(('white': white));
 
 // Texts
 @include generate-texts($sizes: ('8': 8px, '9': 9px, '10': 10px, '11': 11px, '12': 12px, '13': 13px, '14': 14px,
-'15': 15px, '16': 16px, '17': 17px, '18': 18px, '19': 19px, '20': 20px, '21': 21px, '22': 22px, '23': 23px, '24': 24px,
-'25': 25px, '26': 26px, '27': 27px, '28': 28px, '29': 29px, '30': 30px, '31': 31px, '32': 32px, '33': 33px, '34': 34px));
+  '15': 15px, '16': 16px, '17': 17px, '18': 18px, '19': 19px, '20': 20px, '21': 21px, '22': 22px, '23': 23px, '24': 24px,
+  '25': 25px, '26': 26px, '27': 27px, '28': 28px, '29': 29px, '30': 30px, '31': 31px, '32': 32px, '33': 33px, '34': 34px));
 
 @include generate-text-align(center);
 @include generate-text-align(left);
 @include generate-text-align(right);
 
+// Padding
+@include generate-paddings();
+
+// Margins
+@include generate-margins();
+
+// Cursors
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 // litter-spacing
-   .letter-spacing-1 {
-     letter-spacing: 1px;
-   }
+.letter-spacing-1 {
+  letter-spacing: 1px;
+}
 .letter-spacing-2 {
   letter-spacing: 2px;
 }
@@ -46,18 +66,22 @@ $secondary: #EEEEEE;
   letter-spacing: 5px;
 }
 
+// Opacities
 
-// Paddings
-@include generate-paddings();
+.opacity-9 {
+  opacity: 0.9;
+}
 
-// Margins
-@include generate-margins();
+.opacity-8 {
+  opacity: 0.8;
+}
+
 
 // Display
-   .inline-block {
-     display: inline-block;
-     float: none;
-   }
+.inline-block {
+  display: inline-block;
+  float: none;
+}
 
 // Fonts
 @font-face {
@@ -92,4 +116,3 @@ html, body {
   height: 100vh;
   font-family: app-regular;
 }
-
