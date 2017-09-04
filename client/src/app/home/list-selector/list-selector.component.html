@@ -1,0 +1,35 @@
+<div (focusout)="hideList()"
+     class="padding-md"
+      [ngClass]="{ 'background-primary': isActive || selectedItem, 'opacity-8': !isActive && !selectedItem }">
+  <div class="text-uppercase text-white text-12 padding-bottom-sm">{{ title }}</div>
+  <div (click)="toggleList()" class="background-white padding-sm cursor-pointer">
+    <div *ngIf="!selectedItem">
+      <span>-- {{ placeholder }} --</span>
+      <span *ngIf="!selectedItem" class="pull-right">
+      <i *ngIf="isListVisible" class="fa fa-chevron-up" aria-hidden="true"></i>
+      <i *ngIf="!isListVisible" class="fa fa-chevron-down" aria-hidden="true"></i>
+    </span>
+    </div>
+    <div *ngIf="selectedItem" class="text-bold text-primary-dark">
+      {{ selectedItem }}
+      <span *ngIf="selectedItem" (click)="selectItem(null)" class="pull-right text-secondary-dark">
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+      </span>
+    </div>
+  </div>
+  <div [hidden]="!isListVisible"
+       class="background-secondary border-xs-primary-dark padding-xs margin-top-xs"
+        style="position: absolute; z-index: 99; width: 85%">
+    <div class="input-group">
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    </div>
+    <div>
+      <div *ngFor="let item of items"
+           (click)="selectItem(item)"
+           class="padding-xs padding-left-md background-white cursor-pointer"
+           [ngClass]="{ 'background-white': !isSelected(item), 'background-primary text-white': isSelected(item) }">{{ item }}
+      </div>
+    </div>
+  </div>
+</div>
