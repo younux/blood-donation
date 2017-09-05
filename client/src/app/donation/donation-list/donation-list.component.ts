@@ -12,10 +12,11 @@ export class DonationListComponent implements OnInit {
   @Output() onDonationSelected: EventEmitter<Donation>;
   currentDonation: Donation;
 
-  constructor() { }
+  constructor() {
+    this.onDonationSelected = new EventEmitter();
+  }
 
   ngOnInit() {
-    this.onDonationSelected = new EventEmitter();
   }
 
   clicked(donation: Donation) {

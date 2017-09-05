@@ -7,10 +7,8 @@ import {Address} from './address.model';
 
 export class Profile {
 
-  id: number;
   username: string;
   email: string;
-  password: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -20,10 +18,8 @@ export class Profile {
   emailNotification: boolean;
   sms_notification: boolean;
 
-  constructor(  id: number,
-                username: string,
+  constructor(  username: string,
                 email: string,
-                password: string,
                 firstName: string,
                 lastName: string,
                 phoneNumber: string,
@@ -32,10 +28,8 @@ export class Profile {
                 bloodType: string,
                 emailNotification: boolean,
                 sms_notification: boolean) {
-      this.id = id;
       this.username = username;
       this.email = email;
-      this.password = password;
       this.firstName = firstName;
       this.lastName = lastName;
       this.phoneNumber = phoneNumber;
