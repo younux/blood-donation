@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="dfed61fe-f5e5-46aa-af0f-d9ed30844465" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/db.sqlite3" afterPath="$PROJECT_DIR$/server/src/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -13,6 +14,9 @@
 =======
     <list default="true" id="dfed61fe-f5e5-46aa-af0f-d9ed30844465" name="Default" comment="" />
 >>>>>>> Add bootsrap sass and use SCSS, font-awsome, assests filles
+=======
+    <list default="true" id="dfed61fe-f5e5-46aa-af0f-d9ed30844465" name="Default" comment="" />
+>>>>>>> 537f360dc3a0ed646e0b6b10882e52ab6139cb99
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -130,10 +134,14 @@
     <frame x="10" y="59" width="1447" height="896" extended-state="0" />
     <layout>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2669039" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 =======
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2633034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 >>>>>>> Add bootsrap sass and use SCSS, font-awsome, assests filles
+=======
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2633034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 537f360dc3a0ed646e0b6b10882e52ab6139cb99
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -244,7 +252,10 @@
 =======
           <first_editor relative-caret-position="510">
             <caret line="124" column="101" lean-forward="false" selection-start-line="124" selection-start-column="85" selection-end-line="124" selection-end-column="101" />
+<<<<<<< HEAD
 >>>>>>> Add bootsrap sass and use SCSS, font-awsome, assests filles
+=======
+>>>>>>> 537f360dc3a0ed646e0b6b10882e52ab6139cb99
           </first_editor>
           <second_editor />
         </state>
