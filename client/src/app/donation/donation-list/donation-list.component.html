@@ -1,0 +1,7 @@
+<div class="row">
+  <app-donation-thumbnail *ngFor="let myDonation of donations"
+                          [donation]="myDonation"
+                          (click)="clicked(myDonation)"
+                          [class.selected]="isSelected(myDonation)">
+  </app-donation-thumbnail>
+</div>

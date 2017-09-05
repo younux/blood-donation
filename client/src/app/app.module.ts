@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { HomeModule } from './home/home.module';
+import {DonationModule} from './donation/donation.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,7 +25,8 @@ import { appRoutes } from './app.routes';
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpModule,
-    HomeModule
+    HomeModule,
+    DonationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
