@@ -3,8 +3,8 @@
  */
 
 import DateTimeFormat = Intl.DateTimeFormat;
-import {Address} from '../profile/address.model';
-import {Profile} from '../profile/profile.model';
+import {Address} from './address.model';
+import {Profile} from './profile.model';
 
 
 export class Donation {

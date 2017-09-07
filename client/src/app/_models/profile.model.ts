@@ -16,7 +16,7 @@ export class Profile {
   birthDate: Date;
   bloodType: string;
   emailNotification: boolean;
-  sms_notification: boolean;
+  smsNotification: boolean;
 
   constructor(  username: string,
                 email: string,
@@ -27,7 +27,7 @@ export class Profile {
                 birthDate: Date,
                 bloodType: string,
                 emailNotification: boolean,
-                sms_notification: boolean) {
+                smsNotification: boolean) {
       this.username = username;
       this.email = email;
       this.firstName = firstName;
@@ -37,7 +37,7 @@ export class Profile {
       this.birthDate = birthDate;
       this.bloodType = bloodType;
       this.emailNotification = emailNotification;
-      this.sms_notification = sms_notification;
+      this.smsNotification = smsNotification;
   }
 
 

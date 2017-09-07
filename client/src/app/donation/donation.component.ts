@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DonationService} from "./donation.service";
-import {Donation} from "./donation.model";
+import {DonationService} from "../_services/donation.service";
+import {Donation} from "../_models/donation.model";
 
 @Component({
   selector: 'app-donation',
@@ -14,9 +14,8 @@ export class DonationComponent implements OnInit {
   constructor(private donationService: DonationService) { }
 
   ngOnInit() {
-    this.donationService.list().subscribe( response => {
+    this.donationService.listDonations().subscribe( response => {
       this.donationsList = response.results;
-      console.log(this.donationsList);
       }
 
     );

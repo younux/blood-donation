@@ -1,0 +1,98 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2> Register </h2>
+
+  <form type="submit" name="loginForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('username')}">
+      <label> Username </label>
+      <input type="text" class="form-control" name="username" [formControl]="myForm.controls['username']"/>
+      <app-field-error-display [displayError]="isFieldInvalid('username')" [errorMsgs]="fieldErrorMessages('username')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('email')}">
+      <label> Email</label>
+      <input type="email" class="form-control" name="email" [formControl]="myForm.controls['email']" />
+      <app-field-error-display [displayError]="isFieldInvalid('email')" [errorMsgs]="fieldErrorMessages('email')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('password')}">
+      <label> Password </label>
+      <input type="password" class="form-control" name="password" [formControl]="myForm.controls['password']" />
+      <app-field-error-display [displayError]="isFieldInvalid('password')" [errorMsgs]="fieldErrorMessages('password')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('firstName')}">
+      <label> First Name </label>
+      <input type="text" class="form-control" name="password" [formControl]="myForm.controls['firstName']" />
+      <app-field-error-display [displayError]="isFieldInvalid('firstName')" [errorMsgs]="fieldErrorMessages('firstName')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('lastName')}">
+      <label> Last Name </label>
+      <input type="text" class="form-control" name="lastName" [formControl]="myForm.controls['lastName']" />
+      <app-field-error-display [displayError]="isFieldInvalid('lastName')" [errorMsgs]="fieldErrorMessages('lastName')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('phoneNumber')}">
+      <label> Phone Number</label>
+      <input type="tel" class="form-control" name="phoneNumber" [formControl]="myForm.controls['phoneNumber']" />
+      <app-field-error-display [displayError]="isFieldInvalid('phoneNumber')" [errorMsgs]="fieldErrorMessages('phoneNumber')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('street')}">
+      <label> Street </label>
+      <input type="text" class="form-control" name="street" [formControl]="myForm.controls['street']" />
+      <app-field-error-display [displayError]="isFieldInvalid('street')" [errorMsgs]="fieldErrorMessages('street')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('city')}">
+      <label> City </label>
+      <input type="text" class="form-control" name="city" [formControl]="myForm.controls['city']" />
+      <app-field-error-display [displayError]="isFieldInvalid('city')" [errorMsgs]="fieldErrorMessages('city')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('country')}">
+      <label> Country </label>
+      <input type="text" class="form-control" name="country" [formControl]="myForm.controls['country']" />
+      <app-field-error-display [displayError]="isFieldInvalid('country')" [errorMsgs]="fieldErrorMessages('country')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('zipCode')}">
+      <label> Zip Code </label>
+      <input type="number" class="form-control" name="zipCode" [formControl]="myForm.controls['zipCode']" />
+      <app-field-error-display [displayError]="isFieldInvalid('zipCode')" [errorMsgs]="fieldErrorMessages('zipCode')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('birthDate')}">
+      <label> Birth Date </label>
+      <input type="datetime-local" class="form-control" name="birthDate" [formControl]="myForm.controls['birthDate']" />
+      <app-field-error-display [displayError]="isFieldInvalid('birthDate')" [errorMsgs]="fieldErrorMessages('birthDate')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('bloodType')}">
+      <label> Blood Type </label>
+      <input type="text" class="form-control" name="bloodType" [formControl]="myForm.controls['bloodType']" />
+      <app-field-error-display [displayError]="isFieldInvalid('bloodType')" [errorMsgs]="fieldErrorMessages('bloodType')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('emailNotification')}">
+      <label> Email Notification </label>
+      <input type="checkbox" class="form-control" name="emailNotification" [formControl]="myForm.controls['emailNotification']" />
+      <app-field-error-display [displayError]="isFieldInvalid('emailNotification')" [errorMsgs]="fieldErrorMessages('emailNotification')"></app-field-error-display>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('smsNotification')}">
+      <label> SMS Notification </label>
+      <input type="checkbox" class="form-control" name="smsNotification" [formControl]="myForm.controls['smsNotification']" />
+      <app-field-error-display [displayError]="isFieldInvalid('smsNotification')" [errorMsgs]="fieldErrorMessages('smsNotification')"></app-field-error-display>
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Register</button>
+      <a [routerLink]="['/login']" class="btn btn-link">Login</a>
+    </div>
+            
+  </form>
+
+</div>
