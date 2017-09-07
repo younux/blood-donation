@@ -16,10 +16,14 @@ export class ProfileService {
   login(username: string, email: string, password: string) {
     let data = {username: username, email: email, password: password};
     let queryUrl = `${this.apiKey}accounts/login/`;
-    return this.http.post(queryUrl, JSON.stringify(data))
+    let header = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({headers: header });
+    return this.http.post(queryUrl, JSON.stringify(data), options)
       .map(response => {
+        console.log(response);
         let headers = response.headers;
         let jwtToken = headers.get("Authorization");
+        console.log("jwt token :", jwtToken)
         let profile = response.json();
         if (jwtToken) {
           // store profile details and jwt token in local storage to keep profile logged in between page refreshes

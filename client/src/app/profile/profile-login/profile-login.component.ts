@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Routes} from '@angular/router';
+import {ProfileService} from "../../_services/profile.service";
 
 @Component({
   selector: 'app-profile-login',
@@ -13,7 +14,7 @@ export class ProfileLoginComponent implements OnInit {
   isFormSubmitAttempt: boolean;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private profileService: ProfileService) {
     this.createForm();
     this.isFormSubmitAttempt = false;
   }
@@ -36,6 +37,13 @@ export class ProfileLoginComponent implements OnInit {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
       console.log('Form valid : you submitted', passedForm.value);
+      const sentData = passedForm.value;
+      this.profileService.login(sentData.username, sentData.email, sentData.password)
+        .subscribe( data => {
+          console.log(data);
+          console.log(localStorage.getItem('jwtToken'));
+        }
+      );
     } else {
       console.log('Form invalid ');
     }
