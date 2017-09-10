@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ProfileService} from "../../_services/profile.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-profile-register',
@@ -9,14 +12,23 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class ProfileRegisterComponent implements OnInit {
   myForm: FormGroup;
   isFormSubmitAttempt: boolean;
+  returnUrl: string;
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private profileService: ProfileService,
+              private alertService: AlertService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.createForm();
     this.isFormSubmitAttempt = false;
   }
 
   ngOnInit() {
+  // reset login status
+  this.profileService.logout();
+  // get return url from route parameters or default to '/home'
+  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   createForm() {
@@ -29,10 +41,12 @@ export class ProfileRegisterComponent implements OnInit {
         firstName: [ null, Validators.required],
         lastName: [ null, Validators.required],
         phoneNumber: [ null, Validators.required],
-        street: [ null, Validators.required],
-        city: [ null, Validators.required],
-        country: [ null, Validators.required],
-        zipCode: [ null, Validators.required],
+        address: this.fb.group({
+          street: [ null, Validators.required],
+          city: [ null, Validators.required],
+          country: [ null, Validators.required],
+          zipCode: [ null, Validators.required],
+        }),
         birthDate: [ null, Validators.required],
         bloodType: [ null, Validators.required],
         emailNotification: [ null, Validators.required],
@@ -44,9 +58,18 @@ export class ProfileRegisterComponent implements OnInit {
   onSubmit(passedForm) {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
-      console.log('Form valid : you submitted', passedForm.value);
-    } else {
-      console.log('Form invalid ');
+      const sentData = passedForm.value;
+      this.profileService.register(sentData)
+        .subscribe(
+          data => {
+            this.router.navigate([this.returnUrl]);
+            this.alertService.success(['You have successfully registered']);
+          },
+          err => {
+            const alerts = this.alertService.getAllJsonValues(err);
+            this.alertService.error(alerts);
+          }
+        );
     }
   }
 

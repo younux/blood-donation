@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Routes} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ProfileService} from "../../_services/profile.service";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-profile-login',
@@ -12,14 +13,24 @@ export class ProfileLoginComponent implements OnInit {
 
   myForm: FormGroup;
   isFormSubmitAttempt: boolean;
+  returnUrl: string;
 
 
-  constructor(private fb: FormBuilder, private profileService: ProfileService) {
+
+  constructor(private fb: FormBuilder,
+              private profileService: ProfileService,
+              private alertService: AlertService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.createForm();
     this.isFormSubmitAttempt = false;
   }
 
   ngOnInit() {
+    // reset login status
+    this.profileService.logout();
+    // get return url from route parameters or default to '/home'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   createForm() {
@@ -36,16 +47,18 @@ export class ProfileLoginComponent implements OnInit {
   onSubmit(passedForm) {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
-      console.log('Form valid : you submitted', passedForm.value);
       const sentData = passedForm.value;
       this.profileService.login(sentData.username, sentData.email, sentData.password)
-        .subscribe( data => {
-          console.log(data);
-          console.log(localStorage.getItem('jwtToken'));
-        }
+        .subscribe(
+          data => {
+            this.router.navigate([this.returnUrl]);
+            this.alertService.success(['You have successfully logged in']);
+          },
+          err => {
+            const alerts = this.alertService.getAllJsonValues(err);
+            this.alertService.error(alerts);
+          }
       );
-    } else {
-      console.log('Form invalid ');
     }
   }
 

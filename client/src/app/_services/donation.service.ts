@@ -10,7 +10,7 @@ import DateTimeFormat = Intl.DateTimeFormat;
 export class DonationService  {
 
   constructor(private http: Http,
-              @Inject('APP_API_URL') private apiKey: string,
+              @Inject('APP_API_URL') private apiUrl: string,
               ) {
 
   }
@@ -21,7 +21,7 @@ export class DonationService  {
                  phoneNumber: string,
                  status: string) {
 
-    const queryUrl = `${this.apiKey}donations/create/`;
+    const queryUrl = `${this.apiUrl}donations/create/`;
     let data = {deadline: deadline, description: description, city: city, phoneNumber: phoneNumber, status: status};
     let header = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: header });
@@ -32,7 +32,7 @@ export class DonationService  {
   }
 
   listDonations() {
-    const queryUrl = `${this.apiKey}donations/`;
+    const queryUrl = `${this.apiUrl}donations/`;
     return this.http.get(queryUrl)
       .map(response => {
         return response.json();
@@ -42,7 +42,7 @@ export class DonationService  {
   }
 
   getDonation(id: number) {
-    const queryUrl = `${this.apiKey}donations/${id}/`;
+    const queryUrl = `${this.apiUrl}donations/${id}/`;
     return this.http.get(queryUrl)
       .map(response => {
         return response.json();
@@ -56,7 +56,7 @@ export class DonationService  {
                   city: string,
                   phoneNumber: string,
                   status: string)  {
-    const queryUrl = `${this.apiKey}donations/${id}/`;
+    const queryUrl = `${this.apiUrl}donations/${id}/`;
     let data = {deadline: deadline, description: description, city: city, phoneNumber: phoneNumber, status: status};
     let header = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: header });
@@ -67,15 +67,16 @@ export class DonationService  {
   }
 
   deleteDonation(id: number) {
-    const queryUrl = `${this.apiKey}donations/${id}/`;
+    const queryUrl = `${this.apiUrl}donations/${id}/`;
     return this.http.delete(queryUrl)
       .map(response => response.json())
       .catch(this.handle_error);
   }
 
 
-  private handle_error(error: any , caught: any): any {
-    console.log(error, caught);
+  private handle_error(error: any): any {
+    console.log(error);
+    return Observable.throw(error.json());
   }
 
 }

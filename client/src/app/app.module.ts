@@ -7,11 +7,12 @@ import { HttpModule } from '@angular/http';
 import { HomeModule } from './home/home.module';
 import { DonationModule } from './donation/donation.module';
 import { ProfileModule } from './profile/profile.module';
+import {MyUtilsModule} from './_utils/my-utils.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { AlertComponent } from './_utils/alert/alert.component';
+
 
 import {AlertService} from './_services/alert.service';
 
@@ -23,7 +24,6 @@ import { apiInjectables } from './_injectables/api.injectables';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +35,7 @@ import { apiInjectables } from './_injectables/api.injectables';
     HomeModule,
     DonationModule,
     ProfileModule,
+    MyUtilsModule,
   ],
   providers: [
     apiInjectables,

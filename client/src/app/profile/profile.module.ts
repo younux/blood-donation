@@ -6,7 +6,7 @@ import {ProfileComponent} from "./profile.component";
 import {ProfileService} from "../_services/profile.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {FieldErrorDisplayComponent} from '../_utils/field-error-display/field-error-display.component';
+import {MyUtilsModule} from '../_utils/my-utils.module';
 
 @NgModule({
   imports: [
@@ -14,8 +14,9 @@ import {FieldErrorDisplayComponent} from '../_utils/field-error-display/field-er
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    MyUtilsModule,
   ],
-  declarations: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent, FieldErrorDisplayComponent],
+  declarations: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent],
   exports: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent],
   providers: [ProfileService],
 })

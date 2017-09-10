@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="col-md-6 col-md-offset-3">
+    <h2 class="text-center"> Create donation </h2>
+    <form type="submit" name="createDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+        <h3 class="text-center"> Infos 1 </h3>
+
+        <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadline')}">
+          <label> Deadline </label>
+          <input type="datetime-local" class="form-control" name="deadline" formControlName="deadline"/>
+          <app-field-error-display [displayError]="isFieldInvalid('deadline')" [errorMsgs]="fieldErrorMessages('deadline')"></app-field-error-display>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('description')}">
+          <label> Description </label>
+          <input type="text" class="form-control" name="description" formControlName="description" />
+          <app-field-error-display [displayError]="isFieldInvalid('description')" [errorMsgs]="fieldErrorMessages('description')"></app-field-error-display>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('city')}">
+          <label> City </label>
+          <input type="text" class="form-control" name="city" formControlName="city" />
+          <app-field-error-display [displayError]="isFieldInvalid('city')" [errorMsgs]="fieldErrorMessages('city')"></app-field-error-display>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('phoneNumber')}">
+          <label> Phone number </label>
+          <input type="number" class="form-control" name="phoneNumber" formControlName="phoneNumber" />
+          <app-field-error-display [displayError]="isFieldInvalid('phoneNumber')" [errorMsgs]="fieldErrorMessages('phoneNumber')"></app-field-error-display>
+        </div>
+
+        <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('status')}">
+          <label> Status </label>
+          <input type="text" class="form-control" name="status" formControlName="status" />
+          <app-field-error-display [displayError]="isFieldInvalid('status')" [errorMsgs]="fieldErrorMessages('status')"></app-field-error-display>
+        </div>
+
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+              
+     </form>
+
+  </div>
+
+</div>

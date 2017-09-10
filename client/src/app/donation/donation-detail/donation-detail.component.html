@@ -1,0 +1,28 @@
+<div class="container"  *ngIf="donation">
+  <h2 class="text-center"> Donation Detail </h2>
+
+  <h3 class="text-left"> Phone number </h3>
+  <p>{{donation.phoneNumber}}</p>
+
+  <h3 class="text-left"> city </h3>
+  <p>{{donation.city}}</p>
+
+  <h3 class="text-left"> deadline </h3>
+  <p>{{donation.deadline}}</p>
+
+  <h3 class="text-left"> created on </h3>
+  <p>{{donation.createdOn}}</p>
+
+  <h3 class="text-left"> bloodtype </h3>
+  <p>{{donation.bloodType}}</p>
+
+  <h3 class="text-left"> description </h3>
+  <p>{{donation.description}}</p>
+
+  <h3 class="text-left"> Applicant first name </h3>
+  <p>{{donation.applicant.firstName}}</p>
+
+  <h3 class="text-left"> Applicant last name </h3>
+  <p>{{donation.applicant.lastName}}</p>
+
+</div>

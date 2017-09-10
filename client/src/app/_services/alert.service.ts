@@ -24,18 +24,31 @@ export class AlertService {
     });
   }
 
-  success(message: string, keepAfterNavigationChange = false) {
+  success(alerts: string[], keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
-    this.subject.next({ type: 'success', text: message });
+    this.subject.next({ type: 'success', text: alerts });
   }
 
-  error(message: string, keepAfterNavigationChange = false) {
+  error(alerts: string[], keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
-    this.subject.next({ type: 'error', text: message });
+    this.subject.next({ type: 'error', text: alerts });
   }
 
   getMessage(): Observable<any> {
     return this.subject.asObservable();
+  }
+
+  // gets all string values contained in a json object
+  getAllJsonValues(jsonData: object): string[] {
+    let stringArray = new Array<string>();
+    for (let elt in jsonData) {
+      if ((typeof jsonData[elt]) === 'string') {
+        stringArray.push(jsonData[elt]);
+      } else if ((typeof jsonData[elt]) === 'object') {
+        stringArray = stringArray.concat(this.getAllJsonValues(jsonData[elt]));
+      }
+    }
+    return stringArray;
   }
 
 }
