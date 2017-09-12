@@ -33,6 +33,7 @@ export class DonationUpdateComponent implements OnInit {
     this.donationService.getDonation(this.donationId).subscribe(
       data => {
       this.currentDonation = data;
+      console.log('data received : ', this.currentDonation);
       this.createForm();
       },
       err => {
@@ -44,8 +45,13 @@ export class DonationUpdateComponent implements OnInit {
   }
 
   createForm() {
+    console.log("convert date : ", (this.currentDonation.deadline).getDay);
+    console.log("deadlineDay : ", (this.currentDonation.deadline).toISOString);
+    console.log("deadlineTime : ", (this.currentDonation.deadline).toDateString);
+
     this.myForm = this.fb.group({
-      deadline: [this.currentDonation.deadline, Validators.required],
+      deadlineDay: [this.currentDonation.deadline , Validators.required],
+      deadlineTime: [this.currentDonation.deadline , Validators.required],
       description: [this.currentDonation.description, Validators.required],
       city: [this.currentDonation.city, Validators.required],
       phoneNumber: [this.currentDonation.phoneNumber, Validators.required],
@@ -59,8 +65,8 @@ export class DonationUpdateComponent implements OnInit {
   onSubmit(passedForm) {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
-      console.log(passedForm.value);
       const sentData = passedForm.value;
+      console.log('data submitted : ', passedForm.value);
       this.donationService
         .updateDonation(this.donationId,
                         passedForm.value.deadline,
@@ -70,7 +76,8 @@ export class DonationUpdateComponent implements OnInit {
                         passedForm.value.status,
         ).subscribe(
             data => {
-              this.router.navigate([this.returnUrl]);
+              //this.router.navigate([this.returnUrl]);
+              console.log('data received after update : ', data);
               this.alertService.success(['You have successfully updated donation']);
             },
             err => {
@@ -79,6 +86,20 @@ export class DonationUpdateComponent implements OnInit {
             }
           );
     }
+
+  }
+
+  deleteDonation(event) {
+    this.donationService.deleteDonation(this.donationId).subscribe(
+      data => {
+        this.router.navigate([this.returnUrl]);
+        this.alertService.success(['You have successfully deleted donation']);
+      },
+      err => {
+        const alerts = this.alertService.getAllJsonValues(err);
+        this.alertService.error(alerts);
+      }
+    );
 
   }
 

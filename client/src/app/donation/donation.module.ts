@@ -11,7 +11,8 @@ import {RouterModule} from "@angular/router";
 import {MyUtilsModule} from "../_utils/my-utils.module";
 import { DonationUpdateComponent } from './donation-update/donation-update.component';
 import { DonationDeleteComponent } from './donation-delete/donation-delete.component';
-
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { TimepickerModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -20,6 +21,10 @@ import { DonationDeleteComponent } from './donation-delete/donation-delete.compo
     ReactiveFormsModule,
     RouterModule,
     MyUtilsModule,
+
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
+
   ],
   declarations: [
     DonationThumbnailComponent,

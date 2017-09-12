@@ -11,10 +11,10 @@ export class Donation {
 
   id: number;
   url: string;
-  createdOn: DateTimeFormat;
+  createdOn: Date;
   applicant: Profile;
   bloodType: string;
-  deadline: DateTimeFormat;
+  deadline: Date;
   description: string;
   city: string;
   phoneNumber: string;
@@ -22,10 +22,10 @@ export class Donation {
 
   constructor(  id: number,
                 url: string,
-                createdOn: DateTimeFormat,
+                createdOn: Date,
                 applicant: Profile,
                 bloodType: string,
-                deadline: DateTimeFormat,
+                deadline: Date,
                 description: string,
                 city: string,
                 phoneNumber: string,

@@ -25,8 +25,8 @@
 
           <nav class="nav-tabs">
             <ul class="nav nav-pills pull-left">
-              <li class="card-action"><a href="#">Detail</a></li>
-              <li class="card-action"><a href="#">Link</a></li>
+              <li class="card-action"><a [routerLink]="['/donations/detail', donation.id]">Detail</a></li>
+              <li class="card-action"><a [routerLink]="['/donations/update', donation.id]">Update</a></li>
               <li class="card-action"><a href="#">Link</a></li>
               <li class="card-action"><a href="#">Link</a></li>
             </ul>

@@ -4,7 +4,6 @@ import {Observable} from "rxjs/Observable";
 import {Donation} from "../_models/donation.model";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import DateTimeFormat = Intl.DateTimeFormat;
 
 @Injectable()
 export class DonationService  {
@@ -15,7 +14,7 @@ export class DonationService  {
 
   }
 
-  createDonation(deadline: DateTimeFormat,
+  createDonation(deadline: Date,
                  description: string,
                  city: string,
                  phoneNumber: string,
@@ -51,11 +50,11 @@ export class DonationService  {
   }
 
   updateDonation( id: number,
-                  deadline: DateTimeFormat,
+                  deadline: Date,
                   description: string,
                   city: string,
                   phoneNumber: string,
-                  status: string)  {
+                  status: string) {
     const queryUrl = `${this.apiUrl}donations/${id}/`;
     let data = {deadline: deadline, description: description, city: city, phoneNumber: phoneNumber, status: status};
     let header = new Headers({ 'Content-Type': 'application/json' });
@@ -75,7 +74,6 @@ export class DonationService  {
 
 
   private handle_error(error: any): any {
-    console.log(error);
     return Observable.throw(error.json());
   }
 

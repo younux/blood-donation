@@ -19,5 +19,5 @@ export const appRoutes: Routes = [
   { path: 'donations/detail/:id', component:  DonationDetailComponent},
 
 
-  { path: '**', redirectTo: 'home'},
+  //{ path: '**', redirectTo: 'home'},
 ];

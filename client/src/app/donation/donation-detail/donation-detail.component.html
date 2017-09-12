@@ -1,28 +1,84 @@
 <div class="container"  *ngIf="donation">
-  <h2 class="text-center"> Donation Detail </h2>
 
-  <h3 class="text-left"> Phone number </h3>
-  <p>{{donation.phoneNumber}}</p>
+  <div class="col-md-6 col-md-offset-3">
+    <h2 class="text-center text-bold"> Donation Detail </h2>
+      <div class="list-group">
 
-  <h3 class="text-left"> city </h3>
-  <p>{{donation.city}}</p>
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold">bloodtype</h4>
+          <p class="list-group-item-text">{{donation.bloodType}}</p>
+        </li>
 
-  <h3 class="text-left"> deadline </h3>
-  <p>{{donation.deadline}}</p>
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold">city</h4>
+          <p class="list-group-item-text">{{donation.city}}</p>
+        </li>
 
-  <h3 class="text-left"> created on </h3>
-  <p>{{donation.createdOn}}</p>
+        <li class="list-group-item">
+          <h4 class="list-group-item-headin text-bold">Phone number</h4>
+          <p class="list-group-item-text">{{donation.phoneNumber}}</p>
+        </li>
 
-  <h3 class="text-left"> bloodtype </h3>
-  <p>{{donation.bloodType}}</p>
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold">description</h4>
+          <p class="list-group-item-text">{{donation.description}}</p>
+        </li>
 
-  <h3 class="text-left"> description </h3>
-  <p>{{donation.description}}</p>
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold">created on</h4>
+          <p class="list-group-item-text">{{donation.createdOn}}</p>
+        </li>
 
-  <h3 class="text-left"> Applicant first name </h3>
-  <p>{{donation.applicant.firstName}}</p>
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold">deadline</h4>
+          <p class="list-group-item-text">{{donation.deadline}}</p>
+        </li>
 
-  <h3 class="text-left"> Applicant last name </h3>
-  <p>{{donation.applicant.lastName}}</p>
+
+
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant first name </h4>
+          <p class="list-group-item-text">{{donation.applicant.firstName}}</p>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant last name </h4>
+          <p class="list-group-item-text">{{donation.applicant.lastName}}</p>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant Username </h4>
+          <p class="list-group-item-text"> {{donation.applicant.username}} </p>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant blood type  </h4>
+          <p class="list-group-item-text"> {{donation.applicant.bloodType}} </p>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant email </h4>
+          <p class="list-group-item-text"> {{donation.applicant.email}} </p>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant Phone number </h4>
+          <p class="list-group-item-text"> {{donation.applicant.phoneNumber}} </p>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant email notification </h4>
+          <p class="list-group-item-text"> {{donation.applicant.emailNotification}} </p>
+        </li>
+
+        <li class="list-group-item">
+          <h4 class="list-group-item-heading text-bold"> Applicant sms notification </h4>
+          <p class="list-group-item-text"> {{donation.applicant.smsNotification}} </p>
+        </li>
+
+      </div>
+  </div>
+
 
 </div>

@@ -8,6 +8,7 @@ import { HomeModule } from './home/home.module';
 import { DonationModule } from './donation/donation.module';
 import { ProfileModule } from './profile/profile.module';
 import {MyUtilsModule} from './_utils/my-utils.module';
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -24,6 +25,7 @@ import { apiInjectables } from './_injectables/api.injectables';
     AppComponent,
     HeaderComponent,
     FooterComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,8 @@ import { apiInjectables } from './_injectables/api.injectables';
     DonationModule,
     ProfileModule,
     MyUtilsModule,
+
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     apiInjectables,
