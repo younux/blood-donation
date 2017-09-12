@@ -7,17 +7,23 @@
 
       <h3 class="text-center"> Infos 1 </h3>
 
-      <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineDay')}">
-        <label> Deadline Day </label>
-        <input type="text" name="deadlineDay" formControlName="deadlineDay" bsDatepicker>
-        <app-field-error-display [displayError]="isFieldInvalid('deadlineDay')" [errorMsgs]="fieldErrorMessages('deadlineDay')"></app-field-error-display>
-      </div>
-
-      <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineTime')}">
-        <label> Deadline Time </label>
-        <timepicker formControlName="deadlineTime"></timepicker>
-        <app-field-error-display [displayError]="isFieldInvalid('deadlineTime')" [errorMsgs]="fieldErrorMessages('deadlineTime')"></app-field-error-display>
-      </div>
+        <div class="row">
+          <h4 class="text-center"> Deadline </h4>
+          <div class="col-md-5 col-md-offset-1">
+            <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineDay')}">
+              <label> Day </label>
+              <input type="text" name="deadlineDay" formControlName="deadlineDay" bsDatepicker>
+              <app-field-error-display [displayError]="isFieldInvalid('deadlineDay')" [errorMsgs]="fieldErrorMessages('deadlineDay')"></app-field-error-display>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineTime')}">
+              <label> Time </label>
+              <timepicker formControlName="deadlineTime" ></timepicker>
+              <app-field-error-display [displayError]="isFieldInvalid('deadlineTime')" [errorMsgs]="fieldErrorMessages('deadlineTime')"></app-field-error-display>
+            </div>
+          </div>
+        </div>
 
       <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('description')}">
         <label> Description </label>

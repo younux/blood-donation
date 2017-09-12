@@ -33,7 +33,6 @@ export class DonationUpdateComponent implements OnInit {
     this.donationService.getDonation(this.donationId).subscribe(
       data => {
       this.currentDonation = data;
-      console.log('data received : ', this.currentDonation);
       this.createForm();
       },
       err => {
@@ -45,13 +44,9 @@ export class DonationUpdateComponent implements OnInit {
   }
 
   createForm() {
-    console.log("convert date : ", (this.currentDonation.deadline).getDay);
-    console.log("deadlineDay : ", (this.currentDonation.deadline).toISOString);
-    console.log("deadlineTime : ", (this.currentDonation.deadline).toDateString);
-
     this.myForm = this.fb.group({
       deadlineDay: [this.currentDonation.deadline , Validators.required],
-      deadlineTime: [this.currentDonation.deadline , Validators.required],
+      deadlineTime: [ this.currentDonation.deadline, Validators.required],
       description: [this.currentDonation.description, Validators.required],
       city: [this.currentDonation.city, Validators.required],
       phoneNumber: [this.currentDonation.phoneNumber, Validators.required],
@@ -66,10 +61,10 @@ export class DonationUpdateComponent implements OnInit {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
       const sentData = passedForm.value;
-      console.log('data submitted : ', passedForm.value);
+      let deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' + new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
       this.donationService
         .updateDonation(this.donationId,
-                        passedForm.value.deadline,
+                        deadline,
                         passedForm.value.description,
                         passedForm.value.city,
                         passedForm.value.phoneNumber,
@@ -77,7 +72,6 @@ export class DonationUpdateComponent implements OnInit {
         ).subscribe(
             data => {
               //this.router.navigate([this.returnUrl]);
-              console.log('data received after update : ', data);
               this.alertService.success(['You have successfully updated donation']);
             },
             err => {

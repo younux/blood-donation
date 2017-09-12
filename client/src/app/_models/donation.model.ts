@@ -2,7 +2,6 @@
  * Donation object.
  */
 
-import DateTimeFormat = Intl.DateTimeFormat;
 import {Address} from './address.model';
 import {Profile} from './profile.model';
 
@@ -11,10 +10,10 @@ export class Donation {
 
   id: number;
   url: string;
-  createdOn: Date;
+  createdOn: string;
   applicant: Profile;
   bloodType: string;
-  deadline: Date;
+  deadline: string;
   description: string;
   city: string;
   phoneNumber: string;
@@ -22,10 +21,10 @@ export class Donation {
 
   constructor(  id: number,
                 url: string,
-                createdOn: Date,
+                createdOn: string,
                 applicant: Profile,
                 bloodType: string,
-                deadline: Date,
+                deadline: string,
                 description: string,
                 city: string,
                 phoneNumber: string,

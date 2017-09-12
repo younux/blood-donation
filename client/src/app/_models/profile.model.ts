@@ -13,7 +13,7 @@ export class Profile {
   lastName: string;
   phoneNumber: string;
   address: Address;
-  birthDate: Date;
+  birthDate: string;
   bloodType: string;
   emailNotification: boolean;
   smsNotification: boolean;
@@ -24,7 +24,7 @@ export class Profile {
                 lastName: string,
                 phoneNumber: string,
                 address: Address,
-                birthDate: Date,
+                birthDate: string,
                 bloodType: string,
                 emailNotification: boolean,
                 smsNotification: boolean) {

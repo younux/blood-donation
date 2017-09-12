@@ -14,7 +14,7 @@ export class DonationService  {
 
   }
 
-  createDonation(deadline: Date,
+  createDonation(deadline: string,
                  description: string,
                  city: string,
                  phoneNumber: string,
@@ -50,7 +50,7 @@ export class DonationService  {
   }
 
   updateDonation( id: number,
-                  deadline: Date,
+                  deadline: string,
                   description: string,
                   city: string,
                   phoneNumber: string,
