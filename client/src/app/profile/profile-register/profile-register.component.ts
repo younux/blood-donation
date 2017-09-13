@@ -90,13 +90,3 @@ export class ProfileRegisterComponent implements OnInit {
   }
 
 }
-
-
-
-
-
-// http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial
-// http://www.annalytics.co.uk/angular2/javascript/typescript/ionic2/2017/02/26/Angular2-Http-Auth-Interceptor/
-// http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial
-// https://angular.io/api/http/Response
-// https://blog.thoughtram.io/angular/2016/07/18/guards-in-angular-2.html
