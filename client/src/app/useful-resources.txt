@@ -1,13 +1,4 @@
 ###### Delete This File, it is not part of the project, it is used to save some useful angular resources :
 
-http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial
 http://www.annalytics.co.uk/angular2/javascript/typescript/ionic2/2017/02/26/Angular2-Http-Auth-Interceptor/
-http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial
-https://angular.io/api/http/Response
-https://blog.thoughtram.io/angular/2016/07/18/guards-in-angular-2.html
-
-https://scotch.io/amp/@kashyapmukkamala/using-http-interceptor-with-angular2
 http://www.adonespitogo.com/articles/angular-2-extending-http-provider/
-http://roblouie.com/article/354/http-interceptor-in-angular-2/amp/
-https://www.illucit.com/blog/2016/03/angular2-http-authentication-interceptor/
-

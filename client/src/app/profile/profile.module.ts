@@ -7,6 +7,7 @@ import {ProfileService} from "../_services/profile.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {MyUtilsModule} from '../_utils/my-utils.module';
+import {ConnectionBackend} from "@angular/http";
 
 @NgModule({
   imports: [
@@ -18,6 +19,8 @@ import {MyUtilsModule} from '../_utils/my-utils.module';
   ],
   declarations: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent],
   exports: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent],
-  providers: [ProfileService],
+  providers: [
+    ProfileService,
+  ],
 })
 export class ProfileModule { }

@@ -31,7 +31,7 @@ export class DonationComponent implements OnInit {
   }
 
   onDonationSelected(donation: Donation) {
-    console.log('selected donation : ' + donation.id);
+    console.log('DonationComponent : selected donation : ' + donation.id);
   }
 
 }

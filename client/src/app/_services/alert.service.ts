@@ -43,7 +43,7 @@ export class AlertService {
     let stringArray = new Array<string>();
     for (let elt in jsonData) {
       if ((typeof jsonData[elt]) === 'string') {
-        stringArray.push(jsonData[elt]);
+        stringArray.push(`${elt} : ${jsonData[elt]}`);
       } else if ((typeof jsonData[elt]) === 'object') {
         stringArray = stringArray.concat(this.getAllJsonValues(jsonData[elt]));
       }

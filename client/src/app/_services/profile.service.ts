@@ -5,12 +5,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from "rxjs/Observable";
+import {MyHttpService} from "./my-http.service";
 
 
 @Injectable()
 export class ProfileService {
 
-  constructor(private http: Http,
+  constructor(private http: MyHttpService,
               @Inject('APP_API_URL') private apiUrl: string) {
 
   }
@@ -18,18 +19,11 @@ export class ProfileService {
   login(username: string, email: string, password: string) {
     let data = {username: username, email: email, password: password};
     let queryUrl = `${this.apiUrl}accounts/login/`;
-    let header = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({headers: header });
-    return this.http.post(queryUrl, JSON.stringify(data), options)
+    return this.http.post(queryUrl, JSON.stringify(data))
       .map(response => {
-        let headers = response.headers;
-        let jwtToken = headers.get('Authorization').split(' ')[1];
         let profile = response.json();
-        if (jwtToken) {
-          // store profile details and jwt token in local storage to keep profile logged in between page refreshes
-          localStorage.setItem('currentProfile', JSON.stringify(profile));
-          localStorage.setItem('jwtToken', jwtToken);
-        }
+        // Save profile detail
+        localStorage.setItem('currentProfile', JSON.stringify(profile));
         return profile;
       })
       .catch(this.handle_error);
@@ -43,20 +37,12 @@ export class ProfileService {
   }
 
   register(profileInfo: any) {
-    //TODO Add password to the json sent to server because profile does not contain password
     const queryUrl = `${this.apiUrl}accounts/register/`;
-    let header = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({headers: header });
-    return this.http.post(queryUrl, JSON.stringify(profileInfo), options)
+    return this.http.post(queryUrl, JSON.stringify(profileInfo))
       .map(response => {
-        let headers = response.headers;
-        let jwtToken = headers.get('Authorization').split(' ')[1];
         let profile = response.json();
-        if (jwtToken) {
-          // store profile details and jwt token in local storage to keep profile logged in between page refreshes
-          localStorage.setItem('currentProfile', JSON.stringify(profile));
-          localStorage.setItem('jwtToken', jwtToken);
-        }
+        // store profile details
+        localStorage.setItem('currentProfile', JSON.stringify(profile));
         return profile;
       })
       .catch(this.handle_error);

@@ -4,11 +4,12 @@ import {Observable} from "rxjs/Observable";
 import {Donation} from "../_models/donation.model";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import {MyHttpService} from "./my-http.service";
 
 @Injectable()
 export class DonationService  {
 
-  constructor(private http: Http,
+  constructor(private http: MyHttpService,
               @Inject('APP_API_URL') private apiUrl: string,
               ) {
 
@@ -22,9 +23,7 @@ export class DonationService  {
 
     const queryUrl = `${this.apiUrl}donations/create/`;
     let data = {deadline: deadline, description: description, city: city, phoneNumber: phoneNumber, status: status};
-    let header = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: header });
-    return this.http.post(queryUrl, JSON.stringify(data), options)
+    return this.http.post(queryUrl, JSON.stringify(data))
       .map(response => response.json())
       .catch(this.handle_error);
 
@@ -57,12 +56,9 @@ export class DonationService  {
                   status: string) {
     const queryUrl = `${this.apiUrl}donations/${id}/`;
     let data = {deadline: deadline, description: description, city: city, phoneNumber: phoneNumber, status: status};
-    let header = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: header });
-    return this.http.put(queryUrl, JSON.stringify(data), options)
+    return this.http.put(queryUrl, JSON.stringify(data))
       .map(response => response.json())
       .catch(this.handle_error);
-
   }
 
   deleteDonation(id: number) {

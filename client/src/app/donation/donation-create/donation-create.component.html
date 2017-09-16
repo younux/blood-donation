@@ -25,7 +25,7 @@
 
         <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('phoneNumber')}">
           <label> Phone number </label>
-          <input type="number" class="form-control" name="phoneNumber" formControlName="phoneNumber" />
+          <input type="tel" class="form-control" name="phoneNumber" formControlName="phoneNumber" />
           <app-field-error-display [displayError]="isFieldInvalid('phoneNumber')" [errorMsgs]="fieldErrorMessages('phoneNumber')"></app-field-error-display>
         </div>
 
