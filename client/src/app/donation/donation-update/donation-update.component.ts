@@ -54,14 +54,10 @@ export class DonationUpdateComponent implements OnInit {
     });
   }
 
-  //TODO : there is a problem with the format(type : format) of deadline, it is not taken into account when you changed
-  //TODO : from the form interface, so when you submit the change, the deadline does not change
-  //TODO : problem with phone number when updated, the first 0 is removed when you submit so it is invalid for server
   onSubmit(passedForm) {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
-      const sentData = passedForm.value;
-      let deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' + new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
+      const deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' + new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
       this.donationService
         .updateDonation(this.donationId,
                         deadline,
@@ -99,7 +95,7 @@ export class DonationUpdateComponent implements OnInit {
 
   isFieldInvalid(field: string) {
     return ((!this.myForm.get(field).valid && this.myForm.get(field).touched) ||
-    (this.myForm.get(field).untouched && this.isFormSubmitAttempt));
+    (!this.myForm.get(field).valid && this.myForm.get(field).untouched && this.isFormSubmitAttempt));
   }
 
   fieldErrorMessages(field: string) {

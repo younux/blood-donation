@@ -10,9 +10,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {MyUtilsModule} from "../_utils/my-utils.module";
 import { DonationUpdateComponent } from './donation-update/donation-update.component';
-import { DonationDeleteComponent } from './donation-delete/donation-delete.component';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { TimepickerModule } from 'ngx-bootstrap';
+import { DonationListAllComponent } from './donation-list-all/donation-list-all.component';
 
 @NgModule({
   imports: [
@@ -33,7 +33,7 @@ import { TimepickerModule } from 'ngx-bootstrap';
     DonationDetailComponent,
     DonationCreateComponent,
     DonationUpdateComponent,
-    DonationDeleteComponent,
+    DonationListAllComponent,
   ],
   exports: [
     DonationThumbnailComponent,
@@ -42,7 +42,7 @@ import { TimepickerModule } from 'ngx-bootstrap';
     DonationDetailComponent,
     DonationCreateComponent,
     DonationUpdateComponent,
-    DonationDeleteComponent,
+    DonationListAllComponent,
   ],
   providers: [DonationService],
 })

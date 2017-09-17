@@ -116,3 +116,7 @@ export class InterceptorConfig {
     Object.assign(this, config);
   }
 }
+
+export function myHttpServiceFactory(backend: XHRBackend, options: RequestOptions) {
+  return new MyHttpService(backend, options);
+ }

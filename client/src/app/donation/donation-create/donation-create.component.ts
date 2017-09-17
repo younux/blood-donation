@@ -34,7 +34,8 @@ export class DonationCreateComponent implements OnInit {
 
   createForm() {
     this.myForm = this.fb.group({
-      deadline: [null, Validators.required],
+      deadlineDay: [null , Validators.required],
+      deadlineTime: [ null , Validators.required],
       description: [null, Validators.required],
       city: [null, Validators.required],
       phoneNumber: [null, Validators.required],
@@ -47,12 +48,12 @@ export class DonationCreateComponent implements OnInit {
     this.isFormSubmitAttempt = true;
     console.log(passedForm.value);
     if (passedForm.valid) {
-      const sentData = passedForm.value;
-      this.donationService.createDonation(sentData.deadline,
-        sentData.description,
-        sentData.city,
-        sentData.phoneNumber,
-        sentData.status,
+      const deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' + new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
+      this.donationService.createDonation(deadline,
+        passedForm.value.description,
+        passedForm.value.city,
+        passedForm.value.phoneNumber,
+        passedForm.value.status,
       )
         .subscribe(
           data => {
@@ -70,7 +71,7 @@ export class DonationCreateComponent implements OnInit {
 
   isFieldInvalid(field: string) {
     return ((!this.myForm.get(field).valid && this.myForm.get(field).touched) ||
-    (this.myForm.get(field).untouched && this.isFormSubmitAttempt));
+    (!this.myForm.get(field).valid && this.myForm.get(field).untouched && this.isFormSubmitAttempt));
   }
 
   fieldErrorMessages(field: string) {

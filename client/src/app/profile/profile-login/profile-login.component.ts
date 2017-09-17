@@ -64,7 +64,7 @@ export class ProfileLoginComponent implements OnInit {
 
   isFieldInvalid(field: string) {
     return ((!this.myForm.get(field).valid && this.myForm.get(field).touched) ||
-        (this.myForm.get(field).untouched && this.isFormSubmitAttempt));
+        (!this.myForm.get(field).valid && this.myForm.get(field).untouched && this.isFormSubmitAttempt));
   }
 
   fieldErrorMessages(field: string) {

@@ -5,10 +5,20 @@
     <form type="submit" name="createDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
         <h3 class="text-center"> Infos 1 </h3>
 
-        <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadline')}">
-          <label> Deadline </label>
-          <input type="datetime-local" class="form-control" name="deadline" formControlName="deadline"/>
-          <app-field-error-display [displayError]="isFieldInvalid('deadline')" [errorMsgs]="fieldErrorMessages('deadline')"></app-field-error-display>
+        <h4 class="text-center"> Deadline </h4>
+        <div class="col-md-5 col-md-offset-1">
+          <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineDay')}">
+            <label> Day </label>
+            <input type="text" name="deadlineDay" formControlName="deadlineDay" bsDatepicker>
+            <app-field-error-display [displayError]="isFieldInvalid('deadlineDay')" [errorMsgs]="fieldErrorMessages('deadlineDay')"></app-field-error-display>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineTime')}">
+            <label> Time </label>
+            <timepicker formControlName="deadlineTime" ></timepicker>
+            <app-field-error-display [displayError]="isFieldInvalid('deadlineTime')" [errorMsgs]="fieldErrorMessages('deadlineTime')"></app-field-error-display>
+          </div>
         </div>
 
         <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('description')}">

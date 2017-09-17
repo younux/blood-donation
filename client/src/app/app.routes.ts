@@ -6,18 +6,31 @@ import {ProfileLoginComponent} from "./profile/profile-login/profile-login.compo
 import {DonationCreateComponent} from './donation/donation-create/donation-create.component';
 import {DonationDetailComponent} from './donation/donation-detail/donation-detail.component';
 import {DonationUpdateComponent} from './donation/donation-update/donation-update.component';
+import {DonationListAllComponent} from "./donation/donation-list-all/donation-list-all.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 
 export const appRoutes: Routes = [
   { path: '' , redirectTo: 'home', pathMatch: 'full'},
   { path: 'home' , component: HomeComponent },
-  { path: 'register', component: ProfileRegisterComponent},
-  { path: 'login', component: ProfileLoginComponent},
-  { path: 'donations', component: DonationComponent },
-  { path: 'donations/create', component:  DonationCreateComponent},
-  { path: 'donations/update/:id', component:  DonationUpdateComponent},
-  { path: 'donations/detail/:id', component:  DonationDetailComponent},
 
+  { path: 'profiles', component: ProfileComponent,
+      children: [
+        { path: '', redirectTo: 'login', pathMatch: 'full'},
+        { path: 'login' , component : ProfileLoginComponent },
+        { path: 'register', component: ProfileRegisterComponent},
+      ],
+  },
 
-  //{ path: '**', redirectTo: 'home'},
+  { path: 'donations', component: DonationComponent,
+      children: [
+        { path: '', redirectTo: 'list', pathMatch: 'full'},
+        { path: 'create', component:  DonationCreateComponent},
+        { path: 'list', component: DonationListAllComponent},
+        { path: 'detail/:id', component: DonationDetailComponent},
+        { path: 'update/:id', component: DonationUpdateComponent},
+      ],
+  },
+
+  { path: '**', redirectTo: 'home'},
 ];

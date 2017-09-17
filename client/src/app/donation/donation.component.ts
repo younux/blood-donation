@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DonationService} from "../_services/donation.service";
-import {Donation} from "../_models/donation.model";
-import {AlertService} from "../_services/alert.service";
+
 
 @Component({
   selector: 'app-donation',
@@ -10,28 +8,11 @@ import {AlertService} from "../_services/alert.service";
 })
 export class DonationComponent implements OnInit {
 
-  donationsList: Donation[];
 
-  constructor(private donationService: DonationService,
-              private alertService: AlertService,
-              ) {
-
-  }
+  constructor() { }
 
   ngOnInit() {
-    this.donationService.listDonations().subscribe(
-      response => {
-        this.donationsList = response.results;
-      },
-      err => {
-        const alerts = this.alertService.getAllJsonValues(err);
-        this.alertService.error(alerts);
-      }
-    );
-  }
-
-  onDonationSelected(donation: Donation) {
-    console.log('DonationComponent : selected donation : ' + donation.id);
   }
 
 }
+
