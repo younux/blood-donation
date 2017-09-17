@@ -21,6 +21,7 @@ import { appRoutes } from './app.routes';
 import { apiInjectables } from './_injectables/api.injectables';
 import {MyHttpService} from "./_services/my-http.service";
 import {RequestOptions} from "@angular/http";
+import {IsLoogedInService} from "./_services/is-looged-in.service";
 
 
 @NgModule({
@@ -54,6 +55,8 @@ import {RequestOptions} from "@angular/http";
       },
       deps: [XHRBackend, RequestOptions],
     },
+    IsLoogedInService,
+
   ],
   bootstrap: [AppComponent]
 })
