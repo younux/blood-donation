@@ -69,20 +69,4 @@ export class DonationCreateComponent implements OnInit {
 
   }
 
-  isFieldInvalid(field: string) {
-    return ((!this.myForm.get(field).valid && this.myForm.get(field).touched) ||
-    (!this.myForm.get(field).valid && this.myForm.get(field).untouched && this.isFormSubmitAttempt));
-  }
-
-  fieldErrorMessages(field: string) {
-    let errorMessages: string[] = new Array<string>();
-    if (this.myForm.get(field).hasError('required')) {
-      errorMessages.push('This field is required');
-    }
-    if (this.myForm.get(field).hasError('email')) {
-      errorMessages.push('This is not a valid email address');
-    }
-    return errorMessages;
-
-  }
 }

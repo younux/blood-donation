@@ -10,43 +10,43 @@
         <div class="row">
           <h4 class="text-center"> Deadline </h4>
           <div class="col-md-5 col-md-offset-1">
-            <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineDay')}">
+            <div class="form-group">
               <label> Day </label>
               <input type="text" name="deadlineDay" formControlName="deadlineDay" bsDatepicker>
-              <app-field-error-display [displayError]="isFieldInvalid('deadlineDay')" [errorMsgs]="fieldErrorMessages('deadlineDay')"></app-field-error-display>
+              <app-field-error-display [myControl]="myForm.get('deadlineDay')"></app-field-error-display>
             </div>
           </div>
           <div class="col-md-5">
-            <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('deadlineTime')}">
+            <div class="form-group">
               <label> Time </label>
               <timepicker formControlName="deadlineTime" ></timepicker>
-              <app-field-error-display [displayError]="isFieldInvalid('deadlineTime')" [errorMsgs]="fieldErrorMessages('deadlineTime')"></app-field-error-display>
+              <app-field-error-display [myControl]="myForm.get('deadlineTime')"></app-field-error-display>
             </div>
           </div>
         </div>
 
-      <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('description')}">
+      <div class="form-group">
         <label> Description </label>
         <input type="text" class="form-control" name="description" formControlName="description" />
-        <app-field-error-display [displayError]="isFieldInvalid('description')" [errorMsgs]="fieldErrorMessages('description')"></app-field-error-display>
+        <app-field-error-display [myControl]="myForm.get('description')"></app-field-error-display>
       </div>
 
-      <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('city')}">
+      <div class="form-group">
         <label> City </label>
         <input type="text" class="form-control" name="city" formControlName="city" />
-        <app-field-error-display [displayError]="isFieldInvalid('city')" [errorMsgs]="fieldErrorMessages('city')"></app-field-error-display>
+        <app-field-error-display [myControl]="myForm.get('city')"></app-field-error-display>
       </div>
 
-      <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('phoneNumber')}">
+      <div class="form-group">
         <label> Phone number </label>
         <input type="tel" class="form-control" name="phoneNumber" formControlName="phoneNumber" />
-        <app-field-error-display [displayError]="isFieldInvalid('phoneNumber')" [errorMsgs]="fieldErrorMessages('phoneNumber')"></app-field-error-display>
+        <app-field-error-display [myControl]="myForm.get('phoneNumber')"></app-field-error-display>
       </div>
 
-      <div class="form-group" [ngClass]="{ 'has-error': isFieldInvalid('status')}">
+      <div class="form-group">
         <label> Status </label>
         <input type="text" class="form-control" name="status" formControlName="status" />
-        <app-field-error-display [displayError]="isFieldInvalid('status')" [errorMsgs]="fieldErrorMessages('status')"></app-field-error-display>
+        <app-field-error-display [myControl]="myForm.get('status')"></app-field-error-display>
       </div>
 
         <div class="form-group text-center">

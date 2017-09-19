@@ -1,4 +1,6 @@
 ###### Delete This File, it is not part of the project, it is used to save some useful angular resources :
 
+#TODO :  use show error for forms as described here : https://www.toptal.com/angular-js/angular-4-forms-validation
+
 http://www.annalytics.co.uk/angular2/javascript/typescript/ionic2/2017/02/26/Angular2-Http-Auth-Interceptor/
 http://www.adonespitogo.com/articles/angular-2-extending-http-provider/
