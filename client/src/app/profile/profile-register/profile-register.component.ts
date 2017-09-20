@@ -36,8 +36,7 @@ export class ProfileRegisterComponent implements OnInit {
     //TODO : Add good validators add not only built in ones
     this.myForm = this.fb.group({
         username: [ null, Validators.required],
-        email: [ null, [Validators.required,
-                Validators.email]],
+        email: [ null, [Validators.required, CustomValidators.email]],
         password: [null, Validators.required],
         firstName: [ null, Validators.required],
         lastName: [ null, Validators.required],

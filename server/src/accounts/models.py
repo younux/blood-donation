@@ -41,7 +41,7 @@ class Profile(AbstractUser):
     )
 
     # The additional attributes we wish to include.
-    phone_number        = models.CharField(verbose_name="Phone number", max_length=10)
+    phone_number        = models.CharField(verbose_name="Phone number", max_length=20)
     address             = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
     birth_date          = models.DateField(verbose_name="Birth date", null=True)
     blood_type          = models.CharField(verbose_name="Blood type", max_length=10, choices=BLOOD_TYPE_CHOICES)

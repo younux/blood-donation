@@ -45,9 +45,9 @@ class DonationSerializer(ModelSerializer):
             return value
 
     def validate_phone_number(self, value):
-        phone_re = re.compile(r'0\d{9}$')
+        phone_re = re.compile(r'^(0|\+212|00212)[1-9][0-9]{8}$')
         if phone_re.match(value) is None:
-            raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
+            raise ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +212 X-XX-XX-XX-XX or 00212 X-XX-XX-XX-XX where X is a digit)")
         return value
 
 

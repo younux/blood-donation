@@ -19,6 +19,11 @@ class AddressSerializer(ModelSerializer):
             'country',
             'zip_code',
         ]
+    def validate_zip_code(self, value):
+        zip_code_re = re.compile("^[0-9]{5}$")
+        if zip_code_re.match(value) is None :
+            raise ValidationError("The zip code is not valid (XXXXX where X is a digit)")
+        return value
 
 
 class ProfileDetailSerializer(ModelSerializer):
@@ -61,7 +66,18 @@ class ProfileCreateSerialzer(ModelSerializer):
 
         }
 
+    def validate_username(self, value):
+        if len(value)< 3 :
+            raise ValidationError("Username length must be greater or equal to 3")
+        username_re = re.compile("^[a-zA-Z0-9]*$")
+        if username_re.match(value) is None :
+            raise ValidationError("Username should contain only alphanumeric characters")
+        return value
+
     def validate_email(self, value):
+        email_re = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+        if email_re.match(value) is None :
+            raise ValidationError("This is not a valid email address")
         profile_qs = Profile.objects.filter(email=value)
         if profile_qs.exists():
             raise ValidationError("A profile with that email address already exists.")
@@ -82,9 +98,9 @@ class ProfileCreateSerialzer(ModelSerializer):
         return value
 
     def validate_phone_number(self, value):
-        phone_re = re.compile(r'0\d{9}$')
+        phone_re = re.compile(r'^(0|\+212|00212)[1-9][0-9]{8}$')
         if phone_re.match(value) is None:
-            raise ValidationError("Please enter a valid phone number (10 digits begining by 0)")
+            raise ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +212 X-XX-XX-XX-XX or 00212 X-XX-XX-XX-XX where X is a digit)")
         return value
 
     def validate_birth_date(self, value):

@@ -4,3 +4,6 @@
 
 http://www.annalytics.co.uk/angular2/javascript/typescript/ionic2/2017/02/26/Angular2-Http-Auth-Interceptor/
 http://www.adonespitogo.com/articles/angular-2-extending-http-provider/
+
+
+http://emailregex.com/

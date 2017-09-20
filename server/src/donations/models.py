@@ -19,7 +19,7 @@ class Donation(models.Model):
     deadline        = models.DateTimeField(verbose_name="Deadline")
     description     = models.TextField(verbose_name="Description")
     city            = models.CharField(verbose_name= "City", max_length=64)
-    phone_number    = models.CharField(verbose_name="Phone number", max_length=10)
+    phone_number    = models.CharField(verbose_name="Phone number", max_length=20)
     status          = models.CharField(verbose_name="Status", max_length=20, choices=DONATION_STATUS)
 
     def __str__(self):

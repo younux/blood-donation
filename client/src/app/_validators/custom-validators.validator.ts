@@ -26,5 +26,15 @@ export class CustomValidators {
     return isValidZipCode ? null : message;
   }
 
+  static email(c: FormControl): ValidationErrors {
+    const emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const isValidEmail = emailReg.test(c.value);
+    const message = {
+      'email': {
+        'message': 'This email address is not valid'
+      }
+    };
+    return isValidEmail ? null : message;
+  }
 
 }
