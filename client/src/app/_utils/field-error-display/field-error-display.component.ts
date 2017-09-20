@@ -14,6 +14,8 @@ export class FieldErrorDisplayComponent implements OnInit {
     'minlength': (params) => 'The min number of characters is ' + params.requiredLength,
     'maxlength': (params) => 'The max allowed number of characters is ' + params.requiredLength,
     'pattern': (params) => 'The required pattern is: ' + params.requiredPattern,
+    'phoneNumber': (params) => params.message,
+    'zipCode': (params) => params.message,
   };
 
   @Input() myControl: AbstractControl;

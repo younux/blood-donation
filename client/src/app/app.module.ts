@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { apiInjectables } from './_injectables/api.injectables';
+import { apiInjectables } from './_injectables/api.injectable';
 import {AlertService} from './_services/alert.service';
 import {MyHttpService} from "./_services/my-http.service";
 import {IsLoogedInService} from "./_services/is-looged-in.service";

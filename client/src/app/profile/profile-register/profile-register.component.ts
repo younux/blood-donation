@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProfileService} from "../../_services/profile.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../_services/alert.service";
+import {CustomValidators} from "../../_validators/custom-validators.validator";
 
 @Component({
   selector: 'app-profile-register',
@@ -35,17 +36,18 @@ export class ProfileRegisterComponent implements OnInit {
     //TODO : Add good validators add not only built in ones
     this.myForm = this.fb.group({
         username: [ null, Validators.required],
-        email: [ null, Validators.compose([Validators.required,
-                Validators.email])],
+        email: [ null, [Validators.required,
+                Validators.email]],
         password: [null, Validators.required],
         firstName: [ null, Validators.required],
         lastName: [ null, Validators.required],
-        phoneNumber: [ null, Validators.required],
+        phoneNumber: [ null, [Validators.required,
+                CustomValidators.phoneNumber]],
         address: this.fb.group({
           street: [ null, Validators.required],
           city: [ null, Validators.required],
           country: [ null, Validators.required],
-          zipCode: [ null, Validators.required],
+          zipCode: [ null, [Validators.required, CustomValidators.zipCode]],
         }),
         birthDate: [ null, Validators.required],
         bloodType: [ null, Validators.required],
