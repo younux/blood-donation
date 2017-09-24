@@ -29,8 +29,19 @@ export class DonationService  {
 
   }
 
-  listDonations() {
-    const queryUrl = `${this.apiUrl}donations/`;
+  listDonations(applicantUsername?: string,
+                bloodType?: string,
+                city?: string,
+                status?: string) {
+    let queryUrl = `${this.apiUrl}donations/`;
+    if (applicantUsername || bloodType || city || status){
+      let queryParams : string[];
+      if (applicantUsername) {queryParams.push(`applicantUsername=${applicantUsername}`); }
+      if (bloodType) {queryParams.push(`bloodType=${bloodType}`); }
+      if (city) {queryParams.push(`city=${city}`); }
+      if (status) {queryParams.push(`status=${status}`); }
+      queryUrl = `${queryUrl}?${queryParams.join('&')}`;
+    }
     return this.http.get(queryUrl)
       .map(response => {
         return response.json();

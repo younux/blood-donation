@@ -7,11 +7,11 @@ import {HttpModule, XHRBackend, RequestOptions} from '@angular/http';
 import { HomeModule } from './home/home.module';
 import { DonationModule } from './donation/donation.module';
 import { ProfileModule } from './profile/profile.module';
-import {MyUtilsModule} from './_utils/my-utils.module';
+import { MyUtilsModule} from './_utils/my-utils.module';
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import { HeaderModule} from './header/header.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { apiInjectables } from './_injectables/api.injectable';
@@ -29,7 +29,6 @@ import { appRoutes } from './app.routes';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
 
   ],
@@ -40,6 +39,7 @@ import { appRoutes } from './app.routes';
     ReactiveFormsModule,
     HttpModule,
 
+    HeaderModule,
     HomeModule,
     DonationModule,
     ProfileModule,
