@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Subject} from "rxjs/Subject";
 import {Observable} from "rxjs/Observable";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
-export class IsLoogedInService {
-  private subject = new Subject<boolean>();
+export class IsLoggedInService {
+  private subject = new BehaviorSubject<boolean>(false);
 
   constructor() {
 
@@ -14,12 +14,16 @@ export class IsLoogedInService {
     this.subject.next(true);
   }
 
-  loggedOut(){
+  loggedOut() {
     this.subject.next(false);
   }
 
   isLoggedIn(): Observable<boolean> {
     return this.subject.asObservable();
+  }
+
+  isLoggedInValue(): boolean {
+    return this.subject.getValue();
   }
 
 }

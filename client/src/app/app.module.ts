@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {Router, RouterModule, Routes} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule, XHRBackend, RequestOptions} from '@angular/http';
 
@@ -17,7 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { apiInjectables } from './_injectables/api.injectable';
 import {AlertService} from './_services/alert.service';
 import {MyHttpService} from "./_services/my-http.service";
-import {IsLoogedInService} from "./_services/is-looged-in.service";
+import {IsLoggedInService} from "./_services/is-logged-in.service";
 
 import {myHttpServiceFactory} from "./_services/my-http.service";
 
@@ -50,11 +50,11 @@ import { appRoutes } from './app.routes';
   providers: [
     apiInjectables,
     AlertService,
-    IsLoogedInService,
+    IsLoggedInService,
     {
       provide: MyHttpService,
       useFactory: myHttpServiceFactory,
-      deps: [XHRBackend, RequestOptions],
+      deps: [XHRBackend, RequestOptions, Router, IsLoggedInService],
     },
 
   ],

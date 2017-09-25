@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
-import { ProfileStatusComponent } from './profile-status/profile-status.component';
 import {RouterModule} from "@angular/router";
+import { ConnexionStatusComponent } from './connexion-status/connexion-status.component';
 
 
 @NgModule({
@@ -10,8 +10,8 @@ import {RouterModule} from "@angular/router";
     CommonModule,
     RouterModule,
   ],
-  declarations: [HeaderComponent, ProfileStatusComponent],
-  exports: [HeaderComponent, ProfileStatusComponent],
+  declarations: [HeaderComponent, ConnexionStatusComponent],
+  exports: [HeaderComponent, ConnexionStatusComponent],
   providers: [],
 })
 export class HeaderModule { }

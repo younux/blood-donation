@@ -6,13 +6,18 @@ import {
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import {Router} from "@angular/router";
+import {IsLoggedInService} from "./is-logged-in.service";
 
 
 @Injectable()
 export class MyHttpService extends Http {
   private config: InterceptorConfig;
 
-  constructor(backend: XHRBackend, defaultOptions: RequestOptions) {
+  constructor(backend: XHRBackend,
+              defaultOptions: RequestOptions,
+              private router: Router,
+              private isLoggedInService: IsLoggedInService) {
     super(backend, defaultOptions);
     this.config = new InterceptorConfig();
   }
@@ -64,8 +69,17 @@ export class MyHttpService extends Http {
       return response;
       })
       .catch(err => {
+        // Check if we have Unauthorised request
         if (err.status === 401) {
-          console.log("MyHttpService : Unauthorised, need token or refresh it");
+          console.log("MyHttpService : Unauthorised : no token or session expired");
+          if (err.json().detail) {
+            // Check if the session has expired
+            if (err.json().detail === "Signature has expired.") {
+              console.log("MyHttpService : session expired");
+              // Redirect to login screen
+              this.router.navigate(['/profiles', 'login']);
+            }
+          }
         }
         return Observable.throw(err);
       });
@@ -84,7 +98,16 @@ export class MyHttpService extends Http {
   }
 
   protected getToken(): string {
-    return  localStorage.getItem('jwtToken');
+    // Check if the user is logged
+    if (this.isLoggedInService.isLoggedInValue()) {
+      // return token
+      return  localStorage.getItem('jwtToken');
+    } else {
+      // The user is not logged in so clear local storage in case there is a token and a profile
+      localStorage.removeItem('currentProfile');
+      localStorage.removeItem('jwtToken');
+      return null;
+    }
   }
   protected saveToken(token: string){
     localStorage.setItem('jwtToken', token);
@@ -117,6 +140,9 @@ export class InterceptorConfig {
   }
 }
 
-export function myHttpServiceFactory(backend: XHRBackend, options: RequestOptions) {
-  return new MyHttpService(backend, options);
+export function myHttpServiceFactory(backend: XHRBackend,
+                                     options: RequestOptions,
+                                     router: Router,
+                                     isLoggedInService: IsLoggedInService) {
+  return new MyHttpService(backend, options, router, isLoggedInService);
  }

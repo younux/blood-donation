@@ -6,14 +6,14 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from "rxjs/Observable";
 import {MyHttpService} from "./my-http.service";
-import {IsLoogedInService} from "./is-looged-in.service";
+import {IsLoggedInService} from "./is-logged-in.service";
 
 
 @Injectable()
 export class ProfileService {
 
   constructor(private http: MyHttpService,
-              private isLoggedInService: IsLoogedInService,
+              private isLoggedInService: IsLoggedInService,
               @Inject('APP_API_URL') private apiUrl: string) {
 
   }
@@ -26,6 +26,7 @@ export class ProfileService {
         let profile = response.json();
         // Save profile detail
         localStorage.setItem('currentProfile', JSON.stringify(profile));
+        // Tell the service we are logged in
         this.isLoggedInService.loggedIn();
         return profile;
       })
@@ -37,6 +38,7 @@ export class ProfileService {
     // remove profile from local storage to log it out
     localStorage.removeItem('currentProfile');
     localStorage.removeItem('jwtToken');
+    // Tell the service we are logged out
     this.isLoggedInService.loggedOut();
   }
 
@@ -47,6 +49,7 @@ export class ProfileService {
         let profile = response.json();
         // store profile details
         localStorage.setItem('currentProfile', JSON.stringify(profile));
+        // Tell the service we are logged in
         this.isLoggedInService.loggedIn();
         return profile;
       })

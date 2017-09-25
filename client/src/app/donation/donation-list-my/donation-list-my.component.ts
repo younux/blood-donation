@@ -24,7 +24,6 @@ export class DonationListMyComponent implements OnInit {
     this.route.queryParams.subscribe(
       params => {
         let username = params['username'];
-        console.log(username);
         this.donationService.listDonations(username).subscribe(
           response => {
             this.donationsList = response.results;
