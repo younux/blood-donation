@@ -25,8 +25,8 @@
 
           <nav class="nav-tabs">
             <ul class="nav nav-pills pull-left">
-              <li class="card-action"><a [routerLink]="['../detail', donation.id]">Detail</a></li>
-              <li class="card-action"><a [routerLink]="['../update', donation.id]">Update</a></li>
+              <li class="card-action" *ngIf="showDetailButton"><a [routerLink]="['../detail', donation.id]">Detail</a></li>
+              <li class="card-action" *ngIf="showUpdateButton"><a [routerLink]="['../update', donation.id]">Update</a></li>
             </ul>
 
           </nav>

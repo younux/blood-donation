@@ -4,5 +4,9 @@
     <button [routerLink]="['../create']" class="btn btn-primary center-block">Create Donation</button>
   </div>
 
-  <app-donation-list [donations]="donationsList" (onDonationSelected)="onDonationSelected($event)" ></app-donation-list>
+  <app-donation-list [donations]="donationsList"
+                     [showUpdateButton]="false"
+                     [showDetailButton]="false"
+                     (onDonationSelected)="onDonationSelected($event)">
+  </app-donation-list>
 </div>

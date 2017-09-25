@@ -13,6 +13,7 @@ import { DonationUpdateComponent } from './donation-update/donation-update.compo
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { TimepickerModule } from 'ngx-bootstrap';
 import { DonationListAllComponent } from './donation-list-all/donation-list-all.component';
+import { DonationListMyComponent } from './donation-list-my/donation-list-my.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { DonationListAllComponent } from './donation-list-all/donation-list-all.
     DonationCreateComponent,
     DonationUpdateComponent,
     DonationListAllComponent,
+    DonationListMyComponent,
   ],
   exports: [
     DonationThumbnailComponent,
@@ -43,6 +45,7 @@ import { DonationListAllComponent } from './donation-list-all/donation-list-all.
     DonationCreateComponent,
     DonationUpdateComponent,
     DonationListAllComponent,
+    DonationListMyComponent,
   ],
   providers: [DonationService],
 })

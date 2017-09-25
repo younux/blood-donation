@@ -3,6 +3,8 @@
     <app-donation-thumbnail *ngFor="let myDonation of donations"
                             [donation]="myDonation"
                             (click)="clicked(myDonation)"
+                            [showDetailButton]="showDetailButton"
+                            [showUpdateButton]="showUpdateButton"
                             [class.selected]="isSelected(myDonation)">
     </app-donation-thumbnail>
   </div>

@@ -35,7 +35,7 @@ export class DonationService  {
                 status?: string) {
     let queryUrl = `${this.apiUrl}donations/`;
     if (applicantUsername || bloodType || city || status){
-      let queryParams : string[];
+      let queryParams = new Array<string>();
       if (applicantUsername) {queryParams.push(`applicantUsername=${applicantUsername}`); }
       if (bloodType) {queryParams.push(`bloodType=${bloodType}`); }
       if (city) {queryParams.push(`city=${city}`); }

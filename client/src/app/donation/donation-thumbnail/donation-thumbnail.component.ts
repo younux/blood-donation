@@ -8,6 +8,9 @@ import {Donation} from '../../_models/donation.model';
 export class DonationThumbnailComponent implements OnInit {
 
   @Input() donation: Donation ;
+  @Input() showDetailButton: boolean = false;
+  @Input() showUpdateButton: boolean = false;
+
   constructor() { }
 
   ngOnInit() {

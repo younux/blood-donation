@@ -9,6 +9,8 @@ import {Donation} from '../../_models/donation.model';
 export class DonationListComponent implements OnInit {
 
   @Input() donations: Donation[];
+  @Input() showDetailButton: boolean = false;
+  @Input() showUpdateButton: boolean = false;
   @Output() onDonationSelected: EventEmitter<Donation>;
   currentDonation: Donation;
 

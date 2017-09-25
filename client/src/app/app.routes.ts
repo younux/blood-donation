@@ -7,6 +7,7 @@ import {DonationCreateComponent} from './donation/donation-create/donation-creat
 import {DonationDetailComponent} from './donation/donation-detail/donation-detail.component';
 import {DonationUpdateComponent} from './donation/donation-update/donation-update.component';
 import {DonationListAllComponent} from "./donation/donation-list-all/donation-list-all.component";
+import {DonationListMyComponent} from "./donation/donation-list-my/donation-list-my.component";
 import {ProfileComponent} from "./profile/profile.component";
 
 
@@ -24,9 +25,10 @@ export const appRoutes: Routes = [
 
   { path: 'donations', component: DonationComponent,
       children: [
-        { path: '', redirectTo: 'list', pathMatch: 'full'},
+        { path: '', redirectTo: 'all', pathMatch: 'full'},
         { path: 'create', component:  DonationCreateComponent},
-        { path: 'list', component: DonationListAllComponent},
+        { path: 'all', component: DonationListAllComponent},
+        { path: 'my', component: DonationListMyComponent},
         { path: 'detail/:id', component: DonationDetailComponent},
         { path: 'update/:id', component: DonationUpdateComponent},
       ],

@@ -1,0 +1,7 @@
+<div class="donation" *ngIf="donationsList">
+  <app-donation-list [donations]="donationsList"
+                     [showUpdateButton]="true"
+                     [showDetailButton]="true"
+                     (onDonationSelected)="onDonationSelected($event)">
+  </app-donation-list>
+</div>
