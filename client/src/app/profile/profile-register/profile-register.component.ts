@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProfileService} from "../../_services/profile.service";
+import {ProfileService} from "../../my-utils/my-services/profile.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AlertService} from "../../_services/alert.service";
-import {CustomValidators} from "../../_validators/custom-validators.validator";
+import {AlertService} from "../../my-utils/my-services/alert.service";
+import {CustomValidators} from "../../my-utils/my-validators/custom-validators.validator";
 
 @Component({
   selector: 'app-profile-register',

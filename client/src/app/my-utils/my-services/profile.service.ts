@@ -1,21 +1,20 @@
 import {Injectable, Inject } from '@angular/core';
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
-import {Profile} from "../_models/profile.model";
+import {Profile} from "../my-models/profile.model";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Observable} from "rxjs/Observable";
 import {MyHttpService} from "./my-http.service";
-import {IsLoggedInService} from "./is-logged-in.service";
+import {AuthenticationService} from "./authentication.service";
 
 
 @Injectable()
 export class ProfileService {
 
   constructor(private http: MyHttpService,
-              private isLoggedInService: IsLoggedInService,
+              private authenticationService: AuthenticationService,
               @Inject('APP_API_URL') private apiUrl: string) {
-
   }
 
   login(username: string, email: string, password: string) {
@@ -24,10 +23,8 @@ export class ProfileService {
     return this.http.post(queryUrl, JSON.stringify(data))
       .map(response => {
         let profile = response.json();
-        // Save profile detail
-        localStorage.setItem('currentProfile', JSON.stringify(profile));
-        // Tell the service we are logged in
-        this.isLoggedInService.loggedIn();
+        // Use the service to Save profile detail and log in
+        this.authenticationService.logIn(profile);
         return profile;
       })
       .catch(this.handle_error);
@@ -35,11 +32,8 @@ export class ProfileService {
   }
 
   logout() {
-    // remove profile from local storage to log it out
-    localStorage.removeItem('currentProfile');
-    localStorage.removeItem('jwtToken');
-    // Tell the service we are logged out
-    this.isLoggedInService.loggedOut();
+    // remove profile from local storage and log out
+    this.authenticationService.logOut();
   }
 
   register(profileInfo: any) {
@@ -47,10 +41,8 @@ export class ProfileService {
     return this.http.post(queryUrl, JSON.stringify(profileInfo))
       .map(response => {
         let profile = response.json();
-        // store profile details
-        localStorage.setItem('currentProfile', JSON.stringify(profile));
-        // Tell the service we are logged in
-        this.isLoggedInService.loggedIn();
+        // Use the service to Save profile detail and loggin
+        this.authenticationService.logIn(profile);
         return profile;
       })
       .catch(this.handle_error);

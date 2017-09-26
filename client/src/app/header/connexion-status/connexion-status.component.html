@@ -1,16 +1,16 @@
 <ul class="nav navbar-nav pull-right">
 
-  <li class="active" *ngIf="!isLoggedIn">
+  <li class="active" *ngIf="!isAuthenticated">
     <a [routerLink]="['profiles', 'register']">
       Register
     </a>
   </li>
 
-  <li *ngIf="!isLoggedIn">
+  <li *ngIf="!isAuthenticated">
     <a [routerLink]="['profiles', 'login']">Login</a>
   </li>
 
-  <li class="dropdown" *ngIf="isLoggedIn">
+  <li class="dropdown" *ngIf="isAuthenticated">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       {{myPofile.username}}
       <i class="fa fa-user fa-4x" aria-hidden="true"></i>
@@ -18,7 +18,7 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a [routerLink]="[]">
+        <a [routerLink]="['profiles', 'my']">
           My profile
         </a>
       </li>

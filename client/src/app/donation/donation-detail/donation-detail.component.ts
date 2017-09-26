@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Donation} from "../../_models/donation.model";
-import {DonationService} from "../../_services/donation.service";
+import {Donation} from "../../my-utils/my-models/donation.model";
+import {DonationService} from "../../my-utils/my-services/donation.service";
 import {ActivatedRoute} from "@angular/router";
-import {AlertService} from "../../_services/alert.service";
+import {AlertService} from "../../my-utils/my-services/alert.service";
 
 @Component({
   selector: 'app-donation-detail',

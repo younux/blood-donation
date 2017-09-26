@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { DonationThumbnailComponent } from './donation-thumbnail/donation-thumbnail.component';
 import { DonationListComponent } from './donation-list/donation-list.component';
 import { DonationComponent } from './donation.component';
-import { DonationService } from '../_services/donation.service';
+import { DonationService } from '../my-utils/my-services/donation.service';
 import { DonationDetailComponent } from './donation-detail/donation-detail.component';
 import { DonationCreateComponent } from './donation-create/donation-create.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
-import {MyUtilsModule} from "../_utils/my-utils.module";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RouterModule} from "@angular/router";
+import { MyComponentsModule} from "../my-utils/my-components/my-components.module";
 import { DonationUpdateComponent } from './donation-update/donation-update.component';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { TimepickerModule } from 'ngx-bootstrap';
@@ -21,7 +21,7 @@ import { DonationListMyComponent } from './donation-list-my/donation-list-my.com
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MyUtilsModule,
+    MyComponentsModule,
 
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),

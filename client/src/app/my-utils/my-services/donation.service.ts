@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs/Observable";
-import {Donation} from "../_models/donation.model";
+import {Donation} from '../my-models/donation.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {MyHttpService} from "./my-http.service";

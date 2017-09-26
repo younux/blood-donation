@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DonationService} from "../../_services/donation.service";
+import {DonationService} from "../../my-utils/my-services/donation.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AlertService} from "../../_services/alert.service";
+import {AlertService} from "../../my-utils/my-services/alert.service";
 import DateTimeFormat = Intl.DateTimeFormat;
 
 @Component({

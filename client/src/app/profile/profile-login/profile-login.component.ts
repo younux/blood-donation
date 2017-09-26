@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProfileService} from "../../_services/profile.service";
-import {AlertService} from "../../_services/alert.service";
+import {ProfileService} from "../../my-utils/my-services/profile.service";
+import {AlertService} from "../../my-utils/my-services/alert.service";
 
 @Component({
   selector: 'app-profile-login',

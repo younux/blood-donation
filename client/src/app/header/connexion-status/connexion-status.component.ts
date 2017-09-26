@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Profile} from "../../_models/profile.model";
-import {IsLoggedInService} from "../../_services/is-logged-in.service";
-import {ProfileService} from "../../_services/profile.service";
-import {AlertService} from "../../_services/alert.service";
+import {Profile} from "../../my-utils/my-models/profile.model";
+import {AuthenticationService} from "../../my-utils/my-services/authentication.service";
+import {ProfileService} from "../../my-utils/my-services/profile.service";
+import {AlertService} from "../../my-utils/my-services/alert.service";
 
 @Component({
   selector: 'app-connexion-status',
@@ -11,18 +11,19 @@ import {AlertService} from "../../_services/alert.service";
 })
 export class ConnexionStatusComponent implements OnInit {
 
-  isLoggedIn: boolean;
+  isAuthenticated: boolean;
   myPofile: Profile;
 
-  constructor(private isLoggedInService: IsLoggedInService,
+  constructor(private authenticationService: AuthenticationService,
               private profileService: ProfileService,
               private alertService: AlertService) { }
 
   ngOnInit() {
-    this.isLoggedIn = false;
-    this.isLoggedInService.isLoggedIn().subscribe(isLoggedInValue => {
-      this.isLoggedIn = isLoggedInValue;
-      this.myPofile = JSON.parse(localStorage.getItem('currentProfile'));
+    this.isAuthenticated = false;
+    this.authenticationService.isAuthenticated().subscribe(isAuthenticatedValue => {
+      this.isAuthenticated = isAuthenticatedValue;
+      this.myPofile = this.authenticationService.getProfile();
+
     });
   }
 

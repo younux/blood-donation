@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Donation} from "../../_models/donation.model";
-import {DonationService} from "../../_services/donation.service";
-import {AlertService} from "../../_services/alert.service";
+import {Donation} from "../../my-utils/my-models/donation.model";
+import {DonationService} from "../../my-utils/my-services/donation.service";
+import {AlertService} from "../../my-utils/my-services/alert.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

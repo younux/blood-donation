@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ProfileRegisterComponent } from './profile-register/profile-register.component';
 import { ProfileLoginComponent } from './profile-login/profile-login.component';
 import {ProfileComponent} from "./profile.component";
-import {ProfileService} from "../_services/profile.service";
+import {ProfileService} from "../my-utils/my-services/profile.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import {MyUtilsModule} from '../_utils/my-utils.module';
+import {MyComponentsModule} from '../my-utils/my-components/my-components.module';
 import {ConnectionBackend} from "@angular/http";
+import { ProfileMyComponent } from './profile-my/profile-my.component';
 
 @NgModule({
   imports: [
@@ -15,10 +16,10 @@ import {ConnectionBackend} from "@angular/http";
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    MyUtilsModule,
+    MyComponentsModule,
   ],
-  declarations: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent],
-  exports: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent],
+  declarations: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent, ProfileMyComponent],
+  exports: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent, ProfileMyComponent],
   providers: [
     ProfileService,
   ],

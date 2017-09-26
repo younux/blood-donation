@@ -7,7 +7,7 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Router} from "@angular/router";
-import {IsLoggedInService} from "./is-logged-in.service";
+import {AuthenticationService} from "./authentication.service";
 
 
 @Injectable()
@@ -17,7 +17,7 @@ export class MyHttpService extends Http {
   constructor(backend: XHRBackend,
               defaultOptions: RequestOptions,
               private router: Router,
-              private isLoggedInService: IsLoggedInService) {
+              private authenticationService: AuthenticationService) {
     super(backend, defaultOptions);
     this.config = new InterceptorConfig();
   }
@@ -64,7 +64,7 @@ export class MyHttpService extends Http {
         const authHeader = response.headers.get('Authorization');
         if (authHeader) {
           // store jwt token in local storage
-          this.saveToken(authHeader.split(' ')[1]);
+          this.authenticationService.setToken(authHeader.split(' ')[1]);
         }
       return response;
       })
@@ -98,19 +98,10 @@ export class MyHttpService extends Http {
   }
 
   protected getToken(): string {
-    // Check if the user is logged
-    if (this.isLoggedInService.isLoggedInValue()) {
-      // return token
-      return  localStorage.getItem('jwtToken');
-    } else {
-      // The user is not logged in so clear local storage in case there is a token and a profile
-      localStorage.removeItem('currentProfile');
-      localStorage.removeItem('jwtToken');
-      return null;
-    }
-  }
-  protected saveToken(token: string){
-    localStorage.setItem('jwtToken', token);
+    // Check if the user is authenticated
+    this.authenticationService.isAuthenticatedValue();
+    // return token
+    return  this.authenticationService.getToken();
   }
 
   // protected refreshToken(): Observable<Response> {
@@ -143,6 +134,6 @@ export class InterceptorConfig {
 export function myHttpServiceFactory(backend: XHRBackend,
                                      options: RequestOptions,
                                      router: Router,
-                                     isLoggedInService: IsLoggedInService) {
-  return new MyHttpService(backend, options, router, isLoggedInService);
+                                     authenticationService: AuthenticationService) {
+  return new MyHttpService(backend, options, router, authenticationService);
  }

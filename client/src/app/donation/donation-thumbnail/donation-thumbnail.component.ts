@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Donation} from '../../_models/donation.model';
+import {Donation} from '../../my-utils/my-models/donation.model';
 @Component({
   selector: 'app-donation-thumbnail',
   templateUrl: './donation-thumbnail.component.html',

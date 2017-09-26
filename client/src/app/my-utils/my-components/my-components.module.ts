@@ -10,4 +10,4 @@ import {FieldErrorDisplayComponent} from "./field-error-display/field-error-disp
   declarations: [AlertComponent, FieldErrorDisplayComponent],
   exports: [AlertComponent, FieldErrorDisplayComponent],
 })
-export class MyUtilsModule { }
+export class MyComponentsModule { }

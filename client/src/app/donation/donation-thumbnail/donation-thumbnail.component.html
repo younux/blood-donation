@@ -16,8 +16,8 @@
       <div class="card-body">
             <ul>
               <li>Groupe sanguin : {{donation.bloodType}}</li>
-              <li> <i class="fa fa-calendar" aria-hidden="true"> Crée {{donation.createdOn}}  </i> </li>
-              <li> <i class="fa fa-clock-o" aria-hidden="true"> Deadline  {{donation.deadline}}  </i> </li>
+              <li> <i class="fa fa-calendar" aria-hidden="true"> Crée {{donation.createdOn | date:'medium'}}  </i> </li>
+              <li> <i class="fa fa-clock-o" aria-hidden="true"> Deadline  {{donation.deadline | date:'medium'}}  </i> </li>
               <li><i class="fa fa-globe" aria-hidden="true"> Ville : {{donation.city}} </i> </li>
               <li><i class="fa fa-phone" aria-hidden="true"> Tél : {{donation.phoneNumber}} </i> </li>
             </ul>
