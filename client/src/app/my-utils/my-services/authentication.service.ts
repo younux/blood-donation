@@ -12,12 +12,10 @@ export class AuthenticationService {
   private subject = new BehaviorSubject<boolean>(false);
 
   constructor() {
-    if (this.getProfile() && this.getToken()){
-      this.logIn(this.getProfile());
-    } else {
-      this.logOut();
-    }
+    // Check if the user is already connected
+    this.isAuthenticatedValue();
   }
+
 
   logIn(profile: Profile) {
     this.setProfile(profile);
@@ -33,9 +31,9 @@ export class AuthenticationService {
   isAuthenticated(): Observable<boolean> {
     // This is a useful check when using the app after a page refresh or when used with many tabs
     if (this.getProfile() && this.getToken()){
-      this.logIn(this.getProfile());
+      this.subject.next(true);  // Emit true beacuse user is considered connected
     } else {
-      this.logOut();
+      this.logOut();  // make sure to clear local storage and emit false to others
     }
     return this.subject.asObservable();
   }
@@ -43,9 +41,9 @@ export class AuthenticationService {
   isAuthenticatedValue(): boolean {
     // This is a useful check when using the app after a page refresh or when used with many tabs
     if (this.getProfile() && this.getToken()){
-      this.logIn(this.getProfile());
+      this.subject.next(true); // Emit true beacuse user is considered connected
     } else {
-      this.logOut();
+      this.logOut(); // make sure to clear local storage and emit false to others
     }
     return this.subject.getValue();
   }

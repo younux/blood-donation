@@ -99,9 +99,11 @@ export class MyHttpService extends Http {
 
   protected getToken(): string {
     // Check if the user is authenticated
-    this.authenticationService.isAuthenticatedValue();
-    // return token
-    return  this.authenticationService.getToken();
+    if (this.authenticationService.isAuthenticatedValue()) {
+      return this.authenticationService.getToken();
+    }else {
+      return null;
+    }
   }
 
   // protected refreshToken(): Observable<Response> {
