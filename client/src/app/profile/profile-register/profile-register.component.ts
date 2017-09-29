@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../my-utils/my-services/alert.service";
 import {CustomValidators} from "../../my-utils/my-validators/custom-validators.validator";
 
+
 @Component({
   selector: 'app-profile-register',
   templateUrl: './profile-register.component.html',
@@ -14,7 +15,14 @@ export class ProfileRegisterComponent implements OnInit {
   myForm: FormGroup;
   isFormSubmitAttempt: boolean;
   returnUrl: string;
-
+  countries = [ "Albania","Andorra","Armenia","Austria","Azerbaijan","Belarus",
+  "Belgium","Bosnia & Herzegovina","Bulgaria","Croatia","Cyprus",
+  "Czech Republic","Denmark","Estonia","Finland","France","Georgia",
+  "Germany","Greece","Hungary","Iceland","Ireland","Italy","Kosovo",
+  "Latvia","Liechtenstein","Lithuania","Luxembourg","Macedonia","Malta",
+  "Moldova","Monaco","Montenegro","Netherlands","Norway","Poland",
+  "Portugal","Romania","Russia","San Marino","Serbia","Slovakia","Slovenia",
+  "Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom","Vatican City"];
 
   constructor(private fb: FormBuilder,
               private profileService: ProfileService,

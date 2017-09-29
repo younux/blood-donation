@@ -100,7 +100,9 @@
 
         <div class="form-group">
           <label> Country </label>
+
           <input type="text" class="form-control" name="country" formControlName="country" />
+          <app-autocomplete-input [query]="myForm.controls['address'].controls['country'].value" [initialList]="countries"></app-autocomplete-input>
           <app-field-error-display [myControl]="myForm.controls['address'].controls['country']"></app-field-error-display>
         </div>
 
@@ -113,11 +115,12 @@
 
     </div>
 
-
     <div class="form-group text-center">
       <button type="submit" class="btn btn-primary">Register</button>
       <a [routerLink]="['../login']" class="btn btn-link">Login</a>
     </div>
+
+    <app-my-typeahead-container [initialList]="countries" query="a"> </app-my-typeahead-container>
               
     </form>
 

@@ -1,0 +1,9 @@
+<div *ngIf="filteredList.length > 0">
+  <ul class="list-group">
+    <li *ngFor="let item of filteredList"
+        (click)="select(item)"
+        class="list-group-item">
+      {{item}}
+    </li>
+  </ul>
+</div>
