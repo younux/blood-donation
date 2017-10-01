@@ -1,5 +1,5 @@
-<div *ngIf="filteredList.length > 0">
-  <ul class="list-group" style="position: absolute">
+<div class="my-typeahead-container" *ngIf="filteredList.length > 0">
+  <ul class="list-group my-typeahead-container-list">
     <li *ngFor="let item of filteredList"
         (click)="select(item)"
         class="list-group-item">

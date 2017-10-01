@@ -1,0 +1,14 @@
+.my-typeahead-container {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  //top: 100%;
+  //left: 0px;
+  //z-index: 100;
+  //display: block;
+}
+
+.my-typeahead-container-list {
+  max-height:100px;
+  overflow: auto;
+}
