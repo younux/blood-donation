@@ -24,6 +24,8 @@ import { myHttpServiceFactory} from "./my-utils/my-services/my-http.service";
 
 
 import { appRoutes } from './app.routes';
+import {LocalStorageService} from "./my-utils/my-services/local-storage.service";
+import {AuthenticationStatusEmitterService} from "./my-utils/my-services/authentication-status-emitter.service";
 
 
 
@@ -52,10 +54,12 @@ import { appRoutes } from './app.routes';
     apiInjectables,
     AlertService,
     AuthenticationService,
+    AuthenticationStatusEmitterService,
+    LocalStorageService,
     {
       provide: MyHttpService,
       useFactory: myHttpServiceFactory,
-      deps: [XHRBackend, RequestOptions, Router, AuthenticationService],
+      deps: [XHRBackend, RequestOptions, Router, AuthenticationStatusEmitterService, LocalStorageService],
     },
     AuthGuardService,
 

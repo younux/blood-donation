@@ -7,8 +7,11 @@ import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Router} from "@angular/router";
-import {AuthenticationService} from "./authentication.service";
+import {AuthenticationStatusEmitterService} from "./authentication-status-emitter.service";
+import {LocalStorageService} from "./local-storage.service";
 
+const DEFAULT_HEADER_NAME = 'Authorization';
+const DEFAULT_HEADER_PREFIX = 'JWT';
 
 @Injectable()
 export class MyHttpService extends Http {
@@ -17,14 +20,19 @@ export class MyHttpService extends Http {
   constructor(backend: XHRBackend,
               defaultOptions: RequestOptions,
               private router: Router,
-              private authenticationService: AuthenticationService) {
+              private authenticationStatusEmitterService: AuthenticationStatusEmitterService,
+              private localStorageService: LocalStorageService) {
     super(backend, defaultOptions);
-    this.config = new InterceptorConfig();
+    this.config = new InterceptorConfig(DEFAULT_HEADER_NAME, DEFAULT_HEADER_PREFIX);
   }
 
   request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
-    const jwtToken: string = this.getToken();
+    const jwtToken: string = this.localStorageService.readTokenFromLocalStorage();
     if (jwtToken) {
+      // useful when user logs in or logs out when using multiple tabs
+      if (!this.authenticationStatusEmitterService.isAuthenticatedValue()) {
+        this.authenticationStatusEmitterService.loggedIn();
+      }
       if (typeof url === 'string') { // meaning we have to add the token to the options, not in url
         if (!options) {
           // let's make option object
@@ -35,6 +43,11 @@ export class MyHttpService extends Http {
       } else {
         // we have to add the token to the url object
         url.headers.set(this.config.headerName, this.config.headerPrefix + ' ' + jwtToken);
+      }
+    }else {
+      // useful when user logs in or logs out when using multiple tabs
+      if (this.authenticationStatusEmitterService.isAuthenticatedValue()){
+        this.authenticationStatusEmitterService.loggedOut();
       }
     }
 
@@ -64,7 +77,7 @@ export class MyHttpService extends Http {
         const authHeader = response.headers.get('Authorization');
         if (authHeader) {
           // store jwt token in local storage
-          this.authenticationService.setToken(authHeader.split(' ')[1]);
+          this.localStorageService.writeTokenInLocalStorage(authHeader.split(' ')[1]);
         }
       return response;
       })
@@ -96,46 +109,24 @@ export class MyHttpService extends Http {
     options.headers.append('Content-Type', 'application/json');
     return options;
   }
-
-  protected getToken(): string {
-    // Check if the user is authenticated
-    if (this.authenticationService.isAuthenticatedValue()) {
-      return this.authenticationService.getToken();
-    }else {
-      return null;
-    }
-  }
-
-  // protected refreshToken(): Observable<Response> {
-  //
-  // }
-
-
 }
 
-
-export interface InterceptorConfigOptional {
-  headerName?: string;
-  headerPrefix?: string;
-}
-
-const DEFAULT_HEADER_NAME = 'Authorization';
-const DEFAULT_HEADER_PREFIX = 'JWT';
 
 export class InterceptorConfig {
 
-  headerName: string = DEFAULT_HEADER_NAME;
-  headerPrefix: string = DEFAULT_HEADER_PREFIX;
+  headerName: string;
+  headerPrefix: string;
 
-  constructor(config?: InterceptorConfigOptional) {
-    config = config || {};
-    Object.assign(this, config);
+  constructor(headerName: string, headerPrefix: string) {
+    this.headerName = headerName;
+    this.headerPrefix = headerPrefix;
   }
 }
 
 export function myHttpServiceFactory(backend: XHRBackend,
                                      options: RequestOptions,
                                      router: Router,
-                                     authenticationService: AuthenticationService) {
-  return new MyHttpService(backend, options, router, authenticationService);
+                                     authenticationStatusEmitterService: AuthenticationStatusEmitterService,
+                                     localStorageService: LocalStorageService) {
+  return new MyHttpService(backend, options, router, authenticationStatusEmitterService, localStorageService);
  }

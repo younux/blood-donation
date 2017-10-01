@@ -14,7 +14,7 @@ export class ProfileMyComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.myProfile = this.authenticationService.getProfile();
+    this.myProfile = this.authenticationService.profile;
   }
 
 

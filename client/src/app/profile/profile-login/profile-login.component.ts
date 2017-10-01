@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProfileService} from "../../my-utils/my-services/profile.service";
 import {AlertService} from "../../my-utils/my-services/alert.service";
+import {AuthenticationService} from "../../my-utils/my-services/authentication.service";
 
 @Component({
   selector: 'app-profile-login',
@@ -18,7 +18,7 @@ export class ProfileLoginComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-              private profileService: ProfileService,
+              private authenticationService: AuthenticationService,
               private alertService: AlertService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -28,7 +28,7 @@ export class ProfileLoginComponent implements OnInit {
 
   ngOnInit() {
     // reset login status
-    this.profileService.logout();
+    this.authenticationService.logout();
     // get return url from route parameters or default to '/home'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
@@ -48,7 +48,7 @@ export class ProfileLoginComponent implements OnInit {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
       const sentData = passedForm.value;
-      this.profileService.login(sentData.username, sentData.email, sentData.password)
+      this.authenticationService.login(sentData.username, sentData.email, sentData.password)
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);

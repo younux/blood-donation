@@ -7,10 +7,9 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class MyTypeaheadContainerComponent implements OnInit {
 
-  @Input() initialList: Array<string>;
+  @Input() itemsList: Array<string>;
   @Input() set query(queryValue: string){
     this._query = queryValue;
-    console.log(this._query);
     this.filter();
   }
   private _query: string;
@@ -29,7 +28,7 @@ export class MyTypeaheadContainerComponent implements OnInit {
 
   filter() {
     if (this._query) {
-      this.filteredList = this.initialList.filter(
+      this.filteredList = this.itemsList.filter(
         elt => (elt.toLowerCase().indexOf(this._query.toLowerCase()) > -1));
     }else {
       this.filteredList = [];

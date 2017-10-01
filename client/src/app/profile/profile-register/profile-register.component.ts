@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProfileService} from "../../my-utils/my-services/profile.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../my-utils/my-services/alert.service";
 import {CustomValidators} from "../../my-utils/my-validators/custom-validators.validator";
+import {AuthenticationService} from "../../my-utils/my-services/authentication.service";
 
 
 @Component({
@@ -25,7 +25,7 @@ export class ProfileRegisterComponent implements OnInit {
   "Spain","Sweden","Switzerland","Turkey","Ukraine","United Kingdom","Vatican City"];
 
   constructor(private fb: FormBuilder,
-              private profileService: ProfileService,
+              private authenticationService: AuthenticationService,
               private alertService: AlertService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -35,7 +35,7 @@ export class ProfileRegisterComponent implements OnInit {
 
   ngOnInit() {
   // reset login status
-  this.profileService.logout();
+  this.authenticationService.logout();
   // get return url from route parameters or default to '/home'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
@@ -60,6 +60,8 @@ export class ProfileRegisterComponent implements OnInit {
         bloodType: [ null, Validators.required],
         emailNotification: [ null, Validators.required],
         smsNotification: [ null, Validators.required],
+        test: [ null, Validators.required],
+
       }
     );
   }
@@ -68,7 +70,7 @@ export class ProfileRegisterComponent implements OnInit {
     this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
       const sentData = passedForm.value;
-      this.profileService.register(sentData)
+      this.authenticationService.register(sentData)
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);

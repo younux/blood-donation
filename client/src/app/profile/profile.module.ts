@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ProfileRegisterComponent } from './profile-register/profile-register.component';
 import { ProfileLoginComponent } from './profile-login/profile-login.component';
 import {ProfileComponent} from "./profile.component";
-import {ProfileService} from "../my-utils/my-services/profile.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {MyComponentsModule} from '../my-utils/my-components/my-components.module';
@@ -20,8 +19,6 @@ import { ProfileMyComponent } from './profile-my/profile-my.component';
   ],
   declarations: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent, ProfileMyComponent],
   exports: [ProfileRegisterComponent, ProfileLoginComponent, ProfileComponent, ProfileMyComponent],
-  providers: [
-    ProfileService,
-  ],
+  providers: [],
 })
 export class ProfileModule { }
