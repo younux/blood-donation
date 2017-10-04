@@ -1,11 +1,10 @@
 <div class="my-typeahead-container" *ngIf="filteredList.length > 0">
-  <ul class="list-group my-typeahead-container-scrollbar">
-    <li *ngFor="let item of filteredList"
-        (click)="select(item)"
-        (mouseover)="setActiveItem(item)"
-        [ngClass]="{'active': item === activeItem}"
+  <div #divList class="list-group my-typeahead-container-scrollbar">
+    <div *ngFor="let item of filteredList"
+        (click)="select()"
+        (mouseover)="setActiveItem($event)"
         class="list-group-item">
       {{item}}
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
