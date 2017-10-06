@@ -130,3 +130,6 @@ export function myHttpServiceFactory(backend: XHRBackend,
                                      localStorageService: LocalStorageService) {
   return new MyHttpService(backend, options, router, authenticationStatusEmitterService, localStorageService);
  }
+
+
+ // See to add spinner in the custom http : https://medium.com/beautiful-angular/show-loader-on-every-request-in-angular-2-9a0fca86afef

@@ -36,9 +36,8 @@ export class ProfileLoginComponent implements OnInit {
   createForm() {
     //TODO : Add good validators add not only built in ones
     this.myForm = this.fb.group({
-      username: [ null, Validators.required],
-      email: [ null, Validators.compose([Validators.required,
-                                         Validators.email])],
+      username: [null],
+      email: [null],
       password: [null, Validators.required],
       }
     );

@@ -138,8 +138,8 @@ class ProfileCreateSerialzer(ModelSerializer):
         return profile_obj
 
 class ProfileLoginSerializer(ModelSerializer):
-    username = CharField(allow_blank=True, required=False)
-    email = EmailField(label="Email address", allow_blank=True, required=False)
+    username = CharField(allow_blank=True, allow_null=True, required=False)
+    email = EmailField(label="Email address", allow_blank=True, allow_null=True, required=False)
     password = CharField(style={'input_type': 'password'}, write_only=True)
     address = AddressSerializer(read_only=True)
     class Meta :
