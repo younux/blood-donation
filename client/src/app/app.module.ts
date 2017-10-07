@@ -14,11 +14,13 @@ import { HeaderModule} from './header/header.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 
+
 import { apiInjectables } from './my-utils/my-injectables/api.injectable';
 import { AlertService} from './my-utils/my-services/alert.service';
 import { MyHttpService} from "./my-utils/my-services/my-http.service";
 import { AuthenticationService} from "./my-utils/my-services/authentication.service";
 import { AuthGuardService} from "./my-utils/my-services/auth-guard.service";
+import {LoaderService} from "./my-utils/my-services/loader.service";
 
 import { myHttpServiceFactory} from "./my-utils/my-services/my-http.service";
 
@@ -33,7 +35,6 @@ import {AuthenticationStatusEmitterService} from "./my-utils/my-services/authent
   declarations: [
     AppComponent,
     FooterComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -56,12 +57,14 @@ import {AuthenticationStatusEmitterService} from "./my-utils/my-services/authent
     AuthenticationService,
     AuthenticationStatusEmitterService,
     LocalStorageService,
+    LoaderService,
     {
       provide: MyHttpService,
       useFactory: myHttpServiceFactory,
-      deps: [XHRBackend, RequestOptions, Router, AuthenticationStatusEmitterService, LocalStorageService],
+      deps: [XHRBackend, RequestOptions, Router, AuthenticationStatusEmitterService, LocalStorageService, LoaderService],
     },
     AuthGuardService,
+
 
   ],
   bootstrap: [AppComponent]

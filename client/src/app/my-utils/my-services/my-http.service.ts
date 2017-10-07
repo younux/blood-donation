@@ -3,12 +3,14 @@ import {
   Http, Request, RequestOptions, RequestOptionsArgs, Response, Headers,
   XHRBackend
 } from "@angular/http";
-import {Observable} from "rxjs/Observable";
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/finally';
 import {Router} from "@angular/router";
 import {AuthenticationStatusEmitterService} from "./authentication-status-emitter.service";
 import {LocalStorageService} from "./local-storage.service";
+import {LoaderService} from "./loader.service";
 
 const DEFAULT_HEADER_NAME = 'Authorization';
 const DEFAULT_HEADER_PREFIX = 'JWT';
@@ -21,7 +23,8 @@ export class MyHttpService extends Http {
               defaultOptions: RequestOptions,
               private router: Router,
               private authenticationStatusEmitterService: AuthenticationStatusEmitterService,
-              private localStorageService: LocalStorageService) {
+              private localStorageService: LocalStorageService,
+              private loaderService: LoaderService) {
     super(backend, defaultOptions);
     this.config = new InterceptorConfig(DEFAULT_HEADER_NAME, DEFAULT_HEADER_PREFIX);
   }
@@ -50,6 +53,8 @@ export class MyHttpService extends Http {
         this.authenticationStatusEmitterService.loggedOut();
       }
     }
+    // Show the loader
+    this.loaderService.show();
 
     return super.request(url, options);
   }
@@ -95,6 +100,10 @@ export class MyHttpService extends Http {
           }
         }
         return Observable.throw(err);
+      })
+      .finally( () => {
+      // Hide the loader
+      this.loaderService.hide();
       });
 
   }
@@ -127,9 +136,8 @@ export function myHttpServiceFactory(backend: XHRBackend,
                                      options: RequestOptions,
                                      router: Router,
                                      authenticationStatusEmitterService: AuthenticationStatusEmitterService,
-                                     localStorageService: LocalStorageService) {
-  return new MyHttpService(backend, options, router, authenticationStatusEmitterService, localStorageService);
+                                     localStorageService: LocalStorageService,
+                                     loaderService: LoaderService) {
+  return new MyHttpService(backend, options, router, authenticationStatusEmitterService, localStorageService, loaderService);
  }
 
-
- // See to add spinner in the custom http : https://medium.com/beautiful-angular/show-loader-on-every-request-in-angular-2-9a0fca86afef
