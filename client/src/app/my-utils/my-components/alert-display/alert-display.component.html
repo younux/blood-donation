@@ -4,10 +4,7 @@
          [ngClass]="{ 'alert': message,
                 'alert-success': message.type === 'success',
                  'alert-danger': message.type === 'error' }">
-
-      <ul>
-        <li  *ngFor="let alert of message.text">  {{alert}} </li>
-      </ul>
+      {{message.text}}
     </div>
   </div>
 </div>

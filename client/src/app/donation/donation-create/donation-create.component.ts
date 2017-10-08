@@ -46,7 +46,6 @@ export class DonationCreateComponent implements OnInit {
 
   onSubmit(passedForm) {
     this.isFormSubmitAttempt = true;
-    console.log(passedForm.value);
     if (passedForm.valid) {
       const deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' + new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
       this.donationService.createDonation(deadline,
@@ -58,7 +57,7 @@ export class DonationCreateComponent implements OnInit {
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);
-            this.alertService.success(['You have successfully created donation']);
+            this.alertService.success('You have successfully created donation');
           },
           err => {
             const alerts = this.alertService.getAllJsonValues(err);

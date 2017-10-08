@@ -5,6 +5,10 @@ import {Profile} from "../my-models/profile.model";
 import {MyHttpService} from "./my-http.service";
 import {AuthenticationStatusEmitterService} from "./authentication-status-emitter.service";
 import {LocalStorageService} from "./local-storage.service";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 
 @Injectable()
 export class AuthenticationService {

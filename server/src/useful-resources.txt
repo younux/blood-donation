@@ -1,0 +1,3 @@
+https://www.twilio.com/
+https://www.twilio.com/blog/2014/04/building-a-simple-sms-message-application-with-twilio-and-django-2.html
+https://madradavid.com/adding-sms-messaging-your-django-application-with-twilio/

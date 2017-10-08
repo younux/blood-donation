@@ -27,7 +27,7 @@ export class ConnexionStatusComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
-    this.alertService.success(['You have successfully logged out']);
+    this.alertService.success('You have successfully logged out');
   }
 
 

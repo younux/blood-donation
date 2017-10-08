@@ -68,7 +68,7 @@ export class DonationUpdateComponent implements OnInit {
         ).subscribe(
             data => {
               //this.router.navigate([this.returnUrl]);
-              this.alertService.success(['You have successfully updated donation']);
+              this.alertService.success('You have successfully updated donation');
             },
             err => {
               const alerts = this.alertService.getAllJsonValues(err);
@@ -83,7 +83,7 @@ export class DonationUpdateComponent implements OnInit {
     this.donationService.deleteDonation(this.donationId).subscribe(
       data => {
         this.router.navigate([this.returnUrl]);
-        this.alertService.success(['You have successfully deleted donation']);
+        this.alertService.success('You have successfully deleted donation');
       },
       err => {
         const alerts = this.alertService.getAllJsonValues(err);

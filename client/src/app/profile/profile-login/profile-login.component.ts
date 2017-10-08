@@ -51,9 +51,10 @@ export class ProfileLoginComponent implements OnInit {
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);
-            this.alertService.success(['You have successfully logged in']);
+            this.alertService.success('You have successfully logged in');
           },
           err => {
+
             const alerts = this.alertService.getAllJsonValues(err);
             this.alertService.error(alerts);
           }

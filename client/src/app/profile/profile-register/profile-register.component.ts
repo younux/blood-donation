@@ -60,8 +60,6 @@ export class ProfileRegisterComponent implements OnInit {
         bloodType: [ null, Validators.required],
         emailNotification: [ null, Validators.required],
         smsNotification: [ null, Validators.required],
-        test: [ null, Validators.required],
-
       }
     );
   }
@@ -74,7 +72,7 @@ export class ProfileRegisterComponent implements OnInit {
         .subscribe(
           data => {
             this.router.navigate([this.returnUrl]);
-            this.alertService.success(['You have successfully registered']);
+            this.alertService.success('You have successfully registered');
           },
           err => {
             const alerts = this.alertService.getAllJsonValues(err);

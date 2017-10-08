@@ -19,6 +19,13 @@ class AddressSerializer(ModelSerializer):
             'country',
             'zip_code',
         ]
+        extra_kwargs = {
+            "street": {"error_messages":
+                           {"blank": "Give yourself a street",
+                            "max_length" : "dededd"}
+                       }
+
+        }
     def validate_zip_code(self, value):
         zip_code_re = re.compile("^[0-9]{5}$")
         if zip_code_re.match(value) is None :
@@ -63,7 +70,10 @@ class ProfileCreateSerialzer(ModelSerializer):
         ]
         extra_kwargs = {
             "password": {"write_only": True},
-
+            "blood_type": {"error_messages":
+                           {"invalid_choice": "Give yourself a blood type",
+                            }
+                       },
         }
 
     def validate_username(self, value):

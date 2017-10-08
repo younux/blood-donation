@@ -41,9 +41,4 @@ export class FieldErrorDisplayComponent implements OnInit {
     return FieldErrorDisplayComponent.errorMessages[type](params);
   }
 
-  // isFieldInvalid(field: string) {
-  //   return ((!this.myForm.get(field).valid && this.myForm.get(field).touched) ||
-  //       (!this.myForm.get(field).valid && this.myForm.get(field).untouched && this.isFormSubmitAttempt));
-  // }
-
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs/';
 import { Subject } from 'rxjs/Subject';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Injectable()
 export class AlertService {
@@ -24,12 +25,12 @@ export class AlertService {
     });
   }
 
-  success(alerts: string[], keepAfterNavigationChange = false) {
+  success(alerts: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: 'success', text: alerts });
   }
 
-  error(alerts: string[], keepAfterNavigationChange = false) {
+  error(alerts: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
     this.subject.next({ type: 'error', text: alerts });
   }
@@ -39,16 +40,22 @@ export class AlertService {
   }
 
   // gets all string values contained in a json object
-  getAllJsonValues(jsonData: object): string[] {
-    let stringArray = new Array<string>();
-    for (let elt in jsonData) {
-      if ((typeof jsonData[elt]) === 'string') {
-        stringArray.push(`${elt} : ${jsonData[elt]}`);
-      } else if ((typeof jsonData[elt]) === 'object') {
-        stringArray = stringArray.concat(this.getAllJsonValues(jsonData[elt]));
+  getAllJsonValues(jsonData: object): string {
+    let messageText = '';
+    if (jsonData instanceof Array){
+      for (let index = 0; index < jsonData.length; index++) {
+        messageText += `${jsonData[index]} <br/>`;
       }
+    } else if (jsonData instanceof Object) {
+        for (let key in jsonData) {
+          messageText += `${key} <br/>`;
+           if (jsonData[key] instanceof Object || jsonData[key] instanceof Array) {
+             messageText += this.getAllJsonValues(jsonData[key]);
+          } else {
+             messageText += `${jsonData[key]} <br/>`;
+           }
+        }
     }
-    return stringArray;
+    return messageText;
   }
-
 }
