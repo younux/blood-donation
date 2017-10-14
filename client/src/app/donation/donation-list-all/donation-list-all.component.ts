@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DonationService} from "../../my-utils/my-services/donation.service";
-import {Donation} from "../../my-utils/my-models/donation.model";
-import {AlertService} from "../../my-utils/my-services/alert.service";
+import { DonationService } from '../../my-utils/my-services/donation.service';
+import { Donation } from '../../my-utils/my-models/donation.model';
+import { AlertService } from '../../my-utils/my-services/alert.service';
 
 @Component({
   selector: 'app-donation-list-all',
@@ -13,7 +13,7 @@ export class DonationListAllComponent implements OnInit {
   donationsList: Donation[];
 
   constructor(private donationService: DonationService,
-              private alertService: AlertService,) {
+              private alertService: AlertService) {
 
   }
 

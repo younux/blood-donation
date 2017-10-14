@@ -8,3 +8,5 @@ Lib/
 Scripts/
 tcl/
 .Python
+.DS_Store
+*.pyc

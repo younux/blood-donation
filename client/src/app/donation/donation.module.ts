@@ -1,52 +1,50 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DonationThumbnailComponent } from './donation-thumbnail/donation-thumbnail.component';
-import { DonationListComponent } from './donation-list/donation-list.component';
-import { DonationComponent } from './donation.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { BsDatepickerModule, TimepickerModule } from 'ngx-bootstrap';
+
+
 import { DonationService } from '../my-utils/my-services/donation.service';
-import { DonationDetailComponent } from './donation-detail/donation-detail.component';
-import { DonationCreateComponent } from './donation-create/donation-create.component';
-import { FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { RouterModule} from "@angular/router";
-import { MyComponentsModule} from "../my-utils/my-components/my-components.module";
-import { DonationUpdateComponent } from './donation-update/donation-update.component';
-import { BsDatepickerModule } from 'ngx-bootstrap';
-import { TimepickerModule } from 'ngx-bootstrap';
-import { DonationListAllComponent } from './donation-list-all/donation-list-all.component';
-import { DonationListMyComponent } from './donation-list-my/donation-list-my.component';
+import { MyComponentsModule } from '../my-utils/my-components/my-components.module';
+
+import {
+  DonationThumbnailComponent,
+  DonationListComponent,
+  DonationComponent,
+  DonationDetailComponent,
+  DonationCreateComponent,
+  DonationUpdateComponent,
+  DonationListAllComponent,
+  DonationListMyComponent
+} from '.';
+
+const declarations = [
+  DonationThumbnailComponent,
+  DonationListComponent,
+  DonationComponent,
+  DonationDetailComponent,
+  DonationCreateComponent,
+  DonationUpdateComponent,
+  DonationListAllComponent,
+  DonationListMyComponent
+];
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule,
     MyComponentsModule,
 
     BsDatepickerModule.forRoot(),
-    TimepickerModule.forRoot(),
-
+    TimepickerModule.forRoot()
   ],
-  declarations: [
-    DonationThumbnailComponent,
-    DonationListComponent,
-    DonationComponent,
-    DonationDetailComponent,
-    DonationCreateComponent,
-    DonationUpdateComponent,
-    DonationListAllComponent,
-    DonationListMyComponent,
-  ],
-  exports: [
-    DonationThumbnailComponent,
-    DonationListComponent,
-    DonationComponent,
-    DonationDetailComponent,
-    DonationCreateComponent,
-    DonationUpdateComponent,
-    DonationListAllComponent,
-    DonationListMyComponent,
-  ],
-  providers: [DonationService],
+  declarations: [...declarations],
+  exports: [...declarations],
+  providers: [DonationService]
 })
-export class DonationModule { }
+export class DonationModule {
+}
