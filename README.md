@@ -1,5 +1,11 @@
 # TODO 
-Use postgreSQL in development instead of SQLite.
+
+* Utiliser postgressql 
+* Ajouter le champ gender pour Profile Model
+* Adapter le template ? angular.
+* Impl?menter l'envoi de notification par email (gmail)
+* Impl?menter l'envoi de notification par SMS
+* Impl?menter v?rification e-mail lors de l'enregistrement. 
 
 # blood-donation-platform  
   
