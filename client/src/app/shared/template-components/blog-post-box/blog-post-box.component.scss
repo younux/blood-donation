@@ -1,0 +1,86 @@
+.latest-news-container {
+  border: 0px solid #cccccc;
+}
+.latest-news-container figure {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.latest-news-container figure img {
+  display: block;
+  position: relative;
+}
+.latest-news-container figure:after {
+  font-family: FontAwesome;
+  content: '+';
+  position: absolute;
+  right: 150%;
+  margin-left: -30px;
+  bottom: -64px;
+  background: #ffffff;
+  color: #fe3c47;
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  line-height: 60px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.latest-news-container .news-content {
+  background: #ffffff;
+  padding: 15px 25px 35px;
+}
+.latest-news-container .news-content h3 {
+  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 32px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.latest-news-container .news-content h3 a {
+  display: block;
+  color: #fe3c47;
+}
+.latest-news-container .news-content p {
+  color: #333333;
+}
+.latest-news-container .news-content .news-meta-info {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.latest-news-container:hover figure:after {
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  margin-top: -30px;
+}
+/* 14. RESPONSIVE STYLING */
+/***********************************************************************************************/
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .latest-news-container {
+    margin-bottom: 30px;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .section-home-blog .latest-news-container {
+    border: 0px solid #cccccc;
+  }
+  .section-home-blog .latest-news-container .news-content {
+    padding: 12px 16px 24px;
+  }
+}

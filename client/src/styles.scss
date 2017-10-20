@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* CSS imports */
+
+/*Use this import if needed : @import "./assets/css/general-styling.css";*/
+
+/* SCSS imports */
 @import "./assets/mixins/variables";
 @import "./assets/mixins/breakpoints-utils";
 @import "./assets/mixins/generic-generator";

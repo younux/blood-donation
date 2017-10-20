@@ -1,6 +1,6 @@
 import { BloodDonationPlatformPage } from './app.po';
 
-describe('blood-donation-platform App', () => {
+describe('blood-donations-platform App', () => {
   let page: BloodDonationPlatformPage;
 
   beforeEach(() => {

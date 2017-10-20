@@ -1,0 +1,104 @@
+.event-latest {
+  background: #f8f9fa;
+  position: relative;
+  margin-bottom: 30px;
+}
+.event-latest .event-latest-thumbnail a {
+  display: block;
+}
+.event-latest .event-latest-thumbnail a img {
+  vertical-align: middle;
+  width: 100%;
+}
+.event-latest .latest-date {
+  border: 2px solid #333333;
+  border-radius: 0px;
+  background: #333333;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  padding: 2px 20px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+}
+.event-latest .event-details {
+  padding: 10px 15px 0 0;
+}
+.event-latest .event-details h4 a {
+  color: #fe3c47;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.event-latest .event-latest-title {
+  font-weight: 500;
+  margin-bottom: 15px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.event-latest .event-latest-title a {
+  color: #fe3c47;
+}
+.event-latest .event-latest-title a:hover {
+  color: #fe0917;
+}
+.event-latest .event-latest-details {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.event-latest .event-latest-details a {
+  border-right: 1px solid #a1a1a1;
+  color: #6e6e6e;
+  display: inline-block;
+  line-height: 14px;
+  margin-right: 3px;
+  padding-right: 8px;
+  transition: all 0.3s ease 0s;
+}
+.event-latest .event-latest-details a:last-child {
+  border-right: medium none;
+  margin-right: 0;
+  padding-right: 0;
+}
+.event-latest .event-latest-details a:hover {
+  color: #212121;
+}
+
+/* 14. RESPONSIVE STYLING */
+/***********************************************************************************************/
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 991px) {
+  .event-latest {
+    clear: both;
+  }
+  .event-latest .event-details {
+    padding: 12px 6px 0 12px;
+  }
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .event-latest {
+    clear: both;
+  }
+  .event-latest .event-details {
+    padding: 12px 6px 0 12px;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .event-latest {
+    clear: both;
+  }
+  .event-latest .event-latest-title {
+    font-size: 20px;
+  }
+  .event-latest .event-details {
+    padding: 12px 6px 0 12px;
+  }
+}
+

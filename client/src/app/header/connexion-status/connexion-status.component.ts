@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Profile} from "../../my-utils/my-models/profile.model";
-import {AuthenticationService} from "../../my-utils/my-services/authentication.service";
-import {AlertService} from "../../my-utils/my-services/alert.service";
+import {Profile} from "../../shared/models/profile.model";
+import {AuthenticationService} from "../../shared/services/authentication.service";
+import {AlertService} from "../../shared/services/alert.service";
 
 @Component({
   selector: 'app-connexion-status',

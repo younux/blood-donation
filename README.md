@@ -1,17 +1,18 @@
-# TODO 
+# TODO
 
-* Utiliser postgressql 
+* Utiliser postgressql
+* Utiliser des codes dans les envois de messages d'erreurs du serveur
 * Ajouter le champ gender pour Profile Model
 * Adapter le template ? angular.
 * Impl?menter l'envoi de notification par email (gmail)
 * Impl?menter l'envoi de notification par SMS
-* Impl?menter v?rification e-mail lors de l'enregistrement. 
+* Impl?menter v?rification e-mail lors de l'enregistrement.
 
 # blood-donation-platform  
-  
+
 ## Profile data model (Profile)
 
-### Address model 
+### Address model
 
     +======================+
     |   Address (model)    |
@@ -53,10 +54,10 @@ Profile model extends Django AbstractUser model. For more information see : http
     +------------------------------------+
     | sms_notification  (BooleanField)   |
     +------------------------------------+
-    
+
 
 Here is ana example of Profile model in JSON format (after rendering) :
-    
+
     {
         "username": "alain",
         "email": "alain@gmail.com",
@@ -74,9 +75,9 @@ Here is ana example of Profile model in JSON format (after rendering) :
         "emailNotification": true,
         "smsNotification": true
     }
-  
+
 ## Donation data model (Donation)
-    
+
     +==============================+
     |       Donation (model)       |
     +==============================+
@@ -96,7 +97,7 @@ Here is ana example of Profile model in JSON format (after rendering) :
     +------------------------------+
 
 Here is an example of Donation model in JSON format (after rendering) :
-    
+
     {
         "id": 1,
         "url": "http://127.0.0.1:8000/api/donations/1/",
@@ -127,13 +128,11 @@ Here is an example of Donation model in JSON format (after rendering) :
     }
 
  ## Notes
- 
+
  The Django backend is using Python PEP 8 code style, hence it is using under_score_case naming
  convention. We have implemented a Parser and a Renderer to do the conversion from **under_score_case** to
  **camelCase** and vice versa when sending or receiving **JSON** data to convert JSON data keys naming
  convention. **This is working only for JSON data.**
- 
- **So it is mandatory to use "Content-Type : application/json" in the http header so as the backend
- uses JSON Renderer and Parser we have implemented** 
 
- 
+ **So it is mandatory to use "Content-Type : application/json" in the http header so as the backend
+ uses JSON Renderer and Parser we have implemented**

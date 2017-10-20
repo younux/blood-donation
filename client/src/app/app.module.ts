@@ -5,9 +5,9 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule, XHRBackend, RequestOptions} from '@angular/http';
 
 import { HomeModule } from './home/home.module';
-import { DonationModule } from './donation/donation.module';
-import { ProfileModule } from './profile/profile.module';
-import { MyComponentsModule} from './my-utils/my-components/my-components.module';
+import { DonationModule } from './donations/donation.module';
+import { ProfileModule } from './profiles/profile.module';
+import { ComponentsModule} from './shared/components/components.module';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { HeaderModule} from './header/header.module';
 
@@ -15,19 +15,19 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 
 
-import { apiInjectables } from './my-utils/my-injectables/api.injectable';
-import { AlertService} from './my-utils/my-services/alert.service';
-import { MyHttpService} from './my-utils/my-services/my-http.service';
-import { AuthenticationService} from './my-utils/my-services/authentication.service';
-import { AuthGuardService} from './my-utils/my-services/auth-guard.service';
-import {LoaderService} from './my-utils/my-services/loader.service';
+import { apiInjectables } from './shared/injectables/api.injectable';
+import { AlertService} from './shared/services/alert.service';
+import { MyHttpService} from './shared/services/my-http.service';
+import { AuthenticationService} from './shared/services/authentication.service';
+import { AuthGuardService} from './shared/services/auth-guard.service';
+import {LoaderService} from './shared/services/loader.service';
 
-import { myHttpServiceFactory} from './my-utils/my-services/my-http.service';
+import { myHttpServiceFactory} from './shared/services/my-http.service';
 
 
 import { appRoutes } from './app.routes';
-import {LocalStorageService} from './my-utils/my-services/local-storage.service';
-import {AuthenticationStatusEmitterService} from './my-utils/my-services/authentication-status-emitter.service';
+import {LocalStorageService} from './shared/services/local-storage.service';
+import {AuthenticationStatusEmitterService} from './shared/services/authentication-status-emitter.service';
 
 
 
@@ -47,12 +47,12 @@ import {AuthenticationStatusEmitterService} from './my-utils/my-services/authent
     HomeModule,
     DonationModule,
     ProfileModule,
-    MyComponentsModule,
+    ComponentsModule,
 
     BsDatepickerModule.forRoot(),
   ],
   providers: [
-    apiInjectables,
+    ...apiInjectables,
     AlertService,
     AuthenticationService,
     AuthenticationStatusEmitterService,

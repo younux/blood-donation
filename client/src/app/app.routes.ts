@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
-import { donationRoutes } from './donation';
-import { profileRoutes } from './profile';
+import { donationRoutes } from './donations';
+import { profileRoutes } from './profiles';
 
 
 export const appRoutes: Routes = [
