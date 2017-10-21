@@ -1,164 +1,109 @@
-// source : https://bootsnipp.com/snippets/M2Q19
-.icon-pad{
-  padding-top: 20%;
-  //padding-right: 2%;
-  //padding-bottom: 2%;
-  padding-left: 20%;
+.event-latest {
+  background: #f8f9fa;
+  position: relative;
+  margin-bottom: 30px;
 }
-.card {
-  background:#FFF;
+.event-latest .event-latest-thumbnail a {
   display: block;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  border:1px solid #AAA;
-  border-bottom:3px solid #BBB;
-  padding:0px;
-  margin-top:5em;
-  overflow:hidden;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #444444;
+  font-size: 7em;
+  color: white;
+  text-decoration: none;
 }
+//.event-latest .event-latest-thumbnail a img {
+//  vertical-align: middle;
+//  width: 100%;
+//}
 
-.card-body{
-  margin:1em;
+.event-latest .latest-date {
+  border: 2px solid #333333;
+  border-radius: 0px;
+  background: #333333;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  padding: 2px 20px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
 }
-
-.pull-left {
-  float: left;
+.event-latest .event-details {
+  padding: 10px 15px 0 0;
 }
-
-.pull-none {
-  float: none !important;
+.event-latest .event-details h4 a {
+  color: #fe3c47;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
-
-.pull-right {
-  float: right;
-}
-
-.card-header{
-  width:100%;
-  color:#2196F3;
-  border-bottom:3px solid #BBB;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding:0px;
-  margin-top:0px;
-  overflow:hidden;
-  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-}
-.card-header-blue{
-  background-color:#2196F3;
-  color:#FFFFFF;
-  border-bottom:3px solid #BBB;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding:0px;
-  margin-top:0px;
-  overflow:hidden;
-  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card-header-red{
-  background-color:#F44336;
-  color:#FFFFFF;
-  border-bottom:3px solid #BBB;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding:0px;
-  margin-top:0px;
-  overflow:hidden;
-  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card-header-grey{
-  background-color:#424242;
-  color:#FFFFFF;
-  border-bottom:3px solid #BBB;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding:0px;
-  margin-top:0px;
-  overflow:hidden;
-  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card-header-orange{
-  background-color:#E65100;
-  color:#FFFFFF;
-  border-bottom:3px solid #BBB;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding:0px;
-  margin-top:0px;
-  overflow:hidden;
-  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card-header-pink{
-  background-color:#E91E63;
-  color:#FFFFFF;
-  border-bottom:3px solid #BBB;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding:0px;
-  margin-top:0px;
-  overflow:hidden;
-  -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-heading {
-  display: block;
+.event-latest .event-latest-title {
+  font-weight: 500;
+  margin-bottom: 15px;
   font-size: 24px;
-  line-height: 28px;
-  margin-bottom: 24px;
-  margin-left:1em;
-  border-bottom: 1px #2196F3;
-  color:#fff;
-
+  text-transform: uppercase;
 }
-.card-footer{
-  border-top:1px solid #000;
-
+.event-latest .event-latest-title a {
+  color: #fe3c47;
 }
-
-.btn:hover:not(.btn-link):not(.btn-flat) {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.23), 0 10px 30px rgba(0, 0, 0, 0.19);
+.event-latest .event-latest-title a:hover {
+  color: #fe0917;
 }
-.btn:active:not(.btn-link):not(.btn-flat) {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.23), 0 10px 30px rgba(0, 0, 0, 0.19);
+.event-latest .event-latest-details {
+  font-size: 14px;
+  margin-bottom: 16px;
 }
-.btn:not(.btn-link):not(.btn-flat),
-.btn-default:not(.btn-link):not(.btn-flat) {
-  background-color: transparent;
+.event-latest .event-latest-details a {
+  border-right: 1px solid #a1a1a1;
+  color: #6e6e6e;
+  display: inline-block;
+  line-height: 14px;
+  margin-right: 3px;
+  padding-right: 8px;
+  transition: all 0.3s ease 0s;
 }
-.btn-grey-mat{
-  background-color:#607D8B;
-  color:#ffffff;
-  solid:1px;
-  margin:10px;
+.event-latest .event-latest-details a:last-child {
+  border-right: medium none;
+  margin-right: 0;
+  padding-right: 0;
 }
-
-.card-action-pink{
-  color:#E91E63;
-
-}
-.card-action-red{
-  color:#F44336;
-
-}
-.card-action-grey{
-  color:#424242;
-
-}
-.card-action-pink{
-  color:#E91E63;
-
-}
-.card-action-orange{
-  color:#E65100;
-
+.event-latest .event-latest-details a:hover {
+  color: #212121;
 }
 
-
-
+/* 14. RESPONSIVE STYLING */
+/***********************************************************************************************/
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 991px) {
+  .event-latest {
+    clear: both;
+  }
+  .event-latest .event-details {
+    padding: 12px 6px 0 12px;
+  }
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .event-latest {
+    clear: both;
+  }
+  .event-latest .event-details {
+    padding: 12px 6px 0 12px;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .event-latest {
+    clear: both;
+  }
+  .event-latest .event-latest-title {
+    font-size: 20px;
+  }
+  .event-latest .event-details {
+    padding: 12px 6px 0 12px;
+  }
+}
 

@@ -1,11 +1,20 @@
-<div class="container">
+<div class="container padding-top-md-xs">
   <div class="row">
-    <app-donation-thumbnail *ngFor="let myDonation of donations"
-                            [donation]="myDonation"
-                            (click)="clicked(myDonation)"
-                            [showDetailButton]="showDetailButton"
-                            [showUpdateButton]="showUpdateButton"
-                            [class.selected]="isSelected(myDonation)">
-    </app-donation-thumbnail>
+    <div class="col-xs-4">
+
+    </div>
+    <div class="col-xs-8">
+      <div class="row">
+        <div class="col-xs-12" *ngFor="let myDonation of donations">
+          <app-donation-thumbnail
+                                  [donation]="myDonation"
+                                  (click)="clicked(myDonation)"
+                                  [showDetailButton]="showDetailButton"
+                                  [showUpdateButton]="showUpdateButton"
+                                  [class.selected]="isSelected(myDonation)">
+          </app-donation-thumbnail>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

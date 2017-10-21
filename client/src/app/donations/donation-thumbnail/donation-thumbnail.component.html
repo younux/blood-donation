@@ -1,36 +1,27 @@
-<div class="col-md-4">
+<div class="event-latest">
+  <div class="row">
+    <div class="col-md-4 hidden-sm hidden-xs">
+      <div class="event-latest-thumbnail text-center padding-md-xs">
+        <a [routerLink]="['/']">
+          {{ donation.bloodType }}
+        </a>
+      </div>
+    </div> <!--  col-sm-5  -->
 
-  <div class="card">
-    <div class="card-content">
-      <div class="card-header-red">
-        <div class="row">
-          <div class="col-md-2">
-            <i class="fa fa-user-circle fa-4x icon-pad" aria-hidden="true"> </i>
-          </div>
-          <div class="col-md-10">
-            <h1 class="card-heading"> {{donation.applicant.firstName}} {{donation.applicant.lastName}} </h1>
-          </div>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+      <div class="event-details">
+        <a class="latest-date" [routerLink]="['/']">{{ donation.deadline | date:'medium' }}</a>
+        <h4 class="event-latest-title">
+          <a [routerLink]="['/']">{{ donation.applicant.firstName }} {{ donation.applicant.lastName }}</a>
+        </h4>
+        <p>{{ donation.description }}</p>
+        <div class="event-latest-details">
+          <a class="author" [routerLink]="['/']"><i class="fa fa-clock-o" aria-hidden="true"></i>{{ donation.createdOn | date:'medium' }}</a>
+          <a class="comments" [routerLink]="['/']"> <i class="fa fa-map-marker" aria-hidden="true"></i> {{ donation.city }}, {{ donation.applicant.address.country }}</a>
         </div>
       </div>
+    </div> <!--  col-sm-7  -->
 
-      <div class="card-body">
-            <ul>
-              <li>Groupe sanguin : {{donation.bloodType}}</li>
-              <li> <i class="fa fa-calendar" aria-hidden="true"> Crée {{donation.createdOn | date:'medium'}}  </i> </li>
-              <li> <i class="fa fa-clock-o" aria-hidden="true"> Deadline  {{donation.deadline | date:'medium'}}  </i> </li>
-              <li><i class="fa fa-globe" aria-hidden="true"> Ville : {{donation.city}} </i> </li>
-              <li><i class="fa fa-phone" aria-hidden="true"> Tél : {{donation.phoneNumber}} </i> </li>
-            </ul>
-      </div>
-
-          <nav class="nav-tabs">
-            <ul class="nav nav-pills pull-left">
-              <li class="card-action" *ngIf="showDetailButton"><a [routerLink]="['../detail', donation.id]">Detail</a></li>
-              <li class="card-action" *ngIf="showUpdateButton"><a [routerLink]="['../update', donation.id]">Update</a></li>
-            </ul>
-
-          </nav>
-
-      </div>
   </div>
+
 </div>
