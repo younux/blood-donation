@@ -3,21 +3,21 @@
     <div class="col-md-4 hidden-sm hidden-xs">
       <div class="event-latest-thumbnail text-center padding-md-xs">
         <a [routerLink]="['/']">
-          {{ donation.bloodType }}
+          {{donation.bloodType}}
         </a>
       </div>
     </div> <!--  col-sm-5  -->
 
     <div class="col-md-8 col-sm-12 col-xs-12">
       <div class="event-details">
-        <a class="latest-date" [routerLink]="['/']">{{ donation.deadline | date:'medium' }}</a>
+        <a class="latest-date" [routerLink]="['/']">{{donation.deadline | date:'medium'}}</a>
         <h4 class="event-latest-title">
-          <a [routerLink]="['/']">{{ donation.applicant.firstName }} {{ donation.applicant.lastName }}</a>
+          <a [routerLink]="['/']">{{donation.applicant.firstName}} {{donation.applicant.lastName}}</a>
         </h4>
-        <p>{{ donation.description }}</p>
+        <p>{{donation.description | slice:0:200}}...</p>
         <div class="event-latest-details">
-          <a class="author" [routerLink]="['/']"><i class="fa fa-clock-o" aria-hidden="true"></i>{{ donation.createdOn | date:'medium' }}</a>
-          <a class="comments" [routerLink]="['/']"> <i class="fa fa-map-marker" aria-hidden="true"></i> {{ donation.city }}, {{ donation.applicant.address.country }}</a>
+          <!--<a class="author" [routerLink]="['/']"><i class="fa fa-clock-o" aria-hidden="true"></i>{{ donation.createdOn | date:'medium' }}</a>-->
+          <a class="comments pull-right text-bold" [routerLink]="['/']"> <i class="fa fa-map-marker" aria-hidden="true"></i> {{donation.city}}, {{donation.applicant.address.country}}</a>
         </div>
       </div>
     </div> <!--  col-sm-7  -->
