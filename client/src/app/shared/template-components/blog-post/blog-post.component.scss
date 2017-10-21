@@ -2,6 +2,41 @@
   padding: 100px 0 100px 0;
   background: #ffffff;
 }
+.margin-top-11 {
+  margin-top: 11px;
+}
+.btn-custom {
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-transition: 0.3s 0.2s ease-out;
+  -moz-transition: 0.3s 0.2s ease-out;
+  -o-transition: 0.3s 0.2s ease-out;
+  transition: 0.3s 0.2s ease-out;
+  border: 1px solid #cccccc;
+  background: #fe3c47;
+  color: #ffffff;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  padding: 12px 14px;
+}
+.btn-custom:hover {
+  border-color: #a6a6a6;
+  color: #fe3c47;
+  background: #ffffff;
+}
+.wp-caption {
+  text-align: center;
+}
+.wp-caption .wp-caption-text {
+  margin-bottom: 0px;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 34px;
+}
 
 /***********************************************************************************************/
 /* 06. BLOG SINGLE PAGE */

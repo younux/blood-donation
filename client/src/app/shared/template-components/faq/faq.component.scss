@@ -53,7 +53,15 @@
   color: #333333;
   content: "";
 }
-
+.accordion .panel {
+  margin-bottom: 3px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+.accordion .panel .panel-title a {
+  display: block;
+}
 
 /* 14. RESPONSIVE STYLING */
 /***********************************************************************************************/
