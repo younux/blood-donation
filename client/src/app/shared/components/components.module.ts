@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatProgressBarModule } from '@angular/material';
 
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -16,6 +17,7 @@ import { TypeaheadDirective } from './typeahead-container/typeahead.directive';
   imports: [
     CommonModule,
     RouterModule,
+    MatProgressBarModule,
   ],
   declarations: [FieldErrorDisplayComponent,
                   AlertDisplayComponent,

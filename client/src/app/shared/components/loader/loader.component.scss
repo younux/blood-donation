@@ -1,14 +1,8 @@
-#preloader {
-  background: #ffffff;
-  height: 100%;
-  position: fixed;
-  width: 100%;
-  z-index: 9999;
-}
-#preloader span {
-  left: 50%;
-  margin-left: -15px;
-  margin-top: -15px;
+.loader-overlay {
   position: absolute;
-  top: 50%;
+  width:100%;
+  top:0;
+  left: 0;
+  opacity: 1;
+  z-index: 500000;
 }

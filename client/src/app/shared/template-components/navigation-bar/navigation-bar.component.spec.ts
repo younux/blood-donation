@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConnexionStatusComponent } from './connexion-status.component';
+import { NavigationBarComponent } from './navigation-bar.component';
 
-describe('ConnexionStatusComponent', () => {
-  let component: ConnexionStatusComponent;
-  let fixture: ComponentFixture<ConnexionStatusComponent>;
+describe('NavigationBarComponent', () => {
+  let component: NavigationBarComponent;
+  let fixture: ComponentFixture<NavigationBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConnexionStatusComponent ]
+      declarations: [ NavigationBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConnexionStatusComponent);
+    fixture = TestBed.createComponent(NavigationBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

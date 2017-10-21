@@ -4,71 +4,93 @@
     <div class="container">
 
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#my-choices-target">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
+        </button>
+        <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#my-profile-target">
+          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
         </button>
         <a class="logo" [routerLink]="['/']">
           <img alt="" src="/assets/images/logo.png">
         </a>
       </div>
 
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="drop">
-            <a [routerLink]="['/']" title="Home Layout 01">Home</a>
-            <ul class="drop-down">
-              <li><a [routerLink]="['/']" title="Home Layout 01">Home Layout 1</a></li>
-              <li><a [routerLink]="['/']" title="Home Layout 02">Home Layout 2</a></li>
-            </ul>
-          </li>
-          <li><a [routerLink]="['/']" title="About Us">About Us</a></li>
+      <div class="navbar-collapse collapse navbar-left" id="my-choices-target">
 
-
-
+        <ul class="nav navbar-nav">
           <li>
-            <a [routerLink]="['/']">Campaign</a>
-            <ul class="drop-down">
-              <li><a [routerLink]="['/']">All Campaigns</a></li>
-              <li><a [routerLink]="['/']">Single Campaign</a></li>
-            </ul>
+            <a [routerLink]="['donations']">Donations</a>
           </li>
 
-          <li class="drop"><a [routerLink]="['/']">Pages</a>
-            <ul class="drop-down">
-
-
-              <li><a [routerLink]="['/']" title="FAQ">FAQ</a></li>
-              <li class="drop"><a [routerLink]="['/']">Gallery</a>
-                <ul class="drop-down level3">
-                  <li><a [routerLink]="['/']">Layout 01</a></li>
-                  <li><a [routerLink]="['/']">Layout 02</a></li>
-
-                </ul>
-              </li>
-              <li><a [routerLink]="['/']" title="404 Page">404 Page</a></li>
-              <li class="drop"><a [routerLink]="['/']">Level 3</a>
-                <ul class="drop-down level3">
-                  <li><a [routerLink]="['/']">Level 3.1</a></li>
-                  <li><a [routerLink]="['/']">Level 3.2</a></li>
-                  <li><a [routerLink]="['/']">Level 3.3</a></li>
-                </ul>
-              </li>
-            </ul>
+          <li *ngIf="isAuthenticated">
+            <a [routerLink]="['donations','create']">Create Donation</a>
           </li>
 
           <li>
-            <a [routerLink]="['/']">Blog</a>
-            <ul class="drop-down">
-              <li><a [routerLink]="['/']">All Posts</a></li>
-              <li><a [routerLink]="['/']">Single Page</a></li>
-            </ul>
+            <a [routerLink]="['/']" title="About Us">About Us</a>
           </li>
 
-          <li><a [routerLink]="['/']">Contact</a></li>
+          <li>
+            <a [routerLink]="['/']">Contact</a>
+          </li>
         </ul>
+
       </div>
+
+      <div class="navbar-collapse collapse navbar-right" id="my-profile-target">
+
+        <ul class="nav navbar-nav" >
+          <li *ngIf="!isAuthenticated" class="drop">
+            <a [routerLink]="['/']">
+              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+              My Profile
+            </a>
+            <ul class="drop-down">
+              <li *ngIf="!isAuthenticated">
+                <a [routerLink]="['profiles', 'register']">
+                  Register
+                </a>
+              </li>
+
+              <li *ngIf="!isAuthenticated">
+                <a [routerLink]="['profiles', 'login']">
+                  Login
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li *ngIf="isAuthenticated" class="drop">
+            <a [routerLink]="['/']">
+              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+              {{myPofile.username}}
+            </a>
+            <ul class="drop-down">
+              <li>
+                <a [routerLink]="['profiles', 'my']">
+                  My profile
+                </a>
+              </li>
+              <li>
+                <a [routerLink]="['donations','my']" [queryParams]="{username: myPofile.username}">
+                  My donations
+                </a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a [routerLink]="[]" (click)="logout($event)">
+                  Log out
+                </a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+
+      </div>
+
     </div>
   </div>
 
