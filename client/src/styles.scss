@@ -1,55 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* CSS imports */
+
+/***********************************************************************************************/
+/*  CSS imports */
+/***********************************************************************************************/
 
 /*Use this import if needed : @import "./assets/css/general-styling.css";*/
 
+/***********************************************************************************************/
+/*  SCSS imports */
+/***********************************************************************************************/
+
 /* SCSS imports */
-@import "./assets/mixins/variables";
-@import "./assets/mixins/breakpoints-utils";
-@import "./assets/mixins/generic-generator";
-@import "./assets/mixins/borders";
-@import "./assets/mixins/colors";
-@import "./assets/mixins/float";
-@import "./assets/mixins/lineheights";
-@import "./assets/mixins/margins";
-@import "./assets/mixins/paddings";
-@import "./assets/mixins/text-align";
-@import "./assets/mixins/texts";
-@import "./assets/mixins/verticals";
+@import "assets/scss/variables";
+@import "assets/scss/mixins/breakpoints-utils";
+@import "assets/scss/mixins/generic-generator";
+@import "assets/scss/mixins/borders";
+@import "assets/scss/mixins/colors";
+@import "assets/scss/mixins/float";
+@import "assets/scss/mixins/lineheights";
+@import "assets/scss/mixins/margins";
+@import "assets/scss/mixins/paddings";
+@import "assets/scss/mixins/text-align";
+@import "assets/scss/mixins/texts";
 
-// Colors
-$primary: #fe3c47;
-$primary-dark: #303A49;
-$secondary: #EEEEEE;
-$secondary-dark: #E7E7E7;
-
-// colors and backgrounds
-@include generate-colors(('primary': $primary));
-@include generate-colors(('primary-dark': $primary-dark));
-@include generate-colors(('secondary': $secondary));
-@include generate-colors(('secondary-dark': $secondary-dark));
-@include generate-colors(('white': white));
-
-// Borders
-@include generate-borders(('primary': $primary, 'primary-dark': $primary-dark));
-@include generate-borders(('secondary': $secondary, 'secondary-dark': $secondary-dark));
-@include generate-borders(('white': white));
-
-// Texts sizes
-@include generate-texts($sizes: ('8': 8px, '9': 9px, '10': 10px, '11': 11px, '12': 12px, '13': 13px, '14': 14px,
-  '15': 15px, '16': 16px, '17': 17px, '18': 18px, '19': 19px, '20': 20px, '21': 21px, '22': 22px, '23': 23px, '24': 24px,
-  '25': 25px, '26': 26px, '27': 27px, '28': 28px, '29': 29px, '30': 30px, '31': 31px, '32': 32px, '33': 33px, '34': 34px));
-
-@include generate-text-align(center);
-@include generate-text-align(left);
-@include generate-text-align(right);
-
-// Padding
-@include generate-paddings();
-
-// Margins
-@include generate-margins();
+/***********************************************************************************************/
+/*  CSS declarations */
+/***********************************************************************************************/
 
 // Cursors
 .cursor-pointer {
@@ -74,15 +51,12 @@ $secondary-dark: #E7E7E7;
 }
 
 // Opacities
-
 .opacity-9 {
   opacity: 0.9;
 }
-
 .opacity-8 {
   opacity: 0.8;
 }
-
 
 // Display
 .inline-block {
@@ -90,27 +64,19 @@ $secondary-dark: #E7E7E7;
   float: none;
 }
 
+// Vertical alignment
+.vcenter {
+  float: none !important;
+  display: inline-block;
+}
+.vmiddle { vertical-align: middle !important; }
+.vtop { vertical-align: top !important; }
+.vbottom { vertical-align: bottom !important; }
+
 // Fonts
-@font-face {
-  font-family: 'app-regular';
-  src : url('assets/fonts/app-regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'app-bold';
-  src : url('assets/fonts/app-bold.woff') format('woff');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: 'app-light';
-  src : url('assets/fonts/app-light.woff') format('woff');
-}
-
 .text-regular {
   font-family: app-regular;
 }
-
 .text-bold {
   font-family: app-bold;
 }
@@ -118,8 +84,61 @@ $secondary-dark: #E7E7E7;
   font-family: app-light;
 }
 
-
+// General styles
 html, body {
   height: 100vh;
   font-family: app-regular;
 }
+
+/***********************************************************************************************/
+/*  SCSS declarations */
+/***********************************************************************************************/
+
+// colors and backgrounds
+@include generate-colors(('primary': $primary));
+@include generate-colors(('primary-dark': $primary-dark));
+@include generate-colors(('secondary': $secondary));
+@include generate-colors(('secondary-dark': $secondary-dark));
+@include generate-colors(('tertiary': $tertiary));
+@include generate-colors(('tertiary-dark': $tertiary-dark));
+@include generate-colors(('light': $light))
+@include generate-colors(('dark': $dark));
+
+// Borders
+@include generate-borders(('primary': $primary, 'primary-dark': $primary-dark));
+@include generate-borders(('secondary': $secondary, 'secondary-dark': $secondary-dark));
+@include generate-borders(('tertiary': $tertiary, 'tertiary-dark': $tertiary-dark));
+@include generate-borders(('light': $light));
+@include generate-borders(('dark': $dark));
+
+// Texts sizes
+@include generate-texts($sizes: ('8': 8px, '9': 9px, '10': 10px, '11': 11px, '12': 12px, '13': 13px, '14': 14px,
+  '15': 15px, '16': 16px, '17': 17px, '18': 18px, '19': 19px, '20': 20px, '21': 21px, '22': 22px, '23': 23px, '24': 24px,
+  '25': 25px, '26': 26px, '27': 27px, '28': 28px, '29': 29px, '30': 30px, '31': 31px, '32': 32px, '33': 33px, '34': 34px));
+
+// Texts alignments
+@include generate-text-align(center);
+@include generate-text-align(left);
+@include generate-text-align(right);
+
+// Padding
+@include generate-paddings();
+
+// Margins
+@include generate-margins();
+
+// Fonts
+@font-face {
+  font-family: 'app-regular';
+  src : url('assets/fonts/app-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'app-bold';
+  src : url('assets/fonts/app-bold.woff') format('woff');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'app-light';
+  src : url('assets/fonts/app-light.woff') format('woff');
+}
+

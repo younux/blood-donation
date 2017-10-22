@@ -1,3 +1,5 @@
+@import "../../../../assets/scss/variables";
+
 .page-header {
   margin: 0;
   padding: 200px 0 80px;
@@ -9,7 +11,7 @@
   background-image: url('/assets/images/header-bg.jpg');
   background-repeat: repeat;
   background-size: initial;
-  border: 0px solid #FFF;
+  border: 0px solid $light;
 }
 .page-header:before {
   position: absolute;
@@ -22,7 +24,7 @@
   z-index: -1;
 }
 .page-header h3 {
-  color: #ffffff;
+  color: $light;
   text-align: center;
   font-size: 36px;
   line-height: 24px;
@@ -33,16 +35,16 @@
 }
 .page-header .page-breadcrumb {
   font-size: 16px;
-  color: #ffffff;
+  color: $light;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
 .page-header .page-breadcrumb a {
-  color: #ffffff;
+  color: $light;
 }
 .page-header .page-breadcrumb a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 
 /* 14. RESPONSIVE STYLING */

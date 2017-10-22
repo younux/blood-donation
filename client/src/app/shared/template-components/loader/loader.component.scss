@@ -1,5 +1,7 @@
+@import "../../../../assets/scss/variables";
+
 #preloader {
-  background: #ffffff;
+  background: $light;
   height: 100%;
   position: fixed;
   width: 100%;

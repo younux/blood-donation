@@ -1,13 +1,15 @@
+@import "../../../assets/scss/variables";
+
 .event-latest {
-  background: #f8f9fa;
+  background: $secondary;
   position: relative;
   margin-bottom: 30px;
 }
 .event-latest .event-latest-thumbnail a {
   display: block;
-  background: #444444;
+  background: $tertiary-dark;
   font-size: 7em;
-  color: white;
+  color: $light;
   text-decoration: none;
 }
 //.event-latest .event-latest-thumbnail a img {
@@ -16,10 +18,10 @@
 //}
 
 .event-latest .latest-date {
-  border: 2px solid #333333;
+  border: 2px solid $tertiary-dark;
   border-radius: 0px;
-  background: #333333;
-  color: #ffffff;
+  background: $tertiary-dark;
+  color: $light;
   display: inline-block;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -33,7 +35,7 @@
   padding: 10px 15px 0 0;
 }
 .event-latest .event-details h4 a {
-  color: #fe3c47;
+  color: $primary;
   text-decoration: none;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
@@ -47,17 +49,17 @@
   text-transform: uppercase;
 }
 .event-latest .event-latest-title a {
-  color: #fe3c47;
+  color: $primary;
 }
 .event-latest .event-latest-title a:hover {
-  color: #fe0917;
+  color: $primary;
 }
 .event-latest .event-latest-details {
   font-size: 14px;
   margin-bottom: 16px;
 }
 .event-latest .event-latest-details a {
-  color: #6e6e6e;
+  color: $tertiary;
   display: inline-block;
   line-height: 14px;
   margin-right: 3px;
@@ -70,7 +72,7 @@
   padding-right: 0;
 }
 .event-latest .event-latest-details a:hover {
-  color: #212121;
+  color: $tertiary-dark;
 }
 
 /* 14. RESPONSIVE STYLING */

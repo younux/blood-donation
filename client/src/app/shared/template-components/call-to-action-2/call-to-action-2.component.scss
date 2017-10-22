@@ -1,3 +1,5 @@
+@import "../../../../assets/scss/variables";
+
 .cta-section-2 {
   padding: 64px 0;
   background: transparent;
@@ -16,7 +18,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #fe3c47;
+  background: $primary;
   opacity: 0.95;
   top: 0;
   left: 0;
@@ -25,7 +27,7 @@
 .cta-section-2 h2 {
   font-size: 32px;
   line-height: 42px;
-  color: #ffffff;
+  color: $light;
   font-weight: 500;
   margin: 0;
   letter-spacing: 0.03em;
@@ -35,12 +37,12 @@
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.004em;
-  color: #ffffff;
+  color: $light;
 }
 .cta-section-2 a.btn-cta-2 {
-  background: #fafafa;
-  color: #fe3c47;
-  border: 2px solid #cccccc;
+  background: $secondary;
+  color: $primary;
+  border: 2px solid $secondary-dark;
   font-size: 22px;
   font-weight: 700;
   height: 60px;
@@ -60,8 +62,8 @@
   transition: all 0.3s ease-out 0.2s;
 }
 .cta-section-2 a.btn-cta-2:hover {
-  background: #fe3c47;
-  color: #ffffff;
+  background: $primary;
+  color: $light;
 }
 
 /* 14. RESPONSIVE STYLING */

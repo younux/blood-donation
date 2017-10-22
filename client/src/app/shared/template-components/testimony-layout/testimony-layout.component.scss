@@ -1,6 +1,8 @@
+@import "../../../../assets/scss/variables";
+
 .testimonial-container {
   padding: 80px 0px;
-  background: #f8f9fa;
+  background: $secondary;
 }
 .testimony-layout-1 {
   position: relative;
@@ -10,7 +12,7 @@
   font-size: 32px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #fe3c47;
+  color: $primary;
   margin-bottom: 24px;
 }
 .testimony-layout-1 h6 {
@@ -21,7 +23,7 @@
 .testimony-layout-1 span {
   font-size: 14px;
   text-transform: uppercase;
-  color: #4d4d4d;
+  color: $tertiary-dark;
 }
 p.testimony-text {
   position: relative;
@@ -32,10 +34,10 @@ p.testimony-text {
   line-height: 32px;
   margin: 0 0 24px 0;
   padding: 24px 24px 0 24px;
-  color: #333333;
+  color: $tertiary-dark;
 }
 p.testimony-text i {
-  color: #808080;
+  color: $tertiary;
   font-style: normal;
   opacity: 0.4;
 }

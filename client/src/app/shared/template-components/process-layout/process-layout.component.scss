@@ -1,9 +1,11 @@
+@import "../../../../assets/scss/variables";
+
 .process-layout {
   margin: 32px 0 0;
   text-align: left;
   position: relative;
   padding: 0;
-  background: #f8f9fa;
+  background: $secondary;
 }
 .process-layout .process-img {
   position: relative;
@@ -13,7 +15,7 @@
   width: 100%;
 }
 .process-layout .process-img .step h3 {
-  color: #ffffff;
+  color: $light;
   bottom: 15px;
   font-size: 64px;
   position: absolute;
@@ -22,7 +24,7 @@
   z-index: 9999;
 }
 .process-layout .process-img .step:after {
-  background: #fe3c47;
+  background: $primary;
   bottom: 0;
   content: "";
   height: 100px;
@@ -41,7 +43,7 @@
   font-weight: 600;
   text-transform: uppercase;
   position: relative;
-  color: #1a1a1a;
+  color: $tertiary-dark;
 }
 .process-layout:hover .process-img .step:after {
   opacity: 1;

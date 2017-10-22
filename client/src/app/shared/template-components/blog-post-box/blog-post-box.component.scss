@@ -1,5 +1,7 @@
+@import "../../../../assets/scss/variables";
+
 .latest-news-container {
-  border: 0px solid #cccccc;
+  border: 0px solid $secondary-dark;
 }
 .latest-news-container figure {
   display: block;
@@ -17,8 +19,8 @@
   right: 150%;
   margin-left: -30px;
   bottom: -64px;
-  background: #ffffff;
-  color: #fe3c47;
+  background: $light;
+  color: $primary;
   text-align: center;
   width: 60px;
   height: 60px;
@@ -36,11 +38,11 @@
   transition: all 0.5s ease-out;
 }
 .latest-news-container .news-content {
-  background: #ffffff;
+  background: $light;
   padding: 15px 25px 35px;
 }
 .latest-news-container .news-content h3 {
-  color: #1a1a1a;
+  color: $tertiary-dark;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -51,10 +53,10 @@
 }
 .latest-news-container .news-content h3 a {
   display: block;
-  color: #fe3c47;
+  color: $primary;
 }
 .latest-news-container .news-content p {
-  color: #333333;
+  color: $tertiary-dark;
 }
 .latest-news-container .news-content .news-meta-info {
   font-size: 14px;
@@ -78,7 +80,7 @@
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (min-width: 0px) and (max-width: 479px) {
   .section-home-blog .latest-news-container {
-    border: 0px solid #cccccc;
+    border: 0px solid $secondary-dark;
   }
   .section-home-blog .latest-news-container .news-content {
     padding: 12px 16px 24px;

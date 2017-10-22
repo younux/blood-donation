@@ -1,3 +1,5 @@
+@import "../../../../assets/scss/variables";
+
 .gallery-container {
   padding: 12px;
   margin: 0;
@@ -33,8 +35,8 @@
   right: 150%;
   margin-left: -21px;
   bottom: -64px;
-  background: #ffffff;
-  color: #fe3c47;
+  background: $light;
+  color: $primary;
   text-align: center;
   width: 42px;
   height: 42px;

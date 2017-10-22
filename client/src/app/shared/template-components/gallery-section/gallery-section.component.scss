@@ -1,12 +1,14 @@
+@import "../../../../assets/scss/variables";
+
 .section-content-block {
   padding: 100px 0 100px 0;
-  background: #ffffff;
+  background: $light;
 }
 .no-bottom-padding {
   padding-bottom: 0px;
 }
 .section-secondary-bg {
-  background: #f9fafb !important;
+  background: $secondary !important;
 }
 /* 14. RESPONSIVE STYLING */
 /***********************************************************************************************/

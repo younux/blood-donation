@@ -1,23 +1,25 @@
+@import "../../../../assets/scss/variables";
+
 .cta-section-1 {
-  background: #f8f9fa;
+  background: $secondary;
   padding: 40px 0;
-  color: #333333;
+  color: $tertiary-dark;
 }
 .cta-section-1 h2 {
   font-size: 32px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  color: #1a1a1a;
+  color: $tertiary-dark;
   font-weight: 600;
 }
 .cta-section-1 p {
   margin-bottom: 0;
-  color: #777777;
+  color: $tertiary;
 }
 .cta-section-1 a.btn-cta-1 {
-  background: #fe3c47;
-  color: #ffffff;
-  border: 3px solid #fe3c47;
+  background: $primary;
+  color: $light;
+  border: 3px solid $primary;
   font-size: 22px;
   font-weight: 700;
   height: 60px;
@@ -38,7 +40,7 @@
 }
 .cta-section-1 a.btn-cta-1:hover {
   background: transparent;
-  color: #1a1a1a;
+  color: $tertiary-dark;
 }
 
 /* 14. RESPONSIVE STYLING */

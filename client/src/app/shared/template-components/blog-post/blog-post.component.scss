@@ -1,6 +1,8 @@
+@import "../../../../assets/scss/variables";
+
 .section-content-block {
   padding: 100px 0 100px 0;
-  background: #ffffff;
+  background: $light;
 }
 .margin-top-11 {
   margin-top: 11px;
@@ -12,9 +14,9 @@
   -moz-transition: 0.3s 0.2s ease-out;
   -o-transition: 0.3s 0.2s ease-out;
   transition: 0.3s 0.2s ease-out;
-  border: 1px solid #cccccc;
-  background: #fe3c47;
-  color: #ffffff;
+  border: 1px solid $secondary-dark;
+  background: $primary;
+  color: $light;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -24,9 +26,9 @@
   padding: 12px 14px;
 }
 .btn-custom:hover {
-  border-color: #a6a6a6;
-  color: #fe3c47;
-  background: #ffffff;
+  border-color: $tertiary;
+  color: $primary;
+  background: $light;
 }
 .wp-caption {
   text-align: center;
@@ -42,7 +44,7 @@
 /* 06. BLOG SINGLE PAGE */
 /***********************************************************************************************/
 .single-post-inner {
-  background: #f9fafb;
+  background: $secondary;
   padding: 30px;
 }
 .post-inner-featured-content {
@@ -67,8 +69,8 @@
   display: inline-block;
   padding: 4px 12px;
   margin-right: 3px;
-  background: #fe3c47;
-  color: #ffffff;
+  background: $primary;
+  color: $light;
 }
 .custom-post-info {
   margin: 0;
@@ -91,20 +93,20 @@
   text-transform: capitalize;
 }
 .single-post-container h3 a {
-  color: #000000;
+  color: $dark;
 }
 .single-post-container h3 a:hover {
-  color: #333333;
+  color: $tertiary-dark;
 }
 .single-post-container .custom-breadcrumb {
   font-size: 18px;
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid $secondary-dark;
 }
 .single-post-container .article-meta-extra {
-  border-top: 1px solid #cccccc;
-  border-bottom: 1px solid #cccccc;
+  border-top: 1px solid $secondary-dark;
+  border-bottom: 1px solid $secondary-dark;
   padding: 6px 0;
   margin-bottom: 12px;
 }
@@ -115,7 +117,7 @@
   margin-right: 0px;
 }
 .single-post-container .article-meta-extra i {
-  color: #555555;
+  color: $tertiary;
   margin-right: 3px;
 }
 .single-post-container h2 + p {
@@ -203,15 +205,15 @@ img.centered {
   top: 4px;
   left: 3px;
   background: transparent;
-  border: 1px solid #cccccc;
+  border: 1px solid $secondary-dark;
   -webkit-transition: 0.3s 0.2s ease-out;
   -moz-transition: 0.3s 0.2s ease-out;
   -o-transition: 0.3s 0.2s ease-out;
   transition: 0.3s 0.2s ease-out;
 }
 .post-navigation p a:hover:before {
-  background: #fe3c47;
-  border: 1px solid #333333;
+  background: $primary;
+  border: 1px solid $tertiary-dark;
 }
 .post-navigation p a:first-child {
   margin-right: 0px;
@@ -237,30 +239,30 @@ img.centered {
   -moz-transition: 0.3s 0.2s ease-out;
   -o-transition: 0.3s 0.2s ease-out;
   transition: 0.3s 0.2s ease-out;
-  border: 1px solid #cccccc;
+  border: 1px solid $secondary-dark;
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0);
   -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0);
   background: transparent;
-  color: #333333;
+  color: $tertiary-dark;
   padding: 6px 12px;
 }
 .comments-nav-section a:hover,
 .post-nav-section a:hover {
-  border: 1px solid #fe3c47;
-  color: #fe3c47;
+  border: 1px solid $primary;
+  color: $primary;
   background: transparent;
 }
 .article-share-section {
   margin: 24px 0 0 0;
-  border: 1px solid #cccccc;
+  border: 1px solid $secondary-dark;
   border-left: 0px;
   border-right: 0px;
   padding: 14px 0 10px 0;
 }
 .article-author {
   margin-top: 24px;
-  background: #f9fafb;
+  background: $secondary;
   padding: 30px;
   min-height: 100px;
   padding-bottom: 24px;
@@ -270,7 +272,7 @@ img.centered {
   max-width: 100%;
   max-height: auto;
   float: right;
-  border: 1px solid #cccccc;
+  border: 1px solid $secondary-dark;
   padding: 3px;
   margin-top: 0px;
   margin-left: 12px;
@@ -281,16 +283,16 @@ img.centered {
 .article-author .social-icons a {
   display: inline-block;
   text-align: center;
-  border: 1px solid #cccccc;
-  color: #333333;
+  border: 1px solid $secondary-dark;
+  color: $tertiary-dark;
   margin-right: 3px;
 }
 .article-author .social-icons a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 .related-post {
   margin-top: 24px;
-  background: #f9fafb;
+  background: $secondary;
   padding: 30px;
 }
 .related-post ul li {
@@ -302,13 +304,13 @@ img.centered {
   -moz-transition: 0.3s 0.2s ease-out;
   -o-transition: 0.3s 0.2s ease-out;
   transition: 0.3s 0.2s ease-out;
-  color: #333333;
+  color: $tertiary-dark;
 }
 .related-post ul li a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 ul.pagination li a {
-  color: #fe3c47;
+  color: $primary;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -320,11 +322,11 @@ ul.pagination li a {
   margin: 0 2px;
 }
 ul.pagination li a:hover {
-  backgroud: #000 !important;
+  backgroud: $dark !important;
 }
 ul.pagination li a.current {
-  background: #fe3c47;
-  color: #ffffff;
+  background: $primary;
+  color: $light;
   border: 0px;
 }
 ul.pagination li:first-child {
@@ -345,7 +347,7 @@ ul.pagination li:last-child {
 }
 .comments-area {
   margin-top: 24px;
-  background: #f9fafb;
+  background: $secondary;
   padding: 30px;
 }
 .article-add-comments {
@@ -355,17 +357,17 @@ ul.pagination li:last-child {
   height: 24px;
   line-height: 24px;
   text-align: center;
-  color: #555555;
-  border: 1px solid #cccccc;
-  background: #ffffff;
+  color: $tertiary;
+  border: 1px solid $secondary-dark;
+  background: $light;
   -webkit-transition: 0.3s 0.2s ease-out;
   -moz-transition: 0.3s 0.2s ease-out;
   -o-transition: 0.3s 0.2s ease-out;
   transition: 0.3s 0.2s ease-out;
 }
 .article-add-comments:hover {
-  border: 1px solid #fe3c47;
-  color: #fe3c47;
+  border: 1px solid $primary;
+  color: $primary;
 }
 .commentslist {
   margin-top: 24px;
@@ -385,7 +387,7 @@ ul.pagination li:last-child {
 .commentslist li ul {
   padding-left: 3em;
   margin-left: 3em;
-  border-left: 1px dotted #cccccc;
+  border-left: 1px dotted $secondary-dark;
   list-style-type: none;
 }
 .commentslist li ol li,
@@ -397,23 +399,23 @@ ul.pagination li:last-child {
   content: '';
   width: 2em;
   height: 1px;
-  border-bottom: 1px dotted #cccccc;
+  border-bottom: 1px dotted $secondary-dark;
   position: absolute;
   left: -3em;
   top: 2em;
 }
 .commentslist li article {
-  background: #ffffff;
+  background: $light;
   padding: 12px;
 }
 .commentslist li article header {
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid $secondary-dark;
   font-size: 12px;
   margin-bottom: 1.5em;
   position: relative;
 }
 .commentslist li article header span {
-  color: #808080;
+  color: $tertiary;
 }
 .commentslist li article header::before {
   counter-increment: comment-id;
@@ -421,24 +423,24 @@ ul.pagination li:last-child {
   position: absolute;
   right: 5px;
   top: 15px;
-  color: #f8f8f8;
+  color: $secondary;
   font-size: 32px;
 }
 .commentslist li article header h5 {
   margin-bottom: 12px;
   text-transform: capitalize;
-  color: #000000;
+  color: $dark;
 }
 .commentslist li article header h5 a {
-  color: #000000;
+  color: $dark;
 }
 .commentslist li article header h5 a:hover {
-  color: #333333;
+  color: $tertiary-dark;
 }
 .commentslist li article header h5 span {
   font-size: 12px;
-  background: #000000;
-  color: #ffffff;
+  background: $dark;
+  color: $light;
   padding: 3px 5px;
   font-style: normal;
   margin-right: .5em;
@@ -450,9 +452,9 @@ ul.pagination li:last-child {
   width: 64px;
   height: 64px;
   float: right;
-  background: #FFFFFF;
+  background: $light;
   margin: 2px;
-  border: 1px solid #cccccc;
+  border: 1px solid $secondary-dark;
   padding: 2px;
   -webkit-transition: 0.3s 0.2s ease-out;
   -moz-transition: 0.3s 0.2s ease-out;
@@ -460,19 +462,19 @@ ul.pagination li:last-child {
   transition: 0.3s 0.2s ease-out;
 }
 .comment-avatar img:hover {
-  border-color: #a6a6a6;
+  border-color: $tertiary;
 }
 .waiting-moderation {
-  color: #808080;
+  color: $tertiary;
 }
 .comments-nav-section {
   margin: 48px 0;
 }
 .comments-nav-section .btn-primary {
-  background: #ffffff;
+  background: $light;
 }
 .comments-nav-section .btn-primary:hover {
-  background: #ffffff;
+  background: $light;
 }
 #comment-form label {
   margin-bottom: 12px;
@@ -482,7 +484,7 @@ ul.pagination li:last-child {
 #comment-form input[type=url],
 #comment-form input[type=password] {
   border: 0px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid $secondary-dark;
   line-height: 42px;
   height: 42px;
   margin-bottom: 24px;
@@ -514,11 +516,11 @@ ul.pagination li:last-child {
   -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
   -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid #a1a1a1;
+  border-bottom: 1px solid $tertiary;
 }
 #comment-form textarea {
   border: 0px;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid $secondary-dark;
   padding: 12px;
   margin-bottom: 24px;
   -webkit-border-radius: 0;
@@ -546,14 +548,14 @@ ul.pagination li:last-child {
   -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
   border: 0px;
-  border-bottom: 1px solid #a1a1a1;
+  border-bottom: 1px solid $tertiary;
 }
 
 /***********************************************************************************************/
 /* 13. SIDEBAR & WIDGETS */
 /***********************************************************************************************/
 .widget {
-  background: #f9fafb;
+  background: $secondary;
   margin-bottom: 30px;
   padding: 20px;
 }
@@ -565,11 +567,11 @@ ul.pagination li:last-child {
   letter-spacing: 0.03em;
   font-weight: 500;
   display: inline-block;
-  color: #1a1a1a;
+  color: $tertiary-dark;
 }
 .widget-title span {
   font-style: 400;
-  color: #000000;
+  color: $dark;
 }
 .widget ul {
   list-style: outside none none;
@@ -580,10 +582,10 @@ ul.pagination li:last-child {
   padding: 5px 0;
 }
 .widget ul li a {
-  color: #333333;
+  color: $tertiary-dark;
 }
 .widget ul li a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 .search-form {
   margin: 0 0 12px 0;
@@ -595,9 +597,9 @@ ul.pagination li:last-child {
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  background: #fe3c47;
+  background: $primary;
   border-right: 0px;
-  color: #ffffff;
+  color: $light;
   font-weight: bold;
   width: 10%;
   padding: 0 20px;
@@ -610,7 +612,7 @@ ul.pagination li:last-child {
   height: 42px;
   border: 0px;
   box-shadow: none;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid $secondary-dark;
   width: 100%;
   -webkit-transition: 0.3s 0.2s ease-out;
   -moz-transition: 0.3s 0.2s ease-out;
@@ -619,7 +621,7 @@ ul.pagination li:last-child {
 }
 .search-form input[type="text"]:focus {
   box-shadow: none;
-  border-bottom: 1px solid #d5d5d5;
+  border-bottom: 1px solid $secondary-dark;
 }
 .widget-post-category {
   margin: 11px auto;
@@ -642,17 +644,17 @@ ul.pagination li:last-child {
   overflow: hidden;
 }
 .single-recent-post a {
-  color: #333333;
+  color: $tertiary-dark;
   margin-bottom: 8px;
   display: block;
 }
 .single-recent-post a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 .single-recent-post span {
   font-size: 14px;
   display: block;
-  color: #fe3c47;
+  color: $primary;
   padding-left: 2px;
 }
 .single-recent-post span i {
@@ -676,7 +678,7 @@ ul.pagination li:last-child {
   padding: 3px 7px;
   text-transform: capitalize;
   text-align: center;
-  border: 1px solid #fe3c47;
+  border: 1px solid $primary;
   display: block;
   background: transparent;
   -webkit-transition: all 0.3s ease-out;
@@ -687,9 +689,15 @@ ul.pagination li:last-child {
 .widget-recent-tags li a:hover,
 .widget-recent-tags li a:active {
   background: transparent;
-  border: 1px solid #fe3c47;
-  background: #ffffff;
+  border: 1px solid $primary;
+  background: $light;
 }
+
+.badge{
+  color: $light;
+  background-color: $tertiary;
+}
+
 
 
 /* 14. RESPONSIVE STYLING */

@@ -1,13 +1,15 @@
+@import "../../../../assets/scss/variables";
+
 .main-content {
   margin: 48px 0;
-  background: #ffffff;
+  background: $light;
 
 }
 img {
   max-width: 100%;
 }
 a {
-  color: #fe3c47;
+  color: $primary;
   text-decoration: none;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
@@ -16,7 +18,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #d3010d;
+  color: $primary-dark;
   text-decoration: none;
 }
 .single-post p {
@@ -25,7 +27,7 @@ a:focus {
 .single-post .single-post-content {
   margin-bottom: 30px;
   padding: 6px;
-  background: #f9fafb;
+  background: $secondary;
 }
 .single-post .single-post-title {
   line-height: 24px;
@@ -41,7 +43,7 @@ a:focus {
 }
 
 ul.pagination li a {
-  color: #fe3c47;
+  color: $primary;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -53,11 +55,11 @@ ul.pagination li a {
   margin: 0 2px;
 }
 ul.pagination li a:hover {
-  backgroud: #000 !important;
+  backgroud: $dark !important;
 }
 ul.pagination li a.current {
-  background: #fe3c47;
-  color: #ffffff;
+  background: $primary;
+  color: $light;
   border: 0px;
 }
 ul.pagination li:first-child {
@@ -82,7 +84,7 @@ ul.pagination li:last-child {
 /* 13. SIDEBAR & WIDGETS */
 /***********************************************************************************************/
 .widget {
-  background: #f9fafb;
+  background: $secondary;
   margin-bottom: 30px;
   padding: 20px;
 }
@@ -94,11 +96,11 @@ ul.pagination li:last-child {
   letter-spacing: 0.03em;
   font-weight: 500;
   display: inline-block;
-  color: #1a1a1a;
+  color: $tertiary-dark;
 }
 .widget-title span {
   font-style: 400;
-  color: #000000;
+  color: $dark;
 }
 .widget ul {
   list-style: outside none none;
@@ -109,10 +111,10 @@ ul.pagination li:last-child {
   padding: 5px 0;
 }
 .widget ul li a {
-  color: #333333;
+  color: $tertiary-dark;
 }
 .widget ul li a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 .search-form {
   margin: 0 0 12px 0;
@@ -124,9 +126,9 @@ ul.pagination li:last-child {
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  background: #fe3c47;
+  background: $primary;
   border-right: 0px;
-  color: #ffffff;
+  color: $light;
   font-weight: bold;
   width: 10%;
   padding: 0 20px;
@@ -139,7 +141,7 @@ ul.pagination li:last-child {
   height: 42px;
   border: 0px;
   box-shadow: none;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid $secondary-dark;
   width: 100%;
   -webkit-transition: 0.3s 0.2s ease-out;
   -moz-transition: 0.3s 0.2s ease-out;
@@ -148,7 +150,7 @@ ul.pagination li:last-child {
 }
 .search-form input[type="text"]:focus {
   box-shadow: none;
-  border-bottom: 1px solid #d5d5d5;
+  border-bottom: 1px solid $secondary-dark;
 }
 .widget-post-category {
   margin: 11px auto;
@@ -171,17 +173,17 @@ ul.pagination li:last-child {
   overflow: hidden;
 }
 .single-recent-post a {
-  color: #333333;
+  color: $tertiary-dark;
   margin-bottom: 8px;
   display: block;
 }
 .single-recent-post a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 .single-recent-post span {
   font-size: 14px;
   display: block;
-  color: #fe3c47;
+  color: $primary;
   padding-left: 2px;
 }
 .single-recent-post span i {
@@ -205,7 +207,7 @@ ul.pagination li:last-child {
   padding: 3px 7px;
   text-transform: capitalize;
   text-align: center;
-  border: 1px solid #fe3c47;
+  border: 1px solid $primary;
   display: block;
   background: transparent;
   -webkit-transition: all 0.3s ease-out;
@@ -216,9 +218,15 @@ ul.pagination li:last-child {
 .widget-recent-tags li a:hover,
 .widget-recent-tags li a:active {
   background: transparent;
-  border: 1px solid #fe3c47;
-  background: #ffffff;
+  border: 1px solid $primary;
+  background: $light;
 }
+
+.badge{
+  color: $light;
+  background-color: $tertiary;
+}
+
 
 
 /* 14. RESPONSIVE STYLING */

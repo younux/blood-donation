@@ -1,51 +1,54 @@
+@import "../../assets/scss/variables";
+
+
 /***********************************************************************************************/
 /* FOOTER */
 /***********************************************************************************************/
 footer {
   position: relative;
   overflow: hidden;
-  color: #ffffff;
+  color: $light;
   margin-top: 0px;
 }
 footer .footer-intro {
   margin-bottom: 32px;
 }
 footer a {
-  color: #ffffff;
+  color: $light;
 }
 footer a:hover {
-  color: #fe3c47;
+  color: $primary;
 }
 footer p {
-  color: #ffffff;
+  color: $light;
 }
 .about-footer {
-  border-bottom: 1px solid #2c2c2c;
+  border-bottom: 1px solid $tertiary-dark;
   margin-bottom: 60px;
   padding-bottom: 50px;
 }
 .footer-widget-area {
   padding: 100px 0 80px 0;
-  background: #1a1a1a;
+  background: $tertiary-dark;
   margin: 0;
 }
 .footer-widget-area .footer-widget .footer-logo {
   margin-bottom: 15px;
 }
 .footer-widget-area .footer-subscription input[type="email"] {
-  background: #444444;
-  border: 0 solid #cccccc;
+  background: $tertiary;
+  border: 0 solid $secondary-dark;
   border-radius: 0;
   height: 48px;
-  color: #ffffff;
+  color: $light;
 }
 .footer-widget-area .footer-subscription input[type="email"]:focus {
   box-shadow: none;
 }
 .footer-widget-area .footer-subscription input[type="submit"] {
-  background: #fe3c47;
-  border: 0 solid #cccccc;
-  color: #ffffff;
+  background: $primary;
+  border: 0 solid $secondary-dark;
+  color: $light;
   height: 42px;
   letter-spacing: 2px;
   margin-top: 6px;
@@ -60,11 +63,11 @@ footer p {
   letter-spacing: 0.03em;
   font-weight: 500;
   display: inline-block;
-  color: #ffffff;
+  color: $light;
 }
 .footer-widget-area .footer-widget-header h3 span {
   font-style: 400;
-  color: #000000;
+  color: $dark;
 }
 .footer-widget-area .footer-useful-links {
   clear: both;
@@ -79,7 +82,7 @@ footer p {
   text-align: center;
   width: 12px;
   height: 12px;
-  color: #fe555f;
+  color: $primary;
   padding: 4px 6px 6px 0;
   margin-right: 0px;
 }
@@ -94,7 +97,7 @@ footer p {
   text-align: center;
   width: 12px;
   height: 12px;
-  color: #fe555f;
+  color: $primary;
   padding: 6px 6px 6px 0;
   margin-right: 6px;
   position: absolute;
@@ -106,22 +109,22 @@ footer p {
   line-height: 32px;
 }
 .footer-widget-area-bg {
-  background: #1a1a1a;
+  background: $tertiary-dark;
 }
 .footer-contents {
-  background: #1b1b1a;
-  border-top: 1px solid #2c2c2c;
+  background: $tertiary-dark;
+  border-top: 1px solid $tertiary-dark;
   padding: 28px 0 20px 0;
 }
 .social-icons {
   clear: both;
   margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid $secondary-dark;
 }
 .social-icons a {
-  border: 1px solid #cccccc;
-  color: #ffffff;
+  border: 1px solid $secondary-dark;
+  color: $light;
   display: inline-block;
   font-size: 15px;
   height: 35px;
@@ -142,7 +145,7 @@ footer p {
   background-clip: padding-box;
 }
 .social-icons a:hover {
-  background: #e6e6e6;
+  background: $secondary-dark;
 }
 .footer-nav li {
   display: inline;
@@ -161,7 +164,7 @@ footer p {
   margin: 0;
   height: 8px;
   width: 1px;
-  background: #808080;
+  background: $tertiary;
 }
 .footer-nav li:last-child a:after {
   content: '';
@@ -169,11 +172,11 @@ footer p {
   display: inline-block;
   top: 12px;
   right: 0;
-  color: #fe3c47;
+  color: $primary;
   margin: 0;
   height: 8px;
   width: 0px;
-  background: #ffffff;
+  background: $light;
 }
 
 /* 14. RESPONSIVE STYLING */

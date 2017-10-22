@@ -1,3 +1,5 @@
+@import "../../../../assets/scss/variables";
+
 .section-banner {
   background-image: url("/assets/images/home_1_slider_1.jpg");
   padding: 250px 0px;
@@ -15,7 +17,7 @@
   line-height: 60px;
   font-weight: 700;
   margin: 12px 0 0;
-  color: #ffffff;
+  color: $light;
   text-transform: uppercase;
 }
 .section-banner .banner-content h2 span {
@@ -28,14 +30,14 @@
   line-height: 32px;
   letter-spacing: 0.02em;
   margin: 16px 0 0;
-  color: #ffffff;
+  color: $light;
 }
 .section-banner .banner-content a.btn-slider {
   font-size: 16px;
   margin-top: 24px;
-  background: #fe3c47;
-  border: 2px solid #fe3c47;
-  color: #ffffff;
+  background: $primary;
+  border: 2px solid $primary;
+  color: $light;
   line-height: 32px;
   padding-left: 24px;
   padding-right: 24px;
@@ -49,9 +51,9 @@
   background-clip: padding-box;
 }
 .section-banner .banner-content a.btn-slider:hover {
-  background: #fe0917;
-  border: 2px solid #fe3c47;
-  color: #ffffff;
+  background: $primary;
+  border: 2px solid $primary;
+  color: $light;
 }
 
 /* 14. RESPONSIVE STYLING */

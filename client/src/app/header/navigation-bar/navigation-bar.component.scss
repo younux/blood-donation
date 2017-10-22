@@ -1,5 +1,8 @@
+@import "../../../assets/scss/variables";
+
+
 .navgiation-wrapper {
-  background: #ffffff;
+  background: $light;
 }
 .navbar-default {
   border: none;
@@ -38,12 +41,12 @@
 .navbar-nav > li > a {
   font-weight: 700;
   font-size: 16px;
-  color: #333333;
+  color: $tertiary-dark;
   text-transform: uppercase;
   padding-bottom: 24px;
 }
 .navbar-nav > li > a:hover {
-  color: #000000;
+  color: $dark;
 }
 li.drop {
   position: relative;
@@ -90,7 +93,7 @@ li ul.drop-down li a {
   display: inline-block;
   text-decoration: none;
   display: block;
-  color: #000000;
+  color: $dark;
   padding: 12px 20px;
   text-transform: uppercase;
   background: rgba(255, 255, 255, 0.9);
@@ -99,7 +102,7 @@ li ul.drop-down li a {
 }
 li ul.drop-down li a:hover {
   background: rgba(0, 0, 0, 0.9);
-  color: #ffffff;
+  color: $light;
 }
 li ul.drop-down li:hover ul.drop-down.level3 {
   -webkit-transform: rotateX(0deg);
@@ -168,14 +171,14 @@ li:hover > ul.drop-down {
     background-clip: padding-box;
   }
   .icon-bar {
-    color: #fe3c47;
+    color: $primary;
   }
   .navbar-right {
     width: 100%;
     text-align: left;
   }
   .navbar-collapse {
-    background: #0d0d0d;
+    background: $tertiary-dark;
     margin-top: 12px;
     padding: 12px 0;
   }
@@ -198,14 +201,14 @@ li:hover > ul.drop-down {
   li ul.drop-down li a,
   li ul.drop-down li ul.drop-down.level3 li a {
     background: none;
-    color: #ffffff;
+    color: $light;
     font-size: 16px;
     text-transform: inherit;
     padding: 4px 20px;
   }
   li ul.drop-down li a:hover,
   li ul.drop-down li ul.drop-down.level3 li a:hover {
-    color: #ffffff;
+    color: $light;
   }
   .navbar-nav {
     margin: 0px;
@@ -215,10 +218,10 @@ li:hover > ul.drop-down {
   }
   .navbar-nav li a {
     font-weight: bold;
-    color: #fe3c47;
+    color: $primary;
   }
   .drop-down li a {
-    color: #ffffff;
+    color: $light;
   }
   .logo {
     text-align: center;
@@ -244,10 +247,10 @@ li:hover > ul.drop-down {
   }
   .navbar-nav li a {
     font-weight: bold;
-    color: #fe3c47;
+    color: $primary;
   }
   .navbar-nav .drop-down li a {
-    color: #ffffff;
+    color: $light;
   }
   .logo {
     text-align: center;

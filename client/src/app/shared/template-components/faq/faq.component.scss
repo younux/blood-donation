@@ -1,6 +1,8 @@
+@import "../../../../assets/scss/variables";
+
 .section-content-block {
   padding: 100px 0 100px 0;
-  background: #ffffff;
+  background: $light;
 }
 .section-faq {
   position: relative;
@@ -10,9 +12,9 @@
   box-shadow: none;
 }
 .section-faq .panel-default {
-  border: 1px solid #eeeeee;
+  border: 1px solid $secondary-dark;
   padding: 10px 15px;
-  background: #f9fafb;
+  background: $secondary;
   border-radius: 0;
   margin-top: 30px;
 }
@@ -23,7 +25,7 @@
   padding: 0;
 }
 .section-faq .faq-box .panel-title {
-  color: #333333;
+  color: $tertiary-dark;
   font-size: 16px;
   letter-spacing: 0.02em;
   margin-bottom: 0;
@@ -36,7 +38,7 @@
 .section-faq .faq-box .panel-title > a:hover,
 .section-faq .faq-box .panel-title > a:focus {
   outline: none;
-  color: #333333;
+  color: $tertiary-dark;
 }
 .section-faq .faq-box .panel-body {
   padding-left: 0px;
@@ -45,12 +47,12 @@
   font-family: 'FontAwesome';
   content: "";
   float: left;
-  color: #333333;
+  color: $tertiary-dark;
   font-size: 18px;
   margin-right: 10px;
 }
 .section-faq .faq-box .panel-heading [data-toggle="collapse"].collapsed:after {
-  color: #333333;
+  color: $tertiary-dark;
   content: "";
 }
 .accordion .panel {

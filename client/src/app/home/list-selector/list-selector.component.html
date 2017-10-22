@@ -1,8 +1,8 @@
 <div (focusout)="hideList()"
      class="padding-md"
       [ngClass]="{ 'background-primary': isActive || selectedItem, 'opacity-8': !isActive && !selectedItem }">
-  <div class="text-uppercase text-white text-12 padding-bottom-sm">{{ title }}</div>
-  <div (click)="toggleList()" class="background-white padding-sm cursor-pointer">
+  <div class="text-uppercase text-light text-12 padding-bottom-sm">{{ title }}</div>
+  <div (click)="toggleList()" class="background-light padding-sm cursor-pointer">
     <div *ngIf="!selectedItem">
       <span>-- {{ placeholder }} --</span>
       <span *ngIf="!selectedItem" class="pull-right">
@@ -27,8 +27,8 @@
     <div>
       <div *ngFor="let item of items"
            (click)="selectItem(item)"
-           class="padding-xs padding-left-md background-white cursor-pointer"
-           [ngClass]="{ 'background-white': !isSelected(item), 'background-primary text-white': isSelected(item) }">{{ item }}
+           class="padding-xs padding-left-md background-light cursor-pointer"
+           [ngClass]="{ 'background-light': !isSelected(item), 'background-primary text-light': isSelected(item) }">{{ item }}
       </div>
     </div>
   </div>

@@ -1,3 +1,5 @@
+@import "../../../../assets/scss/variables";
+
 .section-heading-wrapper {
   margin-bottom: 32px;
 }
@@ -8,7 +10,7 @@
   text-transform: uppercase;
   letter-spacing: 0.03em;
   font-weight: 600;
-  color: #000000;
+  color: $dark;
 }
 .section-heading:after {
   background-image: url('/assets/images/separator.png');
@@ -24,26 +26,26 @@
 }
 .section-heading span {
   font-style: 400;
-  color: #000000;
+  color: $dark;
 }
 .section-heading-alt {
-  color: #ffffff;
+  color: $light;
 }
 .section-heading-alt span {
   font-style: 400;
-  color: #ffffff;
+  color: $light;
 }
 .section-subheading {
   font-size: 22px;
   line-height: 32px;
   font-weight: 400;
-  color: #4d4d4d;
+  color: $tertiary-dark;
   margin-bottom: 24px;
   padding: 30px 0 0 24px;
   word-spacing: 0.03em;
 }
 .section-subheading-alt {
-  color: #ffffff;
+  color: $light;
 }
 
 

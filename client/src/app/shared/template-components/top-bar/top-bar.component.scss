@@ -1,31 +1,33 @@
+@import "../../../../assets/scss/variables";
+
 .top-bar {
   text-align: center;
 }
 .top-bar {
-  background: #fe3c47;
+  background: $primary;
   line-height: 42px;
-  color: #ffffff;
+  color: $light;
   font-size: 14px;
 }
 .top-bar i {
-  color: #ffffff;
+  color: $light;
   margin-right: 5px;
   display: inline-block;
 }
 .top-bar a {
-  color: #ffffff;
+  color: $light;
 }
 .top-bar p {
   margin-top: 10px;
-  color: #ffffff;
+  color: $light;
 }
 .top-bar-social {
   float: right;
   margin-right: 12px;
-  color: #ffffff;
+  color: $light;
   font-size: 16px;
   margin-top: 5px;
-  border: 0px solid #FFF;
+  border: 0px solid $light;
   letter-spacing: 1px;
   text-transform: uppercase;
   -webkit-border-radius: 0px;
@@ -52,16 +54,16 @@
   -moz-background-clip: padding;
   background-clip: padding-box;
   text-align: center;
-  color: #666;
-  background: #fafafa;
+  color: $tertiary;
+  background: $secondary;
   line-height: 24px;
   font-size: 14px;
   position: relative;
   top: -2px;
 }
 .top-bar-social a:hover i.fa {
-  color: #fe3c47;
-  background: #fafafa;
+  color: $primary;
+  background: $secondary;
 }
 
 /* Responsive styling */
