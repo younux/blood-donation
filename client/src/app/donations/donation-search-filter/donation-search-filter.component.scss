@@ -39,7 +39,7 @@
 .search-form {
   margin: 0 0 12px 0;
 }
-.search-form span.input-group-addon {
+span.input-group-addon {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
@@ -142,8 +142,12 @@
   background: $light;
 }
 
-.badge{
+sapn.badge{
   color: $light;
   background-color: $tertiary;
 }
 
+label.badge{
+  color: $light;
+  background-color: $primary;
+}

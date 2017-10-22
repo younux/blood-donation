@@ -1,7 +1,6 @@
 @import "../../../assets/scss/variables";
 
 .section-content-block {
-  padding: 100px 0 100px 0;
   background: $light;
 }
 .margin-top-11 {
@@ -9,11 +8,11 @@
 }
 .article-event {
   margin-top: 24px;
+  margin-bottom: 24px;
   background: $secondary;
   padding: 30px;
   min-height: 100px;
   border-bottom: 0px solid $secondary-dark;
-  padding-bottom: 24px;
 }
 .article-event .single-post-inner {
   padding: 12px 0px;

@@ -17,8 +17,12 @@
         <p>{{donation.description | slice:0:200}}...</p>
         <div class="event-latest-details">
           <!--<a class="author" [routerLink]="['/']"><i class="fa fa-clock-o" aria-hidden="true"></i>{{ donation.createdOn | date:'medium' }}</a>-->
-          <a class="author text-primary text-bold" [routerLink]="['/']"><i class="fa fa-tint" aria-hidden="true"></i> {{donation.bloodType}} </a>
-          <a class="comments pull-right text-bold" [routerLink]="['/']"> <i class="fa fa-map-marker" aria-hidden="true"></i> {{donation.city}}, {{donation.applicant.address.country}}</a>
+          <a class="author text-primary text-bold" [routerLink]="['/']">
+            <i class="fa fa-tint" aria-hidden="true"></i> {{donation.bloodType}}
+          </a>
+          <a class="comments pull-right text-bold" [routerLink]="['/']">
+            <i class="fa fa-map-marker" aria-hidden="true"></i> {{donation.city}}, {{donation.applicant.address.country}}
+          </a>
         </div>
       </div>
     </div> <!--  col-sm-7  -->
