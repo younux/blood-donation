@@ -1,0 +1,160 @@
+.section-content-block {
+  padding: 100px 0 100px 0;
+  background: #ffffff;
+}
+.margin-top-11 {
+  margin-top: 11px;
+}
+.article-event {
+  margin-top: 24px;
+  background: #f9fafb;
+  padding: 30px;
+  min-height: 100px;
+  border-bottom: 0px solid #cccccc;
+  padding-bottom: 24px;
+}
+.article-event .single-post-inner {
+  padding: 12px 0px;
+}
+.single-post-inner {
+  background: #f9fafb;
+  padding: 30px;
+}
+.post-inner-featured-content {
+  display: block;
+}
+.post-inner-featured-content img {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.single-post-inner-title {
+  margin-bottom: 24px;
+}
+.single-post-inner-title h2 {
+  font-size: 32px;
+  margin: 32px 0 24px 0;
+}
+.event-content-title {
+  font-size: 24px;
+  border-bottom: 3px solid #eeeeee;
+  color: #5c5c5c;
+  padding-bottom: 15px;
+  position: relative;
+}
+.event-content-title:after {
+  bottom: -3px;
+  content: "";
+  height: 3px;
+  left: 0;
+  position: absolute;
+  width: 32px;
+  background: #fe3c47;
+}
+.event-content-info {
+  font-size: 14px;
+}
+.event-sub-content-title {
+  margin-top: 12px;
+  font-weight: bold;
+  display: block;
+}
+.event-sub-content-title em.date {
+  font-weight: normal;
+  border-bottom: 1px dashed #b3b3b3;
+  cursor: help;
+}
+
+.article-author {
+  margin-top: 24px;
+  background: #f9fafb;
+  padding: 30px;
+  min-height: 100px;
+  padding-bottom: 24px;
+}
+.article-author .author-avatar img {
+  width: 100px;
+  max-width: 100%;
+  max-height: auto;
+  float: right;
+  border: 1px solid #cccccc;
+  padding: 3px;
+  margin-top: 0px;
+  margin-left: 12px;
+}
+.article-author .about_author {
+  margin-bottom: 24px;
+}
+.article-author .social-icons a {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #cccccc;
+  color: #333333;
+  margin-right: 3px;
+}
+.article-author .social-icons a:hover {
+  color: #fe3c47;
+}
+.article-author .social-icons a {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid #cccccc;
+  color: #333333;
+  margin-right: 3px;
+}
+.article-author .social-icons a:hover {
+  color: #fe3c47;
+}
+.social-icons {
+  clear: both;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #cccccc;
+}
+.social-icons a {
+  border: 1px solid #cccccc;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 15px;
+  height: 35px;
+  line-height: 33px;
+  margin-right: 10px;
+  position: relative;
+  text-align: center;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  width: 35px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+.social-icons a:hover {
+  background: #e6e6e6;
+}
+
+/* 14. RESPONSIVE STYLING */
+/***********************************************************************************************/
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+
+}
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 991px) {
+
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .section-content-block {
+    padding: 60px 0;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .section-content-block {
+    padding: 32px 0;
+  }
+}

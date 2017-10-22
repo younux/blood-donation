@@ -17,7 +17,8 @@ import {
   DonationCreateComponent,
   DonationUpdateComponent,
   DonationListAllComponent,
-  DonationListMyComponent
+  DonationListMyComponent,
+  DonationSearchFilterComponent
 } from '.';
 
 const declarations = [
@@ -28,7 +29,8 @@ const declarations = [
   DonationCreateComponent,
   DonationUpdateComponent,
   DonationListAllComponent,
-  DonationListMyComponent
+  DonationListMyComponent,
+  DonationSearchFilterComponent
 ];
 
 @NgModule({

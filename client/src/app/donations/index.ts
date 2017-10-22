@@ -7,3 +7,5 @@ export * from './donation-thumbnail/donation-thumbnail.component';
 export * from './donation-update/donation-update.component';
 export * from './donation.component';
 export * from './donation.routes';
+export * from './donation-search-filter/donation-search-filter.component';
+
