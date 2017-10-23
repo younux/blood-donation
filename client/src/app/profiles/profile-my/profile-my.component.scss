@@ -18,7 +18,8 @@
 }
 
 .navigation {
-  float: left;
+  display: inline-block;
+  text-align: center;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -28,14 +29,14 @@
 }
 
 .navigation-li {
-  float: left;
+  display: inline-block;
   margin: 0;
   padding: 0;
 }
 
 .navigation-li a {
   padding: 20px 30px;
-  float: left;
+  display: inline-block;
 }
 
 .navigation-li a span {
@@ -59,10 +60,14 @@
   text-align: center;
 }
 
-/*.user-body {
-  float: left;
-  padding: 5%;
-  width: 90%;
-}*/
+.table-user-information > tbody > tr {
+  border-top: 1px solid rgb(221, 221, 221);
+}
 
+.table-user-information > tbody > tr:first-child {
+  border-top: 0;
+}
 
+.table-user-information > tbody > tr > td {
+  border-top: 0;
+}
