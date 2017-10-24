@@ -1,5 +1,82 @@
 @import "../../../assets/scss/variables";
 
+// css using flex
+.profile-box {
+  background: $secondary;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+
+}
+
+.profile-image {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-heading {
+  text-align: center;
+}
+
+.profile-heading h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.profile-heading h3 {
+  margin-top: 0;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  list-style: none;
+  border-bottom: 1px solid $primary;
+  border-top: 1px solid $primary;
+}
+
+.navigation-li a {
+  padding: 20px 30px;
+  display: block;
+}
+
+.navigation-li a i {
+  color: $tertiary-dark;
+}
+
+.navigation-li.active a {
+  background: $primary;
+  color: $light;
+}
+
+.tab-content h3 {
+  color: $primary-dark;
+  font-size: 2em;
+  text-align: center;
+}
+
+.information-item {
+  border-bottom: 3px solid $secondary-dark;
+  color: $tertiary-dark;
+
+}
+
+.information-item:after {
+  position: relative;
+  bottom: -3px;
+  left: 0;
+  content: "";
+  height: 3px;
+  width: 80px;
+  border-bottom: 3px solid;
+  border-color: $primary;
+}
+
 // css using inline blocks
 /*
 .profile-box {
@@ -16,7 +93,7 @@
 .profile-heading {
   text-align: center;
 }
-.profile-heading h3{
+.profile-heading h2{
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -42,7 +119,7 @@
   display: block;
 }
 
-.navigation-li a span {
+.navigation-li a i {
   color: $tertiary-dark;
 }
 
@@ -68,71 +145,3 @@
 }
 */
 
-// css using flex
-.profile-box {
-  background: $secondary;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.profile-image {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-}
-
-.profile-heading {
-  text-align: center;
-}
-.profile-heading h3{
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.navigation {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  list-style: none;
-  border-bottom: 1px solid $primary;
-  border-top: 1px solid $primary;
-}
-
-.navigation-li a {
-  padding: 20px 30px;
-  display: block;
-}
-
-.navigation-li a span {
-  color: $tertiary-dark;
-}
-
-.navigation-li.active a {
-  background: $primary;
-  color: $light;
-}
-.tab-content h4 {
-  color: $primary-dark;
-  font-size: 2em;
-  text-align: center;
-}
-
-.table-user-information > tbody > tr {
-  border-top: 1px solid rgb(221, 221, 221);
-}
-
-.table-user-information > tbody > tr:first-child {
-  border-top: 0;
-}
-
-.table-user-information > tbody > tr > td {
-  border-top: 0;
-}
-
-td.information-key {
-  color: $dark;
-  font-size: 2em;
-}
