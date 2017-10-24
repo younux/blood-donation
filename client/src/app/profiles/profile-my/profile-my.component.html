@@ -1,116 +1,92 @@
-<!--
-<div>
-  <ul class="list-group">
-    <li class="list-group-item">{{myProfile.username}}</li>
-    <li class="list-group-item">{{myProfile.firstName}}</li>
-    <li class="list-group-item">{{myProfile.lastName}}</li>
-    <li class="list-group-item">{{myProfile.emailNotification}}</li>
-    <li class="list-group-item">{{myProfile.phoneNumber}}</li>
-    <li class="list-group-item">{{myProfile.bloodType}}</li>
-  </ul>
-</div>
--->
 <div class="container">
-  <div class="profile-block">
-    <div class="row">
-      <div class=" ">
-        <div class="user-image">
-          <img src="/assets/images/my-profile.png" alt="" title="">
-        </div>
-      </div>
+  <div class="profile-box">
+
+    <div class="profile-image">
+      <img src="/assets/images/my-profile.png" alt="" title="">
     </div>
 
-    <div class="row">
-      <div class="user-heading">
-        <h3>Prenom nom</h3>
-        <span class="help-block"> username </span>
-      </div>
+    <div class="profile-heading">
+      <h3>Prenom nom</h3>
+      <span class="help-block"> username </span>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="navigation">
+    <ul class="navigation">
 
-          <li class="active navigation-li">
-            <a data-toggle="tab" href="#information">
-              <span class="glyphicon glyphicon-user"></span>
-            </a>
-          </li>
+      <li class="active navigation-li">
+        <a data-toggle="tab" href="#information">
+          <span class="glyphicon glyphicon-user"></span>
+        </a>
+      </li>
 
-          <li class="navigation-li">
-            <a data-toggle="tab" href="#settings">
-              <span class="glyphicon glyphicon-cog"></span>
-            </a>
-          </li>
+      <li class="navigation-li">
+        <a data-toggle="tab" href="#settings">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </li>
 
-          <li class="navigation-li">
-            <a data-toggle="tab" href="#email">
-              <span class="glyphicon glyphicon-envelope"></span>
-            </a>
-          </li>
+      <li class="navigation-li">
+        <a data-toggle="tab" href="#email">
+          <span class="glyphicon glyphicon-envelope"></span>
+        </a>
+      </li>
 
-          <li class="navigation-li">
-            <a data-toggle="tab" href="#events">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </a>
-          </li>
+      <li class="navigation-li">
+        <a data-toggle="tab" href="#events">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </a>
+      </li>
 
-        </ul>
+    </ul>
+
+    <div class="tab-content">
+
+      <div id="information" class="tab-pane active">
+        <h4>Account Information</h4>
+
+        <table class="table table-user-information">
+          <tbody>
+          <tr>
+            <td class="information-key">Department:</td>
+            <td>Programming</td>
+          </tr>
+          <tr>
+            <td>Hire date:</td>
+            <td>06/23/2013</td>
+          </tr>
+          <tr>
+            <td>Date of Birth</td>
+            <td>01/24/1988</td>
+          </tr>
+
+          <tr>
+          <tr>
+            <td>Gender</td>
+            <td>Female</td>
+          </tr>
+          <tr>
+            <td>Home Address</td>
+            <td>Kathmandu,Nepal</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><a href="mailto:info@support.com">info@support.com</a></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="tab-content">
-
-          <div id="information" class="tab-pane active">
-            <h4>Account Information</h4>
-            <table class="table table-user-information">
-              <tbody>
-              <tr>
-                <td>Department:</td>
-                <td>Programming</td>
-              </tr>
-              <tr>
-                <td>Hire date:</td>
-                <td>06/23/2013</td>
-              </tr>
-              <tr>
-                <td>Date of Birth</td>
-                <td>01/24/1988</td>
-              </tr>
-
-              <tr>
-              <tr>
-                <td>Gender</td>
-                <td>Female</td>
-              </tr>
-              <tr>
-                <td>Home Address</td>
-                <td>Kathmandu,Nepal</td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td><a href="mailto:info@support.com">info@support.com</a></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div id="settings" class="tab-pane">
-            <h4>Settings</h4>
-          </div>
-
-          <div id="email" class="tab-pane">
-            <h4>Send Message</h4>
-          </div>
-
-          <div id="events" class="tab-pane">
-            <h4>Events</h4>
-          </div>
-
-        </div>
+      <div id="settings" class="tab-pane">
+        <h4>Settings</h4>
       </div>
+
+      <div id="email" class="tab-pane">
+        <h4>Send Message</h4>
+      </div>
+
+      <div id="events" class="tab-pane">
+        <h4>Events</h4>
+      </div>
+
     </div>
 
   </div>
