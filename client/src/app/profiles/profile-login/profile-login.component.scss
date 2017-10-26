@@ -1,165 +1,216 @@
 @import "../../../assets/scss/variables";
 
-.section-appointment {
-  position: relative;
-  overflow: hidden;
+/* Form Styles    */
+/*----------------*/
+.form-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-.appointment-form-wrapper {
+
+.form-wrapper {
+  background-color: $light;
+  border: 1px solid $tertiary;
+  border-radius: 20px;
+}
+
+.form-box {
   margin-top: 70px;
-  margin-bottom: 70px;
-  background: $secondary-dark;
-  padding: 0px 5px 28px;
 }
-.appointment-form-wrapper h3 {
-  font-size: 28px;
-  font-weight: 700;
-  color: $light;
+
+.form-top {
+  overflow: hidden;
+  padding: 0 25px 15px 25px;
   background: $primary;
-  padding: 30px;
-  letter-spacing: 0.03em;
-  margin: 0 -5px 50px;
-  text-transform: uppercase;
-  position: relative;
-}
-.appoinment-form {
-  padding: 0 12px;
-}
-.appoinment-form .form-control {
-  font-size: 16px;
-}
-.appoinment-form .form-group {
-  margin-bottom: 0;
-}
-.appoinment-form input[type=text],
-.appoinment-form input[type=email],
-.appoinment-form input[type=url],
-.appoinment-form input[type=password] {
-  border: 0px;
-  border: 1px solid $secondary-dark;
-  line-height: 42px;
-  height: 42px;
-  margin-bottom: 24px;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  -webkit-transition: 0.3s 0.2s ease-out;
-  -moz-transition: 0.3s 0.2s ease-out;
-  -o-transition: 0.3s 0.2s ease-out;
-  transition: 0.3s 0.2s ease-out;
-}
-.appoinment-form input[type=text]:focus,
-.appoinment-form input[type=email]:focus,
-.appoinment-form input[type=url]:focus,
-.appoinment-form input[type=password]:focus {
-  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid $secondary-dark;
-}
-.appoinment-form textarea {
-  border: 0px;
-  border: 1px solid $secondary-dark;
-  padding-left: 2px;
-  margin-bottom: 24px;
-  padding: 6px 12px;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  -webkit-transition: 0.3s 0.2s ease-out;
-  -moz-transition: 0.3s 0.2s ease-out;
-  -o-transition: 0.3s 0.2s ease-out;
-  transition: 0.3s 0.2s ease-out;
-}
-.appoinment-form textarea:focus {
-  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid $secondary-dark;
-}
-.appoinment-form .select-style {
-  position: relative;
-}
-.appoinment-form .select-style select.form-control {
-  border: 1px solid $secondary-dark;
-  -moz-appearance: none;
-  position: relative;
-  background-image: url("/assets/images/down_arrow.png");
-  background-position: 100% 4px;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  box-shadow: none;
-  color: $tertiary;
-  padding: 6px 12px;
-  height: 42px;
-  line-height: 42px;
-  margin-bottom: 24px;
-}
-.appoinment-form .select-style select.form-control:focus {
-  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  -webkit-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.2);
-  border: 1px solid $secondary-dark;
-  box-shadow: none;
-}
-.appoinment-form .btn-submit {
-  background: $primary;
-  border: 2px solid $primary;
   color: $light;
+  -moz-border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  text-align: left;
+}
+
+.form-top-left {
+  float: left;
+  width: 75%;
+  padding-top: 25px;
+}
+
+.form-top-left h1 {
+  font-size: 40px;
+  margin-top: 0;
+}
+
+.form-top-left p {
+  font-size: 20px;
+}
+
+.form-top-right {
+  float: left;
+  width: 25%;
+  padding-top: 5px;
+  font-size: 66px;
+  color: $light;
+  line-height: 100px;
+  text-align: right;
+}
+
+.form-bottom {
+  padding: 25px 25px 30px 25px;
+  -moz-border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  text-align: left;
+}
+
+.form-bottom form textarea {
+  height: 100px;
+}
+
+/* Social login  */
+/*--------------*/
+.social-login {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.social-login-buttons {
+  margin-top: 25px;
+}
+
+.btn-link-social {
   display: inline-block;
-  font-weight: 400;
-  padding: 5px 10px;
-  position: relative;
-  text-transform: uppercase;
-  transition: all 0.3s ease-out 0s;
+  height: 50px;
+  margin: 5px;
+  padding: 16px 20px 0 20px;
+  background: $primary;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 16px;
+  color: $light;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
 }
-.appoinment-form .btn-submit:hover {
-  background-color: $primary;
+
+.btn-link-social:hover, .btn-link-social:focus, .btn-link-social:active {
+  outline: 0;
+  opacity: 0.6;
+  color: $light;
+}
+
+.btn-link-social.btn-link-social-facebook {
+  background: #4862a3;
+}
+
+.btn-link-social.btn-link-social-twitter {
+  background: #55acee;
+}
+
+.btn-link-social.btn-link-social-google-plus {
+  background: #dd4b39;
+}
+
+.btn-link-social i {
+  padding-right: 5px;
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+/* Form Elements */
+/*----------------*/
+input,
+textarea {
+  height: 50px;
+  margin: 0;
+  padding: 0 20px;
+  vertical-align: middle;
+  background: $light;
+  border: 3px solid $secondary-dark;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 50px;
+  color: $dark;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+textarea {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 30px;
+}
+
+input:focus,
+textarea:focus {
+  outline: 0;
+  background: $light;
+  border: 3px solid $tertiary;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: $tertiary;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: $tertiary;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: $tertiary;
+}
+
+/* Form Buttons Styles */
+/*---------------------*/
+.btn-form {
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  padding: 0 20px;
+  vertical-align: middle;
+  background: $primary;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 50px;
+  color: $light;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  text-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -o-transition: all .3s;
+  -moz-transition: all .3s;
+  -webkit-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+.btn-form:hover, .btn-form:focus {
+  opacity: 0.6;
+  color: $light;
+}
+
+.btn-form:active {
+  opacity: 1;
+  background-color: $primary-dark;
 }
 
 
-.appoinment-form {
-  padding: 0 0px;
-}
 
-/* 14. RESPONSIVE STYLING */
-/***********************************************************************************************/
-/* All Mobile Sizes (devices and browser) */
-@media only screen and (max-width: 767px) {
-  .appoinment-form {
-    padding: 0 0px;
-  }
-}
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (min-width: 0px) and (max-width: 479px) {
-  .appoinment-form {
-    padding: 0 0px;
-  }
-}
 

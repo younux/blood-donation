@@ -1,144 +1,152 @@
-<section class="section-appointment">
-
-  <div class="container wow fadeInUp">
-
+<section class="form-section">
+  <div class="container">
     <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="form-wrapper">
+          <div class="form-box">
+            <ul class="form-progress-bar">
+              <li>1</li>
+              <li class="active">2</li>
+              <li>3</li>
+              <li>4</li>
+            </ul>
+            <div class="form-top">
+              <div class="form-top-left">
+                <h1>Register </h1>
+                <p> Please fill in the form to register :</p>
+              </div>
+              <div class="form-top-right">
+                <i class="fa fa-pencil"></i>
+              </div>
+            </div>
 
-      <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-
-        <div class="appointment-form-wrapper text-center clearfix">
-          <h3 class="join-heading"> Register </h3>
-
-          <form class="appoinment-form" type="submit" name="registerForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-
-            <div class="row">
-
-              <div class="col-md-6">
-                <h3 class="text-center"> Infos 1 </h3>
+            <div class="form-bottom">
+              <form type="submit" name="registerForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
                 <div class="form-group">
-                  <label> Username </label>
-                  <input type="text" class="form-control" name="username" formControlName="username"/>
+                  <label class="sr-only" for="username"> Username </label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username..."
+                         formControlName="username"/>
                   <app-field-error-display [myControl]="myForm.controls['username']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Email</label>
-                  <input type="email" class="form-control" name="email" formControlName="email"/>
+                  <label class="sr-only" for="email"> Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email..."
+                         formControlName="email"/>
                   <app-field-error-display [myControl]="myForm.controls['email']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Password </label>
-                  <input type="password" class="form-control" name="password" formControlName="password"/>
+                  <label class="sr-only" for="password"> Password </label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password..."
+                         formControlName="password"/>
                   <app-field-error-display [myControl]="myForm.controls['password']"></app-field-error-display>
                 </div>
-              </div>
-
-              <div class="col-md-6">
-                <h3 class="text-center"> Infos 2 </h3>
 
                 <div class="form-group">
-                  <label> First Name </label>
-                  <input type="text" class="form-control" name="firstName" formControlName="firstName"/>
+                  <label class="sr-only" for="firstName"> First Name </label>
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name..."
+                         formControlName="firstName"/>
                   <app-field-error-display [myControl]="myForm.controls['firstName']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Last Name </label>
-                  <input type="text" class="form-control" name="lastName" formControlName="lastName"/>
+                  <label class="sr-only" for="lastName"> Last Name </label>
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name..."
+                         formControlName="lastName"/>
                   <app-field-error-display [myControl]="myForm.controls['lastName']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Phone Number</label>
-                  <input type="tel" class="form-control" name="phoneNumber" formControlName="phoneNumber"/>
+                  <label class="sr-only" for="phoneNumber"> Phone Number</label>
+                  <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
+                         placeholder="Phone number..." formControlName="phoneNumber"/>
                   <app-field-error-display [myControl]="myForm.controls['phoneNumber']"></app-field-error-display>
                 </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <h3 class="text-center"> Infos 3 </h3>
 
                 <div class="form-group">
-                  <label> Birth Date </label>
-                  <input type="date" class="form-control" name="birthDate" formControlName="birthDate"/>
+                  <label class="sr-only" for="birthDate"> Birth Date </label>
+                  <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date"
+                         formControlName="birthDate"/>
                   <app-field-error-display [myControl]="myForm.controls['birthDate']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Blood Type </label>
-                  <input type="text" class="form-control" name="bloodType" formControlName="bloodType"/>
+                  <label class="sr-only" for="bloodType"> Blood Type </label>
+                  <input type="text" class="form-control" id="bloodType" name="bloodType" placeholder="Blood Type"
+                         formControlName="bloodType"/>
                   <app-field-error-display [myControl]="myForm.controls['bloodType']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Email Notification </label>
-                  <input type="checkbox" class="form-control" name="emailNotification" formControlName="emailNotification"/>
+                  <label class="sr-only" for="emailNotification"> Email Notification </label>
+                  <input type="checkbox" class="form-control" id="emailNotification" name="emailNotification"
+                         formControlName="emailNotification"/>
                   <app-field-error-display [myControl]="myForm.controls['emailNotification']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> SMS Notification </label>
-                  <input type="checkbox" class="form-control" name="smsNotification" formControlName="smsNotification"/>
+                  <label class="sr-only" for="smsNotification"> SMS Notification </label>
+                  <input type="checkbox" class="form-control" id="smsNotification" name="smsNotification"
+                         formControlName="smsNotification"/>
                   <app-field-error-display [myControl]="myForm.controls['smsNotification']"></app-field-error-display>
                 </div>
 
-              </div>
-
-              <div class="col-md-6" formGroupName="address">
-                <h3 class="text-center"> Infos 4 </h3>
-
                 <div class="form-group">
-                  <label> Street </label>
-                  <input type="text" class="form-control" name="street" formControlName="street"/>
+                  <label class="sr-only" for="street"> Street </label>
+                  <input type="text" class="form-control" id="street" name="street" placeholder="Street..."
+                         formControlName="street"/>
                   <app-field-error-display
                     [myControl]="myForm.controls['address'].controls['street']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> City </label>
-                  <input type="text" class="form-control" name="city" formControlName="city"/>
+                  <label class="sr-only" for="city"> City </label>
+                  <input type="text" class="form-control" id="city" name="city" placeholder="City..."
+                         formControlName="city"/>
                   <app-field-error-display
                     [myControl]="myForm.controls['address'].controls['city']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Country </label>
-
-                  <input type="text" class="form-control" name="country" formControlName="country" [appTypeahead]="countries" />
+                  <label class="sr-only" for="country"> Country </label>
+                  <input type="text" class="form-control" id="country" name="country" placeholder="Country..."
+                         formControlName="country" [appTypeahead]="countries"/>
                   <app-field-error-display
                     [myControl]="myForm.controls['address'].controls['country']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label> Zip Code </label>
-                  <input type="text" class="form-control" name="zipCode" formControlName="zipCode"/>
+                  <label class="sr-only" for="zipCode"> Zip Code </label>
+                  <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
+                         formControlName="zipCode"/>
                   <app-field-error-display
                     [myControl]="myForm.controls['address'].controls['zipCode']"></app-field-error-display>
                 </div>
-              </div>
+
+
+                <div class="form-group">
+                  <button type="submit" class="btn-form">Register</button>
+                </div>
+
+                <div class="form-group">
+                  <a [routerLink]="['../login']">
+                    <button class="btn-form">
+                      Login
+                    </button>
+                  </a>
+                </div>
+
+              </form>
 
             </div>
 
-              
-            <div class="form-group text-center">
-              <button type="submit" class="btn-submit">Register</button>
-              <a [routerLink]="['../login']" class="btn btn-link">Login</a>
-            </div>
-                    
-          </form>
-
-        </div> <!-- end .appointment-form-wrapper  -->
-
-      </div> <!--  end .col-lg-6 -->
-
-    </div> <!--  end .row  -->
-
-  </div> <!--  end .container -->
-
-</section>  <!--  end .appointment-section  -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
