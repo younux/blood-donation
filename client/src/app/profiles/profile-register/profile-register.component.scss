@@ -14,7 +14,7 @@
 }
 
 .form-box {
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
 .form-top {
@@ -162,42 +162,53 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 
 /* Form progress bar CSS */
 
-li {
+
+
+.form-progress-bar ul {
+  opacity: 0.99;
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.form-progress-bar ul li {
   width: 70px;
   height: 70px;
   text-align: center;
   line-height: 70px;
   border-radius: 35px;
-  background: $primary;
+  color: $dark;
+  background: $secondary-dark;
+  border: 1px solid $tertiary;
   margin: 0 35px;
   display: inline-block;
-  color: $light;
   position: relative;
 }
 
-li::before{
+.form-progress-bar ul li::before{
   content: '';
   position: absolute;
   top: 30px;
   height: 10px;
   left: -105px;
   width: 140px;
-  background: $primary;
+  background: $tertiary;
   z-index: -1;
 }
 
-.form-progress-bar  li:first-child::before {
+.form-progress-bar ul li:first-child::before {
   display: none;
 }
 
-.form-progress-bar li.active {
-  background: $dark;
+.form-progress-bar ul li.active {
+  color: $light;
+  background: $tertiary-dark;
 }
 
 .form-progress-bar .active ~ li {
-  background: $tertiary;
+  background: $light;
 }
 
 .form-progress-bar .active ~ li::before {
-  background:green;
+  background:$secondary-dark;
 }

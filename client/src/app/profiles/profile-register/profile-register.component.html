@@ -2,14 +2,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+
+
         <div class="form-wrapper">
           <div class="form-box">
-            <ul class="form-progress-bar">
-              <li>1</li>
-              <li class="active">2</li>
-              <li>3</li>
-              <li>4</li>
-            </ul>
+
+            <div class="form-progress-bar">
+              <ul>
+                <li>1</li>
+                <li class="active">2</li>
+                <li>3</li>
+                <li>4</li>
+              </ul>
+            </div>
+
             <div class="form-top">
               <div class="form-top-left">
                 <h1>Register </h1>
@@ -21,84 +27,103 @@
             </div>
 
             <div class="form-bottom">
-              <form type="submit" name="registerForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+              <form type="submit" name="registerForm1" [formGroup]="myForm1" (ngSubmit)="onSubmitForm1(myForm1)">
 
                 <div class="form-group">
                   <label class="sr-only" for="username"> Username </label>
                   <input type="text" class="form-control" id="username" name="username" placeholder="Username..."
                          formControlName="username"/>
-                  <app-field-error-display [myControl]="myForm.controls['username']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm1.controls['username']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="email"> Email</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="Email..."
                          formControlName="email"/>
-                  <app-field-error-display [myControl]="myForm.controls['email']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm1.controls['email']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="password"> Password </label>
                   <input type="password" class="form-control" id="password" name="password" placeholder="Password..."
                          formControlName="password"/>
-                  <app-field-error-display [myControl]="myForm.controls['password']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm1.controls['password']"></app-field-error-display>
                 </div>
+
+
+                <div class="form-group">
+                  <button type="submit" class="btn-form"> Suivant </button>
+                </div>
+
+                <div class="form-group">
+                  <a [routerLink]="['../login']">
+                    <button class="btn-form">
+                      Login
+                    </button>
+                  </a>
+                </div>
+
+              </form>
+
+            </div>
+
+            <div class="form-bottom">
+              <form type="submit" name="registerForm2" [formGroup]="myForm2" (ngSubmit)="onSubmitForm2(myForm2)">
 
                 <div class="form-group">
                   <label class="sr-only" for="firstName"> First Name </label>
                   <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name..."
                          formControlName="firstName"/>
-                  <app-field-error-display [myControl]="myForm.controls['firstName']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm2.controls['firstName']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="lastName"> Last Name </label>
                   <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name..."
                          formControlName="lastName"/>
-                  <app-field-error-display [myControl]="myForm.controls['lastName']"></app-field-error-display>
-                </div>
-
-                <div class="form-group">
-                  <label class="sr-only" for="phoneNumber"> Phone Number</label>
-                  <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
-                         placeholder="Phone number..." formControlName="phoneNumber"/>
-                  <app-field-error-display [myControl]="myForm.controls['phoneNumber']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm2.controls['lastName']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="birthDate"> Birth Date </label>
                   <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date"
                          formControlName="birthDate"/>
-                  <app-field-error-display [myControl]="myForm.controls['birthDate']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm2.controls['birthDate']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="bloodType"> Blood Type </label>
-                  <input type="text" class="form-control" id="bloodType" name="bloodType" placeholder="Blood Type"
-                         formControlName="bloodType"/>
-                  <app-field-error-display [myControl]="myForm.controls['bloodType']"></app-field-error-display>
+                  <label class="sr-only" for="phoneNumber"> Phone Number</label>
+                  <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
+                         placeholder="Phone number..." formControlName="phoneNumber"/>
+                  <app-field-error-display [myControl]="myForm2.controls['phoneNumber']"></app-field-error-display>
+                </div>
+
+
+                <div class="form-group">
+                  <button type="submit" class="btn-form">Suivant</button>
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="emailNotification"> Email Notification </label>
-                  <input type="checkbox" class="form-control" id="emailNotification" name="emailNotification"
-                         formControlName="emailNotification"/>
-                  <app-field-error-display [myControl]="myForm.controls['emailNotification']"></app-field-error-display>
+                  <a>
+                    <button class="btn-form">
+                      Précédent
+                    </button>
+                  </a>
                 </div>
 
-                <div class="form-group">
-                  <label class="sr-only" for="smsNotification"> SMS Notification </label>
-                  <input type="checkbox" class="form-control" id="smsNotification" name="smsNotification"
-                         formControlName="smsNotification"/>
-                  <app-field-error-display [myControl]="myForm.controls['smsNotification']"></app-field-error-display>
-                </div>
+              </form>
+
+            </div>
+
+            <div class="form-bottom">
+              <form type="submit" name="registerForm3" [formGroup]="myForm3" (ngSubmit)="onSubmitForm3(myForm3)">
 
                 <div class="form-group">
                   <label class="sr-only" for="street"> Street </label>
                   <input type="text" class="form-control" id="street" name="street" placeholder="Street..."
                          formControlName="street"/>
                   <app-field-error-display
-                    [myControl]="myForm.controls['address'].controls['street']"></app-field-error-display>
+                    [myControl]="myForm3.controls['address'].controls['street']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
@@ -106,15 +131,15 @@
                   <input type="text" class="form-control" id="city" name="city" placeholder="City..."
                          formControlName="city"/>
                   <app-field-error-display
-                    [myControl]="myForm.controls['address'].controls['city']"></app-field-error-display>
+                    [myControl]="myForm3.controls['address'].controls['city']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="country"> Country </label>
                   <input type="text" class="form-control" id="country" name="country" placeholder="Country..."
-                         formControlName="country" [appTypeahead]="countries"/>
+                         formControlName="country"/>
                   <app-field-error-display
-                    [myControl]="myForm.controls['address'].controls['country']"></app-field-error-display>
+                    [myControl]="myForm3.controls['address'].controls['country']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
@@ -122,18 +147,58 @@
                   <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
                          formControlName="zipCode"/>
                   <app-field-error-display
-                    [myControl]="myForm.controls['address'].controls['zipCode']"></app-field-error-display>
+                    [myControl]="myForm3.controls['address'].controls['zipCode']"></app-field-error-display>
                 </div>
 
+
+                <div class="form-group">
+                  <button type="submit" class="btn-form">Suivant</button>
+                </div>
+
+                <div class="form-group">
+                  <a>
+                    <button class="btn-form">
+                      Précédent
+                    </button>
+                  </a>
+                </div>
+
+              </form>
+
+            </div>
+
+            <div class="form-bottom">
+              <form type="submit" name="registerForm4" [formGroup]="myForm4" (ngSubmit)="onSubmitForm4(myForm4)">
+
+                <div class="form-group">
+                  <label class="sr-only" for="bloodType"> Blood Type </label>
+                  <input type="text" class="form-control" id="bloodType" name="bloodType" placeholder="Blood Type"
+                         formControlName="bloodType"/>
+                  <app-field-error-display [myControl]="myForm4.controls['bloodType']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="emailNotification"> Email Notification </label>
+                  <input type="checkbox" class="form-control" id="emailNotification" name="emailNotification"
+                         formControlName="emailNotification"/>
+                  <app-field-error-display [myControl]="myForm4.controls['emailNotification']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="smsNotification"> SMS Notification </label>
+                  <input type="checkbox" class="form-control" id="smsNotification" name="smsNotification"
+                         formControlName="smsNotification"/>
+                  <app-field-error-display [myControl]="myForm4.controls['smsNotification']"></app-field-error-display>
+                </div>
 
                 <div class="form-group">
                   <button type="submit" class="btn-form">Register</button>
                 </div>
 
                 <div class="form-group">
-                  <a [routerLink]="['../login']">
+                  <a>
                     <button class="btn-form">
-                      Login
+                      Précédent
                     </button>
                   </a>
                 </div>

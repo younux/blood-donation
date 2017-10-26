@@ -29,11 +29,11 @@
           </li>
 
           <li>
-            <a [routerLink]="['/']" title="About Us">About Us</a>
+            <a   title="About Us">About Us</a>
           </li>
 
           <li>
-            <a [routerLink]="['/']">Contact</a>
+            <a  >Contact</a>
           </li>
         </ul>
 
@@ -43,7 +43,7 @@
 
         <ul class="nav navbar-nav" >
           <li *ngIf="!isAuthenticated" class="drop">
-            <a [routerLink]="['/']">
+            <a  >
               <i class="fa fa-user fa-2x" aria-hidden="true"></i>
               My Profile
             </a>
@@ -63,7 +63,7 @@
           </li>
 
           <li *ngIf="isAuthenticated" class="drop">
-            <a [routerLink]="['/']">
+            <a  >
               <i class="fa fa-user fa-2x" aria-hidden="true"></i>
               {{myPofile.username}}
             </a>
