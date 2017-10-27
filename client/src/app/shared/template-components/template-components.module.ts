@@ -8,11 +8,8 @@ import { CallToAction3Component } from './call-to-action-3/call-to-action-3.comp
 import { ProcessLayoutComponent } from './process-layout/process-layout.component';
 import { CounterBlockComponent } from './counter-block/counter-block.component';
 import { TestimonyLayoutComponent } from './testimony-layout/testimony-layout.component';
-import { TeamMemberComponent } from './team-member/team-member.component';
-import { SectionHeadingComponent } from './section-heading/section-heading.component';
 import { SponsorBoxComponent } from './sponsor-box/sponsor-box.component';
 import { BannerComponent } from './banner/banner.component';
-import { PageHeaderComponent } from './page-header/page-header.component';
 import { EventBoxComponent } from './event-box/event-box.component';
 import { FaqComponent } from './faq/faq.component';
 import { Section404Component } from './section-404/section-404.component';
@@ -27,6 +24,9 @@ import { TeamSectionComponent } from './team-section/team-section.component';
 import { EventSingleComponent } from './event-single/event-single.component';
 import { GallerySectionComponent } from './gallery-section/gallery-section.component';
 import { ProcessSectionComponent } from './process-section/process-section.component';
+import { SectionHeadingComponent} from "./section-heading/section-heading.component";
+import { PageHeaderComponent} from "./page-header/page-header.component";
+import { TeamMemberComponent} from "./team-member/team-member.component";
 
 @NgModule({
   imports: [
@@ -40,11 +40,8 @@ import { ProcessSectionComponent } from './process-section/process-section.compo
     ProcessLayoutComponent,
     CounterBlockComponent,
     TestimonyLayoutComponent,
-    TeamMemberComponent,
-    SectionHeadingComponent,
     SponsorBoxComponent,
     BannerComponent,
-    PageHeaderComponent,
     EventBoxComponent,
     FaqComponent,
     Section404Component,
@@ -58,7 +55,11 @@ import { ProcessSectionComponent } from './process-section/process-section.compo
     TeamSectionComponent,
     EventSingleComponent,
     GallerySectionComponent,
-    ProcessSectionComponent],
+    ProcessSectionComponent,
+    SectionHeadingComponent,
+    PageHeaderComponent,
+    TeamMemberComponent,
+    ],
   entryComponents: [],
   exports: [
     CallToAction1Component,
@@ -67,11 +68,8 @@ import { ProcessSectionComponent } from './process-section/process-section.compo
     ProcessLayoutComponent,
     CounterBlockComponent,
     TestimonyLayoutComponent,
-    TeamMemberComponent,
-    SectionHeadingComponent,
     SponsorBoxComponent,
     BannerComponent,
-    PageHeaderComponent,
     EventBoxComponent,
     FaqComponent,
     Section404Component,
@@ -85,7 +83,11 @@ import { ProcessSectionComponent } from './process-section/process-section.compo
     TeamSectionComponent,
     EventSingleComponent,
     GallerySectionComponent,
-    ProcessSectionComponent],
+    ProcessSectionComponent,
+    SectionHeadingComponent,
+    PageHeaderComponent,
+    TeamMemberComponent,
+    ],
 
 })
 export class TemplateComponentsModule { }

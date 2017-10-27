@@ -1,0 +1,100 @@
+@import "../../assets/scss/variables";
+
+.section-content-block {
+  padding: 100px 0 100px 0;
+  background: $light;
+}
+.section-faq {
+  position: relative;
+  overflow: hidden;
+}
+.section-faq .panel {
+  box-shadow: none;
+}
+.section-faq .panel-default {
+  border: 1px solid $secondary-dark;
+  padding: 10px 15px;
+  background: $secondary;
+  border-radius: 0;
+  margin-top: 30px;
+}
+.section-faq .faq-box .panel-heading {
+  background: none;
+  border: 0 none;
+  display: block;
+  padding: 0;
+}
+.section-faq .faq-box .panel-title {
+  color: $tertiary-dark;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+.section-faq .faq-box .panel-title > a {
+  display: block;
+}
+.section-faq .faq-box .panel-title > a:hover,
+.section-faq .faq-box .panel-title > a:focus {
+  outline: none;
+  color: $tertiary-dark;
+}
+.section-faq .faq-box .panel-body {
+  padding-left: 0px;
+}
+.section-faq .faq-box .panel-heading [data-toggle="collapse"]:after {
+  font-family: 'FontAwesome';
+  content: "";
+  float: left;
+  color: $tertiary-dark;
+  font-size: 18px;
+  margin-right: 10px;
+}
+.section-faq .faq-box .panel-heading [data-toggle="collapse"].collapsed:after {
+  color: $tertiary-dark;
+  content: "";
+}
+.accordion .panel {
+  margin-bottom: 3px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+.accordion .panel .panel-title a {
+  display: block;
+}
+
+/* 14. RESPONSIVE STYLING */
+/***********************************************************************************************/
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+
+}
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 991px) {
+
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .section-content-block {
+    padding: 60px 0;
+  }
+  .section-faq .faq-box .panel-heading [data-toggle="collapse"]::after {
+    display: none;
+  }
+  .section-faq .faq-box .panel-body {
+    padding-left: 0;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .section-content-block {
+    padding: 32px 0;
+  }
+  .section-faq .faq-box .panel-heading [data-toggle="collapse"]::after {
+    display: none;
+  }
+  .section-faq .faq-box .panel-body {
+    padding-left: 0;
+  }
+}

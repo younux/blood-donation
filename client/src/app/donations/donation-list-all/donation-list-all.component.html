@@ -1,7 +1,11 @@
-<div *ngIf="donationsList"  class="donation">
-  <app-donation-list [donations]="donationsList"
-                     [showUpdateButton]="false"
-                     [showDetailButton]="false"
-                     (onDonationSelected)="onDonationSelected($event)">
-  </app-donation-list>
-</div>
+<app-page-header content="Toutes les demandes"></app-page-header>
+<section>
+  <div *ngIf="donationsList"  class="donation">
+    <app-donation-list [donations]="donationsList"
+                       [showUpdateButton]="false"
+                       [showDetailButton]="false"
+                       (onDonationSelected)="onDonationSelected($event)">
+    </app-donation-list>
+  </div>
+</section>
+

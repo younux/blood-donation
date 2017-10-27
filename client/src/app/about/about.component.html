@@ -1,3 +1,57 @@
-<p>
-  about works!
-</p>
+<app-page-header [content]="pageHeaderContent"></app-page-header>
+
+<section class="section-content-block">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12" >
+        <app-section-heading [title]="headingTitle" [content]="headingContent" ></app-section-heading>
+      </div>
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-lg-4 col-md-offset-0 col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+        <app-team-member [fullName]="memberName1"
+                         [role]="memberRole1"
+                         [imgSrc]="memberImg1"
+                         [facebook]="memberFacebook1"
+                         [twitter]="memberTwitter1"
+                         [googlePlus]="memberGooglePlus1"
+                         [linkedin]="memberLinkedin1">
+
+        </app-team-member>
+      </div> <!--  end .col-md-4 col-sm-12  -->
+
+      <div class="col-lg-4 col-md-offset-0 col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+        <app-team-member [fullName]="memberName2"
+                         [role]="memberRole2"
+                         [imgSrc]="memberImg2"
+                         [facebook]="memberFacebook2"
+                         [twitter]="memberTwitter2"
+                         [googlePlus]="memberGooglePlus2"
+                         [linkedin]="memberLinkedin2">
+
+        </app-team-member>
+      </div> <!--  end .col-md-4 col-sm-12  -->
+
+      <div class="col-lg-4 col-md-offset-0 col-md-4 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+        <app-team-member [fullName]="memberName3"
+                         [role]="memberRole3"
+                         [imgSrc]="memberImg3"
+                         [facebook]="memberFacebook3"
+                         [twitter]="memberTwitter3"
+                         [googlePlus]="memberGooglePlus3"
+                         [linkedin]="memberLinkedin3">
+
+        </app-team-member>
+      </div> <!--  end .col-md-4 col-sm-12  -->
+
+    </div> <!-- end .row  -->
+
+
+
+  </div>
+
+</section>

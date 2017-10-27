@@ -9,6 +9,9 @@ import { AlertDisplayComponent } from './alert-display/alert-display.component';
 import { LoaderComponent } from './loader/loader.component';
 import { TypeaheadContainerComponent } from './typeahead-container/typeahead-container.component';
 import { TypeaheadDirective } from './typeahead-container/typeahead.directive';
+import { PageHeaderComponent } from './page-header/page-header.component';
+import { TeamMemberComponent } from './team-member/team-member.component';
+import { SectionHeadingComponent } from './section-heading/section-heading.component';
 
 
 
@@ -23,15 +26,19 @@ import { TypeaheadDirective } from './typeahead-container/typeahead.directive';
                   AlertDisplayComponent,
                   LoaderComponent,
                   TypeaheadContainerComponent,
-                  TypeaheadDirective],
+                  TypeaheadDirective,
+                  PageHeaderComponent,
+                  TeamMemberComponent,
+                  SectionHeadingComponent],
   entryComponents: [TypeaheadContainerComponent],
   exports: [FieldErrorDisplayComponent,
             AlertDisplayComponent,
             LoaderComponent,
             TypeaheadContainerComponent,
             TypeaheadDirective,
-            ],
-
+            PageHeaderComponent,
+            TeamMemberComponent,
+            SectionHeadingComponent],
 
 })
 export class ComponentsModule { }

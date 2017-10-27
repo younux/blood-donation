@@ -7,7 +7,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  pageHeaderContent = "About us";
+
+  headingTitle = "Notre équipe";
+  headingContent = "Notre est composée d'ingénieurs talentueux";
+
+  memberName1 = "YOUNES BENHOUMICH";
+  memberRole1 = "Co-Founder";
+  memberImg1 = "/assets/images/team_9.jpg";
+  memberFacebook1 ="aaaa";
+  memberTwitter1 ="aaaa";
+  memberGooglePlus1 ="aaa";
+  memberLinkedin1 ="aa";
+
+  memberName2 = "YOUNES BENHOUMICH";
+  memberRole2 = "Co-Founder";
+  memberImg2 = "/assets/images/team_9.jpg";
+  memberFacebook2 ="aaaa";
+  memberTwitter2 ="aaaaa";
+  memberGooglePlus2 ="aaaaa";
+  memberLinkedin2 ="aaaa";
+
+  memberName3 = "YOUNES BENHOUMICH";
+  memberRole3 = "Co-Founder";
+  memberImg3 = "/assets/images/team_9.jpg";
+  memberFacebook3 ="aaaa";
+  memberTwitter3 ="aaaa";
+  memberGooglePlus3 ="aaa";
+  memberLinkedin3 ="aaa";
+
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

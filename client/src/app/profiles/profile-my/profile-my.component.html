@@ -1,192 +1,196 @@
-<div class="container">
-  <div class="profile-box">
+<app-page-header content="Mon Profil"></app-page-header>
 
-    <div class="profile-image">
-      <img src="/assets/images/my-profile.png" alt="" title="">
-    </div>
+<section>
+  <div class="container">
+    <div class="profile-box">
 
-    <div class="profile-heading">
-      <h2> {{myProfile.firstName}} {{myProfile.lastName}}</h2>
-      <h3> {{myProfile.username}} </h3>
-    </div>
+      <div class="profile-image">
+        <img src="/assets/images/my-profile.png" alt="" title="">
+      </div>
 
-    <ul class="navigation">
+      <div class="profile-heading">
+        <h2> {{myProfile.firstName}} {{myProfile.lastName}}</h2>
+        <h3> {{myProfile.username}} </h3>
+      </div>
 
-      <li class="active navigation-li">
-        <a data-toggle="tab" href="#information">
-          <i class="fa fa-address-card" aria-hidden="true"></i>
-        </a>
-      </li>
+      <ul class="navigation">
 
-      <li class="navigation-li">
-        <a data-toggle="tab" href="#address">
-          <i class="fa fa-home" aria-hidden="true"></i>
-        </a>
-      </li>
+        <li class="active navigation-li">
+          <a data-toggle="tab" href="#information">
+            <i class="fa fa-address-card" aria-hidden="true"></i>
+          </a>
+        </li>
 
-      <li class="navigation-li">
-        <a data-toggle="tab" href="#blood">
-          <i class="fa fa-tint" aria-hidden="true"></i>
-        </a>
-      </li>
+        <li class="navigation-li">
+          <a data-toggle="tab" href="#address">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </a>
+        </li>
 
-      <li class="navigation-li">
-        <a data-toggle="tab" href="#settings">
-          <i class="fa fa-cog" aria-hidden="true"></i>
-        </a>
-      </li>
+        <li class="navigation-li">
+          <a data-toggle="tab" href="#blood">
+            <i class="fa fa-tint" aria-hidden="true"></i>
+          </a>
+        </li>
 
-    </ul>
+        <li class="navigation-li">
+          <a data-toggle="tab" href="#settings">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </a>
+        </li>
 
-    <div class="tab-content">
+      </ul>
 
-      <div id="information" class="tab-pane active">
-        <h3> Informations personnelles </h3>
-        <div class="row">
-          <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-            <div class="row information-item">
+      <div class="tab-content">
+
+        <div id="information" class="tab-pane active">
+          <h3> Informations personnelles </h3>
+          <div class="row">
+            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+              <div class="row information-item">
                 <div class="col-xs-6">
                   <h4 > Prénom </h4>
                 </div>
                 <div class="col-xs-6">
                   <h4 > {{myProfile.firstName}} </h4>
                 </div>
+              </div>
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 > Nom </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.lastName}} </h4>
+                </div>
+              </div>
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 > Nom d'utilisateur </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.username}} </h4>
+                </div>
+              </div>
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 > Date de naissance </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.birthDate | date:'medium'}} </h4>
+                </div>
+              </div>
             </div>
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 > Nom </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.lastName}} </h4>
-              </div>
-            </div>
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 > Nom d'utilisateur </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.username}} </h4>
-              </div>
-            </div>
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 > Date de naissance </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.birthDate | date:'medium'}} </h4>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 > Numéro de téléphone </h4>
+            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 > Numéro de téléphone </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.phoneNumber}} </h4>
+                </div>
               </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.phoneNumber}} </h4>
-              </div>
-            </div>
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 > Email </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.email}} </h4>
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 > Email </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.email}} </h4>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div id="address" class="tab-pane">
-        <h3> Adresse </h3>
-        <div class="row">
-          <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 >  Rue </h4>
+        <div id="address" class="tab-pane">
+          <h3> Adresse </h3>
+          <div class="row">
+            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 >  Rue </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.address.street}} </h4>
+                </div>
               </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.address.street}} </h4>
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 >  Ville </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.address.city}} </h4>
+                </div>
               </div>
             </div>
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 >  Ville </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.address.city}} </h4>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 >  Code Postale </h4>
+            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 >  Code Postale </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.address.zipCode}} </h4>
+                </div>
               </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.address.zipCode}} </h4>
-              </div>
-            </div>
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 >  Pays </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.address.country}} </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="blood" class="tab-pane">
-        <h3> Type de sang </h3>
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 >  Groupe sanguin </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.bloodType}} </h4>
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 >  Pays </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.address.country}} </h4>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div id="settings" class="tab-pane">
-        <h3> Reglages </h3>
-        <div class="row">
-          <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 > Notification par email </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.emailNotification}} </h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
-            <div class="row information-item">
-              <div class="col-xs-6">
-                <h4 > Notification par SMS </h4>
-              </div>
-              <div class="col-xs-6">
-                <h4 > {{myProfile.smsNotification}} </h4>
+        <div id="blood" class="tab-pane">
+          <h3> Type de sang </h3>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 >  Groupe sanguin </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.bloodType}} </h4>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div id="settings" class="tab-pane">
+          <h3> Reglages </h3>
+          <div class="row">
+            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 > Notification par email </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.emailNotification}} </h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
+              <div class="row information-item">
+                <div class="col-xs-6">
+                  <h4 > Notification par SMS </h4>
+                </div>
+                <div class="col-xs-6">
+                  <h4 > {{myProfile.smsNotification}} </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
-
   </div>
-</div>
+</section>
 

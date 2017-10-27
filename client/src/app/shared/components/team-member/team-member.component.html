@@ -1,0 +1,24 @@
+<div class="team-layout-1">
+    <figure class="team-member">
+      <a>
+        <img [src]="imgSrc"/>
+      </a>
+    </figure> <!-- end. team-member  -->
+
+    <article class="team-info">
+      <h3>{{fullName}}</h3>
+      <h4>{{role}}</h4>
+    </article>
+
+    <div class="team-content">
+
+      <div class="team-social-share text-center clearfix">
+        <a *ngIf="facebook" [href]="facebook" class="fa fa-facebook rectangle"   title="Facebook"></a>
+        <a *ngIf="twitter" [href]="twitter" class="fa fa-twitter rectangle"   title="Twitter"></a>
+        <a *ngIf="googlePlus" [href]="googlePlus" class="fa fa-google-plus rectangle"   title="Google Plus"></a>
+        <a *ngIf="linkedin" [href]="linkedin" class="fa fa-linkedin rectangle"   title="Linkedin"></a>
+      </div> <!-- end .author-social-box  -->
+
+    </div>
+</div> <!--  end team-layout-1 -->
+

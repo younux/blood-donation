@@ -30,6 +30,7 @@ import { myHttpServiceFactory} from './shared/services/my-http.service';
 import { appRoutes } from './app.routes';
 import {LocalStorageService} from './shared/services/local-storage.service';
 import {AuthenticationStatusEmitterService} from './shared/services/authentication-status-emitter.service';
+import { FaqComponent } from './faq/faq.component';
 
 
 
@@ -39,6 +40,7 @@ import {AuthenticationStatusEmitterService} from './shared/services/authenticati
     FooterComponent,
     AboutComponent,
     ContactComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,
