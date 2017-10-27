@@ -13,6 +13,8 @@ import { HeaderModule} from './header/header.module';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 import { apiInjectables } from './shared/injectables/api.injectable';
@@ -35,6 +37,8 @@ import {AuthenticationStatusEmitterService} from './shared/services/authenticati
   declarations: [
     AppComponent,
     FooterComponent,
+    AboutComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

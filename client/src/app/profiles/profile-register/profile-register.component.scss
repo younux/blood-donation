@@ -163,7 +163,6 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 /* Form progress bar CSS */
 
 
-
 .form-progress-bar ul {
   opacity: 0.99;
   text-align: center;
@@ -176,6 +175,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   height: 70px;
   text-align: center;
   line-height: 70px;
+  font-size: 40px;
   border-radius: 35px;
   color: $dark;
   background: $secondary-dark;

@@ -16,8 +16,7 @@ export class ProfileRegisterComponent implements OnInit {
   myForm2: FormGroup;
   myForm3: FormGroup;
   myForm4: FormGroup;
-
-  isFormSubmitAttempt: boolean;
+  activeStep: number = 1;
   returnUrl: string;
 
   constructor(private fb: FormBuilder,
@@ -27,7 +26,6 @@ export class ProfileRegisterComponent implements OnInit {
               private router: Router) {
 
     this.createForms();
-    this.isFormSubmitAttempt = false;
 
   }
 
@@ -45,6 +43,7 @@ export class ProfileRegisterComponent implements OnInit {
         password: [null, Validators.required],
       }
     );
+
     this.myForm2 = this.fb.group({
         firstName: [ null, Validators.required],
         lastName: [ null, Validators.required],
@@ -53,13 +52,15 @@ export class ProfileRegisterComponent implements OnInit {
           CustomValidators.phoneNumber]],
       }
     );
+
     this.myForm3 = this.fb.group({
-        street: [ null, Validators.required],
-        city: [ null, Validators.required],
-        country: [ null, Validators.required],
-        zipCode: [ null, [Validators.required, CustomValidators.zipCode]],
-      }
-    );
+      address: this.fb.group({
+          street: [ null, Validators.required],
+          city: [ null, Validators.required],
+          country: [ null, Validators.required],
+          zipCode: [ null, [Validators.required, CustomValidators.zipCode]],
+      }),
+    });
     this.myForm4 = this.fb.group({
         bloodType: [ null, Validators.required],
         emailNotification: [ null, Validators.required],
@@ -68,25 +69,37 @@ export class ProfileRegisterComponent implements OnInit {
     );
   }
 
-  onSubmitForm1(passedForm: FormGroup){
-
+  nextStep($event){
+    if(this.activeStep < 4){
+      this.activeStep = this.activeStep + 1;
+    }
   }
 
-  onSubmitForm2(passedForm: FormGroup){
-
+  previousStep($event){
+    if(this.activeStep > 1){
+      this.activeStep = this.activeStep -1;
+    }
   }
 
-  onSubmitForm3(passedForm: FormGroup){
-
-  }
-
-  onSubmitForm4(passedForm: FormGroup){
-
+  onSubmitForm(){
+    if (this.myForm1.valid && this.myForm2.valid && this.myForm3.valid && this.myForm4.valid) {
+      const sentData = Object.assign(this.myForm1.value, this.myForm2.value, this.myForm3.value, this.myForm4.value);
+      this.authenticationService.register(sentData)
+        .subscribe(
+          data => {
+            this.router.navigate([this.returnUrl]);
+            this.alertService.success('You have successfully registered');
+          },
+          err => {
+            const alerts = this.alertService.getAllJsonValues(err);
+            this.alertService.error(alerts);
+          }
+        );
+    }
   }
 
 /*
   onSubmit(passedForm) {
-    this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
       const sentData = passedForm.value;
       this.authenticationService.register(sentData)

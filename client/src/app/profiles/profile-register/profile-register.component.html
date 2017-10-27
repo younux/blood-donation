@@ -9,10 +9,18 @@
 
             <div class="form-progress-bar">
               <ul>
-                <li>1</li>
-                <li class="active">2</li>
-                <li>3</li>
-                <li>4</li>
+                <li [ngClass]="{ 'active' : activeStep==1 }">
+                  <i class="fa fa-lock" aria-hidden="true"></i>
+                </li>
+                <li [ngClass]="{ 'active' : activeStep==2 }">
+                  <i class="fa fa-address-card" aria-hidden="true"></i>
+                </li>
+                <li [ngClass]="{ 'active' : activeStep==3 }">
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                </li>
+                <li [ngClass]="{ 'active' : activeStep==4 }">
+                  <i class="fa fa-tint" aria-hidden="true"></i>
+                </li>
               </ul>
             </div>
 
@@ -26,8 +34,8 @@
               </div>
             </div>
 
-            <div class="form-bottom">
-              <form type="submit" name="registerForm1" [formGroup]="myForm1" (ngSubmit)="onSubmitForm1(myForm1)">
+            <div [hidden]="!(activeStep==1)" class="form-bottom">
+              <form type="submit" name="registerForm1" [formGroup]="myForm1">
 
                 <div class="form-group">
                   <label class="sr-only" for="username"> Username </label>
@@ -52,12 +60,12 @@
 
 
                 <div class="form-group">
-                  <button type="submit" class="btn-form"> Suivant </button>
+                  <button  [disabled]="!myForm1.valid" (click)="nextStep($event)" class="btn btn-form"> Suivant </button>
                 </div>
 
                 <div class="form-group">
                   <a [routerLink]="['../login']">
-                    <button class="btn-form">
+                    <button class="btn btn-form">
                       Login
                     </button>
                   </a>
@@ -67,8 +75,8 @@
 
             </div>
 
-            <div class="form-bottom">
-              <form type="submit" name="registerForm2" [formGroup]="myForm2" (ngSubmit)="onSubmitForm2(myForm2)">
+            <div [hidden]="!(activeStep==2)" class="form-bottom">
+              <form type="submit" name="registerForm2" [formGroup]="myForm2">
 
                 <div class="form-group">
                   <label class="sr-only" for="firstName"> First Name </label>
@@ -100,12 +108,12 @@
 
 
                 <div class="form-group">
-                  <button type="submit" class="btn-form">Suivant</button>
+                  <button [disabled]="!myForm2.valid" (click)="nextStep($event)" class="btn btn-form">Suivant</button>
                 </div>
 
                 <div class="form-group">
                   <a>
-                    <button class="btn-form">
+                    <button (click)="previousStep($event)"   class="btn btn-form">
                       Précédent
                     </button>
                   </a>
@@ -115,49 +123,52 @@
 
             </div>
 
-            <div class="form-bottom">
-              <form type="submit" name="registerForm3" [formGroup]="myForm3" (ngSubmit)="onSubmitForm3(myForm3)">
+            <div [hidden]="!(activeStep==3)" class="form-bottom">
+              <form type="submit" name="registerForm3" [formGroup]="myForm3">
 
-                <div class="form-group">
-                  <label class="sr-only" for="street"> Street </label>
-                  <input type="text" class="form-control" id="street" name="street" placeholder="Street..."
-                         formControlName="street"/>
-                  <app-field-error-display
-                    [myControl]="myForm3.controls['address'].controls['street']"></app-field-error-display>
+                <div formGroupName="address">
+
+                  <div class="form-group">
+                    <label class="sr-only" for="street"> Street </label>
+                    <input type="text" class="form-control" id="street" name="street" placeholder="Street..."
+                           formControlName="street"/>
+                    <app-field-error-display
+                      [myControl]="myForm3.controls['address'].controls['street']"></app-field-error-display>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="sr-only" for="city"> City </label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City..."
+                           formControlName="city"/>
+                    <app-field-error-display
+                      [myControl]="myForm3.controls['address'].controls['city']"></app-field-error-display>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="sr-only" for="country"> Country </label>
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Country..."
+                           formControlName="country"/>
+                    <app-field-error-display
+                      [myControl]="myForm3.controls['address'].controls['country']"></app-field-error-display>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="sr-only" for="zipCode"> Zip Code </label>
+                    <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
+                           formControlName="zipCode"/>
+                    <app-field-error-display
+                      [myControl]="myForm3.controls['address'].controls['zipCode']"></app-field-error-display>
+                  </div>
+
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="city"> City </label>
-                  <input type="text" class="form-control" id="city" name="city" placeholder="City..."
-                         formControlName="city"/>
-                  <app-field-error-display
-                    [myControl]="myForm3.controls['address'].controls['city']"></app-field-error-display>
-                </div>
-
-                <div class="form-group">
-                  <label class="sr-only" for="country"> Country </label>
-                  <input type="text" class="form-control" id="country" name="country" placeholder="Country..."
-                         formControlName="country"/>
-                  <app-field-error-display
-                    [myControl]="myForm3.controls['address'].controls['country']"></app-field-error-display>
-                </div>
-
-                <div class="form-group">
-                  <label class="sr-only" for="zipCode"> Zip Code </label>
-                  <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
-                         formControlName="zipCode"/>
-                  <app-field-error-display
-                    [myControl]="myForm3.controls['address'].controls['zipCode']"></app-field-error-display>
-                </div>
-
-
-                <div class="form-group">
-                  <button type="submit" class="btn-form">Suivant</button>
+                  <button [disabled]="!myForm3.valid" (click)="nextStep($event)" class="btn btn-form">Suivant</button>
                 </div>
 
                 <div class="form-group">
                   <a>
-                    <button class="btn-form">
+                    <button (click)="previousStep($event)"   class="btn btn-form">
                       Précédent
                     </button>
                   </a>
@@ -167,8 +178,8 @@
 
             </div>
 
-            <div class="form-bottom">
-              <form type="submit" name="registerForm4" [formGroup]="myForm4" (ngSubmit)="onSubmitForm4(myForm4)">
+            <div [hidden]="!(activeStep==4)" class="form-bottom">
+              <form type="submit" name="registerForm4" [formGroup]="myForm4" (ngSubmit)="onSubmitForm()">
 
                 <div class="form-group">
                   <label class="sr-only" for="bloodType"> Blood Type </label>
@@ -192,12 +203,12 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="submit" class="btn-form">Register</button>
+                  <button [disabled]="!myForm4.valid"   type="submit" class="btn btn-form">Register</button>
                 </div>
 
                 <div class="form-group">
                   <a>
-                    <button class="btn-form">
+                    <button (click)="previousStep($event)" class="btn btn-form">
                       Précédent
                     </button>
                   </a>

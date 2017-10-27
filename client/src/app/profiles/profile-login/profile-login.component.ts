@@ -12,7 +12,6 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 export class ProfileLoginComponent implements OnInit {
 
   myForm: FormGroup;
-  isFormSubmitAttempt: boolean;
   returnUrl: string;
 
 
@@ -23,7 +22,6 @@ export class ProfileLoginComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) {
     this.createForm();
-    this.isFormSubmitAttempt = false;
   }
 
   ngOnInit() {
@@ -44,7 +42,6 @@ export class ProfileLoginComponent implements OnInit {
   }
 
   onSubmit(passedForm) {
-    this.isFormSubmitAttempt = true;
     if (passedForm.valid) {
       const sentData = passedForm.value;
       this.authenticationService.login(sentData.username, sentData.email, sentData.password)
