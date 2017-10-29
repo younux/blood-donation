@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule, XHRBackend, RequestOptions} from '@angular/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 import { HomeModule } from './home/home.module';
 import { DonationModule } from './donations/donation.module';
 import { ProfileModule } from './profiles/profile.module';
 import { ComponentsModule} from './shared/components/components.module';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { HeaderModule} from './header/header.module';
 
 import { AppComponent } from './app.component';
@@ -48,14 +49,13 @@ import { FaqComponent } from './faq/faq.component';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    BrowserAnimationsModule,
 
     HeaderModule,
     HomeModule,
     DonationModule,
     ProfileModule,
     ComponentsModule,
-
-    BsDatepickerModule.forRoot(),
   ],
   providers: [
     ...apiInjectables,

@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DonationService} from "../../shared/services/donation.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../shared/services/alert.service";
-import DateTimeFormat = Intl.DateTimeFormat;
 
 @Component({
   selector: 'app-donation-create',
   templateUrl: './donation-create.component.html',
-  styleUrls: ['./donation-create.component.scss']
+  styleUrls: ['./donation-create.component.scss'],
 })
 export class DonationCreateComponent implements OnInit {
 
   myForm: FormGroup;
-  isFormSubmitAttempt: boolean;
   returnUrl: string;
 
 
@@ -23,7 +21,6 @@ export class DonationCreateComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) {
     this.createForm();
-    this.isFormSubmitAttempt = false;
 
 
   }
@@ -34,6 +31,7 @@ export class DonationCreateComponent implements OnInit {
 
   createForm() {
     this.myForm = this.fb.group({
+      //deadline: [null , Validators.required],
       deadlineDay: [null , Validators.required],
       deadlineTime: [ null , Validators.required],
       description: [null, Validators.required],
@@ -44,11 +42,12 @@ export class DonationCreateComponent implements OnInit {
 
   }
 
-  onSubmit(passedForm) {
-    this.isFormSubmitAttempt = true;
+  onSubmit(passedForm: FormGroup) {
     if (passedForm.valid) {
-      const deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' + new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
-      this.donationService.createDonation(deadline,
+      const deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' +
+                          new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
+      this.donationService.createDonation(
+        deadline,
         passedForm.value.description,
         passedForm.value.city,
         passedForm.value.phoneNumber,

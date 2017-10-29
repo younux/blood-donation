@@ -3,11 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { BsDatepickerModule, TimepickerModule } from 'ngx-bootstrap';
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+
 
 
 import { DonationService } from '../shared/services/donation.service';
 import { ComponentsModule } from '../shared/components/components.module';
+
 
 import {
   DonationThumbnailComponent,
@@ -42,7 +46,8 @@ const declarations = [
     ComponentsModule,
 
     BsDatepickerModule.forRoot(),
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+
   ],
   declarations: [...declarations],
   exports: [...declarations],

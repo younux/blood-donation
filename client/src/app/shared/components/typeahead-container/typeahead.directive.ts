@@ -78,8 +78,6 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-// see ngx bootstrap typeahead : https://github.com/valor-software/ngx-bootstrap/blob/development/src/typeahead/typeahead.directive.ts
-
 
 }
 

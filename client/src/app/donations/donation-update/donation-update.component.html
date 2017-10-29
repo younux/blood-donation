@@ -1,66 +1,74 @@
 <app-page-header content="Mise à jour"></app-page-header>
 
-<section>
-  <div class="container" *ngIf="myForm">
 
-    <div class="col-md-6 col-md-offset-3">
-      <h2 class="text-center"> Update donation </h2>
-      <form type="submit" name="createDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+<section *ngIf="currentDonation" class="form-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
+        <div class="form-wrapper">
+          <div class="form-box">
+
+            <div class="form-top">
+              <div class="form-top-left">
+                <h1> Update donation </h1>
+                <p>Enter information:</p>
+              </div>
+              <div class="form-top-right">
+                <i class="fa fa-pencil"></i>
+              </div>
+            </div>
+
+            <div class="form-bottom">
+              <form type="submit" name="updateDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
 
-        <h3 class="text-center"> Infos 1 </h3>
+                <div class="form-group">
+                  <label class="sr-only" for="deadline"> Deadline </label>
+                  <input type="date" class="form-control" id="deadline"  name="deadline" placeholder="Deadline..."
+                         formControlName="deadline"/>
+                  <app-field-error-display [myControl]="myForm.get('deadline')"></app-field-error-display>
+                </div>
 
-        <div class="row">
-          <h4 class="text-center"> Deadline </h4>
-          <div class="col-md-5 col-md-offset-1">
-            <div class="form-group">
-              <label> Day </label>
-              <input type="text" name="deadlineDay" formControlName="deadlineDay" bsDatepicker>
-              <app-field-error-display [myControl]="myForm.get('deadlineDay')"></app-field-error-display>
+                <div class="form-group">
+                  <label class="sr-only" for="description"> Description </label>
+                  <input type="text" class="form-control" id="description" name="description" placeholder="Description..."
+                         [formControl]="myForm.controls['description']"/>
+                  <app-field-error-display [myControl]="myForm.controls['description']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="city"> City </label>
+                  <input type="text" class="form-control" id="city" name="city" placeholder="City..."
+                         [formControl]="myForm.controls['city']"/>
+                  <app-field-error-display [myControl]="myForm.controls['city']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="phoneNumber"> Phone number </label>
+                  <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number..."
+                         [formControl]="myForm.controls['phoneNumber']"/>
+                  <app-field-error-display [myControl]="myForm.controls['phoneNumber']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="status"> Status </label>
+                  <input type="text" class="form-control" id="status" name="status" placeholder="Status..."
+                         [formControl]="myForm.controls['status']"/>
+                  <app-field-error-display [myControl]="myForm.controls['status']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-form">Update</button>
+                </div>
+
+                <div class="form-group">
+                  <button type="button" class="btn btn-danger" (click)="deleteDonation($event)">Delete</button>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="col-md-5">
-            <div class="form-group">
-              <label> Time </label>
-              <timepicker formControlName="deadlineTime" ></timepicker>
-              <app-field-error-display [myControl]="myForm.get('deadlineTime')"></app-field-error-display>
-            </div>
-          </div>
         </div>
-
-        <div class="form-group">
-          <label> Description </label>
-          <input type="text" class="form-control" name="description" formControlName="description" />
-          <app-field-error-display [myControl]="myForm.get('description')"></app-field-error-display>
-        </div>
-
-        <div class="form-group">
-          <label> City </label>
-          <input type="text" class="form-control" name="city" formControlName="city" />
-          <app-field-error-display [myControl]="myForm.get('city')"></app-field-error-display>
-        </div>
-
-        <div class="form-group">
-          <label> Phone number </label>
-          <input type="tel" class="form-control" name="phoneNumber" formControlName="phoneNumber" />
-          <app-field-error-display [myControl]="myForm.get('phoneNumber')"></app-field-error-display>
-        </div>
-
-        <div class="form-group">
-          <label> Status </label>
-          <input type="text" class="form-control" name="status" formControlName="status" />
-          <app-field-error-display [myControl]="myForm.get('status')"></app-field-error-display>
-        </div>
-
-          <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">Update</button>
       </div>
-                
-      </form>
-
-      <button type="button" class="btn btn-danger" (click)="deleteDonation($event)">Delete</button>
-
     </div>
-
   </div>
 </section>
