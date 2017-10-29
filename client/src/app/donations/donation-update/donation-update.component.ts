@@ -43,7 +43,9 @@ export class DonationUpdateComponent implements OnInit {
 
   createForm() {
     this.myForm = this.fb.group({
-      deadline: [this.currentDonation.deadline , Validators.required],
+      //deadline: [this.currentDonation.deadline , Validators.required],
+      deadlineDay: [this.currentDonation.deadline , Validators.required],
+      deadlineTime: [ this.currentDonation.deadline, Validators.required],
       description: [this.currentDonation.description, Validators.required],
       city: [this.currentDonation.city, Validators.required],
       phoneNumber: [this.currentDonation.phoneNumber, Validators.required],
@@ -53,9 +55,11 @@ export class DonationUpdateComponent implements OnInit {
 
   onSubmit(passedForm: FormGroup) {
     if (passedForm.valid) {
+      const deadline = new Date( new Date(passedForm.value.deadlineDay).toDateString() + ' ' +
+                            new Date(passedForm.value.deadlineTime).toTimeString()).toISOString();
       this.donationService
         .updateDonation(this.donationId,
-                        passedForm.value.deadline,
+                        deadline,
                         passedForm.value.description,
                         passedForm.value.city,
                         passedForm.value.phoneNumber,

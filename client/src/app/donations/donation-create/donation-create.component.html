@@ -21,22 +21,23 @@
             <div class="form-bottom">
               <form type="submit" name="createDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
-
                 <div class="row">
-                  <div class="col-sm-6">
+                  <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
                       <label class="sr-only" for="deadlineDay"> Deadline Day </label>
-                      <input type="text" class="form-control" id="deadlineDay" name="deadlineDay" placeholder="Deadline Day..."
+                      <input type="text" class="form-control" id="deadlineDay" name="deadlineDay"
+                             placeholder="Deadline Day..."
                              formControlName="deadlineDay"
                              bsDatepicker
                       />
                       <app-field-error-display [myControl]="myForm.get('deadlineDay')"></app-field-error-display>
                     </div>
                   </div>
-                  <div class="col-sm-6">
+
+                  <div class="col-xs-offset-4 col-xs-6 col-sm-6 col-sm-offset-0">
                     <div class="form-group">
                       <label class="sr-only" for="deadlineTime"> Deadline </label>
-                      <timepicker class="timePickerClass" id="deadlineTime" formControlName="deadlineTime" ></timepicker>
+                      <timepicker id="deadlineTime" formControlName="deadlineTime"></timepicker>
                       <app-field-error-display [myControl]="myForm.get('deadlineTime')"></app-field-error-display>
                     </div>
                   </div>
@@ -45,7 +46,8 @@
 
                 <div class="form-group">
                   <label class="sr-only" for="description"> Description </label>
-                  <input type="text" class="form-control" id="description" name="description" placeholder="Description..."
+                  <input type="text" class="form-control" id="description" name="description"
+                         placeholder="Description..."
                          [formControl]="myForm.controls['description']"/>
                   <app-field-error-display [myControl]="myForm.controls['description']"></app-field-error-display>
                 </div>
@@ -59,7 +61,8 @@
 
                 <div class="form-group">
                   <label class="sr-only" for="phoneNumber"> Phone number </label>
-                  <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number..."
+                  <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                         placeholder="Phone Number..."
                          [formControl]="myForm.controls['phoneNumber']"/>
                   <app-field-error-display [myControl]="myForm.controls['phoneNumber']"></app-field-error-display>
                 </div>

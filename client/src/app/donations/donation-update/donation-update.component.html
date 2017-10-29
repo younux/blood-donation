@@ -22,11 +22,26 @@
               <form type="submit" name="updateDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
 
-                <div class="form-group">
-                  <label class="sr-only" for="deadline"> Deadline </label>
-                  <input type="date" class="form-control" id="deadline"  name="deadline" placeholder="Deadline..."
-                         formControlName="deadline"/>
-                  <app-field-error-display [myControl]="myForm.get('deadline')"></app-field-error-display>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                      <label class="sr-only" for="deadlineDay"> Deadline Day </label>
+                      <input type="text" class="form-control" id="deadlineDay" name="deadlineDay"
+                             placeholder="Deadline Day..."
+                             formControlName="deadlineDay"
+                             bsDatepicker
+                      />
+                      <app-field-error-display [myControl]="myForm.get('deadlineDay')"></app-field-error-display>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-offset-4 col-xs-6 col-sm-6 col-sm-offset-0">
+                    <div class="form-group">
+                      <label class="sr-only" for="deadlineTime"> Deadline </label>
+                      <timepicker id="deadlineTime" formControlName="deadlineTime"></timepicker>
+                      <app-field-error-display [myControl]="myForm.get('deadlineTime')"></app-field-error-display>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">

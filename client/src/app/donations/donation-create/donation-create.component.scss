@@ -65,6 +65,11 @@
   height: 100px;
 }
 
+#deadlineDay{
+  margin-top: 25px;
+}
+
+
 /* Form Elements */
 /*----------------*/
 
@@ -93,16 +98,6 @@ textarea {
   -ms-transition: all .3s;
   transition: all .3s;
 }
-
-//:host ::ng-deep .ui-button{
-//  border-color: $primary;
-//  background: $primary;
-//}
-//
-//:host ::ng-deep  .ui-button:enabled:hover{
-//  border-color: $primary;
-//  background: $primary;
-//}
 
 textarea {
   padding-top: 10px;
