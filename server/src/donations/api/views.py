@@ -36,6 +36,35 @@ class DonationCreateAPIView(CreateAPIView):
         applicant = Profile.objects.filter(username = self.request.user.username).first()
         serializer.save(applicant = applicant)
 
+    # def create(self, request, *args, **kwargs):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     self.perform_create(serializer)
+    #     headers = self.get_success_headers(serializer.data)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    #
+    # def create(self, request, *args, **kwargs):
+    #
+    #     serializer = self.get_serializer_class()
+    #     self.get_serializer()
+    #
+    #     super().create(request, *args, **kwargs)
+
+
+    # def create(self, request, *args, **kwargs):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     self.perform_create(serializer)
+    #     headers = self.get_success_headers(serializer.data)
+    #     # Sending email :
+    #     donation_obj =  Donation(**(serializer.validated_data))
+    #
+    #     user_qs =
+    #
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+
 class DonationListAPIView(ListAPIView):
     # queryset = Donation.objects.all()
     serializer_class = DonationSerializer
