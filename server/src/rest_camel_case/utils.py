@@ -9,6 +9,9 @@ camelize_re = re.compile(r"[a-z0-9]?_[a-z0-9]")
 
 
 def underscore_to_camel(match):
+    """
+        Underscore case to camel case
+    """
     group = match.group()
     if len(group) == 3:
         return group[0] + group[2].upper()
@@ -17,6 +20,9 @@ def underscore_to_camel(match):
 
 
 def camelize(data):
+    """
+        Applies underscore_to_camel(match) to data
+    """
     if isinstance(data, dict):
         new_dict = OrderedDict()
         for key, value in data.items():
@@ -32,10 +38,16 @@ def camelize(data):
 
 
 def camel_to_underscore(name):
+    """
+        Camel case to underscore case
+    """
     return all_cap_re.sub(r'\1_\2', name).lower()
 
 
 def underscoreize(data):
+    """
+        Applies  camel_to_underscore(name) to data
+    """
     if isinstance(data, dict):
         new_dict = {}
         for key, value in data.items():

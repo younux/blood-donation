@@ -4,6 +4,9 @@ from accounts.models import Profile
 # Create your models here.
 
 class Donation(models.Model):
+    """
+        Donation model
+    """
     # Donation Status
     URG = "URG"
     CLD = "CLD"

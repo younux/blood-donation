@@ -9,7 +9,15 @@ from .utils import underscoreize
 
 
 class CamelCaseJSONParser(api_settings.PARSER_CLASS):
+    """
+        Custom Parser Class
+
+        Transforms camel case to underscore case when parsing data
+    """
     def parse(self, stream, media_type=None, parser_context=None):
+        """
+        Transforms camel case to underscore case when parsing data
+        """
         parser_context = parser_context or {}
         encoding = parser_context.get('encoding', settings.DEFAULT_CHARSET)
 

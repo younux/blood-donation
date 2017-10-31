@@ -5,6 +5,9 @@ from django.dispatch import receiver
 # Create your models here.
 
 class Address(models.Model):
+    """
+        Address model
+    """
     street      = models.CharField(verbose_name = "Street", max_length=1024)
     city        = models.CharField(verbose_name= "City", max_length=64)
     country     = models.CharField(verbose_name = "Country", max_length=64)
@@ -18,8 +21,11 @@ class Address(models.Model):
         return self.street + " - " + self.city
 
 class Profile(AbstractUser):
-    # See https://docs.djangoproject.com/fr/1.11/topics/auth/customizing/#auth-custom-user For using AbstractUser
+    """
+        Profile model that extends AbstractUser with fields related to our application.
 
+        See https://docs.djangoproject.com/fr/1.11/topics/auth/customizing/#auth-custom-user For using AbstractUser
+    """
     # Blood Types
     O_POS = 'O+'
     O_NEG = 'O-'
@@ -58,9 +64,11 @@ class Profile(AbstractUser):
         return self.username
 
 
-# After deleting a profile we should delete its address
 @receiver(models.signals.post_delete, sender=Profile)
 def auto_delete_address_with_Profile(sender, instance, *args, **kwargs):
+    """
+        After deleting a profile we should delete its address
+    """
     try :
         if instance.address :
             instance.address.delete()

@@ -28,44 +28,31 @@ from accounts.models import Profile
 # Create your views here.
 
 class DonationCreateAPIView(CreateAPIView):
+    """
+        Donation Create API View
+
+        Extends CreatdAPIView and overrides perform_create
+    """
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
+        """
+            Overrides perform_create(self, serializer) called by CreateModelMixin when saving a new object instance.
+
+            CreateAPIView extends CreateModelMixin so it calls perform_create.
+        """
         applicant = Profile.objects.filter(username = self.request.user.username).first()
         serializer.save(applicant = applicant)
-
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_create(serializer)
-    #     headers = self.get_success_headers(serializer.data)
-    #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-    #
-    # def create(self, request, *args, **kwargs):
-    #
-    #     serializer = self.get_serializer_class()
-    #     self.get_serializer()
-    #
-    #     super().create(request, *args, **kwargs)
-
-
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_create(serializer)
-    #     headers = self.get_success_headers(serializer.data)
-    #     # Sending email :
-    #     donation_obj =  Donation(**(serializer.validated_data))
-    #
-    #     user_qs =
-    #
-    #     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-
+        ## Put sending email heeere.
 
 class DonationListAPIView(ListAPIView):
+    """
+        Donation List API View
+
+        Extends ListAPIView
+    """
     # queryset = Donation.objects.all()
     serializer_class = DonationSerializer
     # General search : http://127.0.0.1:8000/api/donations/?search=alex&ordering=-city
@@ -79,6 +66,11 @@ class DonationListAPIView(ListAPIView):
     # Specific Search : http://127.0.0.1:6001/api/donations/?applicantUsername=user1
     #   http://127.0.0.1:6001/api/donations/?status=urg&bloodType=AB%2B&city=casablanca
     def get_queryset(self, *args, **kwargs):
+        """
+            Overrides get_queryset to filter queryset using query params.
+
+            The used query_params while filtering are applicantUsername, bloodType, city, status
+        """
         queryset_list = Donation.objects.all()
         applicant_username = self.request.query_params.get('applicantUsername', None)
         if applicant_username:
@@ -103,6 +95,11 @@ class DonationListAPIView(ListAPIView):
 
 
 class DonationDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
+    """
+        Donation Detail Update Delete API View
+
+        Extends RetrieveUpdateDestroyAPIView
+    """
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer
     permission_classes = [IsAuthenticated, IsDonationOwnerOrReadOnly]

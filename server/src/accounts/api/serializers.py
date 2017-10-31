@@ -11,6 +11,11 @@ from ..models import Address, Profile
 
 
 class AddressSerializer(ModelSerializer):
+    """
+        Address Serializer
+
+        Extends ModelSerializer
+    """
     class Meta:
         model = Address
         fields = [
@@ -27,6 +32,9 @@ class AddressSerializer(ModelSerializer):
 
         }
     def validate_zip_code(self, value):
+        """
+            custom zip code validation.
+        """
         zip_code_re = re.compile("^[0-9]{5}$")
         if zip_code_re.match(value) is None :
             raise ValidationError("The zip code is not valid (XXXXX where X is a digit)")
@@ -34,6 +42,11 @@ class AddressSerializer(ModelSerializer):
 
 
 class ProfileDetailSerializer(ModelSerializer):
+    """
+        Profile serializer for detail use case
+
+        Extends ModelSerializer
+    """
     address = AddressSerializer(read_only = True)
     class Meta:
         model = Profile
@@ -51,6 +64,11 @@ class ProfileDetailSerializer(ModelSerializer):
         ]
 
 class ProfileCreateSerialzer(ModelSerializer):
+    """
+        Profile Serializer for Creation use case.
+
+        Extends ModelSerializer
+    """
     email = EmailField(label="Email address")
     address = AddressSerializer()
     class Meta:
@@ -77,6 +95,9 @@ class ProfileCreateSerialzer(ModelSerializer):
         }
 
     def validate_username(self, value):
+        """
+            custom username validationn
+        """
         if len(value)< 3 :
             raise ValidationError("Username length must be greater or equal to 3")
         username_re = re.compile("^[a-zA-Z0-9]*$")
@@ -85,6 +106,9 @@ class ProfileCreateSerialzer(ModelSerializer):
         return value
 
     def validate_email(self, value):
+        """
+            custom email validation
+        """
         email_re = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
         if email_re.match(value) is None :
             raise ValidationError("This is not a valid email address")
@@ -94,6 +118,9 @@ class ProfileCreateSerialzer(ModelSerializer):
         return value
 
     def validate_first_name(self, value):
+        """
+            custom first name validation
+        """
         if not value :
             raise ValidationError("This field may not be blank.")
         if len(value) < 3 :
@@ -101,6 +128,9 @@ class ProfileCreateSerialzer(ModelSerializer):
         return value
 
     def validate_last_name(self, value):
+        """
+            custom last name validation
+        """
         if not value :
             raise ValidationError("This field may not be blank.")
         if len(value) < 3 :
@@ -108,17 +138,28 @@ class ProfileCreateSerialzer(ModelSerializer):
         return value
 
     def validate_phone_number(self, value):
+        """
+            custom phone number validation
+        """
         phone_re = re.compile(r'^(0|\+212|00212)[1-9][0-9]{8}$')
         if phone_re.match(value) is None:
             raise ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +212 X-XX-XX-XX-XX or 00212 X-XX-XX-XX-XX where X is a digit)")
         return value
 
     def validate_birth_date(self, value):
+        """
+            custom birth date validation
+        """
         if not value:
             raise ValidationError("This field may not be blank.")
         return value
 
     def create(self, validated_data):
+        """
+            Overriding ModelSerializer .create(self, validated_data) implementation:
+
+            It creates a profile object, sets the password and save the profile object.
+        """
         username = validated_data.get("username")
         email = validated_data.get("email")
         password = validated_data.get("password")
@@ -148,6 +189,11 @@ class ProfileCreateSerialzer(ModelSerializer):
         return profile_obj
 
 class ProfileLoginSerializer(ModelSerializer):
+    """
+        Profile serializer for login use case.
+
+        Extends ModelSerializer
+    """
     username = CharField(allow_blank=True, allow_null=True, required=False)
     email = EmailField(label="Email address", allow_blank=True, allow_null=True, required=False)
     password = CharField(style={'input_type': 'password'}, write_only=True)
@@ -180,6 +226,12 @@ class ProfileLoginSerializer(ModelSerializer):
 
 
     def validate(self, data):
+        """
+            Custom validation (object level : validation using many fields)
+
+            First, it checks that a username or an email is supplied. Then, it checks the the username/email
+            is valid (exists in database). Finally, it checks that the supplied password is correct.
+        """
         profile_obj = None
         username = data.get("username", None)
         email = data.get("email", None)

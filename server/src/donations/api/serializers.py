@@ -10,6 +10,11 @@ from accounts.api.serializers import ProfileDetailSerializer
 
 
 class DonationSerializer(ModelSerializer):
+    """
+        Donation Serializer
+
+        Extends ModelSerializer
+    """
     applicant = ProfileDetailSerializer(read_only = True)
     blood_type = SerializerMethodField(read_only = True)
     url = HyperlinkedIdentityField(
@@ -36,15 +41,24 @@ class DonationSerializer(ModelSerializer):
         }
 
     def get_blood_type(self, obj):
+        """
+            Gets blood type from donation object instance
+        """
         return obj.get_blood_type()
 
     def validate_deadline(self, value):
-            current_datetime = datetime.datetime.now()
-            if value.timestamp() <= current_datetime.timestamp():
-                raise ValidationError("This deadline is in the past, please enter a valid one")
-            return value
+        """
+            Custom deadline validation
+        """
+        current_datetime = datetime.datetime.now()
+        if value.timestamp() <= current_datetime.timestamp():
+            raise ValidationError("This deadline is in the past, please enter a valid one")
+        return value
 
     def validate_phone_number(self, value):
+        """
+            Custom phone number validation
+        """
         phone_re = re.compile(r'^(0|\+212|00212)[1-9][0-9]{8}$')
         if phone_re.match(value) is None:
             raise ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +212 X-XX-XX-XX-XX or 00212 X-XX-XX-XX-XX where X is a digit)")

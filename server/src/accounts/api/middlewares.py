@@ -3,29 +3,41 @@ from accounts.api.utils import get_jwt_value, authenticate, refresh_token, JWT_A
 
 
 class JWTTokenMiddleware(MiddlewareMixin):
+    """
+        This is a middleware that handles the JWT token authentication.
+
+        The class overrides process_response(self, request, response) to set an Authorization header
+        in the response with a refreshed jwt token if the request contains a valid jwt token.
+
+        For process_request(self, request) : it is not necessary to override it, the job is done by
+        default when declaring rest_framework_jwt.authentication.JSONWebTokenAuthentication in
+        settings.py ==> REST_FRAMEWORK ==> DEFAULT_PERMISSION_CLASSES : It already authenticates user
+        using the received token.
+    """
     def __init__(self, get_response=None):
         self.get_response = get_response
 
-    # This is done by default when declaring rest_framework_jwt.authentication.JSONWebTokenAuthentication
-    # in DEFAULT_AUTHENTICATION_CLASSES of REST_FRAMEWORK in settings.py file. It already authenticates user
-    # using the received token. So I commented process_request since it is useless now !
-    # def process_request(self, request):
-    #     """
-    #     Authenticates user : sets the request.user based on the jwt token contained in request header
-    #     If token is not valid, request.user remains equals to AnonymousUser
-    #     """
-    #     try:
-    #         user, jwt_value = authenticate(request)
-    #     except:
-    #         user = None
-    #         jwt_value = None
-    #     if user is not None :
-    #         request.user = user
+    def process_request(self, request):
+        """
+            Authenticates user.
+
+            Sets the request.user based on the jwt token contained in request header.
+            If token is not valid, request.user remains equals to AnonymousUser.
+        """
+        try:
+            user, jwt_value = authenticate(request)
+        except:
+            user = None
+            jwt_value = None
+        if user is not None :
+            request.user = user
 
     def process_response(self, request, response):
         """
-        Sets an Authorization header in the response with a refreshed jwt token if the request
-        contains a valid jwt token
+            Refreshes JWT Token.
+
+            Sets an Authorization header in the response with a refreshed jwt token if the request
+            contains a valid jwt token.
         """
         try:
             token = get_jwt_value(request)

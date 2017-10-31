@@ -27,9 +27,20 @@ from .serializers import (
 
 
 class ProfileCreateAPIView(GenericAPIView):
+    """
+        Profile Create API VIEW.
+
+        Extends GenericAPIView and defines post method.
+    """
     serializer_class = ProfileCreateSerialzer
 
     def post(self, request, *args, **kwargs):
+        """
+            Post Method
+
+            Implements Post method that saves profile in database
+            and sends a token in the response header
+        """
         data = request.data
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
@@ -44,10 +55,20 @@ class ProfileCreateAPIView(GenericAPIView):
 
 
 class ProfileLoginAPIView(GenericAPIView):
+    """
+        Profile Create API VIEW.
+
+        Extends GenericAPIView and defines post method.
+    """
     permission_classes = [AllowAny]
     serializer_class = ProfileLoginSerializer
 
     def post(self, request, *args, **kwargs):
+        """
+            Post Method
+
+            Implements Post method and sends a generated token in the the response header
+        """
         data = request.data
         serializer = self.get_serializer(data = data)
         serializer.is_valid(raise_exception=True)

@@ -12,8 +12,9 @@ import jwt
 # django.contrib.auth.models.User when we costumize User
 User = get_user_model()
 
-# This is inspired from https://github.com/GetBlimp/django-rest-framework-jwt/tree/master/rest_framework_jwt
 
+# This is inspired from https://github.com/GetBlimp/django-rest-framework-jwt/tree/master/rest_framework_jwt
+# Getting values from settings.py file
 JWT_AUTH_HEADER_PREFIX = api_settings.JWT_AUTH_HEADER_PREFIX
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
@@ -25,7 +26,7 @@ jwt_response_payload_handler = api_settings.JWT_RESPONSE_PAYLOAD_HANDLER
 
 def generate_token(user, username=None, email=None):
     """
-    Returns a generated token for a user
+        Returns a generated token for a user
     """
     if user is not None :
         payload = jwt_payload_handler(user)
@@ -44,9 +45,10 @@ def generate_token(user, username=None, email=None):
 
 def refresh_token(token):
     """
-    Refreshes Token (with new expiration) based on existing token
-    If 'orig_iat' field (original issued-at-time) is found, will first check
-    if it's within expiration window, then copy it to the new token
+        Refreshes Token (with new expiration) based on existing token.
+
+        If 'orig_iat' field (original issued-at-time) is found, will first check
+        if it is within expiration window, then copy it to the new token
     """
     try:
         payload = check_payload(token=token)
@@ -86,7 +88,7 @@ def refresh_token(token):
 
 def check_payload(token):
     """
-    Check payload valid (based off of JSONWebTokenAuthentication)
+        Check payload valid (based off of JSONWebTokenAuthentication)
     """
     try:
         payload = jwt_decode_handler(token)
@@ -101,7 +103,7 @@ def check_payload(token):
 
 def check_user(payload):
     """
-    Check user valid (based off of JSONWebTokenAuthentication)
+        Check user valid (based off of JSONWebTokenAuthentication)
     """
     username = jwt_payload_get_username_handler(payload)
 
@@ -124,7 +126,7 @@ def check_user(payload):
 
 def get_jwt_value(request):
     """
-    Returns JWT Token value from request
+        Returns JWT Token value from request
     """
     auth = get_authorization_header(request).split()
     auth_header_prefix = api_settings.JWT_AUTH_HEADER_PREFIX.lower()
@@ -149,8 +151,8 @@ def get_jwt_value(request):
 
 def authenticate(request):
     """
-    Returns a two-tuple of `User` and token if a valid signature has been
-    supplied using JWT-based authentication.  Otherwise returns `None`.
+        Returns a two-tuple of `User` and token if a valid signature has been
+        supplied using JWT-based authentication.  Otherwise returns `None`.
     """
     try :
         jwt_value = get_jwt_value(request)
@@ -180,7 +182,7 @@ def authenticate(request):
 
 def authenticate_credentials(payload):
     """
-    Returns an active user that matches the payload's user id and email.
+        Returns an active user that matches the payload's user id and email.
     """
     username = jwt_payload_get_username_handler(payload)
 

@@ -178,6 +178,7 @@ REST_FRAMEWORK = {
 
 # JWT Token settings :
 JWT_AUTH = {
+    # By default :  'JWT_AUTH_HEADER_PREFIX' : 'JWT',
     # By default : 'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
     'JWT_ALLOW_REFRESH': True,
     # By default : 'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
