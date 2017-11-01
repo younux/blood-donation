@@ -25,6 +25,9 @@ from .permissions import (
 from ..models import Donation
 from accounts.models import Profile
 
+from .utils import notify_by_email
+
+
 # Create your views here.
 
 class DonationCreateAPIView(CreateAPIView):
@@ -44,8 +47,10 @@ class DonationCreateAPIView(CreateAPIView):
             CreateAPIView extends CreateModelMixin so it calls perform_create.
         """
         applicant = Profile.objects.filter(username = self.request.user.username).first()
-        serializer.save(applicant = applicant)
-        ## Put sending email heeere.
+        donation_obj = serializer.save(applicant = applicant)
+        # sending notifications emails.
+        notify_by_email(donation_obj)
+
 
 class DonationListAPIView(ListAPIView):
     """
@@ -103,4 +108,8 @@ class DonationDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer
     permission_classes = [IsAuthenticated, IsDonationOwnerOrReadOnly]
+
+
+
+
 
