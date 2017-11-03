@@ -10,6 +10,7 @@ import {AuthenticationService} from "../../shared/services/authentication.servic
 export class ProfileMyComponent implements OnInit {
 
   myProfile: Profile;
+  tab = 'information';
 
   constructor(private authenticationService: AuthenticationService) { }
 

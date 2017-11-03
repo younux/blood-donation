@@ -15,26 +15,26 @@
 
       <ul class="navigation">
 
-        <li class="active navigation-li">
-          <a data-toggle="tab" href="#information">
+        <li class="navigation-li" [ngClass]="{'active' : tab === 'information'}">
+          <a (click)="tab = 'information'" [routerLink]= "['./']" [queryParams]="{'tab' : 'information'}">
             <i class="fa fa-address-card" aria-hidden="true"></i>
           </a>
         </li>
 
-        <li class="navigation-li">
-          <a data-toggle="tab" href="#address">
+        <li class="navigation-li" [ngClass]="{'active' : tab === 'address'}">
+          <a (click)="tab = 'address'" [routerLink]= "['./']" [queryParams]="{'tab' : 'address'}">
             <i class="fa fa-home" aria-hidden="true"></i>
           </a>
         </li>
 
-        <li class="navigation-li">
-          <a data-toggle="tab" href="#blood">
+        <li class="navigation-li" [ngClass]="{'active' : tab === 'blood'}">
+          <a (click)="tab = 'blood'" [routerLink]= "['./']" [queryParams]="{'tab' : 'blood'}">
             <i class="fa fa-tint" aria-hidden="true"></i>
           </a>
         </li>
 
-        <li class="navigation-li">
-          <a data-toggle="tab" href="#settings">
+        <li class="navigation-li" [ngClass]="{'active' : tab === 'settings'}">
+          <a (click)="tab = 'settings'" [routerLink]= "['./']" [queryParams]="{'tab' : 'settings'}">
             <i class="fa fa-cog" aria-hidden="true"></i>
           </a>
         </li>
@@ -43,7 +43,7 @@
 
       <div class="tab-content">
 
-        <div id="information" class="tab-pane active">
+        <div *ngIf="tab === 'information'" id="information">
           <h3> Informations personnelles </h3>
           <div class="row">
             <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
@@ -102,7 +102,7 @@
           </div>
         </div>
 
-        <div id="address" class="tab-pane">
+        <div *ngIf="tab === 'address'" id="address">
           <h3> Adresse </h3>
           <div class="row">
             <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">
@@ -145,7 +145,7 @@
           </div>
         </div>
 
-        <div id="blood" class="tab-pane">
+        <div *ngIf="tab === 'blood'" id="blood">
           <h3> Type de sang </h3>
           <div class="row">
             <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
@@ -161,7 +161,7 @@
           </div>
         </div>
 
-        <div id="settings" class="tab-pane">
+        <div *ngIf="tab === 'settings'" id="settings">
           <h3> Reglages </h3>
           <div class="row">
             <div class="col-md-5 col-md-offset-1 col-xs-10 col-xs-offset-1">

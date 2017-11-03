@@ -29,7 +29,4 @@ export class DonationListAllComponent implements OnInit {
     );
   }
 
-  onDonationSelected(donation: Donation) {
-    console.log('DonationComponent : selected donations : ' + donation.id);
-  }
 }

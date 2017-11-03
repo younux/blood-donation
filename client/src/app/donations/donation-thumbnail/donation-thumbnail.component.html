@@ -2,27 +2,52 @@
   <div class="row">
     <div class="col-md-4 hidden-sm hidden-xs">
       <div class="event-latest-thumbnail text-center padding-md-xs">
-        <a  >
+        <a>
           {{donation.bloodType}}
         </a>
       </div>
     </div> <!--  col-sm-5  -->
-
     <div class="col-md-8 col-sm-12 col-xs-12">
       <div class="event-details">
-        <a class="latest-date"  >{{donation.deadline | date:'medium'}}</a>
-        <h4 class="event-latest-title">
-          <a  >{{donation.applicant.firstName}} {{donation.applicant.lastName}}</a>
-        </h4>
-        <p>{{donation.description | slice:0:200}}...</p>
-        <div class="event-latest-details">
-          <!--<a class="author"  ><i class="fa fa-clock-o" aria-hidden="true"></i>{{ donation.createdOn | date:'medium' }}</a>-->
-          <a class="author text-primary text-bold"  >
-            <i class="fa fa-tint" aria-hidden="true"></i> {{donation.bloodType}}
-          </a>
-          <a class="comments pull-right text-bold"  >
-            <i class="fa fa-map-marker" aria-hidden="true"></i> {{donation.city}}, {{donation.applicant.address.country}}
-          </a>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="latest-date">{{donation.deadline | date:'medium'}}</a>
+          </div>
+          <div class="col-md-12">
+            <h4 class="event-latest-title">
+              {{donation.applicant.firstName}} {{donation.applicant.lastName}}
+            </h4>
+          </div>
+          <div class="col-md-12">
+            <p>{{donation.description | slice:0:200}}...</p>
+          </div>
+          <div class="col-md-12">
+            <div class="event-latest-details">
+              <div class="row">
+                <div class="col-md-6">
+                  <a class="bottom-link text-primary text-bold">
+                    <i class="fa fa-tint" aria-hidden="true"></i> {{donation.bloodType}}
+                  </a>
+                  <a class="bottom-link text-bold">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> {{donation.city}},
+                    {{donation.applicant.address.country}}
+                  </a>
+                </div>
+                <div class="col-md-6 text-right">
+                  <a *ngIf="showDetailButton" [routerLink]="['/donations', 'detail', donation.id]" >
+                    <button class="btn btn-custom">
+                      Detail
+                    </button>
+                  </a>
+                  <a *ngIf="showUpdateButton" [routerLink]="['/donations', 'update', donation.id]">
+                    <button class="btn btn-custom">
+                      Update
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div> <!--  col-sm-7  -->

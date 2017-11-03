@@ -51,6 +51,9 @@
 
 .navigation-li.active a {
   background: $primary;
+}
+
+.navigation-li.active a i {
   color: $light;
 }
 

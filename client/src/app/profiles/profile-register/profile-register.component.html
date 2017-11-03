@@ -61,13 +61,13 @@
                 </div>
 
 
-                <div class="form-group">
-                  <button  [disabled]="!myForm1.valid" (click)="nextStep($event)" class="btn btn-form"> Suivant </button>
+                <div class="form-group text-right">
+                  <button  [disabled]="!myForm1.valid" (click)="nextStep($event)" class="btn btn-form-principal"> Suivant </button>
                 </div>
 
                 <div class="form-group">
                   <a [routerLink]="['../login']">
-                    <button class="btn btn-form">
+                    <button class="btn btn-form-secondary ">
                       Login
                     </button>
                   </a>
@@ -110,15 +110,8 @@
 
 
                 <div class="form-group">
-                  <button [disabled]="!myForm2.valid" (click)="nextStep($event)" class="btn btn-form">Suivant</button>
-                </div>
-
-                <div class="form-group">
-                  <a>
-                    <button (click)="previousStep($event)"   class="btn btn-form">
-                      Précédent
-                    </button>
-                  </a>
+                  <button (click)="previousStep($event)" class="btn btn-form-principal"> Précédent </button>
+                  <button [disabled]="!myForm2.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
                 </div>
 
               </form>
@@ -165,15 +158,8 @@
                 </div>
 
                 <div class="form-group">
-                  <button [disabled]="!myForm3.valid" (click)="nextStep($event)" class="btn btn-form">Suivant</button>
-                </div>
-
-                <div class="form-group">
-                  <a>
-                    <button (click)="previousStep($event)"   class="btn btn-form">
-                      Précédent
-                    </button>
-                  </a>
+                  <button (click)="previousStep($event)"   class="btn btn-form-principal">Précédent</button>
+                  <button [disabled]="!myForm3.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
                 </div>
 
               </form>
@@ -205,15 +191,8 @@
                 </div>
 
                 <div class="form-group">
-                  <button [disabled]="!myForm4.valid"   type="submit" class="btn btn-form">Register</button>
-                </div>
-
-                <div class="form-group">
-                  <a>
-                    <button (click)="previousStep($event)" class="btn btn-form">
-                      Précédent
-                    </button>
-                  </a>
+                  <button (click)="previousStep($event)" class="btn btn-form-principal">Précédent</button>
+                  <button [disabled]="!myForm4.valid"   type="submit" class="btn btn-form-principal pull-right">Register</button>
                 </div>
 
               </form>

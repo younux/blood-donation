@@ -5,7 +5,7 @@
   position: relative;
   margin-bottom: 30px;
 }
-.event-latest .event-latest-thumbnail a {
+.event-latest-thumbnail a {
   display: block;
   background: $tertiary-dark;
   font-size: 7em;
@@ -17,7 +17,7 @@
 //  width: 100%;
 //}
 
-.event-latest .latest-date {
+.latest-date {
   border: 2px solid $tertiary-dark;
   border-radius: 0px;
   background: $tertiary-dark;
@@ -31,48 +31,72 @@
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
 }
-.event-latest .event-details {
+.event-details {
   padding: 10px 15px 0 0;
 }
-.event-latest .event-details h4 a {
+/*.event-details h4 a {
   color: $primary;
   text-decoration: none;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-}
-.event-latest .event-latest-title {
+}*/
+.event-latest-title {
+  color: $primary;
   font-weight: 500;
   margin-bottom: 15px;
   font-size: 24px;
   text-transform: uppercase;
 }
-.event-latest .event-latest-title a {
+
+/*.event-latest-title a {
   color: $primary;
 }
-.event-latest .event-latest-title a:hover {
+.event-latest-title a:hover {
   color: $primary;
+}*/
+.event-latest-details {
+  margin-bottom: 10px;
 }
-.event-latest .event-latest-details {
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-.event-latest .event-latest-details a {
+.bottom-link {
   color: $tertiary;
-  display: inline-block;
   line-height: 14px;
   margin-right: 3px;
   padding-right: 8px;
   transition: all 0.3s ease 0s;
 }
-.event-latest .event-latest-details a:last-child {
+/*.event-latest-details a:last-child {
   border-right: medium none;
   margin-right: 0;
   padding-right: 0;
 }
-.event-latest .event-latest-details a:hover {
+.event-latest-details a:hover {
   color: $tertiary-dark;
+}*/
+.btn-custom {
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-transition: 0.3s 0.2s ease-out;
+  -moz-transition: 0.3s 0.2s ease-out;
+  -o-transition: 0.3s 0.2s ease-out;
+  transition: 0.3s 0.2s ease-out;
+  border: 1px solid $secondary-dark;
+  background: $primary;
+  color: $light;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  padding: 12px 14px;
+  //margin-bottom: 10px;
+}
+.btn-custom:hover {
+  border-color: $tertiary;
+  color: $primary;
+  background: $light;
 }
 
 /* 14. RESPONSIVE STYLING */
@@ -82,7 +106,7 @@
   .event-latest {
     clear: both;
   }
-  .event-latest .event-details {
+  .event-details {
     padding: 12px 6px 0 12px;
   }
 }
@@ -91,7 +115,7 @@
   .event-latest {
     clear: both;
   }
-  .event-latest .event-details {
+  .event-details {
     padding: 12px 6px 0 12px;
   }
 }
@@ -100,10 +124,10 @@
   .event-latest {
     clear: both;
   }
-  .event-latest .event-latest-title {
+  .event-latest-title {
     font-size: 20px;
   }
-  .event-latest .event-details {
+  .event-details {
     padding: 12px 6px 0 12px;
   }
 }

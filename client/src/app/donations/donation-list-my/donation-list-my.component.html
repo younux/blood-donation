@@ -4,8 +4,7 @@
   <div *ngIf="donationsList"  class="donation">
     <app-donation-list [donations]="donationsList"
                        [showUpdateButton]="true"
-                       [showDetailButton]="true"
-                       (onDonationSelected)="onDonationSelected($event)">
+                       [showDetailButton]="true">
     </app-donation-list>
   </div>
 </section>

@@ -6,12 +6,9 @@
     <div class="col-xs-12 col-sm-8">
       <div class="row">
         <div class="col-xs-12" *ngFor="let myDonation of donations">
-          <app-donation-thumbnail
-                                  [donation]="myDonation"
-                                  (click)="clicked(myDonation)"
+          <app-donation-thumbnail [donation]="myDonation"
                                   [showDetailButton]="showDetailButton"
-                                  [showUpdateButton]="showUpdateButton"
-                                  [class.selected]="isSelected(myDonation)">
+                                  [showUpdateButton]="showUpdateButton">
           </app-donation-thumbnail>
         </div>
       </div>

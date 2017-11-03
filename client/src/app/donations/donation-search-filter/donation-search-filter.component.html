@@ -4,74 +4,83 @@
 
     <h2 class="widget-title">City</h2>
 
-    <form action="index.html" id="search-form-2" class="search-form" role="form" method="get">
-
+    <form type="submit" id="searchByCity" name="searchByCity" [formGroup]="cityForm" (ngSubmit)="onSubmit(cityForm)">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search....">
-        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input class="form-control" type="text"id="city" placeholder="Search...."
+               formControlName="city">
+        <button type="submit" class="input-group-addon"><i class="fa fa-search"></i></button>
       </div>
-
-      <input type="hidden" value="submit" />
-
     </form> <!-- end #search-form  -->
 
-
   </div> <!--  end .widget -->
+
 
   <div class="widget site-sidebar">
 
     <h2 class="widget-title">Categories</h2>
 
-    <ul class="widget-post-category clearfix">
+    <form type="submit" id="searchByCategory" name="searchByCategory" [formGroup]="categoryForm">
 
-      <li>
-        <input type="checkbox" id="APlus" name="bloodType" value="APlus">
-        <label class="badge" for="APlus"> A+ </label>
-        <span class="pull-right badge">42</span>
-      </li>
+      <ul class="widget-blood-category clearfix">
 
-      <li>
-        <input type="checkbox" id="AMinus" name="bloodType" value="AMinus">
-        <label class="badge" for="AMinus"> A- </label>
-        <span class="pull-right badge">42</span>
-      </li>
+        <li>
+          <input type="checkbox" id="APlus" name="bloodType" value="APlus"
+                formControlName="APlus">
+          <label for="APlus"> A+ </label>
+          <span class="pull-right badge">42</span>
+        </li>
 
-      <li>
-        <input type="checkbox" id="BPlus" name="bloodType" value="BPlus">
-        <label class="badge" for="BPlus"> B+ </label>
-        <span class="pull-right badge">42</span>
-      </li>
+        <li>
+          <input type="checkbox" id="AMinus" name="bloodType" value="AMinus"
+                 formControlName="AMinus">
+          <label for="AMinus"> A- </label>
+          <span class="pull-right badge">42</span>
+        </li>
 
-      <li>
-        <input type="checkbox" id="BMinus" name="bloodType" value="BMinus">
-        <label class="badge" for="BMinus"> B- </label>
-        <span class="pull-right badge">42</span>
-      </li>
-      <li>
-        <input type="checkbox" id="ABPlus" name="bloodType" value="ABPlus">
-        <label class="badge" for="ABPlus"> AB+ </label>
-        <span class="pull-right badge">42</span>
-      </li>
+        <li>
+          <input type="checkbox" id="BPlus" name="bloodType" value="BPlus"
+                 formControlName="BPlus">
+          <label for="BPlus"> B+ </label>
+          <span class="pull-right badge">42</span>
+        </li>
 
-      <li>
-        <input type="checkbox" id="ABMinus" name="bloodType" value="ABMinus">
-        <label class="badge" for="ABMinus"> AB- </label>
-        <span class="pull-right badge">42</span>
-      </li>
+        <li>
+          <input type="checkbox" id="BMinus" name="bloodType" value="BMinus"
+                 formControlName="BMinus">
+          <label for="BMinus"> B- </label>
+          <span class="pull-right badge">42</span>
+        </li>
+        <li>
+          <input type="checkbox" id="ABPlus" name="bloodType" value="ABPlus"
+                 formControlName="ABPlus">
+          <label for="ABPlus"> AB+ </label>
+          <span class="pull-right badge">42</span>
+        </li>
 
-      <li>
-        <input type="checkbox" id="OPlus" name="bloodType" value="OPlus">
-        <label class="badge" for="OPlus"> O+ </label>
-        <span class="pull-right badge">42</span>
-      </li>
+        <li>
+          <input type="checkbox" id="ABMinus" name="bloodType" value="ABMinus"
+                 formControlName="ABMinus">
+          <label  for="ABMinus"> AB- </label>
+          <span class="pull-right badge">42</span>
+        </li>
 
-      <li>
-        <input type="checkbox" id="OMinus" name="bloodType" value="OMinus">
-        <label class="badge" for="OMinus"> O- </label>
-        <span class="pull-right badge">42</span>
-      </li>
+        <li>
+          <input type="checkbox" id="OPlus" name="bloodType" value="OPlus"
+                 formControlName="OPlus">
+          <label for="OPlus"> O+ </label>
+          <span class="pull-right badge">42</span>
+        </li>
 
-    </ul>
+        <li>
+          <input type="checkbox" id="OMinus" name="bloodType" value="OMinus"
+                 formControlName="OMinus">
+          <label for="OMinus"> O- </label>
+          <span class="pull-right badge">42</span>
+        </li>
+
+      </ul>
+
+    </form>
 
 
   </div> <!--  end .widget -->
@@ -80,15 +89,12 @@
 
     <h2 class="widget-title">Search</h2>
 
-    <form action="index.html" id="search-form-1" class="search-form" role="form" method="get">
-
+    <form type="submit" id="searchByKeyWord" name="searchByKeyWord" [formGroup]="keyWordForm" (ngSubmit)="onSubmit(keyWordForm)">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search....">
-        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        <input class="form-control" type="text" id="keyWord" placeholder="Search...."
+               formControlName="keyWord">
+        <button type="submit" class="input-group-addon"><i class="fa fa-search"></i></button>
       </div>
-
-      <input type="hidden" value="submit" />
-
     </form> <!-- end #search-form  -->
 
   </div> <!--  end .widget -->
