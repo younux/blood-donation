@@ -93,7 +93,7 @@ class DonationListAPIView(ListAPIView):
         # filter by applicant username
         applicant_username = self.request.query_params.get('applicantUsername', None)
         if applicant_username:
-            queryset_list = queryset_list.filter(applicant__username = applicant_username).distinct()
+            queryset_list = queryset_list.filter(applicant__username = applicant_username)
         # filter by keyword
         keyWord = self.request.query_params.get('keyWord', None)
         if keyWord:
