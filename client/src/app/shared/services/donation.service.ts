@@ -31,18 +31,10 @@ export class DonationService  {
 
   }
 
-  listDonations(applicantUsername?: string,
-                bloodType?: string,
-                city?: string,
-                status?: string) {
+  listDonations(queryParamsStr?: string) {
     let queryUrl = `${this.apiUrl}donations/`;
-    if (applicantUsername || bloodType || city || status){
-      let queryParams = new Array<string>();
-      if (applicantUsername) {queryParams.push(`applicantUsername=${applicantUsername}`); }
-      if (bloodType) {queryParams.push(`bloodType=${bloodType}`); }
-      if (city) {queryParams.push(`city=${city}`); }
-      if (status) {queryParams.push(`status=${status}`); }
-      queryUrl = `${queryUrl}?${queryParams.join('&')}`;
+    if(queryParamsStr){
+      queryUrl = `${queryUrl}?${queryParamsStr}`;
     }
     return this.http.get(queryUrl)
       .map(response => {

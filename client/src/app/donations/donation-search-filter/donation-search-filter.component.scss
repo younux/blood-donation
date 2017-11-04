@@ -18,35 +18,27 @@
   display: inline-block;
   color: $tertiary-dark;
 }
-.widget ul {
+.widget-blood-list {
   list-style: outside none none;
-  margin: 0;
   padding: 0;
-}
-.widget ul li {
-  padding: 5px 0;
-}
-.widget ul li a {
-  color: $tertiary-dark;
-}
-.widget ul li a:hover {
-  color: $primary;
-}
-.widget-blood-category {
   margin: 11px auto;
 }
-.widget-blood-category li {
+.widget-blood-list li {
   margin: 5px 0;
   padding: 0;
   text-transform: capitalize;
 }
-.widget-blood-category li a {
+.widget-blood-list li a {
+  color: $tertiary-dark;
   font-size: 15px;
   position: relative;
   -webkit-transition: 0.3s 0.2s ease-out;
   -moz-transition: 0.3s 0.2s ease-out;
   -o-transition: 0.3s 0.2s ease-out;
   transition: 0.3s 0.2s ease-out;
+}
+.widget-blood-list li a:hover {
+  color: $primary;
 }
 
 .input-group{

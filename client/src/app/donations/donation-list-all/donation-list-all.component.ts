@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DonationService } from '../../shared/services/donation.service';
 import { Donation } from '../../shared/models/donation.model';
 import { AlertService } from '../../shared/services/alert.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-donation-list-all',
@@ -12,21 +13,42 @@ export class DonationListAllComponent implements OnInit {
 
   donationsList: Donation[];
 
-  constructor(private donationService: DonationService,
+  constructor(private route: ActivatedRoute,
+              private donationService: DonationService,
               private alertService: AlertService) {
 
   }
 
   ngOnInit() {
-    this.donationService.listDonations().subscribe(
-      response => {
-        this.donationsList = response.results;
-      },
-      err => {
-        const alerts = this.alertService.getAllJsonValues(err);
-        this.alertService.error(alerts);
+    this.route.queryParams.subscribe(
+      queryParameters => {
+        let sentQueryParamsArray: String[] = [];
+        const cityParam = queryParameters['city'];
+        const keyWordParam = queryParameters['keyWord'];
+        const bloodTypesParam = queryParameters['bloodTypes'];
+
+        if (cityParam) {
+          sentQueryParamsArray.push(`city=${cityParam}`);
+        }
+        if (keyWordParam) {
+          sentQueryParamsArray.push(`keyWord=${keyWordParam}`);
+        }
+        if (bloodTypesParam) {
+          sentQueryParamsArray.push(`bloodTypes=${bloodTypesParam}`);
+        }
+        this.donationService.listDonations(sentQueryParamsArray.join('&')).subscribe(
+          response => {
+            this.donationsList = response.results;
+          },
+          err => {
+            const alerts = this.alertService.getAllJsonValues(err);
+            this.alertService.error(alerts);
+          }
+        );
       }
+
     );
+
   }
 
 }

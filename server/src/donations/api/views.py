@@ -68,34 +68,44 @@ class DonationListAPIView(ListAPIView):
                      ]
     permission_classes = []
 
-    # Specific Search : http://127.0.0.1:6001/api/donations/?applicantUsername=user1
-    #   http://127.0.0.1:6001/api/donations/?status=urg&bloodType=AB%2B&city=casablanca
     def get_queryset(self, *args, **kwargs):
         """
             Overrides get_queryset to filter queryset using query params.
 
-            The used query_params while filtering are applicantUsername, bloodType, city, status
+            The used query_params while filtering are donation city, donation status, applicant bloodtype,
+             applicant username, keyword
+            Example : /api/donations/?city=Marrakech&keyWord=description&bloodTypes=APlus_AMinus_BPlus
         """
         queryset_list = Donation.objects.all()
+        # filter by donation city
+        city = self.request.query_params.get('city', None)
+        if city:
+            queryset_list = queryset_list.filter(city__icontains = city)
+        # filter by donation status
+        status = self.request.query_params.get('status', None)
+        if status:
+            queryset_list = queryset_list.filter(status__icontains=status)
+        # filter by applicant bloodtype
+        blood_types_query_param = self.request.query_params.get('bloodTypes', None)
+        if blood_types_query_param:
+            blood_types = blood_types_query_param.replace('Plus', '+').replace('Minus', '-').split('_')
+            queryset_list = queryset_list.filter(applicant__blood_type__in=blood_types)
+        # filter by applicant username
         applicant_username = self.request.query_params.get('applicantUsername', None)
         if applicant_username:
             queryset_list = queryset_list.filter(applicant__username = applicant_username).distinct()
-        blood_type = self.request.query_params.get('bloodType', None)
-        if blood_type:
-            queryset_list = queryset_list.filter(applicant__blood_type = blood_type)
-        city = self.request.query_params.get('city', None)
-        if city:
-            queryset_list = queryset_list.filter(city__contains = city)
-        status = self.request.query_params.get('status', None)
-        if status:
-            queryset_list = queryset_list.filter(status__contains=status)
-        # query = self.request.query_params.get('q', None)
-        # if query:
-        #     queryset_list = queryset_list.filter(
-        #         Q(content__icontains = query)|
-        #         Q(user__first_name__icontains = query)|
-        #         Q(user__last_name__icontains = query)
-        #     ).distinct()
+        # filter by keyword
+        keyWord = self.request.query_params.get('keyWord', None)
+        if keyWord:
+            queryset_list = queryset_list.filter(
+                Q(description__icontains=keyWord) |
+                Q(city__icontains=keyWord) |
+                Q(status__icontains=keyWord) |
+                Q(applicant__blood_type__icontains=keyWord) |
+                Q(applicant__username__icontains = keyWord) |
+                Q(applicant__first_name__icontains=keyWord) |
+                Q(applicant__last_name__icontains=keyWord)
+            ).distinct()
         return queryset_list
 
 

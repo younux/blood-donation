@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-donation-search-filter',
@@ -8,52 +11,93 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class DonationSearchFilterComponent implements OnInit {
 
-  cityForm: FormGroup;
-  categoryForm: FormGroup;
-  keyWordForm: FormGroup;
+  myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.createForm();
   }
 
   ngOnInit() {
-    this.cityForm.valueChanges.subscribe(
-      formValues => {
-        console.log(formValues);
-      }
-    )
-    this.categoryForm.valueChanges.subscribe(
-      formValues => {
-        console.log(formValues);
-      }
-    )
-    this.keyWordForm.valueChanges.subscribe(
-      formValues => {
-        console.log(formValues);
-      }
-    )
+    // initialize form with values taken from url query parameters
+    this.initFormState();
+    // Watch for Formc hanges and act accordingly
+    this.myForm.valueChanges
+      .debounceTime(500) // only once every 500ms
+      .subscribe(
+      formValue => {
+        this.updateQueryParams(formValue);
+      });
+
   }
 
   createForm() {
-    this.cityForm = this.fb.group({
+    this.myForm = this.fb.group({
       city: [null],
-    });
-    this.categoryForm = this.fb.group({
-      APlus: [true],
-      AMinus: [true],
-      BPlus: [true],
-      BMinus: [true],
-      ABPlus: [true],
-      ABMinus: [true],
-      OPlus: [true],
-      OMinus: [true],
-    });
-    this.keyWordForm = this.fb.group({
+      bloodType: this.fb.group({
+        APlus: [false],
+        AMinus: [false],
+        BPlus: [false],
+        BMinus: [false],
+        ABPlus: [false],
+        ABMinus: [false],
+        OPlus: [false],
+        OMinus: [false],
+      }),
       keyWord: [null],
     });
   }
 
-  onSubmit(form: FormGroup){
+  updateQueryParams(formValue: any){
+    let queryParameters = {};
+    let bloodTypes: String[] = new Array<string>();
+    bloodTypes = Object.keys(formValue.bloodType).filter( type => formValue.bloodType[type]);
+    if (formValue.city) {
+      if (formValue.city.length > 3) {
+        queryParameters['city'] = formValue.city;
+      }
+    }
+    if (formValue.keyWord) {
+      if (formValue.keyWord.length > 3) {
+        queryParameters['keyWord'] = formValue.keyWord;
+      }
+    }
+    if (bloodTypes.length > 0 && bloodTypes.length < 8) {
+      queryParameters['bloodTypes'] = bloodTypes.join('_');
+    }
+    // Add query parameters to url
+    this.router.navigate([], {queryParams: queryParameters});
+  }
+
+  initFormState(){
+    // read initial query parameters
+    const cityParam = this.route.snapshot.queryParams['city'];
+    const keyWordParam = this.route.snapshot.queryParams['keyWord'];
+    let bloodTypes: String[];
+    if (this.route.snapshot.queryParams['bloodTypes']){
+      bloodTypes = this.route.snapshot.queryParams['bloodTypes'].split('_');
+    }
+    // initialize form values
+    if(cityParam){
+      this.myForm.controls['city'].setValue(cityParam);
+    }
+    if(keyWordParam){
+      this.myForm.controls['keyWord'].setValue(keyWordParam);
+    }
+    if(bloodTypes){
+      bloodTypes.forEach( (value: string) => {
+        this.myForm.controls['bloodType'].get(value).setValue(true);
+      });
+      } else {
+      Object.keys(this.myForm.controls['bloodType'].value).forEach(
+        (key: string) => {
+          this.myForm.controls['bloodType'].get(key).setValue(true);
+        });
+    }
+  }
+
+  onSubmit(form: FormGroup) {
 
   }
 
