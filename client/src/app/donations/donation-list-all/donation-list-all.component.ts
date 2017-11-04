@@ -23,10 +23,11 @@ export class DonationListAllComponent implements OnInit {
     this.route.queryParams.subscribe(
       queryParameters => {
         let sentQueryParamsArray: String[] = [];
+        // read query params from url
         const cityParam = queryParameters['city'];
         const keyWordParam = queryParameters['keyWord'];
         const bloodTypesParam = queryParameters['bloodTypes'];
-
+        // add non falsy query parrams to sentQueryParamsArray
         if (cityParam) {
           sentQueryParamsArray.push(`city=${cityParam}`);
         }
@@ -36,6 +37,7 @@ export class DonationListAllComponent implements OnInit {
         if (bloodTypesParam) {
           sentQueryParamsArray.push(`bloodTypes=${bloodTypesParam}`);
         }
+        // Send list request with a query params string
         this.donationService.listDonations(sentQueryParamsArray.join('&')).subscribe(
           response => {
             this.donationsList = response.results;

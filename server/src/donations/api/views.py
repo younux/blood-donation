@@ -74,7 +74,9 @@ class DonationListAPIView(ListAPIView):
 
             The used query_params while filtering are donation city, donation status, applicant bloodtype,
              applicant username, keyword
-            Example : /api/donations/?city=Marrakech&keyWord=description&bloodTypes=APlus_AMinus_BPlus
+            Example :   /api/donations/?city=Marrakech&keyWord=description&bloodTypes=APlus_AMinus_BPlus
+                        /api/donations/?username=user1
+                        /api/donations/?username=user1&city=marrakech&keyWord=sasas&bloodTypes=APlus_ABMinus_OPlus_OMinus
         """
         queryset_list = Donation.objects.all()
         # filter by donation city
@@ -91,7 +93,7 @@ class DonationListAPIView(ListAPIView):
             blood_types = blood_types_query_param.replace('Plus', '+').replace('Minus', '-').split('_')
             queryset_list = queryset_list.filter(applicant__blood_type__in=blood_types)
         # filter by applicant username
-        applicant_username = self.request.query_params.get('applicantUsername', None)
+        applicant_username = self.request.query_params.get('username', None)
         if applicant_username:
             queryset_list = queryset_list.filter(applicant__username = applicant_username)
         # filter by keyword
