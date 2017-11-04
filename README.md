@@ -1,12 +1,17 @@
 # TODO
+- [ ] Utiliser postgressql
+- [ ] Utiliser des codes dans les envois de messages d'erreurs du serveur
+- [ ] Ajouter le champ gender pour Profile Model
+- [x] Adapter le template à angular.
+- [ ] Implementer l'envoi de notification par email (gmail)
+- [ ] Implementer l'envoi de notification par SMS
+- [ ] Implementer verification e-mail lors de l'enregistrement.
+- [ ] Implementer suppression periodique des comptes non actives ?
+- [ ] Implementer password reset.
+- [ ] Integer Task Queue (Celery) and Message Broker (Redis or RabbitMQ)
+ to do tasks asynchronously (send mails, notifications ...)
 
-* Utiliser postgressql
-* Utiliser des codes dans les envois de messages d'erreurs du serveur
-* Ajouter le champ gender pour Profile Model
-* Adapter le template ? angular.
-* Impl?menter l'envoi de notification par email (gmail)
-* Impl?menter l'envoi de notification par SMS
-* Impl?menter v?rification e-mail lors de l'enregistrement.
+
 
 # blood-donation-platform  
 
