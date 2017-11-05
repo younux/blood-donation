@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
+from django.utils import timezone
+
 
 # Create your models here.
 
@@ -63,6 +65,12 @@ class Profile(AbstractUser):
     def __str__(self):
         return self.username
 
+    def update_last_login(self):
+        """
+        updates the last_login date for the profile logging in.
+        """
+        self.last_login = timezone.now()
+        self.save(update_fields=['last_login'])
 
 @receiver(models.signals.post_delete, sender=Profile)
 def auto_delete_address_with_Profile(sender, instance, *args, **kwargs):

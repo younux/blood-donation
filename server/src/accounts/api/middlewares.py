@@ -1,5 +1,5 @@
 from django.utils.deprecation import MiddlewareMixin
-from accounts.api.utils import get_jwt_value, authenticate, refresh_token, JWT_AUTH_HEADER_PREFIX
+from accounts.api.tokens_jwt import get_jwt_value, authenticate, refresh_token, JWT_AUTH_HEADER_PREFIX
 
 
 class JWTTokenMiddleware(MiddlewareMixin):

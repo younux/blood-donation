@@ -15,10 +15,10 @@ from rest_framework.status import (
         HTTP_201_CREATED,
         )
 from rest_framework.views import APIView
-
+from django.db.models import Q
 
 from ..models import Profile
-from .utils import generate_token, JWT_AUTH_HEADER_PREFIX
+from .tokens_jwt import generate_token, JWT_AUTH_HEADER_PREFIX
 
 from .serializers import (
     ProfileCreateSerialzer,
@@ -47,6 +47,8 @@ class ProfileCreateAPIView(GenericAPIView):
         # Calling .save() will either create a new instance, or update an existing instance, depending on if an
         # existing instance was passed when instantiating the serializer class:
         profile_obj = serializer.save()
+        # update last login date
+        profile_obj.update_last_login()
         # Generate Token and add it to response header
         token = generate_token(user=profile_obj)
         headers = {}
@@ -72,14 +74,17 @@ class ProfileLoginAPIView(GenericAPIView):
         data = request.data
         serializer = self.get_serializer(data = data)
         serializer.is_valid(raise_exception=True)
-        # Generate Token and add it to response header
+        # update last login and Generate Token
         username = serializer.validated_data.get("username")
         email = serializer.validated_data.get("email")
-        token = generate_token(
-                user = None,
-                username = username,
-                email = email,
-                )
+        profile_obj = Profile.objects.filter(
+                        Q(username=username) |
+                        Q(email=email)
+                    ).distinct().exclude(email__isnull=True).exclude(email__iexact='').first()
+        # update last login date
+        profile_obj.update_last_login()
+        # Generate Token and add it to response header
+        token = generate_token(user = profile_obj)
         headers = {}
         headers['Authorization'] = JWT_AUTH_HEADER_PREFIX + " " + token
         return Response(data=serializer.data, status=HTTP_200_OK, headers=headers)

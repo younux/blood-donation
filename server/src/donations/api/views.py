@@ -25,7 +25,7 @@ from .permissions import (
 from ..models import Donation
 from accounts.models import Profile
 
-from .utils import notify_by_email
+from .emails import notify_by_email
 
 
 # Create your views here.

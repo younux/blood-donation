@@ -68,7 +68,7 @@ ROOT_URLCONF = 'blood_donation_platform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Email Settings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'angular.blood.donation@gmail.com'
-EMAIL_HOST_PASSWORD = 'angular007.'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
