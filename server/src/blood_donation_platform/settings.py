@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Django sites framework
+    # https://docs.djangoproject.com/en/1.11/ref/contrib/sites/#enabling-the-sites-framework
+    'django.contrib.sites',
 
     # django rest framework
     'rest_framework',
@@ -113,17 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Email Settings
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'angular.blood.donation@gmail.com'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-DEFAULT_FROM_EMAIL = 'From_Younes@gmail.com'
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -145,7 +137,30 @@ STATIC_URL = '/static/'
 
 
 # The model to use to represent a User. (Default: 'auth.User')
+
 AUTH_USER_MODEL = 'accounts.Profile'
+
+
+# My Site ID for django Sites Framework
+# See https://docs.djangoproject.com/en/1.11/ref/contrib/sites/#enabling-the-sites-framework
+
+SITE_ID = 1
+
+# Email Settings
+# see https://docs.djangoproject.com/en/1.11/topics/email/#configuring-email-for-development
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'angular.blood.donation@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = 'From_Younes@gmail.com'
+
+
+#####################################################################################################################
+#################################  THIRD PARTY PACKAGES RELATED SETTINGS  ###########################################
+#####################################################################################################################
 
 # REST framework settings
 REST_FRAMEWORK = {
@@ -201,3 +216,4 @@ SWAGGER_SETTINGS = {
     'SHOW_REQUEST_HEADERS' : False,
 
 }
+
