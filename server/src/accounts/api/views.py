@@ -49,6 +49,9 @@ class ProfileCreateAPIView(GenericAPIView):
         profile_obj = serializer.save()
         # update last login date
         profile_obj.update_last_login()
+        #TODO : Mark user as inactive
+        #TODO : remove send token and add send email with activation url
+        #TODO: do not send profile in response which it is inactive.
         # Generate Token and add it to response header
         token = generate_token(user=profile_obj)
         headers = {}
@@ -90,6 +93,37 @@ class ProfileLoginAPIView(GenericAPIView):
         return Response(data=serializer.data, status=HTTP_200_OK, headers=headers)
 
 
+class ProfileActivateView(GenericAPIView):
+    """
+        Profile activate API VIEW.
 
+        Extends GenericAPIView and defines post method.
+    """
 
+    #TODO : use serializer to do the validation of token
+    #TODO : if it is valid activate user and send OK response
 
+    # permission_classes = [AllowAny]
+    # serializer_class = ProfileCreateSerialzer
+    #
+    # def post(self, request, *args, **kwargs):
+    #     """
+    #         Post Method
+    #
+    #         Implements Post method that
+    #     """
+    #     data = request.data
+    #     serializer = self.get_serializer(data=data)
+    #     serializer.is_valid(raise_exception=True)
+    #     # Calling .save() will either create a new instance, or update an existing instance, depending on if an
+    #     # existing instance was passed when instantiating the serializer class:
+    #     profile_obj = serializer.save()
+    #     # update last login date
+    #     profile_obj.update_last_login()
+    #     # Generate Token and add it to response header
+    #     token = generate_token(user=profile_obj)
+    #     headers = {}
+    #     headers['Authorization'] = JWT_AUTH_HEADER_PREFIX + " " + token
+    #     return Response(data=serializer.data, status=HTTP_201_CREATED, headers=headers)
+    #
+    #

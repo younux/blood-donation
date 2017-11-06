@@ -1,6 +1,7 @@
 # TODO
 - [ ] Utiliser postgressql
-- [ ] Utiliser des codes dans les envois de messages d'erreurs du serveur
+- [ ] Utiliser Django Internationalization i18n (ou utiliser des codes dans
+les envois de messages d'erreurs du serveur)
 - [ ] Ajouter le champ gender pour Profile Model
 - [x] Adapter le template à angular.
 - [ ] Implementer l'envoi de notification par email (gmail)
