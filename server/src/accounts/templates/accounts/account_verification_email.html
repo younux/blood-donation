@@ -1,0 +1,26 @@
+Bonjour M. {{last_name}}  {{first_name}}
+
+Vous vous etes inscrit sur notre platforme.
+
+Merci de cliquer sur le lien ci-dessous pour activer votre compte
+
+http://{{ domain }}/accounts/activate/{{ uidb64 }}/{{ token }}
+
+L'url expirera dans {{timeout_days}} jours.
+
+{% comment %}
+
+the link bellow works also (that is using django reverse url) but introduces '/api/' in the link :
+http://example.com/api/accounts/activate/uidb64/token
+It is logic as it is using django built in reverse url
+
+http://{{ domain }}{% url 'accounts-api:activate' uidb64=uidb64 token=token %}
+
+url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        ProfileActivateAPIView.as_view(), name='activate'),
+
+{% endcomment %}
+
+Cordialement,
+
+Blood Donation Platform

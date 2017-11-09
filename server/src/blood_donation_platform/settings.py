@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
 
     # developped apps
-    'accounts',
-    'donations',
+    'accounts.apps.AccountsConfig',
+    'donations.apps.DonationsConfig',
 ]
 
 MIDDLEWARE = [

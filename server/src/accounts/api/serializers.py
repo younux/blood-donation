@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.db.models import Q
 
 from ..models import Address, Profile
-
+from .tokens import AccountActivationTokenGenerator, CustomPasswordResetTokenGenerator
 
 class AddressSerializer(serializers.ModelSerializer):
     """
@@ -50,6 +50,7 @@ class ProfileDetailSerializer(serializers.ModelSerializer):
             'email',
             'first_name',
             'last_name',
+            'gender',
             'phone_number',
             'address',
             'birth_date',
@@ -64,8 +65,8 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
 
         Extends ModelSerializer
     """
-    email = serializers.EmailField(label="Email address")
-    address = AddressSerializer()
+    email = serializers.EmailField(write_only=True, label="Email address")
+    address = AddressSerializer(write_only=True)
     class Meta:
         model = Profile
         fields = [
@@ -74,6 +75,7 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
             'password',
             'first_name',
             'last_name',
+            'gender',
             'phone_number',
             'address',
             'birth_date',
@@ -82,11 +84,21 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
             'sms_notification',
         ]
         extra_kwargs = {
+            "username": {"write_only": True},
             "password": {"write_only": True},
-            "blood_type": {"error_messages":
-                           {"invalid_choice": "Give yourself a blood type",
-                            }
-                       },
+            "first_name": {"write_only": True},
+            "last_name": {"write_only": True},
+            "gender": {"write_only": True},
+            "phone_number": {"write_only": True},
+            "birth_date": {"write_only": True},
+            "blood_type": {"write_only": True},
+            "email_notification": {"write_only": True},
+            "sms_notification": {"write_only": True},
+
+            # "blood_type": {"error_messages":
+            #                {"invalid_choice": "Give yourself a blood type",
+            #                 }
+            #            },
         }
 
     def validate_username(self, value):
@@ -110,6 +122,13 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
         profile_qs = Profile.objects.filter(email=value)
         if profile_qs.exists():
             raise serializers.ValidationError("A profile with that email address already exists.")
+        return value
+
+    def validate_password(self, value):
+        """
+            custom password validation
+        """
+        #TODO : implement a validation for robust password
         return value
 
     def validate_first_name(self, value):
@@ -153,13 +172,14 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
         """
             Overriding ModelSerializer .create(self, validated_data) implementation:
 
-            It creates a profile object, sets the password and save the profile object.
+            It creates an inactive profile object with the password and save it.
         """
         username = validated_data.get("username")
         email = validated_data.get("email")
         password = validated_data.get("password")
         first_name = validated_data.get("first_name")
         last_name = validated_data.get("last_name")
+        gender = validated_data.get("gender")
         phone_number = validated_data.get("phone_number")
         address = validated_data.get("address")
         birth_date = validated_data.get("birth_date")
@@ -168,10 +188,13 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
         sms_notification = validated_data.get("sms_notification")
 
         address_obj = Address.objects.create(**address)
-        profile_obj = Profile.objects.create(username = username,
+        # .create_profile creates the model and saves it
+        profile_obj = Profile.objects.create_profile(username = username,
                                             email = email,
+                                            password = password,
                                             first_name = first_name,
                                             last_name = last_name,
+                                            gender = gender,
                                             phone_number = phone_number,
                                             address = address_obj,
                                             birth_date = birth_date,
@@ -179,8 +202,6 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
                                             email_notification = email_notification,
                                             sms_notification = sms_notification,
                                          )
-        profile_obj.set_password(password)
-        profile_obj.save()
         return profile_obj
 
 class ProfileLoginSerializer(serializers.ModelSerializer):
@@ -201,6 +222,7 @@ class ProfileLoginSerializer(serializers.ModelSerializer):
             'password',
             'first_name',
             'last_name',
+            'gender',
             'phone_number',
             'address',
             'birth_date',
@@ -211,12 +233,12 @@ class ProfileLoginSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "first_name": {"read_only": True},
             "last_name": {"read_only": True},
+            "gender": {"read_only": True},
             "phone_number": {"read_only": True},
             "birth_date": {"read_only": True},
             "blood_type": {"read_only": True},
             "email_notification": {"read_only": True},
             "sms_notification": {"read_only": True},
-
         }
 
 
@@ -233,7 +255,7 @@ class ProfileLoginSerializer(serializers.ModelSerializer):
         password = data.get("password")
         if not email and not username:
             raise serializers.ValidationError("A username or an email is required to login.")
-        profile_qs = Profile.objects.filter(
+        profile_qs = Profile.objects.all_active().filter(
                 Q(username = username)|
                 Q(email = email)
             ).distinct()
@@ -251,15 +273,105 @@ class ProfileLoginSerializer(serializers.ModelSerializer):
 
 
 class ProfileActivateSerializer(serializers.Serializer):
-    key = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=32)
-    token = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=128)
+    """
+        Serializer for profile activation
 
-    def validate_key(self, value):
+        Extends Serializer
+    """
+    key = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=32, write_only=True)
+    token = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=128, write_only=True)
+
+    def validate(self, data):
+        """
+            Checks that the token is valid
+        """
+        key   = data.get("key", None)
+        token = data.get("token", None)
+        # the check below is note necessary thanks to the definition above of key and token
+        # fields (allow_null=False, allow_blank=False, required=True)
+        if key is None or token is None:
+            raise serializers.ValidationError("You should give a key and a token")
+        # Checking the validity of the token
+        account_activation_token = AccountActivationTokenGenerator()
+        if not account_activation_token.check_uidb64_and_token(uidb64=key, token=token):
+            raise serializers.ValidationError("The activation url is not valid")
+        return data
+
+class PasswordResetRequestSerializer(serializers.Serializer):
+    """
+        Serializer for requesting a password reset
+
+        Extends Serializer
+    """
+    email = serializers.EmailField(write_only=True, label="Email address")
+
+    def validate_email(self, value):
+        """
+            custom email validation
+        """
+        email_re = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+        if email_re.match(value) is None :
+            raise serializers.ValidationError("This is not a valid email address")
+        profile_qs = Profile.objects.all_active().filter(email=value)
+        if not profile_qs.exists():
+            raise serializers.ValidationError("There is no active user with this email")
         return value
 
-    def validate_token(self, value):
+
+class PasswordResetVerifySerializer(serializers.Serializer):
+    """
+        Serializer for the verification of the token before requesting a new password.
+
+        Extends Serializer
+    """
+    key = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=32, write_only=True)
+    token = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=128, write_only=True)
+
+    def validate(self, data):
+        """
+            Checks that the token is valid
+        """
+        key   = data.get("key", None)
+        token = data.get("token", None)
+        # the check below is note necessary thanks to the definition above of key and token
+        # fields (allow_null=False, allow_blank=False, required=True)
+        if key is None or token is None:
+            raise serializers.ValidationError("You should give a key and a token")
+        # Checking the validity of the token
+        password_reset_token = CustomPasswordResetTokenGenerator()
+        if not password_reset_token.check_uidb64_and_token(uidb64=key, token=token):
+            raise serializers.ValidationError("The reset password url is not valid")
+        return data
+
+class PasswordResetSerializer(serializers.Serializer):
+    """
+        Serializer for redefining the password
+
+        Extends Serializer
+    """
+    key = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=32, write_only=True)
+    token = serializers.CharField(allow_null=False, allow_blank=False, required=True, max_length=128, write_only=True)
+    password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+
+    def validate_password(self, value):
+        """
+            custom password validation
+        """
+        #TODO : implement a validation for robust password
         return value
 
     def validate(self, data):
-        #TODO : Validate the token here
+        """
+            Checks that the token is valid
+        """
+        key = data.get("key", None)
+        token = data.get("token", None)
+        # the check below is note necessary thanks to the definition above of key and token
+        # fields (allow_null=False, allow_blank=False, required=True)
+        if key is None or token is None:
+            raise serializers.ValidationError("You should give a key and a token")
+        # Checking the validity of the token
+        password_reset_token = CustomPasswordResetTokenGenerator()
+        if not password_reset_token.check_uidb64_and_token(uidb64=key, token=token):
+            raise serializers.ValidationError("The reset password url is not valid")
         return data

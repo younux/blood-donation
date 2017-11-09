@@ -8,9 +8,9 @@ class Donation(models.Model):
         Donation model
     """
     # Donation Status
-    URG = "URG"
-    CLD = "CLD"
-    EXP = "EXP"
+    URG = "Urgent"
+    CLD = "Closed"
+    EXP = "Expired"
     DONATION_STATUS = (
         (URG, 'Urgent'),
         (CLD, 'Closed'),

@@ -14,8 +14,10 @@ class ProfileAdmin(UserAdmin):
     """
     fieldsets = UserAdmin.fieldsets + (
                                         ('Blood donation platform specific fields', {
-                                            'fields': ('phone_number', 'address', 'birth_date',
-                                                        'blood_type', 'email_notification', 'sms_notification',
+                                            'fields': ( 'gender', 'birth_date',
+                                                        'phone_number', 'address',
+                                                        'blood_type', 'email_notification',
+                                                        'sms_notification',
                                                          )
                                         }),
                                     )

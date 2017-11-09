@@ -34,7 +34,7 @@ class DonationCreateAPIView(CreateAPIView):
     """
         Donation Create API View
 
-        Extends CreatdAPIView and overrides perform_create
+        Extends CreatdAPIView and overrides perform_create. This view handles the creation process
     """
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer
@@ -56,7 +56,7 @@ class DonationListAPIView(ListAPIView):
     """
         Donation List API View
 
-        Extends ListAPIView
+        Extends ListAPIView. This view handles donation listing process.
     """
     # queryset = Donation.objects.all()
     serializer_class = DonationSerializer
@@ -115,7 +115,8 @@ class DonationDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     """
         Donation Detail Update Delete API View
 
-        Extends RetrieveUpdateDestroyAPIView
+        Extends RetrieveUpdateDestroyAPIView. This view handles getting details, updating
+        and
     """
     queryset = Donation.objects.all()
     serializer_class = DonationSerializer

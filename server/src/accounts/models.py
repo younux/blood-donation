@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.utils import timezone
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -21,6 +21,26 @@ class Address(models.Model):
 
     def __str__(self):
         return self.street + " - " + self.city
+
+
+class ProfileManager(UserManager):
+    """
+        ProfileManager
+
+        Extends UserManager
+    """
+    def create_profile(self, *args, **kwargs):
+        """
+            Creates a new inactive Profile
+        """
+        return super(ProfileManager, self).create_user(is_active=False, *args, **kwargs)
+
+    def all_active(self, *args, **kwargs):
+        """
+            Returns a query set with all active users
+        """
+        return super(ProfileManager, self).all(*args, **kwargs).filter(is_active=True)
+
 
 class Profile(AbstractUser):
     """
@@ -48,7 +68,18 @@ class Profile(AbstractUser):
         (AB_POS, 'AB+'),
     )
 
+    # Gender Choices
+    MALE = 'M'
+    FEMALE = 'F'
+    OTHER = 'O'
+    GENDER_CHOICES = (
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (OTHER, 'Other'),
+    )
+
     # The additional attributes we wish to include.
+    gender              = models.CharField(verbose_name="Gender", max_length=1, choices=GENDER_CHOICES, default=OTHER)
     phone_number        = models.CharField(verbose_name="Phone number", max_length=20)
     address             = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)
     birth_date          = models.DateField(verbose_name="Birth date", null=True)
@@ -60,6 +91,12 @@ class Profile(AbstractUser):
         verbose_name        = "Profile"
         verbose_name_plural = "Profiles"
 
+    # Custom Managers
+    # The default objects manager is UserManager as Profile extends AbstractUser
+    # I changed this default objects manager to ProfileManager that extends it and add
+    # specific app behaviours (filter deleted and inactive Profiles)
+    objects = ProfileManager()
+
     # Override the __unicode__() method to return out something meaningful!
     #  Remember if you use Python 2.7.x, define __unicode__ too!
     def __str__(self):
@@ -67,21 +104,53 @@ class Profile(AbstractUser):
 
     def update_last_login(self):
         """
-        updates the last_login date for the profile logging in.
+            updates the last_login date for the profile logging in.
         """
         self.last_login = timezone.now()
-        self.save(update_fields=['last_login'])
+        self.save()
+
+    def activate_profile(self):
+        """
+            Activate Profile
+
+            Sets is_active to True and save the Profile
+        """
+        self.is_active = True
+        self.save()
+
+# Signal receivers :
 
 @receiver(models.signals.post_delete, sender=Profile)
-def auto_delete_address_with_Profile(sender, instance, *args, **kwargs):
+def auto_delete_address_with_profile(sender, instance, *args, **kwargs):
     """
         After deleting a profile we should delete its address
+
+        # If this receiver call gets dupliceted, use dispatch_uid arg
+        @receiver(models.signals.post_delete, sender=Profile, dispatch_uid="put an identifier")
+        see https://docs.djangoproject.com/en/1.11/topics/signals/
     """
+    print("auto_delete_address_with_profile")
     try :
         if instance.address :
             instance.address.delete()
     except :
         pass
+
+# @receiver(models.signals.post_save, sender=Profile)
+# def auto_send_email_to_created_profile(sender, instance, created, *args, **kwargs):
+#     """
+#         Sends a verification email to the new registered profile
+#
+#         # If this receiver call gets dupliceted, use dispatch_uid arg
+#         @receiver(models.signals.post_save, sender=Profile, dispatch_uid="put an identifier")
+#         see https://docs.djangoproject.com/en/1.11/topics/signals/
+#     """
+#     if created:
+#         print("auto_send_email_to_created_profile")
+#         try :
+#             pass
+#         except :
+#             pass
 
 
 

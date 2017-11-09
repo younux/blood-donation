@@ -1,5 +1,5 @@
 from django.utils.deprecation import MiddlewareMixin
-from accounts.api.tokens_jwt import get_jwt_value, authenticate, refresh_token, JWT_AUTH_HEADER_PREFIX
+from accounts.api.tokens import JWTTokenGenerator
 
 
 class JWTTokenMiddleware(MiddlewareMixin):
@@ -25,7 +25,7 @@ class JWTTokenMiddleware(MiddlewareMixin):
             If token is not valid, request.user remains equals to AnonymousUser.
         """
         try:
-            user, jwt_value = authenticate(request)
+            user, jwt_value = JWTTokenGenerator.authenticate(request)
         except:
             user = None
             jwt_value = None
@@ -40,17 +40,17 @@ class JWTTokenMiddleware(MiddlewareMixin):
             contains a valid jwt token.
         """
         try:
-            token = get_jwt_value(request)
+            token = JWTTokenGenerator.get_jwt_value(request)
         except:
             token = None
         if token is not None :
             try:
-                user, new_token =  refresh_token(token)
+                user, new_token =  JWTTokenGenerator.refresh_token(token)
             except:
                 user = None
                 new_token = None
             if new_token is not None :
-                response['Authorization'] = JWT_AUTH_HEADER_PREFIX + " " + new_token
+                response['Authorization'] = JWTTokenGenerator.JWT_AUTH_HEADER_PREFIX + " " + new_token
 
         return response
 
