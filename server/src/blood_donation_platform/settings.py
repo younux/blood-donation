@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+from . import credentials
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -151,7 +153,7 @@ SITE_ID = 1
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'angular.blood.donation@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = credentials.EMAIL_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -217,3 +219,7 @@ SWAGGER_SETTINGS = {
 
 }
 
+# Twilio API SMS
+TWILIO_ACCOUNT_SID = credentials.TWILIO_ACCOUNT_SID
+TWILIO_AUTH_TOKEN = credentials.TWILIO_AUTH_TOKEN
+TWILIO_PHONE_NUMBER = credentials.TWILIO_PHONE_NUMBER

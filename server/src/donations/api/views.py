@@ -26,6 +26,7 @@ from ..models import Donation
 from accounts.models import Profile
 
 from .emails import notify_by_email
+from .sms import notify_by_sms
 
 
 # Create your views here.
@@ -50,6 +51,8 @@ class DonationCreateAPIView(CreateAPIView):
         donation_obj = serializer.save(applicant = applicant)
         # sending notifications emails.
         notify_by_email(donation_obj)
+        # sending notifications sms.
+        # notify_by_sms(donation_obj)
 
 
 class DonationListAPIView(ListAPIView):

@@ -10,3 +10,4 @@ tcl/
 .Python
 .DS_Store
 *.pyc
+/src/blood_donation_platform/credentials.py
