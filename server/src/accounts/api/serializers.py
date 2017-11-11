@@ -1,6 +1,7 @@
 import re
 from rest_framework import serializers
 from django.db.models import Q
+from django.core.cache import cache
 
 from ..models import Address, Profile
 from .tokens import AccountActivationTokenGenerator, CustomPasswordResetTokenGenerator
@@ -374,4 +375,55 @@ class PasswordResetSerializer(serializers.Serializer):
         password_reset_token = CustomPasswordResetTokenGenerator()
         if not password_reset_token.check_uidb64_and_token(uidb64=key, token=token):
             raise serializers.ValidationError("The reset password url is not valid")
+        return data
+
+class PhoneCodeRequestSerializer(serializers.Serializer):
+    """
+        Serializer for requesting a code to verify phone number
+
+        Extends Serializer
+    """
+    phone_number = serializers.CharField(max_length=20, write_only=True, label= "Phone number")
+
+    def validate_phone_number(self, value):
+        """
+            custom phone number validation
+        """
+        #TODO : implement a validation for phone numnber ? using webservice like twilio to validate phone number ?
+        return value
+
+class PhoneVerifySerializer(serializers.Serializer):
+    """
+        Serializer for verifying the sent code to validate phone number
+
+        Extends Serializer
+    """
+    phone_number = serializers.CharField(max_length=20, write_only=True, label= "Phone number")
+    code = serializers.CharField(max_length=6, write_only=True)
+
+    def validate_phone_number(self, value):
+        """
+            custom phone number validation
+        """
+        #TODO : implement a validation for phone numnber ? using webservice like twilio to validate phone number ?
+        return value
+
+    def validate_code(self, value):
+        """
+            check the code sent to verify phone number
+        """
+        if len(value) != 6 :
+            raise serializers.ValidationError("The code sould have 6 digits")
+        return value
+
+    def validate(self, data):
+        phone_number = data.get("phone_number", None)
+        code = data.get("code", None)
+        cached_code = cache.get(phone_number)
+        # cast code and cached_code to string (or to int) to be able to compare it. (because one
+        #  is integer and the other is string ==> comparison will always give false)
+        if str(code) != str(cached_code):
+            raise serializers.ValidationError("Invalid verification code")
+        # We do not need the code anymore, delete it from the cache
+        cache.delete(phone_number)
         return data

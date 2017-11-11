@@ -160,6 +160,17 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'From_Younes@gmail.com'
 
 
+# Cache Settings
+# see https://docs.djangoproject.com/en/1.11/topics/cache/
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+        'TIMEOUT': 60*30,
+    }
+}
+
+
 #####################################################################################################################
 #################################  THIRD PARTY PACKAGES RELATED SETTINGS  ###########################################
 #####################################################################################################################

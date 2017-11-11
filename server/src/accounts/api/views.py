@@ -1,3 +1,4 @@
+import random
 from rest_framework.generics import (
         CreateAPIView,
         GenericAPIView,
@@ -18,6 +19,7 @@ from django.db.models import Q
 from django.contrib.sites.models import Site
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
+from django.core.cache import cache
 
 from ..models import Profile
 from .tokens import (JWTTokenGenerator,
@@ -31,8 +33,11 @@ from .serializers import (
     PasswordResetRequestSerializer,
     PasswordResetVerifySerializer,
     PasswordResetSerializer,
+    PhoneCodeRequestSerializer,
+    PhoneVerifySerializer,
     )
 from .emails import send_activation_email, send_password_reset_email
+from .sms import send_phone_verification_sms
 
 class ProfileCreateAPIView(GenericAPIView):
     """
@@ -183,7 +188,7 @@ class PasswordResetVerifyAPIView(GenericAPIView):
         """
         data = request.data
         serializer = self.get_serializer(data=data)
-        # Chekcs the validity of the serializer.
+        # Checks the validity of the serializer that checks the token
         serializer.is_valid(raise_exception=True)
         # By default Response status is 200, so we can omit status=HTTP_200_OK
         return Response(data=serializer.data)
@@ -207,7 +212,7 @@ class PasswordResetAPIView(GenericAPIView):
         """
         data = request.data
         serializer = self.get_serializer(data=data)
-        # Chekcs the validity of the serializer.
+        # Checks the validity of the serializer that checks the token
         serializer.is_valid(raise_exception=True)
         # Redefine the profile password
         uidb64 = serializer.validated_data.get('key')
@@ -216,5 +221,59 @@ class PasswordResetAPIView(GenericAPIView):
         profile_obj = Profile.objects.get(pk=uid)
         profile_obj.set_password(password)
         profile_obj.save()
+        # By default Response status is 200, so we can omit status=HTTP_200_OK
+        return Response(data=serializer.data)
+
+class PhoneCodeRequestAPIView(GenericAPIView):
+    """
+        API VIEW for requesting a phone number verification code .
+
+        Extends GenericAPIView. This view handles reception of phone number
+            and send a verification code by sms.
+    """
+
+    permission_classes = [AllowAny]
+    serializer_class = PhoneCodeRequestSerializer
+
+    def post(self, request, *args, **kwargs):
+        """
+            Post Method
+
+            Handles receiving the phone number, creating a new code and sending it by sms
+        """
+        data = request.data
+        serializer = self.get_serializer(data=data)
+        # Chekcs the validity of the serializer.
+        serializer.is_valid(raise_exception=True)
+        # create a random code of 6 digits
+        code = random.sample(range(10**5, 10**6), 1)[0]
+        # put the phone number and the code in the cache
+        phone_number = serializer.validated_data.get('phone_number')
+        cache.set(phone_number, code)
+        # send verification sms
+        send_phone_verification_sms(phone_number, code)
+        return Response(data=serializer.data)
+
+class PhoneVerifyAPIView(GenericAPIView):
+    """
+        Phone verification API VIEW.
+
+        Extends GenericAPIView.
+        This view handles the verification of the code that was sent by sms
+    """
+
+    permission_classes = [AllowAny]
+    serializer_class = PhoneVerifySerializer
+
+    def post(self, request, *args, **kwargs):
+        """
+            Post Method
+
+            Handles the verification of the code that was sent by sms (by comparing it to the cached code)
+        """
+        data = request.data
+        serializer = self.get_serializer(data=data)
+        # Checks the validity of the serializer that checks the code
+        serializer.is_valid(raise_exception=True)
         # By default Response status is 200, so we can omit status=HTTP_200_OK
         return Response(data=serializer.data)
