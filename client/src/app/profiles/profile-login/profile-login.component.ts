@@ -13,8 +13,8 @@ export class ProfileLoginComponent implements OnInit {
 
   myForm: FormGroup;
   returnUrl: string;
-
-
+  maskArray = ['(', '+', /\d/, /\d/, ')', '-', /\d/, '-', /\d/, /\d/,
+                '-', /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
 
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -57,6 +57,10 @@ export class ProfileLoginComponent implements OnInit {
           }
       );
     }
+  }
+
+  printUnmaskedValue(unamskedValue: string) {
+    console.log("Unmasked value  : ",unamskedValue);
   }
 
 }

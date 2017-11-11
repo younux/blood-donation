@@ -12,6 +12,7 @@ import { TypeaheadDirective } from './typeahead-container/typeahead.directive';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { TeamMemberComponent } from './team-member/team-member.component';
 import { SectionHeadingComponent } from './section-heading/section-heading.component';
+import { InputMaskDirective } from './input-mask/input-mask.directive';
 
 
 
@@ -29,7 +30,8 @@ import { SectionHeadingComponent } from './section-heading/section-heading.compo
                   TypeaheadDirective,
                   PageHeaderComponent,
                   TeamMemberComponent,
-                  SectionHeadingComponent],
+                  SectionHeadingComponent,
+                  InputMaskDirective],
   entryComponents: [TypeaheadContainerComponent],
   exports: [FieldErrorDisplayComponent,
             AlertDisplayComponent,
@@ -38,7 +40,8 @@ import { SectionHeadingComponent } from './section-heading/section-heading.compo
             TypeaheadDirective,
             PageHeaderComponent,
             TeamMemberComponent,
-            SectionHeadingComponent],
+            SectionHeadingComponent,
+            InputMaskDirective],
 
 })
 export class ComponentsModule { }
