@@ -16,8 +16,14 @@ export class ProfileRegisterComponent implements OnInit {
   myForm2: FormGroup;
   myForm3: FormGroup;
   myForm4: FormGroup;
+  myForm5: FormGroup;
   activeStep: number = 1;
   returnUrl: string;
+  phoneMask = ['(', '+', '3', '3', ')', '-', /\d/, '-', /\d/, /\d/,
+    '-', /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
+  showSpinner: boolean = false;
+  isVerifSmsSent: boolean = false;
+  isPhoneNumVerified: boolean = false;
 
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -45,15 +51,20 @@ export class ProfileRegisterComponent implements OnInit {
     );
 
     this.myForm2 = this.fb.group({
-        firstName: [ null, Validators.required],
-        lastName: [ null, Validators.required],
-        birthDate: [ null, Validators.required],
-        phoneNumber: [ null, [Validators.required,
-          CustomValidators.phoneNumber]],
-      }
+        phoneNumber: [ null, [Validators.required]],
+        code: [ null, Validators.required],
+        }
     );
 
     this.myForm3 = this.fb.group({
+        firstName: [ null, Validators.required],
+        lastName: [ null, Validators.required],
+        gender: [ null, Validators.required],
+        birthDate: [ null, Validators.required],
+      }
+    );
+
+    this.myForm4 = this.fb.group({
       address: this.fb.group({
           street: [ null, Validators.required],
           city: [ null, Validators.required],
@@ -61,7 +72,7 @@ export class ProfileRegisterComponent implements OnInit {
           zipCode: [ null, [Validators.required, CustomValidators.zipCode]],
       }),
     });
-    this.myForm4 = this.fb.group({
+    this.myForm5 = this.fb.group({
         bloodType: [ null, Validators.required],
         emailNotification: [ null, Validators.required],
         smsNotification: [ null, Validators.required],
@@ -70,51 +81,100 @@ export class ProfileRegisterComponent implements OnInit {
   }
 
   nextStep($event){
-    if(this.activeStep < 4){
+    if(this.activeStep < 5){
       this.activeStep = this.activeStep + 1;
     }
   }
 
   previousStep($event){
     if(this.activeStep > 1){
-      this.activeStep = this.activeStep -1;
+      this.activeStep = this.activeStep - 1;
     }
   }
 
-  onSubmitForm(){
-    if (this.myForm1.valid && this.myForm2.valid && this.myForm3.valid && this.myForm4.valid) {
-      const sentData = Object.assign(this.myForm1.value, this.myForm2.value, this.myForm3.value, this.myForm4.value);
-      this.authenticationService.register(sentData)
-        .subscribe(
+  // send phone verification sms
+  sendVerificationSMS(event: any) {
+    // because phoneNumber may be disabled we should use getRawValue
+    // when a control is disabled, we no longer can get the value using .value
+    const phoneNumber = this.myForm2.getRawValue().phoneNumber;
+    if (phoneNumber) {
+      this.showSpinner = true;
+      this.authenticationService.phoneCodeRequest(phoneNumber).subscribe(
+        data => {
+          this.myForm2.controls['phoneNumber'].disable();
+          this.showSpinner = false;
+          this.isVerifSmsSent = true;
+          this.alertService.success(`Verification code sent to ${phoneNumber}.
+                                   Enter the code in the input bellow`);
+        },
+        err => {
+          this.showSpinner = false;
+          const alerts = this.alertService.jsonToHtmlList(err);
+          this.alertService.error(alerts);
+        }
+      );
+    }
+  }
+
+  // verify the code that the user enters so as to verify his phone number
+  verifyCode(event: any) {
+    // because phoneNumber is disabled we should user getRawValue
+    // when disabled, we no longer can get the value using .value
+    const phoneNumber = this.myForm2.getRawValue().phoneNumber;
+    const code = this.myForm2.value.code;
+    if (code) {
+      this.showSpinner = true;
+      this.authenticationService.phoneVerify(phoneNumber, code).subscribe(
+        data => {
+          this.showSpinner = false;
+          this.isVerifSmsSent = false;
+          this.isPhoneNumVerified = true;
+          this.alertService.success(`You have succefully verified your phone number :
+                                   ${phoneNumber}`);
+        },
+        err => {
+          this.showSpinner = false;
+          const alerts = this.alertService.jsonToHtmlList(err);
+          this.alertService.error(alerts);
+        }
+      );
+    }
+
+  }
+
+  onSubmitForm() {
+    if (this.myForm1.valid && this.myForm3.valid && this.myForm2.valid
+                                                  && this.myForm4.valid && this.myForm5.valid ) {
+      this.showSpinner = true;
+      this.authenticationService.register(this.myForm1.value.username,
+                              this.myForm1.value.email,
+                              this.myForm1.value.password,
+                              this.myForm3.value.firstName,
+                              this.myForm3.value.lastName,
+                              this.myForm3.value.gender,
+                              this.myForm2.getRawValue().phoneNumber, // getRawValue because the control is disabled
+                              this.myForm4.value.address.street,
+                              this.myForm4.value.address.city,
+                              this.myForm4.value.address.country,
+                              this.myForm4.value.address.zipCode,
+                              this.myForm3.value.birthDate,
+                              this.myForm5.value.bloodType,
+                              this.myForm5.value.emailNotification,
+                              this.myForm5.value.smsNotification).subscribe(
           data => {
+            this.showSpinner = false;
             this.router.navigate([this.returnUrl]);
-            this.alertService.success('You have successfully registered');
+            this.alertService.success(`You have successfully registered,
+              Please login to your email (${this.myForm1.value.email})
+              and click on the activation URL to start using your account`);
           },
           err => {
-            const alerts = this.alertService.getAllJsonValues(err);
+            this.showSpinner = false;
+            const alerts = this.alertService.jsonToHtmlList(err);
             this.alertService.error(alerts);
           }
         );
     }
   }
-
-/*
-  onSubmit(passedForm) {
-    if (passedForm.valid) {
-      const sentData = passedForm.value;
-      this.authenticationService.register(sentData)
-        .subscribe(
-          data => {
-            this.router.navigate([this.returnUrl]);
-            this.alertService.success('You have successfully registered');
-          },
-          err => {
-            const alerts = this.alertService.getAllJsonValues(err);
-            this.alertService.error(alerts);
-          }
-        );
-    }
-  }
-*/
 
 }

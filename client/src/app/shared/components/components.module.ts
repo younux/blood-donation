@@ -13,6 +13,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { TeamMemberComponent } from './team-member/team-member.component';
 import { SectionHeadingComponent } from './section-heading/section-heading.component';
 import { InputMaskDirective } from './input-mask/input-mask.directive';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
@@ -31,7 +32,8 @@ import { InputMaskDirective } from './input-mask/input-mask.directive';
                   PageHeaderComponent,
                   TeamMemberComponent,
                   SectionHeadingComponent,
-                  InputMaskDirective],
+                  InputMaskDirective,
+                  SpinnerComponent],
   entryComponents: [TypeaheadContainerComponent],
   exports: [FieldErrorDisplayComponent,
             AlertDisplayComponent,
@@ -41,7 +43,8 @@ import { InputMaskDirective } from './input-mask/input-mask.directive';
             PageHeaderComponent,
             TeamMemberComponent,
             SectionHeadingComponent,
-            InputMaskDirective],
+            InputMaskDirective,
+            SpinnerComponent],
 
 })
 export class ComponentsModule { }

@@ -39,23 +39,35 @@ export class AlertService {
     return this.subject.asObservable();
   }
 
-  // gets all string values contained in a json object
-  getAllJsonValues(jsonData: object): string {
-    let messageText = '';
+  // converts the json data to a string containing html list
+  jsonToHtmlList(jsonData: object): string {
+    // creating the root list (ul)
+    let messageHtml = '<ul>';
+    // If this is an array, all elements will be put as list elements
     if (jsonData instanceof Array){
       for (let index = 0; index < jsonData.length; index++) {
-        messageText += `${jsonData[index]} <br/>`;
+        messageHtml += `<li> ${jsonData[index]} </li>`;
       }
     } else if (jsonData instanceof Object) {
-        for (let key in jsonData) {
-          messageText += `${key} <br/>`;
-           if (jsonData[key] instanceof Object || jsonData[key] instanceof Array) {
-             messageText += this.getAllJsonValues(jsonData[key]);
+      // If this is an object (json), go deeper by looping over keys
+      for (let key in jsonData) {
+          // adding each key as list element
+          messageHtml += `<li> ${key} </li>`;
+            if (jsonData[key] instanceof Object || jsonData[key] instanceof Array) {
+              // If the value corresponding to the key is an object or an array
+              // we call this function (iterating) on this object/array, which will
+              // be creating a new list (ul)
+              messageHtml += this.jsonToHtmlList(jsonData[key]);
           } else {
-             messageText += `${jsonData[key]} <br/>`;
+              // If the value corresponding to the key is not object/array
+              // we do not need to iterate. The value will be added as single
+              // element list
+             messageHtml += `<ul> <li> ${jsonData[key]}  </li></ul>`;
            }
         }
     }
-    return messageText;
+    // close the root list
+    messageHtml += '</ul>';
+    return messageHtml;
   }
 }

@@ -3,6 +3,11 @@ from django.template.loader import render_to_string
 
 from twilio.rest import Client
 
+
+# TODO : srver is crashong when trying to send sms to incorrect phone number :
+# raise self.exception(method, uri, response, 'Unable to create record') twilio.base.exceptions.
+# TwilioRestException: HTTP 400 error: Unable to create record: The 'To' number +33626682 is
+# not a valid phone number.
 def send_phone_verification_sms(recipent_phone_number, code):
     """
         send sms to recipent_phone_number with body as content

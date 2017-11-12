@@ -1,6 +1,9 @@
 <app-page-header content="Register"></app-page-header>
 
-<section class="form-section">
+<section class="section-main">
+
+  <app-spinner *ngIf="showSpinner" ></app-spinner>
+
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
@@ -15,12 +18,15 @@
                   <i class="fa fa-lock" aria-hidden="true"></i>
                 </li>
                 <li [ngClass]="{ 'active' : activeStep==2 }">
-                  <i class="fa fa-address-card" aria-hidden="true"></i>
+                  <i class="fa fa-phone" aria-hidden="true"></i>
                 </li>
                 <li [ngClass]="{ 'active' : activeStep==3 }">
-                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <i class="fa fa-address-card" aria-hidden="true"></i>
                 </li>
                 <li [ngClass]="{ 'active' : activeStep==4 }">
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                </li>
+                <li [ngClass]="{ 'active' : activeStep==5 }">
                   <i class="fa fa-tint" aria-hidden="true"></i>
                 </li>
               </ul>
@@ -37,7 +43,7 @@
             </div>
 
             <div [hidden]="!(activeStep==1)" class="form-bottom">
-              <form type="submit" name="registerForm1" [formGroup]="myForm1">
+              <form name="registerForm1" [formGroup]="myForm1">
 
                 <div class="form-group">
                   <label class="sr-only" for="username"> Username </label>
@@ -62,12 +68,12 @@
 
 
                 <div class="form-group text-right">
-                  <button  [disabled]="!myForm1.valid" (click)="nextStep($event)" class="btn btn-form-principal"> Suivant </button>
+                  <button type="button" [disabled]="!myForm1.valid" (click)="nextStep($event)" class="btn btn-form-principal"> Suivant </button>
                 </div>
 
                 <div class="form-group">
                   <a [routerLink]="['../login']">
-                    <button class="btn btn-form-secondary ">
+                    <button type="button" class="btn btn-form-secondary ">
                       Login
                     </button>
                   </a>
@@ -78,28 +84,7 @@
             </div>
 
             <div [hidden]="!(activeStep==2)" class="form-bottom">
-              <form type="submit" name="registerForm2" [formGroup]="myForm2">
-
-                <div class="form-group">
-                  <label class="sr-only" for="firstName"> First Name </label>
-                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name..."
-                         formControlName="firstName"/>
-                  <app-field-error-display [myControl]="myForm2.controls['firstName']"></app-field-error-display>
-                </div>
-
-                <div class="form-group">
-                  <label class="sr-only" for="lastName"> Last Name </label>
-                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name..."
-                         formControlName="lastName"/>
-                  <app-field-error-display [myControl]="myForm2.controls['lastName']"></app-field-error-display>
-                </div>
-
-                <div class="form-group">
-                  <label class="sr-only" for="birthDate"> Birth Date </label>
-                  <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date"
-                         formControlName="birthDate"/>
-                  <app-field-error-display [myControl]="myForm2.controls['birthDate']"></app-field-error-display>
-                </div>
+              <form name="registerForm2" [formGroup]="myForm2">
 
                 <div class="form-group">
                   <label class="sr-only" for="phoneNumber"> Phone Number</label>
@@ -108,10 +93,32 @@
                   <app-field-error-display [myControl]="myForm2.controls['phoneNumber']"></app-field-error-display>
                 </div>
 
+                <div [hidden]="isPhoneNumVerified" class="form-group text-center">
+                  <button type="button" (click)="sendVerificationSMS($event)" class="btn btn-form-principal">
+                    Send Verification SMS
+                  </button>
+                </div>
+
+                <div [hidden]="!isVerifSmsSent || isPhoneNumVerified">
+
+                  <div class="form-group">
+                    <label class="sr-only" for="code"> Code </label>
+                    <input type="text" class="form-control" id="code" name="code"
+                           placeholder="Code..." formControlName="code"/>
+                    <app-field-error-display [myControl]="myForm2.controls['code']"></app-field-error-display>
+                  </div>
+
+                  <div class="form-group text-center">
+                    <button type="button" (click)="verifyCode($event)" class="btn btn-form-principal">
+                      Verify Code
+                    </button>
+                  </div>
+
+                </div>
 
                 <div class="form-group">
-                  <button (click)="previousStep($event)" class="btn btn-form-principal"> Précédent </button>
-                  <button [disabled]="!myForm2.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
+                  <button type="button" (click)="previousStep($event)" class="btn btn-form-principal"> Précédent </button>
+                  <button type="button" [disabled]="!isPhoneNumVerified" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
                 </div>
 
               </form>
@@ -119,7 +126,47 @@
             </div>
 
             <div [hidden]="!(activeStep==3)" class="form-bottom">
-              <form type="submit" name="registerForm3" [formGroup]="myForm3">
+              <form name="registerForm3" [formGroup]="myForm3">
+
+                <div class="form-group">
+                  <label class="sr-only" for="firstName"> First Name </label>
+                  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name..."
+                         formControlName="firstName"/>
+                  <app-field-error-display [myControl]="myForm3.controls['firstName']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="lastName"> Last Name </label>
+                  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name..."
+                         formControlName="lastName"/>
+                  <app-field-error-display [myControl]="myForm3.controls['lastName']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="phoneNumber"> Gender </label>
+                  <input type="tel" class="form-control" id="gender" name="gender"
+                         placeholder="Your Gender..." formControlName="gender"/>
+                  <app-field-error-display [myControl]="myForm3.controls['gender']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="birthDate"> Birth Date </label>
+                  <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date"
+                         formControlName="birthDate"/>
+                  <app-field-error-display [myControl]="myForm3.controls['birthDate']"></app-field-error-display>
+                </div>
+
+                <div class="form-group">
+                  <button type="button" (click)="previousStep($event)" class="btn btn-form-principal"> Précédent </button>
+                  <button type="button" [disabled]="!myForm3.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
+                </div>
+
+              </form>
+
+            </div>
+
+            <div [hidden]="!(activeStep==4)" class="form-bottom">
+              <form name="registerForm4" [formGroup]="myForm4">
 
                 <div formGroupName="address">
 
@@ -128,7 +175,7 @@
                     <input type="text" class="form-control" id="street" name="street" placeholder="Street..."
                            formControlName="street"/>
                     <app-field-error-display
-                      [myControl]="myForm3.controls['address'].controls['street']"></app-field-error-display>
+                      [myControl]="myForm4.controls['address'].controls['street']"></app-field-error-display>
                   </div>
 
                   <div class="form-group">
@@ -136,7 +183,7 @@
                     <input type="text" class="form-control" id="city" name="city" placeholder="City..."
                            formControlName="city"/>
                     <app-field-error-display
-                      [myControl]="myForm3.controls['address'].controls['city']"></app-field-error-display>
+                      [myControl]="myForm4.controls['address'].controls['city']"></app-field-error-display>
                   </div>
 
                   <div class="form-group">
@@ -144,7 +191,7 @@
                     <input type="text" class="form-control" id="country" name="country" placeholder="Country..."
                            formControlName="country"/>
                     <app-field-error-display
-                      [myControl]="myForm3.controls['address'].controls['country']"></app-field-error-display>
+                      [myControl]="myForm4.controls['address'].controls['country']"></app-field-error-display>
                   </div>
 
                   <div class="form-group">
@@ -152,47 +199,47 @@
                     <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
                            formControlName="zipCode"/>
                     <app-field-error-display
-                      [myControl]="myForm3.controls['address'].controls['zipCode']"></app-field-error-display>
+                      [myControl]="myForm4.controls['address'].controls['zipCode']"></app-field-error-display>
                   </div>
 
                 </div>
 
                 <div class="form-group">
-                  <button (click)="previousStep($event)"   class="btn btn-form-principal">Précédent</button>
-                  <button [disabled]="!myForm3.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
+                  <button type="button" (click)="previousStep($event)"   class="btn btn-form-principal">Précédent</button>
+                  <button type="button" [disabled]="!myForm4.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
                 </div>
 
               </form>
 
             </div>
 
-            <div [hidden]="!(activeStep==4)" class="form-bottom">
-              <form type="submit" name="registerForm4" [formGroup]="myForm4" (ngSubmit)="onSubmitForm()">
+            <div [hidden]="!(activeStep==5)" class="form-bottom">
+              <form name="registerForm4" [formGroup]="myForm5" (ngSubmit)="onSubmitForm()">
 
                 <div class="form-group">
                   <label class="sr-only" for="bloodType"> Blood Type </label>
                   <input type="text" class="form-control" id="bloodType" name="bloodType" placeholder="Blood Type"
                          formControlName="bloodType"/>
-                  <app-field-error-display [myControl]="myForm4.controls['bloodType']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm5.controls['bloodType']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="emailNotification"> Email Notification </label>
                   <input type="checkbox" class="form-control" id="emailNotification" name="emailNotification"
                          formControlName="emailNotification"/>
-                  <app-field-error-display [myControl]="myForm4.controls['emailNotification']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm5.controls['emailNotification']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="smsNotification"> SMS Notification </label>
                   <input type="checkbox" class="form-control" id="smsNotification" name="smsNotification"
                          formControlName="smsNotification"/>
-                  <app-field-error-display [myControl]="myForm4.controls['smsNotification']"></app-field-error-display>
+                  <app-field-error-display [myControl]="myForm5.controls['smsNotification']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <button (click)="previousStep($event)" class="btn btn-form-principal">Précédent</button>
-                  <button [disabled]="!myForm4.valid"   type="submit" class="btn btn-form-principal pull-right">Register</button>
+                  <button type="button"  (click)="previousStep($event)" class="btn btn-form-principal">Précédent</button>
+                  <button type="submit"  [disabled]="!myForm5.valid" class="btn btn-form-principal pull-right">Register</button>
                 </div>
 
               </form>
@@ -201,9 +248,12 @@
 
           </div>
         </div>
+
+
       </div>
     </div>
   </div>
+
 </section>
 
 

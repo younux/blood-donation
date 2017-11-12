@@ -13,9 +13,6 @@ export class ProfileLoginComponent implements OnInit {
 
   myForm: FormGroup;
   returnUrl: string;
-  maskArray = ['(', '+', /\d/, /\d/, ')', '-', /\d/, '-', /\d/, /\d/,
-                '-', /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
-  inputMasked: string;
 
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -53,21 +50,12 @@ export class ProfileLoginComponent implements OnInit {
           },
           err => {
 
-            const alerts = this.alertService.getAllJsonValues(err);
+            const alerts = this.alertService.jsonToHtmlList(err);
             this.alertService.error(alerts);
           }
       );
     }
   }
-
-  printUnmaskedValue(unamskedValue: string) {
-    console.log("Unmasked value  : ", unamskedValue);
-  }
-
-  printHostValue(HostValue: string) {
-    console.log("Host value  : ", HostValue);
-  }
-
 
 }
 

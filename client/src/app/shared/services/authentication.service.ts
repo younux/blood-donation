@@ -8,6 +8,7 @@ import {LocalStorageService} from "./local-storage.service";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import {Address} from "../models/address.model";
 
 
 @Injectable()
@@ -78,23 +79,31 @@ export class AuthenticationService {
     this.authenticationStatusEmitter.loggedOut();
   }
 
-  register(profileInfo: any) {
-    const queryUrl = `${this.apiUrl}accounts/register/`;
-    return this.http.post(queryUrl, JSON.stringify(profileInfo))
-      .map(response => {
-        // Save the profiles in profiles attribute.
-        this.profile = response.json();
-        // Save the profiles in local storage
-        this.localStorageService.writeProfileInLocalStorage(this.profile);
-        // Broadcast the login event
-        this.authenticationStatusEmitter.loggedIn();
-        return this.profile;
-      })
-      .catch(this.handle_error);
-  }
+  register(username: string,
+           email: string,
+           password: string,
+           firstName: string,
+           lastName: string,
+           gender: string,
+           phoneNumber: string,
+           addressStreet: string,
+           addressCity: string,
+           addressCountry: string,
+           addressZipCode: string,
+           birthDate: string,
+           bloodType: string,
+           emailNotification: boolean,
+           smsNotification: boolean) {
 
-  private handle_error(error: any): any {
-    return Observable.throw(error.json());
+    const address = new Address(addressStreet, addressCity, addressCountry, addressZipCode);
+    let sentData = new Profile(username, email, firstName, lastName, gender, phoneNumber,
+                                address, birthDate, bloodType, emailNotification,
+                                smsNotification);
+    sentData['password'] = password;
+    const queryUrl = `${this.apiUrl}accounts/register/`;
+    return this.http.post(queryUrl, JSON.stringify(sentData))
+      .map(response => response.json())
+      .catch(this.handle_error);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -103,6 +112,70 @@ export class AuthenticationService {
 
   isAuthenticatedValue(): boolean {
     return this.authenticationStatusEmitter.isAuthenticatedValue();
+  }
+
+  activate(key: string, token: string) {
+    const queryUrl = `${this.apiUrl}accounts/activate/`;
+    const sentData = {'key': key, 'token': token};
+    return this.http.post(queryUrl, JSON.stringify(sentData))
+      .map(response => {
+        return response.json();
+      })
+      .catch(this.handle_error);
+  }
+
+  passwordResetRequest(email: string) {
+    const queryUrl = `${this.apiUrl}accounts/reset-password/request/`;
+    const sentData = {'email': email};
+    return this.http.post(queryUrl, JSON.stringify(sentData))
+      .map(response => {
+        return response.json();
+      })
+      .catch(this.handle_error);
+  }
+
+  passwordResetVerify(key: string, token: string) {
+    const queryUrl = `${this.apiUrl}accounts/reset-password/verify/`;
+    const sentData = {'key': key, 'token': token};
+    return this.http.post(queryUrl, JSON.stringify(sentData))
+      .map(response => {
+        return response.json();
+      })
+      .catch(this.handle_error);
+  }
+
+  passwordReset(key: string, token: string, password: string) {
+    const queryUrl = `${this.apiUrl}accounts/reset-password/reset/`;
+    const sentData = {'key': key, 'token': token, 'password': password};
+    return this.http.post(queryUrl, JSON.stringify(sentData))
+      .map(response => {
+        return response.json();
+      })
+      .catch(this.handle_error);
+  }
+
+  phoneCodeRequest(phoneNumber: string) {
+    const queryUrl = `${this.apiUrl}accounts/phone/request-code/`;
+    const sentData = {'phoneNumber': phoneNumber};
+    return this.http.post(queryUrl, JSON.stringify(sentData))
+      .map(response => {
+        return response.json();
+      })
+      .catch(this.handle_error);
+  }
+
+  phoneVerify(phoneNumber: string, code: string) {
+    const queryUrl = `${this.apiUrl}accounts/phone/verify/`;
+    const sentData = {'phoneNumber': phoneNumber, 'code': code};
+    return this.http.post(queryUrl, JSON.stringify(sentData))
+      .map(response => {
+        return response.json();
+      })
+      .catch(this.handle_error);
+  }
+
+  private handle_error(error: any): any {
+    return Observable.throw(error.json());
   }
 
 }

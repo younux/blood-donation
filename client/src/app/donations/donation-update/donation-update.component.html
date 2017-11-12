@@ -1,7 +1,7 @@
 <app-page-header content="Mise à jour"></app-page-header>
 
 
-<section *ngIf="currentDonation" class="form-section">
+<section *ngIf="currentDonation" class="section-main">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-bottom">
-              <form type="submit" name="updateDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+              <form name="updateDonationForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
 
                 <div class="row">

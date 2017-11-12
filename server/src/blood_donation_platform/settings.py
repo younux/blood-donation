@@ -234,3 +234,7 @@ SWAGGER_SETTINGS = {
 TWILIO_ACCOUNT_SID = credentials.TWILIO_ACCOUNT_SID
 TWILIO_AUTH_TOKEN = credentials.TWILIO_AUTH_TOKEN
 TWILIO_PHONE_NUMBER = credentials.TWILIO_PHONE_NUMBER
+
+#Client relative routes
+ACCOUNT_ACTIVATION_ROUTE = "profiles/activate"
+PASSWORD_RESET_ROUTE = "profiles/reset-password/reset"

@@ -53,7 +53,7 @@ export class DonationListMyComponent implements OnInit {
             this.donationsList = response.results;
           },
           err => {
-            const alerts = this.alertService.getAllJsonValues(err);
+            const alerts = this.alertService.jsonToHtmlList(err);
             this.alertService.error(alerts);
           }
         );

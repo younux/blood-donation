@@ -29,7 +29,7 @@ footer p {
 }
 .footer-widget-area {
   padding: 100px 0 80px 0;
-  background: $tertiary-dark;
+  background: $dark;
   margin: 0;
 }
 .footer-widget-area .footer-widget .footer-logo {
@@ -108,11 +108,8 @@ footer p {
 .footer-widget-area li {
   line-height: 32px;
 }
-.footer-widget-area-bg {
-  background: $tertiary-dark;
-}
 .footer-contents {
-  background: $tertiary-dark;
+  background: $dark;
   border-top: 1px solid $tertiary-dark;
   padding: 28px 0 20px 0;
 }

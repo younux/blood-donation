@@ -28,7 +28,7 @@ export class DonationDetailComponent implements OnInit {
       this.donation = data;
       },
       err => {
-        const alerts = this.alertService.getAllJsonValues(err);
+        const alerts = this.alertService.jsonToHtmlList(err);
         this.alertService.error(alerts);
       }
       );

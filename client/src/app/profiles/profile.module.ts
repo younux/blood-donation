@@ -11,6 +11,9 @@ import {
   ProfileComponent,
   ProfileMyComponent
 } from '.';
+import { ProfileActivateComponent } from './profile-activate/profile-activate.component';
+import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 const declarations = [
   ProfileRegisterComponent,
@@ -27,8 +30,8 @@ const declarations = [
     RouterModule,
     ComponentsModule
   ],
-  declarations: [...declarations],
-  exports: [...declarations],
+  declarations: [...declarations, ProfileActivateComponent, PasswordResetRequestComponent, PasswordResetComponent],
+  exports: [...declarations, ProfileActivateComponent, PasswordResetRequestComponent, PasswordResetComponent],
   providers: []
 })
 export class ProfileModule {

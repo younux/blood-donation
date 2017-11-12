@@ -156,9 +156,9 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
         """
             custom phone number validation
         """
-        phone_re = re.compile(r'^(0|\+212|00212)[1-9][0-9]{8}$')
+        phone_re = re.compile(r'^(0|\+33|00212)[1-9][0-9]{8}$')
         if phone_re.match(value) is None:
-            raise serializers.ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +212 X-XX-XX-XX-XX or 00212 X-XX-XX-XX-XX where X is a digit)")
+            raise serializers.ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +33 X-XX-XX-XX-XX or 0033 X-XX-XX-XX-XX where X is a digit)")
         return value
 
     def validate_birth_date(self, value):
@@ -341,7 +341,7 @@ class PasswordResetVerifySerializer(serializers.Serializer):
         # Checking the validity of the token
         password_reset_token = CustomPasswordResetTokenGenerator()
         if not password_reset_token.check_uidb64_and_token(uidb64=key, token=token):
-            raise serializers.ValidationError("The reset password url is not valid")
+            raise serializers.ValidationError("The password reset url is not valid")
         return data
 
 class PasswordResetSerializer(serializers.Serializer):

@@ -59,7 +59,7 @@ export class DonationCreateComponent implements OnInit {
             this.alertService.success('You have successfully created donations');
           },
           err => {
-            const alerts = this.alertService.getAllJsonValues(err);
+            const alerts = this.alertService.jsonToHtmlList(err);
             this.alertService.error(alerts);
           }
         );

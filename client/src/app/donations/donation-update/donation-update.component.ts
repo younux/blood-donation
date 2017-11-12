@@ -34,7 +34,7 @@ export class DonationUpdateComponent implements OnInit {
       this.createForm();
       },
       err => {
-        const alerts = this.alertService.getAllJsonValues(err);
+        const alerts = this.alertService.jsonToHtmlList(err);
         this.alertService.error(alerts);
       }
     );
@@ -70,7 +70,7 @@ export class DonationUpdateComponent implements OnInit {
               this.alertService.success('You have successfully updated donations');
             },
             err => {
-              const alerts = this.alertService.getAllJsonValues(err);
+              const alerts = this.alertService.jsonToHtmlList(err);
               this.alertService.error(alerts);
             }
           );
@@ -85,7 +85,7 @@ export class DonationUpdateComponent implements OnInit {
         this.alertService.success('You have successfully deleted donations');
       },
       err => {
-        const alerts = this.alertService.getAllJsonValues(err);
+        const alerts = this.alertService.jsonToHtmlList(err);
         this.alertService.error(alerts);
       }
     );

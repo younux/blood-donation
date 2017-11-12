@@ -35,12 +35,12 @@
                 </div>
                 <div class="col-md-6 text-right">
                   <a *ngIf="showDetailButton" [routerLink]="['/donations', 'detail', donation.id]" >
-                    <button class="btn btn-custom">
+                    <button type="button" class="btn btn-custom">
                       Detail
                     </button>
                   </a>
                   <a *ngIf="showUpdateButton" [routerLink]="['/donations', 'update', donation.id]">
-                    <button class="btn btn-custom">
+                    <button type="button" class="btn btn-custom">
                       Update
                     </button>
                   </a>

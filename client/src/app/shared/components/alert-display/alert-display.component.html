@@ -3,6 +3,7 @@
          [ngClass]="{ 'alert': message,
                 'alert-success': message.type === 'success',
                  'alert-danger': message.type === 'error' }">
-      {{message.text}}
+      <div [innerHtml]="message.text">
+      </div>
     </div>
 </section>

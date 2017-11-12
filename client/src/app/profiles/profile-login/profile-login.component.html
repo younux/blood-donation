@@ -1,6 +1,6 @@
 <app-page-header content="Login"></app-page-header>
 
-<section class="form-section">
+<section class="section-main">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
@@ -18,7 +18,7 @@
             </div>
 
             <div class="form-bottom">
-              <form type="submit" name="loginForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+              <form name="loginForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
 
                 <div class="form-group">
                   <label class="sr-only" for="username"> Username </label>
@@ -48,7 +48,7 @@
 
                 <div class="form-group text-right">
                   <a [routerLink]="['../register']">
-                    <button class="btn btn-form-secondary">
+                    <button type="button" class="btn btn-form-secondary">
                       Register
                     </button>
                   </a>
@@ -58,13 +58,6 @@
 
             </div>
 
-          </div>
-
-
-          <div class="form-group">
-            <input type="text" appInputMask  [mask]="maskArray"
-                   (onCompleteUnmaskedValue)="printUnmaskedValue($event)"
-                   (onCompleteHostValue)="printHostValue($event)"/>
           </div>
 
           <div class="social-login">

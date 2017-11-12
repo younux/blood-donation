@@ -251,6 +251,13 @@ class PhoneCodeRequestAPIView(GenericAPIView):
         phone_number = serializer.validated_data.get('phone_number')
         cache.set(phone_number, code)
         # send verification sms
+        #TODO : srver is crashong when trying to send sms to incorrect phone number :
+        # raise self.exception(method, uri, response, 'Unable to create record') twilio.base.exceptions.
+        # TwilioRestException: HTTP 400 error: Unable to create record: The 'To' number +33626682 is
+        # not a valid phone number.
+        #TODO : handle server error when phone number is incorrect. Do the same for email sendin
+        #TODO : try to send an error response to the server indicating the problem with phone number or email
+        #TODO : or verify phone number or email are correct before sending
         send_phone_verification_sms(phone_number, code)
         return Response(data=serializer.data)
 
