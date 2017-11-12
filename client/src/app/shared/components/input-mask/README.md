@@ -40,10 +40,16 @@ on blur or not. default is true.
 
 ##Outputs
 
-###onComplete :
-This output emits a string containing the unmasked value.
+###onCompleteHostValue :
+This output emits a string containing the host value when user completes the mask.
 
 It can be used to bind it to a callback to invoke on when user completes the mask.
+
+###onCompleteUnmaskedValue :
+This output emits a string containing the unmasked value when user completes the mask.
+
+It can be used to bind it to a callback to invoke on when user completes the mask.
+
 
 
 
@@ -52,16 +58,22 @@ It can be used to bind it to a callback to invoke on when user completes the mas
 In component controller (componentName.component.ts) :
     
     maskArray = ['(', '+', /\d/, /\d/, ')', '-', /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
-                    
-                    
+                                
     printUnmaskedValue(unamskedValue: string) {
-        console.log("Unmasked value  : ",unamskedValue);
-     }
+      console.log("Unmasked value  : ", unamskedValue);
+    }
+  
+    printHostValue(HostValue: string) {
+      console.log("Host value  : ", HostValue);
+    }
      
 In component template (componentName.component.html) :
  
-    <input type="text" appInputMask  [mask]="maskArray" [placeholderChar]="'_'" (onComplete)="printUnmaskedValue($event)"/>
+    <input type="text" appInputMask  [mask]="maskArray"
+          (onCompleteUnmaskedValue)="printUnmaskedValue($event)"
+          (onCompleteHostValue)="printHostValue($event)"/>
 
-When the user complete typing, for example (+33)-6-26-68-26-77 the console shows
+When the user completes typing, for example (+33)-6-26-68-26-77 the console shows
 
     Unmasked value  :  33636683675
+    Host value  :  (+33)-6-26-68-26-77

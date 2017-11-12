@@ -1,4 +1,7 @@
-import {Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {
+  Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
+  SimpleChanges
+} from '@angular/core';
 
 @Directive({
   selector: '[appInputMask]'
@@ -26,8 +29,11 @@ export class InputMaskDirective implements OnInit {
   }
 
   // Callback to invoke on when user completes the mask pattern.
-  // it emits the unmasked value
-  @Output() onComplete: EventEmitter<string> = new EventEmitter();
+  // emits the host value
+  @Output() onCompleteHostValue: EventEmitter<string> = new EventEmitter();
+  // Callback to invoke on when user completes the mask pattern.
+  // emits the unmasked value
+  @Output() onCompleteUnmaskedValue: EventEmitter<string> = new EventEmitter();
 
   // array conatining the mask for example ['(', '+', '3', '3', ')', /\d/, /\d/, /\d/, '-',
   //                                          /\d/, /\d/, /\d/, /\d/]
@@ -93,7 +99,8 @@ export class InputMaskDirective implements OnInit {
       let pos = this.checkVal(true);
       this.caret(pos);
       if (this.isCompleted()) {
-        this.onComplete.emit(this.getUnmaskedValue());
+        this.onCompleteUnmaskedValue.emit(this.getUnmaskedValue());
+        this.onCompleteHostValue.emit(this.elementRef.nativeElement.value);
       }
     }, 0);
   }
@@ -134,7 +141,7 @@ export class InputMaskDirective implements OnInit {
   }
 
   // when the user presses a key
-  @HostListener('keypress', ['$event']) onKeyPress(e: any): void {
+  @HostListener('keypress', ['$event']) onKeypress(e: any): void {
     let k = e.which || e.keyCode,
       pos = this.caret(),
       p,
@@ -170,7 +177,9 @@ export class InputMaskDirective implements OnInit {
     }
 
     if (completed) {
-      this.onComplete.emit(this.getUnmaskedValue());
+      this.onCompleteUnmaskedValue.emit(this.getUnmaskedValue());
+      this.onCompleteHostValue.emit(this.elementRef.nativeElement.value);
+
     }
   }
 
@@ -180,9 +189,11 @@ export class InputMaskDirective implements OnInit {
       let pos = this.checkVal(true);
       this.caret(pos);
       if (this.isCompleted()) {
-        this.onComplete.emit(this.getUnmaskedValue());
+        this.onCompleteUnmaskedValue.emit(this.getUnmaskedValue());
+        this.onCompleteHostValue.emit(this.elementRef.nativeElement.value);
       }
     }, 0);
+
   }
 
   // initialization of the mask

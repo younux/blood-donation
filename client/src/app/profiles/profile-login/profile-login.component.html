@@ -41,9 +41,6 @@
                   <app-field-error-display [myControl]="myForm.controls['password']"></app-field-error-display>
                 </div>
 
-                <div class="form-group">
-                  <input type="text" appInputMask  [mask]="maskArray" [placeholderChar]="'_'"  (onComplete)="printUnmaskedValue($event)"/>
-                </div>
 
                 <div class="form-group">
                   <button type="submit" class="btn btn-form-principal">Login</button>
@@ -62,6 +59,14 @@
             </div>
 
           </div>
+
+
+          <div class="form-group">
+            <input type="text" appInputMask  [mask]="maskArray"
+                   (onCompleteUnmaskedValue)="printUnmaskedValue($event)"
+                   (onCompleteHostValue)="printHostValue($event)"/>
+          </div>
+
           <div class="social-login">
             <h3>...or login with:</h3>
             <div class="social-login-buttons">

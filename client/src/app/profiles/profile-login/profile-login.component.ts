@@ -15,6 +15,7 @@ export class ProfileLoginComponent implements OnInit {
   returnUrl: string;
   maskArray = ['(', '+', /\d/, /\d/, ')', '-', /\d/, '-', /\d/, /\d/,
                 '-', /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
+  inputMasked: string;
 
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -60,8 +61,13 @@ export class ProfileLoginComponent implements OnInit {
   }
 
   printUnmaskedValue(unamskedValue: string) {
-    console.log("Unmasked value  : ",unamskedValue);
+    console.log("Unmasked value  : ", unamskedValue);
   }
+
+  printHostValue(HostValue: string) {
+    console.log("Host value  : ", HostValue);
+  }
+
 
 }
 
