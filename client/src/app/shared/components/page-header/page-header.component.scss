@@ -4,13 +4,13 @@
 /*--------------*/
 .page-header {
   margin: 0;
+  padding: 0;
   background-color: $dark;
 }
 .page-header h3 {
   color: $light;
   text-align: center;
   font-size: 36px;
-  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
