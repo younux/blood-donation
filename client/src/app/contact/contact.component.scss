@@ -3,29 +3,6 @@
 .no-bottom-padding {
   padding-bottom: 0px;
 }
-.btn-custom {
-  text-transform: uppercase;
-  text-align: center;
-  -webkit-transition: 0.3s 0.2s ease-out;
-  -moz-transition: 0.3s 0.2s ease-out;
-  -o-transition: 0.3s 0.2s ease-out;
-  transition: 0.3s 0.2s ease-out;
-  border: 1px solid $secondary-dark;
-  background: $primary;
-  color: $light;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  padding: 12px 14px;
-}
-.btn-custom:hover {
-  border-color: $tertiary;
-  color: $primary;
-  background: $light;
-}
 .section-contact-block {
   position: relative;
   overflow: hidden;

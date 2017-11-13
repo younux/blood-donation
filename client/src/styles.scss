@@ -2,13 +2,14 @@
 
 
 /***********************************************************************************************/
-/*  CSS imports */
+/*  CSS imports and generale styling */
 /***********************************************************************************************/
 
+/* General styling */
 @import "./assets/css/general-styling.css";
 
 /***********************************************************************************************/
-/*  SCSS imports */
+/*  SCSS imports and general styling*/
 /***********************************************************************************************/
 
 /* SCSS imports */
@@ -23,6 +24,10 @@
 @import "assets/scss/mixins/paddings";
 @import "assets/scss/mixins/text-align";
 @import "assets/scss/mixins/texts";
+
+/* General styling */
+@import "assets/scss/general-styling";
+
 
 /***********************************************************************************************/
 /*  CSS declarations */

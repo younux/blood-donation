@@ -68,12 +68,12 @@
 
 
                 <div class="form-group text-right">
-                  <button type="button" [disabled]="!myForm1.valid" (click)="nextStep($event)" class="btn btn-form-principal"> Suivant </button>
+                  <button type="button" [disabled]="!myForm1.valid" (click)="nextStep($event)" class="btn btn-prim"> Suivant </button>
                 </div>
 
                 <div class="form-group">
                   <a [routerLink]="['../login']">
-                    <button type="button" class="btn btn-form-secondary ">
+                    <button type="button" class="btn btn-tert ">
                       Login
                     </button>
                   </a>
@@ -94,10 +94,19 @@
                 </div>
 
                 <div [hidden]="isPhoneNumVerified" class="form-group text-center">
-                  <button type="button" (click)="sendVerificationSMS($event)" class="btn btn-form-principal">
-                    Send Verification SMS
-                  </button>
+                  <div>
+                    <button type="button" (click)="sendVerificationSMS($event)" class="btn btn-prim">
+                      Send Verification SMS
+                    </button>
+                  </div>
+                  <div [hidden]="!isVerifSmsSent">
+                    <button type="button" (click)="changePhoneNumber($event)" class="btn btn-prim">
+                      Change Phone Number
+                    </button>
+                  </div>
                 </div>
+
+
 
                 <div [hidden]="!isVerifSmsSent || isPhoneNumVerified">
 
@@ -109,7 +118,7 @@
                   </div>
 
                   <div class="form-group text-center">
-                    <button type="button" (click)="verifyCode($event)" class="btn btn-form-principal">
+                    <button type="button" (click)="verifyCode($event)" class="btn btn-prim">
                       Verify Code
                     </button>
                   </div>
@@ -117,8 +126,8 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="button" (click)="previousStep($event)" class="btn btn-form-principal"> Précédent </button>
-                  <button type="button" [disabled]="!isPhoneNumVerified" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
+                  <button type="button" (click)="previousStep($event)" class="btn btn-prim"> Précédent </button>
+                  <button type="button" [disabled]="!isPhoneNumVerified" (click)="nextStep($event)" class="btn btn-prim pull-right">Suivant</button>
                 </div>
 
               </form>
@@ -157,8 +166,8 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="button" (click)="previousStep($event)" class="btn btn-form-principal"> Précédent </button>
-                  <button type="button" [disabled]="!myForm3.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
+                  <button type="button" (click)="previousStep($event)" class="btn btn-prim"> Précédent </button>
+                  <button type="button" [disabled]="!myForm3.valid" (click)="nextStep($event)" class="btn btn-prim pull-right">Suivant</button>
                 </div>
 
               </form>
@@ -205,8 +214,8 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="button" (click)="previousStep($event)"   class="btn btn-form-principal">Précédent</button>
-                  <button type="button" [disabled]="!myForm4.valid" (click)="nextStep($event)" class="btn btn-form-principal pull-right">Suivant</button>
+                  <button type="button" (click)="previousStep($event)"   class="btn btn-prim">Précédent</button>
+                  <button type="button" [disabled]="!myForm4.valid" (click)="nextStep($event)" class="btn btn-prim pull-right">Suivant</button>
                 </div>
 
               </form>
@@ -238,8 +247,8 @@
                 </div>
 
                 <div class="form-group">
-                  <button type="button"  (click)="previousStep($event)" class="btn btn-form-principal">Précédent</button>
-                  <button type="submit"  [disabled]="!myForm5.valid" class="btn btn-form-principal pull-right">Register</button>
+                  <button type="button"  (click)="previousStep($event)" class="btn btn-prim">Précédent</button>
+                  <button type="submit"  [disabled]="!myForm5.valid" class="btn btn-prim pull-right">Register</button>
                 </div>
 
               </form>

@@ -116,6 +116,12 @@ export class ProfileRegisterComponent implements OnInit {
     }
   }
 
+  // enable phone number input to let the user enter new phone number
+  changePhoneNumber(event: any) {
+    this.myForm2.controls['phoneNumber'].enable();
+    this.isVerifSmsSent = false;
+  }
+
   // verify the code that the user enters so as to verify his phone number
   verifyCode(event: any) {
     // because phoneNumber is disabled we should user getRawValue
@@ -127,7 +133,6 @@ export class ProfileRegisterComponent implements OnInit {
       this.authenticationService.phoneVerify(phoneNumber, code).subscribe(
         data => {
           this.showSpinner = false;
-          this.isVerifSmsSent = false;
           this.isPhoneNumVerified = true;
           this.alertService.success(`You have succefully verified your phone number :
                                    ${phoneNumber}`);
