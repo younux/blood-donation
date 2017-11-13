@@ -66,7 +66,18 @@ class ProfileCreateAPIView(GenericAPIView):
         # Get the current Site based on the SITE_ID in the project's settings.
         my_site = Site.objects.get_current()
         # Send activation email
-        send_activation_email(profile_obj, uidb64, token, my_site.domain)
+        # sending email can throw exceptions :
+        try :
+            send_activation_email(profile_obj, uidb64, token, my_site.domain)
+        except Exception as e:
+            print("Exception on send_activation_email function \n"
+                  " - Type(e) : ==> " + str(type(e))  +"\n"
+                  " - repr(e) : ==> " + str(repr(e)))
+            # Return Bad request response
+            sentData = {'error': "There is a problem when trying to send activation email."
+                                 " Please make sure you have entered a correct email address"
+                                 " and try again"}
+            return Response(data=sentData, status=HTTP_400_BAD_REQUEST)
         return Response(data=serializer.data, status=HTTP_201_CREATED)
 
 
@@ -164,7 +175,18 @@ class PasswordResetRequestAPIView(GenericAPIView):
         # Get the current Site based on the SITE_ID in the project's settings.
         my_site = Site.objects.get_current()
         # send email
-        send_password_reset_email(profile_obj, uidb64, token, my_site.domain)
+        # sending email can throw exceptions :
+        try :
+            send_password_reset_email(profile_obj, uidb64, token, my_site.domain)
+        except Exception as e:
+            print("Exception on send_password_reset_email function \n"
+                  " - Type(e) : ==> " + str(type(e))  +"\n"
+                  " - repr(e) : ==> " + str(repr(e)))
+            # Return Bad request response
+            sentData = {'error': "There is a problem when trying to send password reset email."
+                                 " Please make sure you have entered a correct email address"
+                                 " and try again"}
+            return Response(data=sentData, status=HTTP_400_BAD_REQUEST)
         # By default Response status is 200, so we can omit status=HTTP_200_OK
         return Response(data=serializer.data)
 
@@ -250,15 +272,22 @@ class PhoneCodeRequestAPIView(GenericAPIView):
         # put the phone number and the code in the cache
         phone_number = serializer.validated_data.get('phone_number')
         cache.set(phone_number, code)
+        # TODO : handle server error when phone number is incorrect or problem of connection.
+        # TODO : Do the same for email sending
         # send verification sms
-        #TODO : srver is crashong when trying to send sms to incorrect phone number :
-        # raise self.exception(method, uri, response, 'Unable to create record') twilio.base.exceptions.
-        # TwilioRestException: HTTP 400 error: Unable to create record: The 'To' number +33626682 is
-        # not a valid phone number.
-        #TODO : handle server error when phone number is incorrect. Do the same for email sendin
-        #TODO : try to send an error response to the server indicating the problem with phone number or email
-        #TODO : or verify phone number or email are correct before sending
-        send_phone_verification_sms(phone_number, code)
+        # sending sms can throw exceptions :
+        try :
+            send_phone_verification_sms(phone_number, code)
+        except Exception as e:
+            print("Exception on send_phone_verification_sms function \n"
+                  " - Type(e) : ==> " + str(type(e))  +"\n"
+                  " - repr(e) : ==> " + str(repr(e)))
+            # Return Bad request response
+            sentData = {'error': "There is a problem when trying to send verification SMS." 
+                                 " Please make sure you have entered a correct phone number"
+                                 " and try again"}
+            return Response(data=sentData, status=HTTP_400_BAD_REQUEST)
+
         return Response(data=serializer.data)
 
 class PhoneVerifyAPIView(GenericAPIView):

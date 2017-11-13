@@ -94,16 +94,16 @@
                 </div>
 
                 <div [hidden]="isPhoneNumVerified" class="form-group text-center">
-                  <div>
+                  <span>
                     <button type="button" (click)="sendVerificationSMS($event)" class="btn btn-prim">
                       Send Verification SMS
                     </button>
-                  </div>
-                  <div [hidden]="!isVerifSmsSent">
+                  </span>
+                  <span [hidden]="!isVerifSmsSent">
                     <button type="button" (click)="changePhoneNumber($event)" class="btn btn-prim">
                       Change Phone Number
                     </button>
-                  </div>
+                  </span>
                 </div>
 
 

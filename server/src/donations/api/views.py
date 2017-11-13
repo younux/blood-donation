@@ -50,9 +50,21 @@ class DonationCreateAPIView(CreateAPIView):
         applicant = Profile.objects.filter(username = self.request.user.username).first()
         donation_obj = serializer.save(applicant = applicant)
         # sending notifications emails.
-        notify_by_email(donation_obj)
-        # sending notifications sms.
-        # notify_by_sms(donation_obj)
+        # sending email can throw exceptions :
+        try:
+            notify_by_email(donation_obj)
+        except Exception as e:
+            print("Exception on notify_by_email function \n"
+                    " - Type(e) : ==> " + str(type(e)) + "\n"
+                    " - repr(e) : ==> " + str(repr(e)))
+        # # sending notifications sms.
+        # # sending sms can throw exceptions :
+        # try:
+        #     notify_by_sms(donation_obj)
+        # except Exception as e:
+        #     print("Exception on notify_by_sms function \n"
+        #             " - Type(e) : ==> " + str(type(e)) + "\n"
+        #             " - repr(e) : ==> " + str(repr(e)))
 
 
 class DonationListAPIView(ListAPIView):

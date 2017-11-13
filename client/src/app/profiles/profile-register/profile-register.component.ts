@@ -148,7 +148,7 @@ export class ProfileRegisterComponent implements OnInit {
   }
 
   onSubmitForm() {
-    if (this.myForm1.valid && this.myForm3.valid && this.myForm2.valid
+    if (this.myForm1.valid && this.myForm2.valid && this.myForm3.valid
                                                   && this.myForm4.valid && this.myForm5.valid ) {
       this.showSpinner = true;
       this.authenticationService.register(this.myForm1.value.username,
