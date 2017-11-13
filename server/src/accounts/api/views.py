@@ -71,12 +71,15 @@ class ProfileCreateAPIView(GenericAPIView):
             send_activation_email(profile_obj, uidb64, token, my_site.domain)
         except Exception as e:
             print("Exception on send_activation_email function \n"
-                  " - Type(e) : ==> " + str(type(e))  +"\n"
-                  " - repr(e) : ==> " + str(repr(e)))
+                        " - str(e) : ==> " + str(e) +"\n"
+                        " - Type(e) : ==> " + str(type(e))  +"\n"
+                        " - repr(e) : ==> " + str(repr(e)) +"\n"
+                        " - e.args : ==> " + str(e.args))
             # Return Bad request response
-            sentData = {'error': "There is a problem when trying to send activation email."
-                                 " Please make sure you have entered a correct email address"
-                                 " and try again"}
+            # sentData = {'error': "There is a problem when trying to send activation email."
+            #                      " Please make sure you have entered a correct email address"
+            #                      " and try again"}
+            sentData = {'error': str(e)}
             return Response(data=sentData, status=HTTP_400_BAD_REQUEST)
         return Response(data=serializer.data, status=HTTP_201_CREATED)
 
@@ -180,12 +183,15 @@ class PasswordResetRequestAPIView(GenericAPIView):
             send_password_reset_email(profile_obj, uidb64, token, my_site.domain)
         except Exception as e:
             print("Exception on send_password_reset_email function \n"
-                  " - Type(e) : ==> " + str(type(e))  +"\n"
-                  " - repr(e) : ==> " + str(repr(e)))
+                        " - str(e) : ==> " + str(e) +"\n"
+                        " - Type(e) : ==> " + str(type(e))  +"\n"
+                        " - repr(e) : ==> " + str(repr(e)) +"\n"
+                        " - e.args : ==> " + str(e.args))
             # Return Bad request response
-            sentData = {'error': "There is a problem when trying to send password reset email."
-                                 " Please make sure you have entered a correct email address"
-                                 " and try again"}
+            # sentData = {'error': "There is a problem when trying to send password reset email."
+            #                      " Please make sure you have entered a correct email address"
+            #                      " and try again"}
+            sentData = {'error': str(e)}
             return Response(data=sentData, status=HTTP_400_BAD_REQUEST)
         # By default Response status is 200, so we can omit status=HTTP_200_OK
         return Response(data=serializer.data)
@@ -280,12 +286,15 @@ class PhoneCodeRequestAPIView(GenericAPIView):
             send_phone_verification_sms(phone_number, code)
         except Exception as e:
             print("Exception on send_phone_verification_sms function \n"
+                  " - str(e) : ==> " + str(e) +"\n"
                   " - Type(e) : ==> " + str(type(e))  +"\n"
-                  " - repr(e) : ==> " + str(repr(e)))
+                  " - repr(e) : ==> " + str(repr(e)) +"\n"
+                  " - e.args : ==> " + str(e.args))
             # Return Bad request response
-            sentData = {'error': "There is a problem when trying to send verification SMS." 
-                                 " Please make sure you have entered a correct phone number"
-                                 " and try again"}
+            # sentData = {'error': "There is a problem when trying to send verification SMS."
+            #                      " Please make sure you have entered a correct phone number"
+            #                      " and try again"}
+            sentData = {'error': str(e)}
             return Response(data=sentData, status=HTTP_400_BAD_REQUEST)
 
         return Response(data=serializer.data)

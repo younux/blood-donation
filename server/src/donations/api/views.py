@@ -55,16 +55,20 @@ class DonationCreateAPIView(CreateAPIView):
             notify_by_email(donation_obj)
         except Exception as e:
             print("Exception on notify_by_email function \n"
-                    " - Type(e) : ==> " + str(type(e)) + "\n"
-                    " - repr(e) : ==> " + str(repr(e)))
+                        " - str(e) : ==> " + str(e) +"\n"
+                        " - Type(e) : ==> " + str(type(e))  +"\n"
+                        " - repr(e) : ==> " + str(repr(e)) +"\n"
+                        " - e.args : ==> " + str(e.args))
         # # sending notifications sms.
         # # sending sms can throw exceptions :
         # try:
         #     notify_by_sms(donation_obj)
         # except Exception as e:
         #     print("Exception on notify_by_sms function \n"
-        #             " - Type(e) : ==> " + str(type(e)) + "\n"
-        #             " - repr(e) : ==> " + str(repr(e)))
+        #                 " - str(e) : ==> " + str(e) + "\n"
+        #                 " - Type(e) : ==> " + str(type(e)) + "\n"
+        #                 " - repr(e) : ==> " + str(repr(e)) + "\n"
+        #                 " - e.args : ==> " + str(e.args))
 
 
 class DonationListAPIView(ListAPIView):
