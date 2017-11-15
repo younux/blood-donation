@@ -189,10 +189,6 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.BasicAuthentication',
     ),
 
-    #Pagination Settings
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
-
     'DEFAULT_PARSER_CLASSES': (
         'rest_camel_case.parsers.CamelCaseJSONParser',
         'rest_framework.parsers.FormParser',
@@ -238,3 +234,6 @@ TWILIO_PHONE_NUMBER = credentials.TWILIO_PHONE_NUMBER
 #Client relative routes
 ACCOUNT_ACTIVATION_ROUTE = "profiles/activate"
 PASSWORD_RESET_ROUTE = "profiles/reset-password/reset"
+
+#Pagination Settings
+DONATION_LIST_PAGE_SIZE = 5

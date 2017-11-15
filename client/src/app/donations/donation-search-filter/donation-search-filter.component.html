@@ -1,6 +1,6 @@
 <div>
 
-  <form id="myForm" name="myForm" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  <form id="myForm" name="myForm" [formGroup]="myForm">
 
     <div class="widget site-sidebar">
 
@@ -103,6 +103,21 @@
 
   </form>
 
+  <div class="widget site-sidebar">
+
+    <h2 class="widget-title">Trier par</h2>
+
+    <div class="form-group">
+      <label for="sel1">Choisir l'option de trie </label>
+      <select class="form-control" [(ngModel)]="orderingOption" (ngModelChange)="onOrderingOptionChange($event)" id="sel1">
+        <option value="deadline" label="Deadline : par ordre croissant"> </option>
+        <option value="-deadline" label="Deadline : par ordre décroissant"> </option>
+        <option value="created_on" label="Date de création : par ordre croissant"> </option>
+        <option value="-created_on" label="Date de création : par ordre décroissant" selected="selected"> </option>
+      </select>
+    </div>
+
+  </div>
 
 </div>
 

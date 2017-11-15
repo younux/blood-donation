@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import 'rxjs/add/operator/debounceTime';
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'app-donation-search-filter',
@@ -12,6 +13,7 @@ import 'rxjs/add/operator/debounceTime';
 export class DonationSearchFilterComponent implements OnInit {
 
   myForm: FormGroup;
+  orderingOption: string = "deadline"; //default ordering option
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -20,14 +22,14 @@ export class DonationSearchFilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // initialize form with values taken from url query parameters
-    this.initFormState();
-    // Watch for Formc hanges and act accordingly
+    // initialize search bar with values taken from url query parameters
+    this.initSearchBar();
+    // Watch for Form changes and act accordingly
     this.myForm.valueChanges
       .debounceTime(500) // only once every 500ms
       .subscribe(
       formValue => {
-        this.updateQueryParams(formValue);
+        this.updateFilteringQueryParams(formValue);
       });
 
   }
@@ -49,35 +51,16 @@ export class DonationSearchFilterComponent implements OnInit {
     });
   }
 
-  updateQueryParams(formValue: any){
-    let queryParameters = {};
-    let bloodTypes: String[] = new Array<string>();
-    bloodTypes = Object.keys(formValue.bloodType).filter( type => formValue.bloodType[type]);
-    if (formValue.city) {
-      if (formValue.city.length > 3) {
-        queryParameters['city'] = formValue.city;
-      }
-    }
-    if (formValue.keyWord) {
-      if (formValue.keyWord.length > 3) {
-        queryParameters['keyWord'] = formValue.keyWord;
-      }
-    }
-    if (bloodTypes.length > 0 && bloodTypes.length < 8) {
-      queryParameters['bloodTypes'] = bloodTypes.join('_');
-    }
-    // Add query parameters to url
-    this.router.navigate([], {queryParams: queryParameters});
-  }
-
-  initFormState(){
+  initSearchBar(){
+    const queryParameters = this.route.snapshot.queryParams
     // read initial query parameters
-    const cityParam = this.route.snapshot.queryParams['city'];
-    const keyWordParam = this.route.snapshot.queryParams['keyWord'];
+    const cityParam = queryParameters['city'];
+    const keyWordParam = queryParameters['keyWord'];
     let bloodTypes: String[];
-    if (this.route.snapshot.queryParams['bloodTypes']){
-      bloodTypes = this.route.snapshot.queryParams['bloodTypes'].split('_');
+    if (queryParameters['bloodTypes']){
+      bloodTypes = queryParameters['bloodTypes'].split('_');
     }
+    const orderingParam = queryParameters['ordering'];
     // initialize form values
     if(cityParam){
       this.myForm.controls['city'].setValue(cityParam);
@@ -89,127 +72,59 @@ export class DonationSearchFilterComponent implements OnInit {
       bloodTypes.forEach( (value: string) => {
         this.myForm.controls['bloodType'].get(value).setValue(true);
       });
-      } else {
+    } else {
       Object.keys(this.myForm.controls['bloodType'].value).forEach(
         (key: string) => {
           this.myForm.controls['bloodType'].get(key).setValue(true);
         });
     }
+    // initialize ordering list
+    if(orderingParam){
+      this.orderingOption = orderingParam;
+    }
   }
 
-  onSubmit(form: FormGroup) {
+  updateFilteringQueryParams(formValue: any){
+    // get current filtering query parameters to update it
+    let queryParameters =  Object.assign({}, this.route.snapshot.queryParams);
+    let bloodTypes: String[] = new Array<string>();
+    bloodTypes = Object.keys(formValue.bloodType).filter( type => formValue.bloodType[type]);
+    if (bloodTypes.length > 0 && bloodTypes.length < 8) {
+      queryParameters['bloodTypes'] = bloodTypes.join('_');
+    } else if(bloodTypes.length === 8) {
+      delete queryParameters['bloodTypes'];
+    } else {
+      queryParameters['bloodTypes'] = 'null';
+    }
+    if (formValue.city && formValue.city.length > 3) {
+      queryParameters['city'] = formValue.city;
+    } else {
+      delete queryParameters['city'];
+    }
+    if (formValue.keyWord && formValue.keyWord.length > 3) {
+      queryParameters['keyWord'] = formValue.keyWord;
+    } else {
+      delete queryParameters['keyWord'];
+    }
+    // delete page query param if it exists (to request the first page)
+    delete queryParameters['page'];
+    // Add query parameters to url
+    this.router.navigate([], {queryParams: queryParameters});
+  }
 
+  onOrderingOptionChange(option: string) {
+    this.orderingOption = option;
+    this.updateOrderingQueryParams(this.orderingOption);
+  }
+
+  updateOrderingQueryParams(orderingOption: string){
+    // get current ordering query parameters to update it
+    let queryParameters =  Object.assign({}, this.route.snapshot.queryParams);
+    queryParameters['ordering'] = orderingOption;
+    // delete page query param if it exists (to request the first page)
+    delete queryParameters['page'];
+    // Add query parameters to url
+    this.router.navigate([], {queryParams: queryParameters});
   }
 
 }
-
-
-/*import { Component, OnInit } from '@angular/core';
- import {Router} from '@angular/router';
- import { ElementRef } from '@angular/core';
- import { Observable } from 'rxjs/Observable';
- import 'rxjs/add/observable/fromEvent';
- import 'rxjs/add/operator/filter';
- import 'rxjs/add/operator/debounceTime';
- import 'rxjs/add/operator/switch';
-
- import {NgForm} from '@angular/forms';
-
- @Component({
- selector: 'app-search',
- templateUrl: './search.component.html',
- styleUrls: ['./search.component.css']
- })
- export class SearchComponent implements OnInit {
-
- search_query = '';
-
- constructor(private _router: Router, private el: ElementRef) { }
-
- ngOnInit() {
- Observable.fromEvent(this.el.nativeElement, 'keyup')
- .map((e: any) => e.target.value) // extract the value of the input
- .filter((text: string) => text.length > 3) // filter out if empty
- .debounceTime(500) // only once every 500ms
- .subscribe((query: string) => {
- this._router.navigate(['/search', {q: query, page: 1}]);
- });
- }
-
- submit_search(event, form_data) {
- let query = form_data.value['q'];
- if (query) {
- this._router.navigate(['/search', {q: query, page: 1}]);
- }
- this.search_query = '';
- }
- }*/
-
-
-/*************************************************/
-
-
-/*<form #search_form='ngForm' class="navbar-form navbar-right" (ngSubmit)='submit_search($event, search_form)'>
-
-<div class="form-group">
-<input type="text" class="form-control" placeholder="Search" name="q" [(ngModel)]='search_query'>
-</div>
-<button type="submit" class="btn btn-default">Search</button>
-
-</form>*/
-
-/**************************************************/
-
-
-/*
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-
-
-import {SearchMovieService} from '../movies-services/search-movie.service';
-
-@Component({
-  selector: 'app-search-detail',
-  templateUrl: './search-detail.component.html',
-  styleUrls: ['./search-detail.component.css'],
-})
-export class SearchDetailComponent implements OnInit, OnDestroy {
-
-  private routeSub: any;
-  query: String;
-  movies: any;
-  total_pages: number;
-  total_results: number;
-  current_page = 1;
-  loading = false;
-
-
-
-  constructor(private _route: ActivatedRoute, private router: Router, private search_movie_service: SearchMovieService) {
-
-  }
-
-  ngOnInit() {
-    this.routeSub = this._route.params.subscribe(params => {
-      // verify if we have changed the query to reset the navbar by making movie null
-      this.loading = true;
-      if (this.query !== params['q']) {
-        this.movies = null;
-      }
-      this.query = params['q'];
-      this.current_page = parseInt(params['page']) || 1;
-      this.search_movie_service.search(this.query, this.current_page).subscribe(response => {
-        ({ search_result: this.movies, total_pages: this.total_pages , total_results: this.total_results} = response);
-        this.loading = false;
-      });
-    });
-  }
-
-  ngOnDestroy() {
-    this.routeSub.unsubscribe();
-  }
-
-  change_page(page: number) {
-    this.router.navigate(['search', {q: this.query, page: page}]);
-  }
-}*/

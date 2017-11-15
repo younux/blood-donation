@@ -27,7 +27,7 @@ from accounts.models import Profile
 
 from .emails import notify_by_email
 from .sms import notify_by_sms
-
+from .paginations import DonationPageNumberPagination
 
 # Create your views here.
 
@@ -77,15 +77,24 @@ class DonationListAPIView(ListAPIView):
 
         Extends ListAPIView. This view handles donation listing process.
     """
-    # queryset = Donation.objects.all()
+    queryset = Donation.objects.all()
     serializer_class = DonationSerializer
+    pagination_class = DonationPageNumberPagination
+    # For filtering (search, order, ...) see : http://www.django-rest-framework.org/api-guide/filtering/
     # General search : http://127.0.0.1:8000/api/donations/?search=alex&ordering=-city
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['applicant__username', 'applicant__email',
                      'applicant__first_name', 'applicant__last_name',
                      'applicant__blood_type', 'deadline', 'city',
                      ]
+    ordering_fields = ['deadline', 'created_on']
+    ordering = ['deadline'] # This is the defaul ordering. It also prevents from having the warning :
+    # /Users/younes/Projects/blood-donation-platform/server/lib/python3.6/site-packages/rest_framework/pagin
+    # ation.py:208: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered
+    # object_list: <class 'donations.models.Donation'> QuerySet.paginator =
+    # self.django_paginator_class(queryset, page_size)
     permission_classes = []
+
 
     def get_queryset(self, *args, **kwargs):
         """

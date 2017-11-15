@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule, XHRBackend, RequestOptions} from '@angular/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { HomeModule } from './home/home.module';

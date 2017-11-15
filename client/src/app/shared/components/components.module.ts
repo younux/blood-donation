@@ -14,6 +14,7 @@ import { TeamMemberComponent } from './team-member/team-member.component';
 import { SectionHeadingComponent } from './section-heading/section-heading.component';
 import { InputMaskDirective } from './input-mask/input-mask.directive';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 
@@ -33,7 +34,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
                   TeamMemberComponent,
                   SectionHeadingComponent,
                   InputMaskDirective,
-                  SpinnerComponent],
+                  SpinnerComponent,
+                  PaginationComponent],
   entryComponents: [TypeaheadContainerComponent],
   exports: [FieldErrorDisplayComponent,
             AlertDisplayComponent,
@@ -44,7 +46,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
             TeamMemberComponent,
             SectionHeadingComponent,
             InputMaskDirective,
-            SpinnerComponent],
+            SpinnerComponent,
+            PaginationComponent],
 
 })
 export class ComponentsModule { }

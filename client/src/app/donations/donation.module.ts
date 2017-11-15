@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 
@@ -47,6 +48,7 @@ const declarations = [
 
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
+    PaginationModule.forRoot(),
 
   ],
   declarations: [...declarations],

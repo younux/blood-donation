@@ -1,10 +1,26 @@
 <app-page-header content="Toutes les demandes"></app-page-header>
 <section class="section-relative">
+
   <div *ngIf="donationsList"  class="donation">
     <app-donation-list [donations]="donationsList"
                        [showUpdateButton]="false"
                        [showDetailButton]="true">
     </app-donation-list>
   </div>
+
+
+  <div *ngIf="totalItems && totalItems>itemsPerPage" class="text-center">
+    <pagination class="pagination-sm"
+                [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+                [(ngModel)]="currentPage" (ngModelChange)="updateCurrentPage($event)"
+                (numPages)="onNumPages($event)"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true" [rotate]="true"
+                previousText="&lsaquo;" nextText="&rsaquo;"
+                firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>
+
+
 </section>
 
