@@ -1,10 +1,36 @@
-<app-page-header content="Mes demandes"></app-page-header>
+<app-banner content="Mes demandes"></app-banner>
 
 <section class="section-relative">
-  <div *ngIf="donationsList"  class="donation">
-    <app-donation-list [donations]="donationsList"
-                       [showUpdateButton]="true"
-                       [showDetailButton]="true">
-    </app-donation-list>
+  <div class="container padding-top-md-xs">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-4">
+        <app-donation-search-filter [showBloodTypesFilter]="false" ></app-donation-search-filter>
+      </div>
+
+      <div class="col-xs-12 col-sm-8">
+        <div class="row">
+          <div *ngIf="donationsList">
+            <app-donation-list [donations]="donationsList"
+                               [showUpdateButton]="false"
+                               [showDetailButton]="true">
+            </app-donation-list>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="totalItems && totalItems>itemsPerPage" class="col-xs-12 text-center">
+        <pagination class="pagination-sm"
+                    [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+                    [(ngModel)]="currentPage" (ngModelChange)="updateCurrentPage($event)"
+                    (numPages)="onNumPages($event)"
+                    [maxSize]="maxSize"
+                    [boundaryLinks]="true" [rotate]="true"
+                    previousText="&lsaquo;" nextText="&rsaquo;"
+                    firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+      </div>
+
+    </div>
   </div>
 </section>

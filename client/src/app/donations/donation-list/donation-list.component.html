@@ -1,17 +1,6 @@
-<div class="container padding-top-md-xs">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4">
-      <app-donation-search-filter></app-donation-search-filter>
-    </div>
-    <div class="col-xs-12 col-sm-8">
-      <div class="row">
-        <div class="col-xs-12" *ngFor="let myDonation of donations">
-          <app-donation-thumbnail [donation]="myDonation"
-                                  [showDetailButton]="showDetailButton"
-                                  [showUpdateButton]="showUpdateButton">
-          </app-donation-thumbnail>
-        </div>
-      </div>
-    </div>
-  </div>
+<div *ngFor="let myDonation of donations">
+  <app-donation-thumbnail [donation]="myDonation"
+                          [showDetailButton]="showDetailButton"
+                          [showUpdateButton]="showUpdateButton">
+  </app-donation-thumbnail>
 </div>

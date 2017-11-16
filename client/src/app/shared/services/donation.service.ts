@@ -73,9 +73,22 @@ export class DonationService  {
       .catch(this.handle_error);
   }
 
+  countDonationsByBloodType(queryParamsStr?: string) {
+    let queryUrl = `${this.apiUrl}donations/count/`;
+    if(queryParamsStr){
+      queryUrl = `${queryUrl}?${queryParamsStr}`;
+    }
+    return this.http.get(queryUrl)
+      .map(response => {
+        return response.json();
+      })
+      .catch(this.handle_error);
+  }
 
   private handle_error(error: any): any {
     return Observable.throw(error.json());
   }
+
+
 
 }

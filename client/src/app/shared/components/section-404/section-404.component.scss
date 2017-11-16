@@ -1,0 +1,71 @@
+@import "../../../../assets/scss/variables";
+
+.section-content-block {
+  padding: 100px 0 100px 0;
+  background: $light;
+}
+.section-404 {
+  background: $secondary;
+}
+.message-container-404 {
+  margin: 48px 0;
+}
+.message-container-404 .text-404 {
+  font-size: 170px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin: 80px 0;
+  color: $primary;
+}
+
+.message-container-404 .text-404 span {
+  color: $primary;
+}
+
+.message-container-404 .message-text-404 {
+  padding: 24px 160px;
+  font-size: 2em;
+  display: block;
+  text-align: center;
+}
+
+/* 14. RESPONSIVE STYLING */
+/***********************************************************************************************/
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+
+}
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 991px) {
+
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .section-content-block {
+    padding: 60px 0;
+  }
+  .message-container-404 {
+    margin: 48px 0;
+  }
+  .message-container-404 .text-404 {
+    margin: 80px 0;
+  }
+  .message-container-404 .message-text-404 {
+    padding: 24px 0px;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .section-content-block {
+    padding: 32px 0;
+  }
+  .message-container-404 {
+    margin: 48px 0;
+  }
+  .message-container-404 .text-404 {
+    margin: 80px 0;
+  }
+  .message-container-404 .message-text-404 {
+    padding: 24px 0px;
+  }
+}

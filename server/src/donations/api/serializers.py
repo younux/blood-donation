@@ -6,9 +6,9 @@ from accounts.api.serializers import ProfileDetailSerializer
 
 class DonationSerializer(serializers.ModelSerializer):
     """
-        Donation Serializer
+        Donation Serializer For all CRUD operations in Donation model
 
-        Extends ModelSerializer
+        Extends ModelSerializer.
     """
     applicant = ProfileDetailSerializer(read_only = True)
     blood_type = serializers.SerializerMethodField(read_only = True)
@@ -54,10 +54,23 @@ class DonationSerializer(serializers.ModelSerializer):
         """
             Custom phone number validation
         """
-        phone_re = re.compile(r'^(0|\+212|00212)[1-9][0-9]{8}$')
+        phone_re = re.compile(r'^(0|\+33|0033)[1-9][0-9]{8}$')
         if phone_re.match(value) is None:
-            raise serializers.ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +212 X-XX-XX-XX-XX or 00212 X-XX-XX-XX-XX where X is a digit)")
+            raise serializers.ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +33 X-XX-XX-XX-XX or 0033 X-XX-XX-XX-XX where X is a digit)")
         return value
 
 
+class DonationCountBloodTypeSerializer(serializers.Serializer):
+    """
+        Donation Serializer for counting donations by blood type
 
+        Extends Serializer.
+    """
+    A_plus = serializers.IntegerField(label="A+")
+    A_minus = serializers.IntegerField(label="A-")
+    B_plus = serializers.IntegerField(label="B+")
+    B_minus = serializers.IntegerField(label="B-")
+    AB_plus = serializers.IntegerField(label="AB+")
+    AB_minus = serializers.IntegerField(label="AB-")
+    O_plus = serializers.IntegerField(label="O+")
+    O_minus = serializers.IntegerField(label="O-")

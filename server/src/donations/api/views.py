@@ -1,4 +1,5 @@
 from rest_framework.generics import (
+    GenericAPIView,
     RetrieveAPIView,
     ListAPIView,
     CreateAPIView,
@@ -13,11 +14,18 @@ from rest_framework.permissions import (
     IsAuthenticatedOrReadOnly,
     )
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.response import Response
+from rest_framework.status import (
+        HTTP_200_OK,
+        HTTP_400_BAD_REQUEST,
+        HTTP_201_CREATED,
+        )
 from django.db.models import Q
 
 
 from .serializers import (
     DonationSerializer,
+    DonationCountBloodTypeSerializer,
 )
 from .permissions import (
     IsDonationOwnerOrReadOnly,
@@ -59,16 +67,16 @@ class DonationCreateAPIView(CreateAPIView):
                         " - Type(e) : ==> " + str(type(e))  +"\n"
                         " - repr(e) : ==> " + str(repr(e)) +"\n"
                         " - e.args : ==> " + str(e.args))
-        # # sending notifications sms.
-        # # sending sms can throw exceptions :
-        # try:
-        #     notify_by_sms(donation_obj)
-        # except Exception as e:
-        #     print("Exception on notify_by_sms function \n"
-        #                 " - str(e) : ==> " + str(e) + "\n"
-        #                 " - Type(e) : ==> " + str(type(e)) + "\n"
-        #                 " - repr(e) : ==> " + str(repr(e)) + "\n"
-        #                 " - e.args : ==> " + str(e.args))
+        # sending notifications sms.
+        # sending sms can throw exceptions :
+        try:
+            notify_by_sms(donation_obj)
+        except Exception as e:
+            print("Exception on notify_by_sms function \n"
+                        " - str(e) : ==> " + str(e) + "\n"
+                        " - Type(e) : ==> " + str(type(e)) + "\n"
+                        " - repr(e) : ==> " + str(repr(e)) + "\n"
+                        " - e.args : ==> " + str(e.args))
 
 
 class DonationListAPIView(ListAPIView):
@@ -93,7 +101,7 @@ class DonationListAPIView(ListAPIView):
     # ation.py:208: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered
     # object_list: <class 'donations.models.Donation'> QuerySet.paginator =
     # self.django_paginator_class(queryset, page_size)
-    permission_classes = []
+    permission_classes = [AllowAny]
 
 
     def get_queryset(self, *args, **kwargs):
@@ -151,6 +159,49 @@ class DonationDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsDonationOwnerOrReadOnly]
 
 
+class DonationCountBloodTypeView(GenericAPIView):
+    """
+        View that handles requests for the number of created donations by blood types.
 
+        Extends GenericAPIView
+    """
+    serializer_class = DonationCountBloodTypeSerializer
+    permission_classes = [AllowAny]
 
+    def get(self, request, *args, **kwargs):
+        """
+            handles requests for blood types count
+        """
 
+        queryset_list = Donation.objects.all()
+        # filter by donation city
+        city = self.request.query_params.get('city', None)
+        if city:
+            queryset_list = queryset_list.filter(city__icontains=city)
+        # filter by keyword
+        keyWord = self.request.query_params.get('keyWord', None)
+        if keyWord:
+            queryset_list = queryset_list.filter(
+                Q(description__icontains=keyWord) |
+                Q(city__icontains=keyWord) |
+                Q(status__icontains=keyWord) |
+                Q(applicant__blood_type__icontains=keyWord) |
+                Q(applicant__username__icontains=keyWord) |
+                Q(applicant__first_name__icontains=keyWord) |
+                Q(applicant__last_name__icontains=keyWord)
+            ).distinct()
+        # Counting donations by blood type
+        data = {}
+        data['A_plus'] = queryset_list.filter(applicant__blood_type='A+').count()
+        data['A_minus'] = queryset_list.filter(applicant__blood_type='A-').count()
+        data['B_plus'] = queryset_list.filter(applicant__blood_type='B+').count()
+        data['B_minus'] = queryset_list.filter(applicant__blood_type='B-').count()
+        data['AB_plus'] = queryset_list.filter(applicant__blood_type='AB+').count()
+        data['AB_minus'] = queryset_list.filter(applicant__blood_type='AB-').count()
+        data['O_plus'] = queryset_list.filter(applicant__blood_type='O+').count()
+        data['O_minus'] = queryset_list.filter(applicant__blood_type='O-').count()
+        # create serializer
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        # By default Response status is 200, so we can omit status=HTTP_200_OK
+        return Response(data=serializer.data)

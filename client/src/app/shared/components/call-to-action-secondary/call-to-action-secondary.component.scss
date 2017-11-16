@@ -1,0 +1,79 @@
+@import "../../../../assets/scss/variables";
+
+.cta-section-1 {
+  background: $secondary;
+  padding: 40px 0;
+  color: $tertiary-dark;
+}
+.cta-section-1 h2 {
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: $tertiary-dark;
+  font-weight: 600;
+}
+.cta-section-1 p {
+  margin-bottom: 0;
+  color: $tertiary;
+}
+.cta-section-1 a.btn-cta-1 {
+  background: $primary;
+  color: $light;
+  border: 3px solid $primary;
+  font-size: 22px;
+  font-weight: 700;
+  height: 60px;
+  line-height: 42px;
+  margin-bottom: 6px;
+  margin-top: 24px;
+  padding-left: 28px;
+  padding-right: 28px;
+  position: relative;
+  text-transform: uppercase;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  transition: all 0.3s ease-out 0.2s;
+}
+.cta-section-1 a.btn-cta-1:hover {
+  background: transparent;
+  color: $tertiary-dark;
+}
+
+/* 14. RESPONSIVE STYLING */
+/***********************************************************************************************/
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .cta-section-1 h2 {
+    font-size: 22px;
+    line-height: 32px;
+    margin: 0px 0 24px;
+  }
+  .cta-section-1 a.btn-cta1 {
+    margin-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+  }
+
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .cta-section-1 h2 {
+    font-size: 22px;
+    line-height: 32px;
+    margin: 0px 0 24px;
+  }
+  .cta-section-1 a.btn-cta1 {
+    margin-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px;
+    display: block;
+  }
+
+}
+

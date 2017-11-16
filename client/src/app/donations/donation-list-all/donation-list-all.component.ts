@@ -12,13 +12,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class DonationListAllComponent implements OnInit {
 
   donationsList: Donation[];
-
-  myText;
-
   // Pagination attributes
   itemsPerPage: number = 5; // maximum number of items per page. If value less than 1 will display all items on one page
   maxSize: number = 4; // limit number for page links in pager
-
   totalItems: number; // total number of items in all pages
   currentPage: number; // current selected page
   numPages: number; // equals to total pages count
@@ -96,7 +92,7 @@ export class DonationListAllComponent implements OnInit {
     }
   }
 
-  onNumPages(numberOfPages: number){
+  onNumPages(numberOfPages: number) {
     this.numPages = numberOfPages;
   }
 
