@@ -1,20 +1,20 @@
-<div class="event-latest">
+<div class="donation-box">
   <div class="row">
     <div class="col-md-4 hidden-sm hidden-xs">
-      <div class="event-latest-thumbnail text-center padding-md-xs">
+      <div class="donation-box-thumbnail text-center padding-md-xs">
         <a>
           {{donation.bloodType}}
         </a>
       </div>
     </div> <!--  col-sm-5  -->
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <div class="event-details">
+      <div class="donation-detail">
         <div class="row">
           <div class="col-md-12">
-            <a class="latest-date">{{donation.deadline | date:'medium'}}</a>
+            <a class="date">{{donation.deadline | date:'medium'}}</a>
           </div>
           <div class="col-md-12">
-            <h4 class="event-latest-title">
+            <h4 class="donation-box-title">
               {{donation.applicant.firstName}} {{donation.applicant.lastName}}
             </h4>
           </div>
@@ -22,7 +22,7 @@
             <p>{{donation.description | slice:0:200}}...</p>
           </div>
           <div class="col-md-12">
-            <div class="event-latest-details">
+            <div class="donation-box-details">
               <div class="row">
                 <div class="col-md-6">
                   <a class="bottom-link text-primary text-bold">

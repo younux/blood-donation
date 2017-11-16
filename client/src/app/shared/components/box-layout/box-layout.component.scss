@@ -1,20 +1,20 @@
 @import "../../../../assets/scss/variables";
 
-.process-layout {
+.box-layout {
   margin: 32px 0 0;
   text-align: left;
   position: relative;
   padding: 0;
   background: $secondary;
 }
-.process-layout .process-img {
+.box-layout .box-img {
   position: relative;
 }
-.process-layout .process-img img {
+.box-layout .box-img img {
   vertical-align: middle;
   width: 100%;
 }
-.process-layout .process-img .step h3 {
+.box-layout .box-img .step h3 {
   color: $light;
   bottom: 15px;
   font-size: 64px;
@@ -23,7 +23,7 @@
   text-align: center;
   z-index: 9999;
 }
-.process-layout .process-img .step:after {
+.box-layout .box-img .step:after {
   background: $primary;
   bottom: 0;
   content: "";
@@ -37,7 +37,7 @@
   -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
 }
-.process-layout h2 {
+.box-layout h2 {
   font-size: 28px;
   letter-spacing: 0.01em;
   font-weight: 600;
@@ -45,15 +45,15 @@
   position: relative;
   color: $tertiary-dark;
 }
-.process-layout:hover .process-img .step:after {
+.box-layout:hover .box-img .step:after {
   opacity: 1;
 }
-.process-info {
+.box-info {
   padding: 32px 16px;
   text-align: left;
 }
 
-/* 14. RESPONSIVE STYLING */
+/* RESPONSIVE STYLING */
 /***********************************************************************************************/
 @media only screen and (min-width: 992px) and (max-width: 1300px) {
 
@@ -64,20 +64,20 @@
 }
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
-  .process-layout {
+  .box-layout {
     margin: 0 0 32px 0;
   }
-  .process-layout h2 {
+  .box-layout h2 {
     font-size: 22px;
     font-weight: 500;
   }
 }
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (min-width: 0px) and (max-width: 479px) {
-  .process-layout {
+  .box-layout {
     margin: 0 0 24px 0;
   }
-  .process-layout h2 {
+  .box-layout h2 {
     font-size: 22px;
     font-weight: 500;
   }

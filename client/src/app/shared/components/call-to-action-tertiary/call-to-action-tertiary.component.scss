@@ -4,7 +4,7 @@
   padding: 100px 0 100px 0;
   background: $light;
 }
-.cta-section-3 {
+.cta-section-tertiary {
   background: transparent;
   background-image: url('/assets/images/cta-bg-img.jpg');
   background-repeat: no-repeat;
@@ -17,7 +17,7 @@
   position: relative;
   overflow: hidden;
 }
-.cta-section-3:before {
+.cta-section-tertiary:before {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -26,10 +26,10 @@
   left: 0;
   content: '';
 }
-.cta-section-3 .cta-content {
+.cta-section-tertiary .cta-content {
   color: $light;
 }
-.cta-section-3 .cta-content h2 {
+.cta-section-tertiary .cta-content h2 {
   font-size: 70px;
   color: $light;
   text-transform: uppercase;
@@ -37,38 +37,49 @@
   line-height: 65px;
   font-weight: 500;
 }
-.cta-section-3 .cta-content a.btn-cta-3 {
+
+.cta-section-tertiary .cta-content a.btn-cta-tertiary {
   background: $primary;
-  border: 2px solid $primary;
   color: $light;
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 400;
-  padding: 12px 25px;
+  border: 3px solid $primary;
+  font-size: 22px;
+  font-weight: 700;
+  height: 60px;
+  line-height: 42px;
+  margin-bottom: 6px;
+  margin-top: 24px;
+  padding-left: 28px;
+  padding-right: 28px;
   position: relative;
   text-transform: uppercase;
-  transition: all 0.3s ease-out 0s;
-  margin-top: 25px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  transition: all 0.3s ease-out 0.2s;
 }
-.cta-section-3 .cta-content a.btn-cta-3:hover {
-  background-color: $primary;
+.cta-section-tertiary .cta-content a.btn-cta-tertiary:hover{
+  background: $light;
+  color: $tertiary-dark;
 }
 
-/* 14. RESPONSIVE STYLING */
+/* RESPONSIVE STYLING */
 /***********************************************************************************************/
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
   .section-content-block {
     padding: 60px 0;
   }
-  .cta-section-3 .cta-content {
+  .cta-section-tertiary .cta-content {
     color: $light;
   }
-  .cta-section-3 .cta-content h2 {
+  .cta-section-tertiary .cta-content h2 {
     font-size: 42px;
     line-height: 60px;
   }
-  .cta-section-3 .cta-content a.btn-cta-3 {
+  .cta-section-tertiary .cta-content a.btn-cta-tertiary {
     margin-top: 0px;
   }
 }
@@ -77,14 +88,14 @@
   .section-content-block {
     padding: 32px 0;
   }
-  .cta-section-3 .cta-content {
+  .cta-section-tertiary .cta-content {
     color: $light;
   }
-  .cta-section-3 .cta-content h2 {
+  .cta-section-tertiary .cta-content h2 {
     font-size: 42px;
     line-height: 60px;
   }
-  .cta-section-3 .cta-content a.btn-cta-3 {
+  .cta-section-tertiary .cta-content a.btn-cta-tertiary {
     margin-top: 0px;
   }
 }

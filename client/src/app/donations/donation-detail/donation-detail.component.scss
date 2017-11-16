@@ -3,7 +3,7 @@
 .margin-top-11 {
   margin-top: 11px;
 }
-.article-event {
+.donation-detail {
   margin-top: 24px;
   margin-bottom: 24px;
   background: $secondary;
@@ -11,36 +11,36 @@
   min-height: 100px;
   border-bottom: 0px solid $secondary-dark;
 }
-.article-event .single-post-inner {
+.donation-detail .donation-box {
   padding: 12px 0px;
 }
-.single-post-inner {
+.donation-box {
   background: $secondary;
   padding: 30px;
 }
-.post-inner-featured-content {
+.donation-map {
   display: block;
 }
-.post-inner-featured-content img {
+.donation-map img {
   display: block;
   width: 100%;
   text-align: center;
 }
-.single-post-inner-title {
+.donation-box-title {
   margin-bottom: 24px;
 }
-.single-post-inner-title h2 {
+.donation-box-title h2 {
   font-size: 32px;
   margin: 32px 0 24px 0;
 }
-.event-content-title {
+.donation-content-title {
   font-size: 24px;
   border-bottom: 3px solid $secondary-dark;
   color: $tertiary-dark;
   padding-bottom: 15px;
   position: relative;
 }
-.event-content-title:after {
+.donation-content-title:after {
   bottom: -3px;
   content: "";
   height: 3px;
@@ -49,15 +49,15 @@
   width: 32px;
   background: $primary;
 }
-.event-content-info {
+.donation-content-info {
   font-size: 14px;
 }
-.event-sub-content-title {
+.donation-sub-content-title {
   margin-top: 12px;
   font-weight: bold;
   display: block;
 }
-.event-sub-content-title em.date {
+.donation-sub-content-title em.date {
   font-weight: normal;
   border-bottom: 1px dashed $tertiary;
   cursor: help;
@@ -135,7 +135,7 @@
   background: $secondary-dark;
 }
 
-/* 14. RESPONSIVE STYLING */
+/* RESPONSIVE STYLING */
 /***********************************************************************************************/
 @media only screen and (min-width: 992px) and (max-width: 1300px) {
 

@@ -1,23 +1,19 @@
 @import "../../../assets/scss/variables";
 
-.event-latest {
+.donation-box {
   background: $secondary;
   position: relative;
   margin-bottom: 30px;
 }
-.event-latest-thumbnail a {
+.donation-box-thumbnail a {
   display: block;
   background: $tertiary-dark;
   font-size: 7em;
   color: $light;
   text-decoration: none;
 }
-//.event-latest .event-latest-thumbnail a img {
-//  vertical-align: middle;
-//  width: 100%;
-//}
 
-.latest-date {
+.date {
   border: 2px solid $tertiary-dark;
   border-radius: 0px;
   background: $tertiary-dark;
@@ -31,18 +27,11 @@
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
 }
-.event-details {
+.donation-detail {
   padding: 10px 15px 0 0;
 }
-/*.event-details h4 a {
-  color: $primary;
-  text-decoration: none;
-  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;
-}*/
-.event-latest-title {
+
+.donation-box-title {
   color: $primary;
   font-weight: 500;
   margin-bottom: 15px;
@@ -50,13 +39,7 @@
   text-transform: uppercase;
 }
 
-/*.event-latest-title a {
-  color: $primary;
-}
-.event-latest-title a:hover {
-  color: $primary;
-}*/
-.event-latest-details {
+.donation-box-details {
   margin-bottom: 10px;
 }
 .bottom-link {
@@ -66,44 +49,37 @@
   padding-right: 8px;
   transition: all 0.3s ease 0s;
 }
-/*.event-latest-details a:last-child {
-  border-right: medium none;
-  margin-right: 0;
-  padding-right: 0;
-}
-.event-latest-details a:hover {
-  color: $tertiary-dark;
-}*/
 
-/* 14. RESPONSIVE STYLING */
+
+/* RESPONSIVE STYLING */
 /***********************************************************************************************/
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (max-width: 991px) {
-  .event-latest {
+  .donation-box {
     clear: both;
   }
-  .event-details {
+  .donation-detail {
     padding: 12px 6px 0 12px;
   }
 }
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
-  .event-latest {
+  .donation-box {
     clear: both;
   }
-  .event-details {
+  .donation-detail {
     padding: 12px 6px 0 12px;
   }
 }
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (min-width: 0px) and (max-width: 479px) {
-  .event-latest {
+  .donation-box {
     clear: both;
   }
-  .event-latest-title {
+  .donation-box-title {
     font-size: 20px;
   }
-  .event-details {
+  .donation-detail {
     padding: 12px 6px 0 12px;
   }
 }

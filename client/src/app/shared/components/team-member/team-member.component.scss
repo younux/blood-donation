@@ -4,23 +4,23 @@
 /* team member      */
 /*------------------*/
 
-.team-layout-1 {
+.team-layout {
   text-align: center;
   position: relative;
   overflow: hidden;
   border: 1px solid $secondary-dark;
 }
-.team-layout-1 .team-member img {
+.team-layout .team-member img {
   vertical-align: middle;
   width: 100%;
 }
-.team-layout-1 .team-info {
+.team-layout .team-info {
   padding: 5px 12px;
   text-align: center;
   background: rgba(255, 255, 255, 0.7);
 
 }
-.team-layout-1 h3 {
+.team-layout h3 {
   text-transform: uppercase;
   margin: 15px 0 0 0;
   font-size: 22px;
@@ -28,25 +28,25 @@
   font-weight: 700;
   color: $tertiary-dark;
 }
-.team-layout-1 h4 {
+.team-layout h4 {
   color: $tertiary;
   text-transform: uppercase;
   font-size: 18px;
   letter-spacing: 0.03em;
   font-weight: 600;
 }
-.team-layout-1 p {
+.team-layout p {
   margin-top: 0;
 }
-.team-layout-1 .team-content {
+.team-layout .team-content {
   background: $secondary;
 }
-.team-layout-1 .team-content .team-social-share {
+.team-layout .team-content .team-social-share {
   border-top: 1px solid $secondary-dark;
   margin: 0px 0px;
   padding: 15px;
 }
-.team-layout-1 .team-content .team-social-share a {
+.team-layout .team-content .team-social-share a {
   display: inline-block;
   height: 40px;
   line-height: 40px;
@@ -57,7 +57,7 @@
   border: 1px solid $secondary-dark;
   background: $light;
 }
-.team-layout-1 .team-content .team-social-share a:hover {
+.team-layout .team-content .team-social-share a:hover {
   color: $primary-dark;
 }
 
@@ -66,13 +66,13 @@
 /***********************************************************************************************/
 /* Tablet Portrait size to standard 960 (devices and browsers) */
 @media only screen and (max-width: 991px) {
-  .team-layout-1 {
+  .team-layout {
     margin-bottom: 30px;
   }
 }
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
-  .team-layout-1 {
+  .team-layout {
     margin-bottom: 30px;
   }
 }

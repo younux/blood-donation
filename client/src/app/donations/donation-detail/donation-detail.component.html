@@ -6,13 +6,13 @@
 
     <div class="row">
 
-      <div class="article-event clearfix">
+      <div class="donation-detail clearfix">
 
         <div class="col-sm-12">
 
-          <article class="post single-post-inner">
+          <article class="post donation-box">
 
-            <div class="single-post-inner-title">
+            <div class="donation-box-title">
               <h2> Appel au don de sang de type {{donation.bloodType}} avant le {{donation.deadline | date:'medium'}} </h2>
               <p class="single-post-meta">
                 <i class="fa fa-user"></i>&nbsp; {{donation.applicant.username}}
@@ -23,7 +23,7 @@
               </p>
             </div>
 
-            <div class="single-post-inner-content">
+            <div class="donation-box-content">
               <p> {{donation.description}} </p>
             </div>
 
@@ -33,38 +33,38 @@
 
         <div class="col-sm-4">
 
-          <h4 class="event-content-title"> Demande </h4>
+          <h4 class="donation-content-title"> Demande </h4>
 
-          <p class="event-content-info">
+          <p class="donation-content-info">
 
-            <span class="event-sub-content-title"> Groupe sanguin : {{donation.bloodType}} </span>
+            <span class="donation-sub-content-title"> Groupe sanguin : {{donation.bloodType}} </span>
 
-            <span class="event-sub-content-title"> Date limite : {{donation.deadline | date:'medium'}} </span>
+            <span class="donation-sub-content-title"> Date limite : {{donation.deadline | date:'medium'}} </span>
 
-            <span class="event-sub-content-title"> Tél : {{donation.phoneNumber}} </span>
+            <span class="donation-sub-content-title"> Tél : {{donation.phoneNumber}} </span>
 
-            <span class="event-sub-content-title"> Ville : {{donation.city}} </span>
+            <span class="donation-sub-content-title"> Ville : {{donation.city}} </span>
 
-            <span class="event-sub-content-title"> Statut : {{donation.status}} </span>
+            <span class="donation-sub-content-title"> Statut : {{donation.status}} </span>
 
-            <span class="event-sub-content-title"> Créée :  {{donation.createdOn | date:'medium'}} </span>
+            <span class="donation-sub-content-title"> Créée :  {{donation.createdOn | date:'medium'}} </span>
 
           </p>
         </div> <!-- end .col-sm-4  -->
 
         <div class="col-sm-4">
 
-          <h4 class="event-content-title"> Demandeur </h4>
+          <h4 class="donation-content-title"> Demandeur </h4>
 
-          <p class="event-content-info">
+          <p class="donation-content-info">
 
-            <span class="event-sub-content-title"> Nom : {{donation.applicant.lastName}} </span>
+            <span class="donation-sub-content-title"> Nom : {{donation.applicant.lastName}} </span>
 
-            <span class="event-sub-content-title"> Prénom : {{donation.applicant.firstName}} </span>
+            <span class="donation-sub-content-title"> Prénom : {{donation.applicant.firstName}} </span>
 
-            <span class="event-sub-content-title"> Email : {{donation.applicant.email}} </span>
+            <span class="donation-sub-content-title"> Email : {{donation.applicant.email}} </span>
 
-            <span class="event-sub-content-title"> Tél : {{donation.applicant.phoneNumber}} </span>
+            <span class="donation-sub-content-title"> Tél : {{donation.applicant.phoneNumber}} </span>
 
           </p>
 
@@ -72,15 +72,15 @@
 
         <div class="col-sm-4">
 
-          <h4 class="event-content-title"> Adresse du demandeur</h4>
+          <h4 class="donation-content-title"> Adresse du demandeur</h4>
 
-          <p class="event-content-info">
+          <p class="donation-content-info">
 
-            <span class="event-sub-content-title"> {{donation.applicant.address.street}} </span>
+            <span class="donation-sub-content-title"> {{donation.applicant.address.street}} </span>
 
-            <span class="event-sub-content-title"> {{donation.applicant.address.zipCode}} - {{donation.applicant.address.city}} </span>
+            <span class="donation-sub-content-title"> {{donation.applicant.address.zipCode}} - {{donation.applicant.address.city}} </span>
 
-            <span class="event-sub-content-title"> {{donation.applicant.address.country}} </span>
+            <span class="donation-sub-content-title"> {{donation.applicant.address.country}} </span>
 
           </p>
 
@@ -89,9 +89,9 @@
 
         <div class="col-sm-12">
 
-          <h4 class="event-content-title"> Maps </h4>
+          <h4 class="donation-content-title"> Maps </h4>
 
-          <div class="post-inner-featured-content">
+          <div class="donation-map">
             <img alt="" src="/assets/images/event_single.jpg">
           </div>
 
