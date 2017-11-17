@@ -1,1 +1,251 @@
+@import "../../assets/scss/variables";
+
+/* sponsors logo */
+
+.sponsor img {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  width: 100%;
+  margin: 0;
+  border: 0px solid $secondary-dark;
+  display: block;
+  opacity: 0.7;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.sponsor img:hover {
+  border: 0px dotted $primary;
+  opacity: 1;
+}
+
+/* primeng carousel */
+
+::ng-deep .ui-widget-content {
+  border: none;
+}
+
+::ng-deep .ui-carousel {
+  text-align: center;
+}
+
+::ng-deep .ui-widget-header {
+  background: transparent;
+  border: none;
+}
+
+/* main carousel */
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.slide-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.slide-content p {
+  color: $tertiary-dark;
+}
+
+.slide-content h3 {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $tertiary-dark;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  line-height: 50px;
+  margin: 16px 0 0;
+}
+
+.slide-content h2 {
+  letter-spacing: 0.03em;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 60px;
+  line-height: 70px;
+  font-weight: 700;
+  margin: 24px 0 0;
+  color: $tertiary-dark;
+  text-transform: uppercase;
+}
+
+.slide-content h2 span {
+  padding: 0 3px;
+  font-weight: 400;
+}
+
+.slide-contents-info {
+  background: $light;
+  padding: 24px 0px 48px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.slide-contents-info:before,
+.slide-contents-info:after {
+  content: "";
+  width: 130px;
+  height: 130px;
+  background: transparent;
+  border: 5px solid $primary;
+  position: absolute;
+  z-index: -1;
+}
+
+.slide-contents-info:before {
+  bottom: 0px;
+  left: 0;
+  border-top: 0px;
+  border-right: 0px;
+}
+
+.slide-contents-info:after {
+  top: 0px;
+  right: 0;
+  border-left: 0px;
+  border-bottom: 0px;
+}
+
+
+
+/* testimonial section */
+
+.user-testimonial {
+  padding-top: 4%;
+  padding-bottom: 4%;
+  background-color: $tertiary-dark;
+  position: relative;
+  overflow: hidden;
+}
+.user-testimonial:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  //background: rgba(0, 0, 0, 0.5);
+  content: '';
+  width: 100%;
+  height: 2000px;
+}
+
+
+
+/***********************************************************************************************/
+/*  RESPONSIVE STYLING */
+/***********************************************************************************************/
+@media only screen and (min-width: 992px) and (max-width: 1300px) {
+  .slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .slide-content {
+    margin-top: 24px;
+  }
+  .slide-content h3 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .slide-content h2 {
+    font-size: 42px;
+    line-height: 48px;
+  }
+}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 991px) {
+  .slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .slide-content {
+    top: 50%;
+    transform: translateY(-48%);
+  }
+  .slide-content h3 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .slide-content h2 {
+    font-size: 42px;
+    line-height: 48px;
+  }
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .slide-content {
+    margin-top: 12px;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-55%);
+  }
+  .slide-content h2 {
+    font-size: 32px;
+    line-height: 42px;
+  }
+  .slide-content h3 {
+    font-size: 20px;
+    display: none;
+  }
+}
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .slide-content {
+    top: 50%;
+    transform: translateY(-63%);
+  }
+  .slide-content h2 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .slide-content h3 {
+    display: none;
+  }
+  .slide-contents-info {
+    margin-top: 24px;
+  }
+  .slide-contents-info:before,
+  .slide-contents-info:after {
+    content: "";
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    border: 2px solid $primary;
+    position: absolute;
+    z-index: -1;
+  }
+  .slide-contents-info:before {
+    bottom: 0px;
+    left: 0;
+    border-top: 0px;
+    border-right: 0px;
+  }
+  .slide-contents-info:after {
+    top: 0px;
+    right: 0;
+    border-left: 0px;
+    border-bottom: 0px;
+  }
+}
+
 

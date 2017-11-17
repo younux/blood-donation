@@ -20,7 +20,6 @@ import { TeamSectionComponent } from './team-section/team-section.component';
 import { EventSingleComponent } from './event-single/event-single.component';
 import { GallerySectionComponent } from './gallery-section/gallery-section.component';
 import { ProcessSectionComponent } from './process-section/process-section.component';
-import { SectionHeadingComponent} from "./section-heading/section-heading.component";
 import { PageHeaderComponent} from "./page-header/page-header.component";
 import { TeamMemberComponent} from "./team-member/team-member.component";
 
@@ -49,7 +48,6 @@ import { TeamMemberComponent} from "./team-member/team-member.component";
     GallerySectionComponent,
     GallerySectionComponent,
     ProcessSectionComponent,
-    SectionHeadingComponent,
     PageHeaderComponent,
     TeamMemberComponent,
     ],
@@ -72,7 +70,6 @@ import { TeamMemberComponent} from "./team-member/team-member.component";
     EventSingleComponent,
     GallerySectionComponent,
     ProcessSectionComponent,
-    SectionHeadingComponent,
     PageHeaderComponent,
     TeamMemberComponent,
     ],

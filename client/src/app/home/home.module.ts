@@ -3,14 +3,23 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { ComponentsModule } from '../shared/components/components.module';
 import { ProfileModule } from '../profiles/profile.module';
-import {TemplateComponentsModule} from '../shared/template-components/template-components.module';
+import { CarouselModule as PrimeNgCarouselModule } from 'primeng/components/carousel/carousel';
+import { CarouselModule as NgxCarouselModule } from 'ngx-bootstrap/carousel';
+import { RouterModule } from '@angular/router';
+
+
+
+
+
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     ComponentsModule,
     ProfileModule,
-    TemplateComponentsModule,
+    PrimeNgCarouselModule,
+    NgxCarouselModule.forRoot(),
   ],
   declarations: [HomeComponent]
 })
