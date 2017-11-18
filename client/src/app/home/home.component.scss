@@ -27,15 +27,15 @@
 
 /* primeng carousel */
 
-::ng-deep .ui-widget-content {
+:host ::ng-deep .ui-widget-content {
   border: none;
 }
 
-::ng-deep .ui-carousel {
+:host ::ng-deep .ui-carousel {
   text-align: center;
 }
 
-::ng-deep .ui-widget-header {
+:host ::ng-deep .ui-widget-header {
   background: transparent;
   border: none;
 }
