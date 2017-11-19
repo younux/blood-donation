@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # https://docs.djangoproject.com/en/1.11/ref/contrib/sites/#enabling-the-sites-framework
     'django.contrib.sites',
 
+    #Third party apps
     # django rest framework
     'rest_framework',
     # DRF JWT token
@@ -50,9 +51,11 @@ INSTALLED_APPS = [
     # django swagger
     'rest_framework_swagger',
 
-    # developped apps
+    # my developped apps
     'accounts.apps.AccountsConfig',
     'donations.apps.DonationsConfig',
+    'posts.apps.PostsConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 MIDDLEWARE = [

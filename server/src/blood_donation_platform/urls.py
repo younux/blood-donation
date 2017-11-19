@@ -33,6 +33,8 @@ urlpatterns = [
     # url(r'^api/auth/token-verify/', verify_jwt_token),
     url(r'^api/accounts/', include('accounts.api.urls', namespace='accounts-api')),
     url(r'^api/donations/', include('donations.api.urls', namespace='donations-api')),
+    url(r'^api/posts/', include('posts.api.urls', namespace='posts-api')),
+    url(r'^api/comments/', include('comments.api.urls', namespace='comments-api')),
 
     # DRF docs
     url(r'^docs/', include_docs_urls(title='My API title')),
