@@ -14,6 +14,7 @@ import {Profile} from "../../shared/models/profile.model";
 export class DonationListMyComponent implements OnInit {
 
   myPofile: Profile;
+  // donations attributes
   donationsList: Donation[];
   // Pagination attributes
   itemsPerPage: number = 5; // maximum number of items per page. If value less than 1 will display all items on one page
@@ -21,6 +22,9 @@ export class DonationListMyComponent implements OnInit {
   totalItems: number; // total number of items in all pages
   currentPage: number; // current selected page
   numPages: number; // equals to total pages count
+  // Search and filtering bar attributes
+  filteringOptions: any = {};
+  orderingOption: string = 'deadline';
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -32,68 +36,128 @@ export class DonationListMyComponent implements OnInit {
 
   ngOnInit() {
     this.myPofile = this.authenticationService.profile;
-    // Init the current page using a snapshot of query parameters
-    this.currentPage = Number(this.route.snapshot.queryParams['page'] || 1);
-    // subscribing to query parameters to update donations as
-    // the queryParams change (using donationService)
-    this.route.queryParams.subscribe(
-      queryParameters => {
-        let sentQueryParamsArray: String[] = [];
-        // Add username to sentQueryParamsArray
-        sentQueryParamsArray.push(`username=${this.myPofile.username}`);
-        // read query params from url
-        const cityParam = queryParameters['city'];
-        const keyWordParam = queryParameters['keyWord'];
-        const bloodTypesParam = queryParameters['bloodTypes'];
-        const page = queryParameters['page'];
-        const ordering = queryParameters['ordering'];
-        // add non falsy query parrams to sentQueryParamsArray
-        if (page) {
-          sentQueryParamsArray.push(`page=${page}`);
-        } else {
-          // in this case, the search bar deleted the page query param to
-          // reinitialize the search, so we should return to the first page
-          this.currentPage = 1;
-        }
-        if (ordering) {
-          sentQueryParamsArray.push(`ordering=${ordering}`);
-        }
-        if (cityParam) {
-          sentQueryParamsArray.push(`city=${cityParam}`);
-        }
-        if (keyWordParam) {
-          sentQueryParamsArray.push(`keyWord=${keyWordParam}`);
-        }
-        if (bloodTypesParam) {
-          sentQueryParamsArray.push(`bloodTypes=${bloodTypesParam}`);
-        }
-        // Send list request with a query params string
-        this.donationService.listDonations(sentQueryParamsArray.join('&')).subscribe(
-          response => {
-            this.donationsList = response.results;
-            this.totalItems = response.count;
-          },
-          err => {
-            const alerts = this.alertService.jsonToHtmlList(err);
-            this.alertService.error(alerts);
-          }
-        );
-      }
-    );
+    // Read query parameters and intialize filtering and ordering options that
+    // will be passed to the search bar
+    let newFilteringOptions = {};
+    let newOrderingOption: string;
+
+    const initQueryParams = this.route.snapshot.queryParams;
+
+    if(initQueryParams) {
+      this.currentPage = Number(initQueryParams['page'] || 1);
+      newFilteringOptions['city'] = initQueryParams['city'];
+      newFilteringOptions['keyWord'] = initQueryParams['keyWord'];
+      newOrderingOption = initQueryParams['ordering'] || this.orderingOption;
+    }
+    // Send list request with a query params string
+    this.donationService.listDonations({...initQueryParams, 'username': this.myPofile.username})
+      .subscribe(
+      response => {
+        this.donationsList = response.results;
+        this.totalItems = response.count;
+      },
+      err => {
+        const alerts = this.alertService.jsonToHtmlList(err);
+        this.alertService.error(alerts);
+      });
+    // uodate filtering and ordering options that are bind to search
+    // bar inputs (this will update the search bar)
+    this.filteringOptions = newFilteringOptions;
+    this.orderingOption = newOrderingOption;
+
   }
+
+  onFilteringOptionsChange(options: any) {
+    // Change filtering options, request new list and update the route paramaters
+    this.filteringOptions = options;
+    let routerQueryParams = {};
+    // When filtering option change, we go back the first page
+    this.currentPage = 1;
+    // prepare new query params that will be sent with list request to the server
+    if (this.orderingOption) {
+      routerQueryParams['ordering'] = this.orderingOption;
+    }
+    if (this.filteringOptions['city']) {
+      routerQueryParams['city'] = this.filteringOptions['city'];
+    }
+    if (this.filteringOptions['keyWord']) {
+      routerQueryParams['keyWord'] = this.filteringOptions['keyWord'];
+    }
+    // Send list request with a query params string
+    this.donationService.listDonations({...routerQueryParams, 'username': this.myPofile.username})
+      .subscribe(
+      response => {
+        this.donationsList = response.results;
+        this.totalItems = response.count;
+      },
+      err => {
+        const alerts = this.alertService.jsonToHtmlList(err);
+        this.alertService.error(alerts);
+      });
+    // update route paramters
+    this.router.navigate([], {queryParams: routerQueryParams});
+
+  }
+
+  onOrderingOptionChange(option: any) {
+    // Change ordering options, request new list and update the route paramaters
+    this.orderingOption = option;
+    let routerQueryParams = {};
+    // When ordering option change, we go back the first page
+    this.currentPage = 1;
+    // prepare new query params that will be sent with list request to the server
+    if (this.orderingOption) {
+      routerQueryParams['ordering'] = this.orderingOption;
+    }
+    if (this.filteringOptions['city']) {
+      routerQueryParams['city'] = this.filteringOptions['city'];
+
+    }
+    if (this.filteringOptions['keyWord']) {
+      routerQueryParams['keyWord'] = this.filteringOptions['keyWord'];
+
+    }
+    // Send list request with a query params string
+    this.donationService.listDonations({...routerQueryParams, 'username': this.myPofile.username})
+      .subscribe(
+      response => {
+        this.donationsList = response.results;
+        this.totalItems = response.count;
+      },
+      err => {
+        const alerts = this.alertService.jsonToHtmlList(err);
+        this.alertService.error(alerts);
+      });
+    // update route paramters
+    this.router.navigate([], {queryParams: routerQueryParams});
+
+  }
+
 
   updateCurrentPage(page) {
     this.currentPage = page;
     // get query parameters
-    let queryParameters = Object.assign({}, this.route.snapshot.queryParams);
+    let routerQueryParams = Object.assign({}, this.route.snapshot.queryParams);
     // check if we need to update url query parameters
-    if (!queryParameters['page'] && this.currentPage === 1){
+    if (!routerQueryParams['page'] && this.currentPage === 1){
       // here we do not need to update query param
       return;
     } else {
-      // update query params
-      queryParameters['page'] = this.currentPage
-      this.router.navigate([], {queryParams: queryParameters});
+      // update page query params
+      routerQueryParams['page'] = this.currentPage
+      // Send list request with a query params string
+      this.donationService.listDonations({...routerQueryParams, 'username': this.myPofile.username})
+        .subscribe(
+        response => {
+          this.donationsList = response.results;
+          this.totalItems = response.count;
+        },
+        err => {
+          const alerts = this.alertService.jsonToHtmlList(err);
+          this.alertService.error(alerts);
+        });
+      // update route paramters
+      this.router.navigate([], {queryParams: routerQueryParams});
     }
   }
 
@@ -102,3 +166,4 @@ export class DonationListMyComponent implements OnInit {
   }
 
 }
+

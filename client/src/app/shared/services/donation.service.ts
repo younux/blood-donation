@@ -31,10 +31,31 @@ export class DonationService  {
 
   }
 
-  listDonations(queryParamsStr?: string) {
+  listDonations(queryParams?: any) {
     let queryUrl = `${this.apiUrl}donations/`;
-    if(queryParamsStr){
-      queryUrl = `${queryUrl}?${queryParamsStr}`;
+    if (queryParams) {
+      let sentQueryParamsArray = [];
+      if (queryParams['username']) {
+        sentQueryParamsArray.push(`username=${queryParams['username']}`);
+      }
+      if (queryParams['page']) {
+        sentQueryParamsArray.push(`page=${queryParams['page']}`);
+      }
+      if (queryParams['city']) {
+        sentQueryParamsArray.push(`city=${queryParams['city']}`);
+
+      }
+      if (queryParams['keyWord']) {
+        sentQueryParamsArray.push(`keyWord=${queryParams['keyWord']}`);
+
+      }
+      if (queryParams['bloodType']) {
+        sentQueryParamsArray.push(`bloodType=${queryParams['bloodType']}`);
+      }
+      if (queryParams['ordering']) {
+        sentQueryParamsArray.push(`ordering=${queryParams['ordering']}`);
+      }
+      queryUrl = `${queryUrl}?${sentQueryParamsArray.join('&')}`;
     }
     return this.http.get(queryUrl)
       .map(response => {
@@ -73,22 +94,8 @@ export class DonationService  {
       .catch(this.handle_error);
   }
 
-  countDonationsByBloodType(queryParamsStr?: string) {
-    let queryUrl = `${this.apiUrl}donations/count/`;
-    if(queryParamsStr){
-      queryUrl = `${queryUrl}?${queryParamsStr}`;
-    }
-    return this.http.get(queryUrl)
-      .map(response => {
-        return response.json();
-      })
-      .catch(this.handle_error);
-  }
-
   private handle_error(error: any): any {
     return Observable.throw(error.json());
   }
-
-
 
 }

@@ -6,7 +6,13 @@
     <div class="row">
 
       <div class="col-xs-12 col-sm-4">
-        <app-donation-search-filter></app-donation-search-filter>
+        <app-donation-search-filter [filteringOptions]="filteringOptions"
+                                    (filteringOptionsChange)="onFilteringOptionsChange($event)"
+                                    [orderingOption]="orderingOption"
+                                    (orderingOptionChange)="onOrderingOptionChange($event)"
+                                    [bloodTypeCount]="bloodTypeCount">
+
+        </app-donation-search-filter>
       </div>
 
       <div class="col-xs-12 col-sm-8">

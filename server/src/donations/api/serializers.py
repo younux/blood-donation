@@ -59,18 +59,3 @@ class DonationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("The phone number must be valid (0X-XX-XX-XX-XX or +33 X-XX-XX-XX-XX or 0033 X-XX-XX-XX-XX where X is a digit)")
         return value
 
-
-class DonationCountBloodTypeSerializer(serializers.Serializer):
-    """
-        Donation Serializer for counting donations by blood type
-
-        Extends Serializer.
-    """
-    A_plus = serializers.IntegerField(label="A+")
-    A_minus = serializers.IntegerField(label="A-")
-    B_plus = serializers.IntegerField(label="B+")
-    B_minus = serializers.IntegerField(label="B-")
-    AB_plus = serializers.IntegerField(label="AB+")
-    AB_minus = serializers.IntegerField(label="AB-")
-    O_plus = serializers.IntegerField(label="O+")
-    O_minus = serializers.IntegerField(label="O-")

@@ -5,14 +5,20 @@
     <div class="row">
 
       <div class="col-xs-12 col-sm-4">
-        <app-donation-search-filter [showBloodTypesFilter]="false" ></app-donation-search-filter>
+        <app-donation-search-filter [filteringOptions]="filteringOptions"
+                                    (filteringOptionsChange)="onFilteringOptionsChange($event)"
+                                    [orderingOption]="orderingOption"
+                                    (orderingOptionChange)="onOrderingOptionChange($event)"
+                                    [showBloodTypeFilter]="false">
+
+        </app-donation-search-filter>
       </div>
 
       <div class="col-xs-12 col-sm-8">
         <div class="row">
           <div *ngIf="donationsList">
             <app-donation-list [donations]="donationsList"
-                               [showUpdateButton]="true"
+                               [showUpdateButton]="false"
                                [showDetailButton]="true">
             </app-donation-list>
           </div>

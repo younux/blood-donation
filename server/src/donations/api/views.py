@@ -25,7 +25,6 @@ from django.db.models import Q
 
 from .serializers import (
     DonationSerializer,
-    DonationCountBloodTypeSerializer,
 )
 from .permissions import (
     IsDonationOwnerOrReadOnly,
@@ -85,7 +84,6 @@ class DonationListAPIView(ListAPIView):
 
         Extends ListAPIView. This view handles donation listing process.
     """
-    queryset = Donation.objects.all()
     serializer_class = DonationSerializer
     pagination_class = DonationPageNumberPagination
     # For filtering (search, order, ...) see : http://www.django-rest-framework.org/api-guide/filtering/
@@ -102,6 +100,26 @@ class DonationListAPIView(ListAPIView):
     # object_list: <class 'donations.models.Donation'> QuerySet.paginator =
     # self.django_paginator_class(queryset, page_size)
     permission_classes = [AllowAny]
+
+    def list(self, request, *args, **kwargs):
+        """
+            Override list(self, request, *args, **kwargs) to add blood type count to returned data
+        """
+        response = super(DonationListAPIView, self).list(request, *args, **kwargs)
+        queryset_list = self.get_queryset(*args, **kwargs)
+        # Counting donations by blood type
+        blood_type_count = {}
+        blood_type_count['A_plus'] = queryset_list.filter(applicant__blood_type='A+').count()
+        blood_type_count['A_minus'] = queryset_list.filter(applicant__blood_type='A-').count()
+        blood_type_count['B_plus'] = queryset_list.filter(applicant__blood_type='B+').count()
+        blood_type_count['B_minus'] = queryset_list.filter(applicant__blood_type='B-').count()
+        blood_type_count['AB_plus'] = queryset_list.filter(applicant__blood_type='AB+').count()
+        blood_type_count['AB_minus'] = queryset_list.filter(applicant__blood_type='AB-').count()
+        blood_type_count['O_plus'] = queryset_list.filter(applicant__blood_type='O+').count()
+        blood_type_count['O_minus'] = queryset_list.filter(applicant__blood_type='O-').count()
+        # add the count to the returned response data
+        response.data['blood_type_count'] = blood_type_count
+        return response
 
 
     def get_queryset(self, *args, **kwargs):
@@ -124,7 +142,7 @@ class DonationListAPIView(ListAPIView):
         if status:
             queryset_list = queryset_list.filter(status__icontains=status)
         # filter by applicant bloodtype
-        blood_types_query_param = self.request.query_params.get('bloodTypes', None)
+        blood_types_query_param = self.request.query_params.get('bloodType', None)
         if blood_types_query_param:
             blood_types = blood_types_query_param.replace('Plus', '+').replace('Minus', '-').split('_')
             queryset_list = queryset_list.filter(applicant__blood_type__in=blood_types)
@@ -158,50 +176,3 @@ class DonationDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = DonationSerializer
     permission_classes = [IsAuthenticated, IsDonationOwnerOrReadOnly]
 
-
-class DonationCountBloodTypeView(GenericAPIView):
-    """
-        View that handles requests for the number of created donations by blood types.
-
-        Extends GenericAPIView
-    """
-    serializer_class = DonationCountBloodTypeSerializer
-    permission_classes = [AllowAny]
-
-    def get(self, request, *args, **kwargs):
-        """
-            handles requests for blood types count
-        """
-
-        queryset_list = Donation.objects.all()
-        # filter by donation city
-        city = self.request.query_params.get('city', None)
-        if city:
-            queryset_list = queryset_list.filter(city__icontains=city)
-        # filter by keyword
-        keyWord = self.request.query_params.get('keyWord', None)
-        if keyWord:
-            queryset_list = queryset_list.filter(
-                Q(description__icontains=keyWord) |
-                Q(city__icontains=keyWord) |
-                Q(status__icontains=keyWord) |
-                Q(applicant__blood_type__icontains=keyWord) |
-                Q(applicant__username__icontains=keyWord) |
-                Q(applicant__first_name__icontains=keyWord) |
-                Q(applicant__last_name__icontains=keyWord)
-            ).distinct()
-        # Counting donations by blood type
-        data = {}
-        data['A_plus'] = queryset_list.filter(applicant__blood_type='A+').count()
-        data['A_minus'] = queryset_list.filter(applicant__blood_type='A-').count()
-        data['B_plus'] = queryset_list.filter(applicant__blood_type='B+').count()
-        data['B_minus'] = queryset_list.filter(applicant__blood_type='B-').count()
-        data['AB_plus'] = queryset_list.filter(applicant__blood_type='AB+').count()
-        data['AB_minus'] = queryset_list.filter(applicant__blood_type='AB-').count()
-        data['O_plus'] = queryset_list.filter(applicant__blood_type='O+').count()
-        data['O_minus'] = queryset_list.filter(applicant__blood_type='O-').count()
-        # create serializer
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        # By default Response status is 200, so we can omit status=HTTP_200_OK
-        return Response(data=serializer.data)
