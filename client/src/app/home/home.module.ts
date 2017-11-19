@@ -6,6 +6,7 @@ import { ProfileModule } from '../profiles/profile.module';
 import { CarouselModule as PrimeNgCarouselModule } from 'primeng/components/carousel/carousel';
 import { CarouselModule as NgxCarouselModule } from 'ngx-bootstrap/carousel';
 import { RouterModule } from '@angular/router';
+import { TemplateComponentsModule } from '../shared/template-components/template-components.module';
 
 
 
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     ProfileModule,
     PrimeNgCarouselModule,
     NgxCarouselModule.forRoot(),
+    TemplateComponentsModule,
   ],
   declarations: [HomeComponent]
 })
