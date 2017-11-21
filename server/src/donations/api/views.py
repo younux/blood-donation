@@ -30,7 +30,7 @@ from .permissions import (
     IsDonationOwnerOrReadOnly,
 )
 from ..models import Donation
-from accounts.models import Profile
+from accounts.models import User
 
 from .emails import notify_by_email
 from .sms import notify_by_sms
@@ -54,7 +54,7 @@ class DonationCreateAPIView(CreateAPIView):
 
             CreateAPIView extends CreateModelMixin so it calls perform_create.
         """
-        applicant = Profile.objects.filter(username = self.request.user.username).first()
+        applicant = User.objects.filter(username = self.request.user.username).first()
         donation_obj = serializer.save(applicant = applicant)
         # sending notifications emails.
         # sending email can throw exceptions :

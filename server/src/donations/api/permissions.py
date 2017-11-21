@@ -1,6 +1,6 @@
 from rest_framework import permissions
 from rest_framework.permissions import BasePermission
-from accounts.models import Profile
+from accounts.models import User
 
 class IsDonationOwnerOrReadOnly(BasePermission):
     """

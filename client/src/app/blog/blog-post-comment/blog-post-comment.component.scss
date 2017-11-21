@@ -1,0 +1,53 @@
+@import "../../../assets/scss/variables";
+
+article {
+  background: $light;
+  border: 1px solid $secondary-dark;
+  padding: 12px;
+}
+article header {
+  border-bottom: 1px solid $secondary-dark;
+  font-size: 12px;
+  margin-bottom: 1.5em;
+  position: relative;
+}
+article header span {
+  color: $tertiary;
+}
+
+article header h5 {
+  margin-bottom: 12px;
+  text-transform: capitalize;
+  color: $dark;
+}
+
+
+article header h5 span {
+  font-size: 12px;
+  background: $dark;
+  color: $light;
+  padding: 3px 5px;
+  font-style: normal;
+  margin-right: .5em;
+}
+.comment_text {
+  padding-right: 24px;
+}
+.comment-avatar img {
+  width: 64px;
+  height: 64px;
+  float: right;
+  background: $light;
+  margin: 2px;
+  border: 1px solid $secondary-dark;
+  padding: 2px;
+  -webkit-transition: 0.3s 0.2s ease-out;
+  -moz-transition: 0.3s 0.2s ease-out;
+  -o-transition: 0.3s 0.2s ease-out;
+  transition: 0.3s 0.2s ease-out;
+}
+.comment-avatar img:hover {
+  border-color: $tertiary;
+}
+
+

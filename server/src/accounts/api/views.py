@@ -21,15 +21,15 @@ from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.core.cache import cache
 
-from ..models import Profile
+from ..models import User
 from .tokens import (JWTTokenGenerator,
                     AccountActivationTokenGenerator,
                     CustomPasswordResetTokenGenerator)
 
 from .serializers import (
-    ProfileCreateSerialzer,
-    ProfileLoginSerializer,
-    ProfileActivateSerializer,
+    UserCreateSerialzer,
+    UserLoginSerializer,
+    UserActivateSerializer,
     PasswordResetRequestSerializer,
     PasswordResetVerifySerializer,
     PasswordResetSerializer,
@@ -39,19 +39,19 @@ from .serializers import (
 from .emails import send_activation_email, send_password_reset_email
 from .sms import send_phone_verification_sms
 
-class ProfileCreateAPIView(GenericAPIView):
+class UserCreateAPIView(GenericAPIView):
     """
-        Profile Create API VIEW.
+        User Create API VIEW.
 
         Extends GenericAPIView and defines post method. It handles the creation process
     """
-    serializer_class = ProfileCreateSerialzer
+    serializer_class = UserCreateSerialzer
 
     def post(self, request, *args, **kwargs):
         """
             Post Method
 
-            Implements Post method that saves profile in database
+            Implements Post method that saves user in database
             and sends a registration activation email
         """
         data = request.data
@@ -59,16 +59,16 @@ class ProfileCreateAPIView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         # Calling .save() will either create a new instance, or update an existing instance, depending on if an
         # existing instance was passed when instantiating the serializer class:
-        profile_obj = serializer.save()  # The created user is inactive : see create_profile of ProfileManager
+        user_obj = serializer.save()  # The created user is inactive : see create_user of UserManager
         # Create uid and token that will be sent by mail
         account_activation_token = AccountActivationTokenGenerator()
-        uidb64, token = account_activation_token.make_uidb64_and_token(profile_obj)
+        uidb64, token = account_activation_token.make_uidb64_and_token(user_obj)
         # Get the current Site based on the SITE_ID in the project's settings.
         my_site = Site.objects.get_current()
         # Send activation email
         # sending email can throw exceptions :
         try :
-            send_activation_email(profile_obj, uidb64, token, my_site.domain)
+            send_activation_email(user_obj, uidb64, token, my_site.domain)
         except Exception as e:
             print("Exception on send_activation_email function \n"
                         " - str(e) : ==> " + str(e) +"\n"
@@ -84,14 +84,14 @@ class ProfileCreateAPIView(GenericAPIView):
         return Response(data=serializer.data, status=HTTP_201_CREATED)
 
 
-class ProfileLoginAPIView(GenericAPIView):
+class UserLoginAPIView(GenericAPIView):
     """
-        Profile Create API VIEW.
+        User Create API VIEW.
 
         Extends GenericAPIView and defines post method. It handles the login process
     """
     permission_classes = [AllowAny]
-    serializer_class = ProfileLoginSerializer
+    serializer_class = UserLoginSerializer
 
     def post(self, request, *args, **kwargs):
         """
@@ -105,14 +105,14 @@ class ProfileLoginAPIView(GenericAPIView):
         # update last login and Generate Token
         username = serializer.validated_data.get("username")
         email = serializer.validated_data.get("email")
-        profile_obj = Profile.objects.all_active().filter(
+        user_obj = User.objects.all_active().filter(
                         Q(username=username) |
                         Q(email=email)
                     ).distinct().exclude(email__isnull=True).exclude(email__iexact='').first()
         # update last login date
-        profile_obj.update_last_login()
+        user_obj.update_last_login()
         # Generate Token and add it to response header
-        token = JWTTokenGenerator.generate_token(user = profile_obj)
+        token = JWTTokenGenerator.generate_token(user = user_obj)
         headers = {}
         headers['Authorization'] = JWTTokenGenerator.JWT_AUTH_HEADER_PREFIX + " " + token
         # By default Response status is 200, so we can omit status=HTTP_200_OK
@@ -120,15 +120,15 @@ class ProfileLoginAPIView(GenericAPIView):
 
 
 
-class ProfileActivateAPIView(GenericAPIView):
+class UserActivateAPIView(GenericAPIView):
     """
-        Profile activate API VIEW.
+        User activate API VIEW.
 
-        Extends GenericAPIView and defines post method. It handles the profile activation process.
+        Extends GenericAPIView and defines post method. It handles the user activation process.
     """
 
     permission_classes = [AllowAny]
-    serializer_class = ProfileActivateSerializer
+    serializer_class = UserActivateSerializer
 
     def post(self, request, *args, **kwargs):
         """
@@ -140,20 +140,20 @@ class ProfileActivateAPIView(GenericAPIView):
         serializer = self.get_serializer(data=data)
         # Chekcs the validity of the serializer that checks the token
         serializer.is_valid(raise_exception=True)
-        # Activate the profile
+        # Activate the user
         uidb64 = serializer.validated_data.get('key')
         uid =  force_text(urlsafe_base64_decode(uidb64))
-        profile_obj = Profile.objects.get(pk=uid)
-        profile_obj.activate_profile()
+        user_obj = User.objects.get(pk=uid)
+        user_obj.activate_user()
         # By default Response status is 200, so we can omit status=HTTP_200_OK
         return Response(data=serializer.data)
 
 class PasswordResetRequestAPIView(GenericAPIView):
     """
-        Profile password reset request API VIEW.
+        User password reset request API VIEW.
 
         Extends GenericAPIView. This view handles receiving password reset request
-         and sends a rest password email to the profile.
+         and sends a rest password email to the user.
     """
 
     permission_classes = [AllowAny]
@@ -163,24 +163,24 @@ class PasswordResetRequestAPIView(GenericAPIView):
         """
             Post Method
 
-           Handles receiving password reset request and sends a rest password email to the profile.
+           Handles receiving password reset request and sends a rest password email to the user.
         """
         data = request.data
         serializer = self.get_serializer(data=data)
         # Chekcs the validity of the serializer.
         serializer.is_valid(raise_exception=True)
-        # Retrieve the concerned profile
+        # Retrieve the concerned user
         email = serializer.validated_data.get('email')
-        profile_obj = Profile.objects.get(email=email)
+        user_obj = User.objects.get(email=email)
         # Create uid and token that will be sent by mail
         password_reset_token = CustomPasswordResetTokenGenerator()
-        uidb64, token = password_reset_token.make_uidb64_and_token(profile_obj)
+        uidb64, token = password_reset_token.make_uidb64_and_token(user_obj)
         # Get the current Site based on the SITE_ID in the project's settings.
         my_site = Site.objects.get_current()
         # send email
         # sending email can throw exceptions :
         try :
-            send_password_reset_email(profile_obj, uidb64, token, my_site.domain)
+            send_password_reset_email(user_obj, uidb64, token, my_site.domain)
         except Exception as e:
             print("Exception on send_password_reset_email function \n"
                         " - str(e) : ==> " + str(e) +"\n"
@@ -198,7 +198,7 @@ class PasswordResetRequestAPIView(GenericAPIView):
 
 class PasswordResetVerifyAPIView(GenericAPIView):
     """
-        Profile password reset verification API VIEW.
+        User password reset verification API VIEW.
 
         Extends GenericAPIView.
         This view handles the verification of the token before requesting a new password.
@@ -212,7 +212,7 @@ class PasswordResetVerifyAPIView(GenericAPIView):
         """
             Post Method
 
-           Handles receiving password reset request and sends a rest password email to the profile.
+           Handles receiving password reset request and sends a rest password email to the user.
         """
         data = request.data
         serializer = self.get_serializer(data=data)
@@ -223,7 +223,7 @@ class PasswordResetVerifyAPIView(GenericAPIView):
 
 class PasswordResetAPIView(GenericAPIView):
     """
-        Final Profile password reset API VIEW.
+        Final User password reset API VIEW.
 
         Extends GenericAPIView.
         This view handles the changing of the password
@@ -236,19 +236,19 @@ class PasswordResetAPIView(GenericAPIView):
         """
             Post Method
 
-            Handles receiving password reset request and sends a rest password email to the profile.
+            Handles receiving password reset request and sends a rest password email to the user.
         """
         data = request.data
         serializer = self.get_serializer(data=data)
         # Checks the validity of the serializer that checks the token
         serializer.is_valid(raise_exception=True)
-        # Redefine the profile password
+        # Redefine the user password
         uidb64 = serializer.validated_data.get('key')
         password = serializer.validated_data.get('password')
         uid =  force_text(urlsafe_base64_decode(uidb64))
-        profile_obj = Profile.objects.get(pk=uid)
-        profile_obj.set_password(password)
-        profile_obj.save()
+        user_obj = User.objects.get(pk=uid)
+        user_obj.set_password(password)
+        user_obj.save()
         # By default Response status is 200, so we can omit status=HTTP_200_OK
         return Response(data=serializer.data)
 

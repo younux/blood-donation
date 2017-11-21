@@ -1,14 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Address, Profile
+from .models import Address, User
 # Register your models here.
 
 
-class ProfileAdmin(UserAdmin):
+class UserAdmin(UserAdmin):
     """
         This class add specific fields to UserAdmin fieldsets.
 
-        It will adds a section "Blood donation platform specific fields" to the profile in backend admin dashboard
+        It will adds a section "Blood donation platform specific fields" to the user in backend admin dashboard
         "Blood donation platform specific fields" contains fields that are related to this application that were
         appended to the AbstractUser.
     """
@@ -24,5 +24,5 @@ class ProfileAdmin(UserAdmin):
 
 # Regestring the models in the backend admin dashboard
 admin.site.register(Address)
-admin.site.register(Profile, ProfileAdmin)
+admin.site.register(User, UserAdmin)
 

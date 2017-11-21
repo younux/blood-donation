@@ -17,7 +17,7 @@ It is logic as it is using django built in reverse url
 http://{{ domain }}{% url 'accounts-api:activate' uidb64=uidb64 token=token %}
 
 url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        ProfileActivateAPIView.as_view(), name='activate'),
+        UserActivateAPIView.as_view(), name='activate'),
 
 {% endcomment %}
 

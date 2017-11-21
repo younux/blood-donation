@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.db.models import Q
 from django.core.cache import cache
 
-from ..models import Address, Profile
+from ..models import Address, User
 from .tokens import AccountActivationTokenGenerator, CustomPasswordResetTokenGenerator
 
 class AddressSerializer(serializers.ModelSerializer):
@@ -37,15 +37,15 @@ class AddressSerializer(serializers.ModelSerializer):
         return value
 
 
-class ProfileDetailSerializer(serializers.ModelSerializer):
+class UserDetailSerializer(serializers.ModelSerializer):
     """
-        Profile serializer for detail use case
+        User serializer for detail use case
 
         Extends ModelSerializer
     """
     address = AddressSerializer(read_only = True)
     class Meta:
-        model = Profile
+        model = User
         fields = [
             'username',
             'email',
@@ -60,16 +60,16 @@ class ProfileDetailSerializer(serializers.ModelSerializer):
             'sms_notification',
         ]
 
-class ProfileCreateSerialzer(serializers.ModelSerializer):
+class UserCreateSerialzer(serializers.ModelSerializer):
     """
-        Profile Serializer for Creation use case.
+        User Serializer for Creation use case.
 
         Extends ModelSerializer
     """
     email = serializers.EmailField(write_only=True, label="Email address")
     address = AddressSerializer(write_only=True)
     class Meta:
-        model = Profile
+        model = User
         fields = [
             'username',
             'email',
@@ -120,9 +120,9 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
         email_re = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
         if email_re.match(value) is None :
             raise serializers.ValidationError("This is not a valid email address")
-        profile_qs = Profile.objects.filter(email=value)
-        if profile_qs.exists():
-            raise serializers.ValidationError("A profile with that email address already exists.")
+        user_qs = User.objects.filter(email=value)
+        if user_qs.exists():
+            raise serializers.ValidationError("A user with that email address already exists.")
         return value
 
     def validate_password(self, value):
@@ -173,7 +173,7 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
         """
             Overriding ModelSerializer .create(self, validated_data) implementation:
 
-            It creates an inactive profile object with the password and save it.
+            It creates an inactive user object with the password and save it.
         """
         username = validated_data.get("username")
         email = validated_data.get("email")
@@ -189,8 +189,8 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
         sms_notification = validated_data.get("sms_notification")
 
         address_obj = Address.objects.create(**address)
-        # .create_profile creates the model and saves it
-        profile_obj = Profile.objects.create_profile(username = username,
+        # .create_user creates the model and saves it
+        user_obj = User.objects.create_user(username = username,
                                             email = email,
                                             password = password,
                                             first_name = first_name,
@@ -203,11 +203,11 @@ class ProfileCreateSerialzer(serializers.ModelSerializer):
                                             email_notification = email_notification,
                                             sms_notification = sms_notification,
                                          )
-        return profile_obj
+        return user_obj
 
-class ProfileLoginSerializer(serializers.ModelSerializer):
+class UserLoginSerializer(serializers.ModelSerializer):
     """
-        Profile serializer for login use case.
+        User serializer for login use case.
 
         Extends ModelSerializer
     """
@@ -216,7 +216,7 @@ class ProfileLoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
     address = AddressSerializer(read_only=True)
     class Meta :
-        model = Profile
+        model = User
         fields = [
             'username',
             'email',
@@ -250,32 +250,32 @@ class ProfileLoginSerializer(serializers.ModelSerializer):
             First, it checks that a username or an email is supplied. Then, it checks the the username/email
             is valid (exists in database). Finally, it checks that the supplied password is correct.
         """
-        profile_obj = None
+        user_obj = None
         username = data.get("username", None)
         email = data.get("email", None)
         password = data.get("password")
         if not email and not username:
             raise serializers.ValidationError("A username or an email is required to login.")
-        profile_qs = Profile.objects.all_active().filter(
+        user_qs = User.objects.all_active().filter(
                 Q(username = username)|
                 Q(email = email)
             ).distinct()
-        profile_qs = profile_qs.exclude(email__isnull = True).exclude(email__iexact='')
-        if profile_qs.exists() and profile_qs.count() == 1:
-            profile_obj = profile_qs.first()
+        user_qs = user_qs.exclude(email__isnull = True).exclude(email__iexact='')
+        if user_qs.exists() and user_qs.count() == 1:
+            user_obj = user_qs.first()
         else:
             raise serializers.ValidationError("This username / email is not valid.")
-        if profile_obj:
-            if not profile_obj.check_password(password):
+        if user_obj:
+            if not user_obj.check_password(password):
                 raise serializers.ValidationError("Incorrect credentials, please try again.")
-            data = ProfileDetailSerializer(profile_obj).data
+            data = UserDetailSerializer(user_obj).data
 
         return data
 
 
-class ProfileActivateSerializer(serializers.Serializer):
+class UserActivateSerializer(serializers.Serializer):
     """
-        Serializer for profile activation
+        Serializer for user activation
 
         Extends Serializer
     """
@@ -313,8 +313,8 @@ class PasswordResetRequestSerializer(serializers.Serializer):
         email_re = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
         if email_re.match(value) is None :
             raise serializers.ValidationError("This is not a valid email address")
-        profile_qs = Profile.objects.all_active().filter(email=value)
-        if not profile_qs.exists():
+        user_qs = User.objects.all_active().filter(email=value)
+        if not user_qs.exists():
             raise serializers.ValidationError("There is no active user with this email")
         return value
 

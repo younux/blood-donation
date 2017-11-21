@@ -2,22 +2,22 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
-from accounts.models import Profile
+from accounts.models import User
 
 
 def notify_by_email(donation_obj):
     """
-        Send email notification to all active profiles that have the same city as the donation object
+        Send email notification to all active users that have the same city as the donation object
         and the same blood type as the donation object.
     """
     # Prepare the queryset
-    profile_qs = Profile.objects.all_active().filter(address__city = donation_obj.city,
+    user_qs = User.objects.all_active().filter(address__city = donation_obj.city,
                                         blood_type = donation_obj.applicant.blood_type,
                                         email_notification = True,
                                         ).exclude(username = donation_obj.applicant.username)
 
     # Send mail if there are some people to notify
-    if profile_qs.exists() :
+    if user_qs.exists() :
         # prepare template context
         context = { 'applicant_last_name' : donation_obj.applicant.last_name,
                     'applicant_first_name': donation_obj.applicant.first_name,
@@ -28,14 +28,14 @@ def notify_by_email(donation_obj):
         # prepare eamil args
         from_email = settings.DEFAULT_FROM_EMAIL
         subject = 'Blood Donation : Notification Email'
-        # loop over profiles to send email
-        for profile in profile_qs :
-            # pass profile related parameters to template context
-            context['last_name'] = profile.last_name
-            context['first_name'] = profile.first_name
-            # prepare profile related email args
+        # loop over users to send email
+        for user in user_qs :
+            # pass user related parameters to template context
+            context['last_name'] = user.last_name
+            context['first_name'] = user.first_name
+            # prepare user related email args
             body = render_to_string('donations/notification_email.html', context = context)
-            recipient_list = [profile.email]
+            recipient_list = [user.email]
             # Send mail
             email_message = EmailMessage(subject, body, from_email, recipient_list)
             email_message.send(fail_silently=False)

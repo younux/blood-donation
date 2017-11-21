@@ -23,28 +23,28 @@ class Address(models.Model):
         return self.street + " - " + self.city
 
 
-class ProfileManager(UserManager):
+class UserManager(UserManager):
     """
-        ProfileManager
+        UserManager
 
         Extends UserManager
     """
-    def create_profile(self, *args, **kwargs):
+    def create_user(self, *args, **kwargs):
         """
-            Creates a new inactive Profile
+            Creates a new inactive User
         """
-        return super(ProfileManager, self).create_user(is_active=False, *args, **kwargs)
+        return super(UserManager, self).create_user(is_active=False, *args, **kwargs)
 
     def all_active(self, *args, **kwargs):
         """
             Returns a query set with all active users
         """
-        return super(ProfileManager, self).all(*args, **kwargs).filter(is_active=True)
+        return super(UserManager, self).all(*args, **kwargs).filter(is_active=True)
 
 
-class Profile(AbstractUser):
+class User(AbstractUser):
     """
-        Profile model that extends AbstractUser with fields related to our application.
+        User model that extends AbstractUser with fields related to our application.
 
         See https://docs.djangoproject.com/fr/1.11/topics/auth/customizing/#auth-custom-user For using AbstractUser
     """
@@ -88,14 +88,14 @@ class Profile(AbstractUser):
     sms_notification    = models.BooleanField(verbose_name="SMS notification", default=False)
 
     class Meta:
-        verbose_name        = "Profile"
-        verbose_name_plural = "Profiles"
+        verbose_name        = "User"
+        verbose_name_plural = "Users"
 
     # Custom Managers
-    # The default objects manager is UserManager as Profile extends AbstractUser
-    # I changed this default objects manager to ProfileManager that extends it and add
-    # specific app behaviours (filter deleted and inactive Profiles)
-    objects = ProfileManager()
+    # The default objects manager is UserManager as User extends AbstractUser
+    # I changed this default objects manager to UserManager that extends it and add
+    # specific app behaviours (filter deleted and inactive Users)
+    objects = UserManager()
 
     # Override the __unicode__() method to return out something meaningful!
     #  Remember if you use Python 2.7.x, define __unicode__ too!
@@ -104,49 +104,49 @@ class Profile(AbstractUser):
 
     def update_last_login(self):
         """
-            updates the last_login date for the profile logging in.
+            updates the last_login date for the user logging in.
         """
         self.last_login = timezone.now()
         self.save()
 
-    def activate_profile(self):
+    def activate_user(self):
         """
-            Activate Profile
+            Activate User
 
-            Sets is_active to True and save the Profile
+            Sets is_active to True and save the User
         """
         self.is_active = True
         self.save()
 
 # Signal receivers :
 
-@receiver(models.signals.post_delete, sender=Profile)
-def auto_delete_address_with_profile(sender, instance, *args, **kwargs):
+@receiver(models.signals.post_delete, sender=User)
+def auto_delete_address_with_user(sender, instance, *args, **kwargs):
     """
-        After deleting a profile we should delete its address
+        After deleting a user we should delete its address
 
         # If this receiver call gets dupliceted, use dispatch_uid arg
-        @receiver(models.signals.post_delete, sender=Profile, dispatch_uid="put an identifier")
+        @receiver(models.signals.post_delete, sender=User, dispatch_uid="put an identifier")
         see https://docs.djangoproject.com/en/1.11/topics/signals/
     """
-    print("auto_delete_address_with_profile")
+    print("auto_delete_address_with_user")
     try :
         if instance.address :
             instance.address.delete()
     except :
         pass
 
-# @receiver(models.signals.post_save, sender=Profile)
-# def auto_send_email_to_created_profile(sender, instance, created, *args, **kwargs):
+# @receiver(models.signals.post_save, sender=User)
+# def auto_send_email_to_created_user(sender, instance, created, *args, **kwargs):
 #     """
-#         Sends a verification email to the new registered profile
+#         Sends a verification email to the new registered user
 #
 #         # If this receiver call gets dupliceted, use dispatch_uid arg
-#         @receiver(models.signals.post_save, sender=Profile, dispatch_uid="put an identifier")
+#         @receiver(models.signals.post_save, sender=User, dispatch_uid="put an identifier")
 #         see https://docs.djangoproject.com/en/1.11/topics/signals/
 #     """
 #     if created:
-#         print("auto_send_email_to_created_profile")
+#         print("auto_send_email_to_created_user")
 #         try :
 #             pass
 #         except :

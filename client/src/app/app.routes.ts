@@ -6,6 +6,7 @@ import { FaqComponent} from "./faq/faq.component";
 
 import { donationRoutes } from './donations';
 import { profileRoutes } from './profiles';
+import { blogRoutes } from './blog';
 
 
 export const appRoutes: Routes = [
@@ -13,6 +14,7 @@ export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   ...profileRoutes,
   ...donationRoutes,
+  ...blogRoutes,
   { path: 'about' , component: AboutComponent},
   { path: 'contact' , component: ContactComponent},
   { path: 'faq' , component: FaqComponent},

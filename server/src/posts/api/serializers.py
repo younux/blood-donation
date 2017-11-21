@@ -9,7 +9,7 @@ from posts.models import Post
 from comments.models import Comment
 from comments.api.serializers import CommentSerializer
 
-from accounts.api.serializers import ProfileDetailSerializer
+from accounts.api.serializers import UserDetailSerializer
 
 
 post_detail_url = HyperlinkedIdentityField(
@@ -25,7 +25,7 @@ class PostListSerializer(ModelSerializer):
         Extends ModelSerializer
     """
     url = post_detail_url
-    user = ProfileDetailSerializer(read_only = True)
+    user = UserDetailSerializer(read_only = True)
     class Meta:
         model = Post
         fields = [
@@ -46,7 +46,7 @@ class PostDetailSerializer(ModelSerializer):
     """
 
     url = post_detail_url
-    user = ProfileDetailSerializer(read_only = True)
+    user = UserDetailSerializer(read_only = True)
     image = SerializerMethodField()
     html = SerializerMethodField()
     comments = SerializerMethodField()

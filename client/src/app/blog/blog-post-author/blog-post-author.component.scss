@@ -1,0 +1,32 @@
+@import "../../../assets/scss/variables";
+
+.article-author {
+  margin-top: 24px;
+  background: $secondary;
+  padding: 30px;
+  min-height: 100px;
+  padding-bottom: 24px;
+}
+.article-author .author-avatar img {
+  width: 100px;
+  max-width: 100%;
+  max-height: auto;
+  float: right;
+  border: 1px solid $secondary-dark;
+  padding: 3px;
+  margin-top: 0px;
+  margin-left: 12px;
+}
+.article-author .about_author {
+  margin-bottom: 24px;
+}
+.article-author .social-icons a {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid $secondary-dark;
+  color: $tertiary-dark;
+  margin-right: 3px;
+}
+.article-author .social-icons a:hover {
+  color: $primary;
+}

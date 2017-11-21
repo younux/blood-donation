@@ -8,7 +8,7 @@ from rest_framework.serializers import (
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import get_user_model
 from comments.models import Comment
-from accounts.api.serializers import ProfileDetailSerializer
+from accounts.api.serializers import UserDetailSerializer
 
 User = get_user_model()
 
@@ -18,7 +18,7 @@ class CommentSerializer(ModelSerializer):
 
         Extends ModelSerializer
     """
-    user = ProfileDetailSerializer(read_only = True)
+    user = UserDetailSerializer(read_only = True)
     reply_count = SerializerMethodField()
     class Meta:
         model = Comment
@@ -76,7 +76,7 @@ class CommentChildSerializer(ModelSerializer):
 
         Extends ModelSerializer
     """
-    user = ProfileDetailSerializer(read_only = True)
+    user = UserDetailSerializer(read_only = True)
     class Meta:
         model = Comment
         fields = [
@@ -96,7 +96,7 @@ class CommentDetailSerializer(ModelSerializer):
 
         Extends ModelSerializer
     """
-    user = ProfileDetailSerializer(read_only = True)
+    user = UserDetailSerializer(read_only = True)
     replies = SerializerMethodField()
     reply_count = SerializerMethodField()
     content_object_url = SerializerMethodField()

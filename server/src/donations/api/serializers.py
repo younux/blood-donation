@@ -1,7 +1,7 @@
 import datetime, re
 from rest_framework import serializers
 from ..models import Donation
-from accounts.api.serializers import ProfileDetailSerializer
+from accounts.api.serializers import UserDetailSerializer
 
 
 class DonationSerializer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class DonationSerializer(serializers.ModelSerializer):
 
         Extends ModelSerializer.
     """
-    applicant = ProfileDetailSerializer(read_only = True)
+    applicant = UserDetailSerializer(read_only = True)
     blood_type = serializers.SerializerMethodField(read_only = True)
     url = serializers.HyperlinkedIdentityField(
         view_name="donations-api:detail-update-delete",

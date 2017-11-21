@@ -14,7 +14,7 @@ from rest_framework import exceptions
 
 from rest_framework_jwt.settings import api_settings
 
-# Should always use get_user_model to get User because it could be different from (in our case it is Profile)
+# Should always use get_user_model to get User because it could be different from (in our case it is User)
 # django.contrib.auth.models.User when we costumize User
 User = get_user_model()
 

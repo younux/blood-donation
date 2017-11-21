@@ -11,6 +11,7 @@ import { DonationModule } from './donations/donation.module';
 import { ProfileModule } from './profiles/profile.module';
 import { ComponentsModule} from './shared/components/components.module';
 import { HeaderModule} from './header/header.module';
+import { BlogModule } from './blog/blog.module';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -56,6 +57,7 @@ import { FaqComponent } from './faq/faq.component';
     DonationModule,
     ProfileModule,
     ComponentsModule,
+    BlogModule,
   ],
   providers: [
     ...apiInjectables,
