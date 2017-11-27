@@ -1,0 +1,14 @@
+<app-banner content="Post Detail"></app-banner>
+
+
+<section class="section-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-offset-2 col-sm-8">
+        <ng-container *ngIf="post">
+          <app-blog-post-box [post]="post" ></app-blog-post-box>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

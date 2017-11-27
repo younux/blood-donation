@@ -2,11 +2,8 @@ from django.db.models import Q
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import (
         ListAPIView,
-        RetrieveAPIView,
-        UpdateAPIView,
-        DestroyAPIView,
         CreateAPIView,
-        RetrieveUpdateAPIView
+        RetrieveUpdateDestroyAPIView,
         )
 from rest_framework.permissions import (
     AllowAny,
@@ -17,12 +14,11 @@ from rest_framework.permissions import (
 from posts.models import Post
 from .serializers import (
     PostListSerializer,
-    PostDetailSerializer,
-    PostCreateUpdateSerializer
+    PostDetailUpdateDeleteSerializer,
+    PostCreateSerializer
     )
 from .permissions import IsOwnerOrReadOnly
-from .paginations import PostLimitOffsetPagination, PostPageNumberPagination
-
+from .paginations import PostPageNumberPagination
 
 
 
@@ -33,7 +29,7 @@ class PostCreateAPIView(CreateAPIView):
         Extends CreateAPIView.
     """
     queryset = Post.objects.all()
-    serializer_class = PostCreateUpdateSerializer
+    serializer_class = PostCreateSerializer
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
@@ -56,7 +52,7 @@ class PostListAPIView(ListAPIView):
     search_fields = ['title', 'content', 'user__first_name', 'user__last_name']
     pagination_class = PostPageNumberPagination
 
-    # This is for using Q search for examplle :http://127.0.0.1:6001/api/posts/?q=real
+    # This is for using Q search for example :http://127.0.0.1:6001/api/posts/?q=real
     def get_queryset(self, *args, **kwargs):
         """
             Overrides get_queryset(self, *args, **kwargs) to filter the query set
@@ -72,41 +68,18 @@ class PostListAPIView(ListAPIView):
             ).distinct()
         return queryset_list
 
-class PostDetailAPIView(RetrieveAPIView):
+class PostDetailUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     """
         API View for post detail
 
         Extends RetrieveAPIView.
     """
     queryset = Post.objects.all()
-    serializer_class = PostDetailSerializer
-    lookup_field = "slug"
-    #lookup_url_kwarg = "slug"
-
-class PostUpdateAPIView(UpdateAPIView):
-    """
-        API View for post updating
-
-        Extends UpdateAPIView.
-    """
-    queryset = Post.objects.all()
-    serializer_class = PostCreateUpdateSerializer
+    serializer_class = PostDetailUpdateDeleteSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     lookup_field = "slug"
-    #lookup_url_kwarg = "slug"
 
     def perform_update(self, serializer):
         serializer.save(user = self.request.user)
 
-class PostDeleteAPIView(DestroyAPIView):
-    """
-        API View for post deleting
-
-        Extends DestroyAPIView.
-    """
-    queryset = Post.objects.all()
-    serializer_class = PostDetailSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
-    lookup_field = "slug"
-    #lookup_url_kwarg = "slug"
 

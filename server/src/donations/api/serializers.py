@@ -12,15 +12,15 @@ class DonationSerializer(serializers.ModelSerializer):
     """
     applicant = UserDetailSerializer(read_only = True)
     blood_type = serializers.SerializerMethodField(read_only = True)
-    url = serializers.HyperlinkedIdentityField(
-        view_name="donations-api:detail-update-delete",
-        lookup_field="pk",
-    )
+    # url = serializers.HyperlinkedIdentityField(
+    #     view_name="donations-api:detail-update-delete",
+    #     lookup_field="pk",
+    # )
     class Meta :
         model = Donation
         fields = [
             'id',
-            'url',
+            #'url',
             'created_on',
             'applicant',
             'blood_type',

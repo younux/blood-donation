@@ -1,22 +1,30 @@
 from rest_framework.serializers import (
         ModelSerializer,
-        HyperlinkedIdentityField,
         SerializerMethodField,
         )
 
 from posts.models import Post
 
 from comments.models import Comment
-from comments.api.serializers import CommentSerializer
+from comments.api.serializers import CommentDetailUpdateDeleteSerializer
 
-from accounts.api.serializers import UserDetailSerializer
+from accounts.api.serializers import AuthorSerializer
 
 
-post_detail_url = HyperlinkedIdentityField(
-        view_name= "posts-api:detail",
-        lookup_field="slug"
-        )
 
+class PostCreateSerializer(ModelSerializer):
+    """
+        Post Serializer for create and update use cases
+
+        Extends ModelSerializer
+    """
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'content',
+            'publish',
+        ]
 
 class PostListSerializer(ModelSerializer):
     """
@@ -24,45 +32,23 @@ class PostListSerializer(ModelSerializer):
 
         Extends ModelSerializer
     """
-    url = post_detail_url
-    user = UserDetailSerializer(read_only = True)
-    class Meta:
-        model = Post
-        fields = [
-            'url',
-            'user',
-            'title',
-            'slug',
-            'content',
-            'publish',
-        ]
-
-
-class PostDetailSerializer(ModelSerializer):
-    """
-        Post Serializer for detail use case
-
-        Extends ModelSerializer
-    """
-
-    url = post_detail_url
-    user = UserDetailSerializer(read_only = True)
+    author = AuthorSerializer(read_only=True)
     image = SerializerMethodField()
     html = SerializerMethodField()
-    comments = SerializerMethodField()
+    comments_count = SerializerMethodField()
     class Meta:
         model = Post
         fields = [
-            'url',
-            'user',
-            'title',
             'slug',
+            'author',
+            'title',
             'content',
             'html',
             'publish',
             'image',
-            'comments',
+            'comments_count',
         ]
+
     def get_image(self, obj):
         """
             get image url for image SerializerMethodField
@@ -79,25 +65,74 @@ class PostDetailSerializer(ModelSerializer):
         """
         return obj.get_markdown()
 
+    def get_comments_count(self, obj):
+        """
+            get comments for comments SerializerMethodField
+        """
+        return Comment.objects.filter_by_instance(obj).count()
+
+class PostDetailUpdateDeleteSerializer(ModelSerializer):
+    """
+        Post Serializer for detail use case
+
+        Extends ModelSerializer
+    """
+
+    author = AuthorSerializer(read_only = True)
+    image = SerializerMethodField()
+    html = SerializerMethodField()
+    comments_count = SerializerMethodField()
+    comments = SerializerMethodField()
+    class Meta:
+        model = Post
+        fields = [
+            'slug',
+            'author',
+            'title',
+            'content',
+            'html',
+            'publish',
+            'image',
+            'comments_count',
+            'comments',
+        ]
+
+        read_only_fields = [
+            'slug',
+            'author',
+            'html',
+            'image',
+            'comments_count',
+            'comments',
+        ]
+
+    def get_image(self, obj):
+        """
+            get image url for image SerializerMethodField
+        """
+        try:
+            image = obj.image.url
+        except:
+            image = None
+        return image
+
+    def get_html(self, obj):
+        """
+            get html html SerializerMethodField
+        """
+        return obj.get_markdown()
+
+    def get_comments_count(self, obj):
+        """
+            get comments for comments SerializerMethodField
+        """
+        return Comment.objects.filter_by_instance(obj).count()
+
     def get_comments(self, obj):
         """
             get comments for comments SerializerMethodField
         """
         c_qs = Comment.objects.filter_by_instance(obj)
-        comments = CommentSerializer(c_qs, many=True).data
+        comments = CommentDetailUpdateDeleteSerializer(c_qs, many=True).data
         return comments
 
-
-class PostCreateUpdateSerializer(ModelSerializer):
-    """
-        Post Serializer for create and update use cases
-
-        Extends ModelSerializer
-    """
-    class Meta:
-        model = Post
-        fields = [
-            'title',
-            'content',
-            'publish',
-        ]

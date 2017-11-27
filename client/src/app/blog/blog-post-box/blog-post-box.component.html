@@ -4,24 +4,24 @@
 
     <a>
       <figure>
-        <img src="/assets/images/blog_1.jpg">
+        <img [src]="post.image">
       </figure>
     </a>
 
     <div class="post-thumbnail-content">
 
       <h3>
-        <a  >Blood Connects Us All in a Soul</a>
+        <a> {{post.title}} </a>
       </h3>
 
       <div class="post-thumbnail-meta-info">
-        <i class="fa fa-user"></i>&nbsp; Deborah Beck
-        &nbsp; <i class="fa fa-clock-o"></i> April 4, 2017
-        &nbsp; <i class="fa fa-comment-o"></i> 10 Comments
+        <i class="fa fa-user"></i>&nbsp; {{post.author.username}}
+        &nbsp; <i class="fa fa-clock-o"></i> {{post.publish}}
+        &nbsp; <i class="fa fa-comment-o"></i> {{post.commentsCount}} Comments
       </div>
 
       <div>
-        In many countries, demand exceeds supply, and blood services face the challenge of making blood available for patient.
+        {{post.content}}
       </div>
 
     </div>

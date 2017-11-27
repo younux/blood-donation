@@ -20,7 +20,6 @@ export class Donation {
   status: string;
 
   constructor(  id: number,
-                url: string,
                 createdOn: string,
                 applicant: Profile,
                 bloodType: string,
@@ -30,7 +29,6 @@ export class Donation {
                 phoneNumber: string,
                 status: string) {
     this.id = id;
-    this.url = url;
     this.createdOn = createdOn;
     this.applicant = applicant;
     this.bloodType = bloodType;

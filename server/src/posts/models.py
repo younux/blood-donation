@@ -51,7 +51,7 @@ class Post(models.Model):
     """
         Post Model
     """
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location,
@@ -75,9 +75,6 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-    # def get_absolute_url(self):
-    #     return reverse("posts:detail", kwargs={"slug": self.slug})
 
     def get_api_url(self):
         """

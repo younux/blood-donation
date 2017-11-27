@@ -427,3 +427,20 @@ class PhoneVerifySerializer(serializers.Serializer):
         # We do not need the code anymore, delete it from the cache
         cache.delete(phone_number)
         return data
+
+
+class AuthorSerializer(serializers.ModelSerializer):
+    """
+        User (Author) serializer for post and comments.
+
+        Extends ModelSerializer. It gives essential informations about author
+         (without blood infos or address)
+    """
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'first_name',
+            'last_name',
+        ]

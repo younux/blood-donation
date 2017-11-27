@@ -3,14 +3,16 @@ import { Routes } from '@angular/router';
 import { AuthGuardService } from '../shared/services/auth-guard.service';
 
 import {BlogComponent} from './blog.component';
-
+import {BlogPostListComponent} from './blog-post-list/blog-post-list.component';
+import {BlogPostDetailComponent} from './blog-post-detail/blog-post-detail.component';
 
 export const blogRoutes: Routes = [
   {
-    path: 'blogs', component: BlogComponent,
+    path: 'blog', component: BlogComponent,
     children: [
       { path: '', redirectTo: 'all', pathMatch: 'full' },
-      { path: 'all', component: BlogComponent },
+      { path: 'all', component: BlogPostListComponent },
+      { path: 'detail/:slug', component: BlogPostDetailComponent },
     ]
   }
 ];

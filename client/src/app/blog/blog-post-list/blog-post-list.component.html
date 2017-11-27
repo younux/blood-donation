@@ -1,0 +1,16 @@
+<app-banner content="Posts"></app-banner>
+
+
+<section class="section-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-offset-2 col-sm-8">
+        <div *ngIf="postsList" class="posts-list-container">
+          <div *ngFor="let post of postsList" class= "post-thumbnail-container">
+            <app-blog-post-thumbnail [post]="post"> </app-blog-post-thumbnail>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
