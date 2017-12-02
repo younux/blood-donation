@@ -7,6 +7,15 @@
       <div class="col-sm-offset-2 col-sm-8">
         <ng-container *ngIf="post">
           <app-blog-post-box [post]="post" ></app-blog-post-box>
+
+          <app-blog-post-author [author]="post.author"></app-blog-post-author>
+
+          <app-blog-post-comment-list [commentsList]="post.comments"
+                                      (replyData)="onReplyData($event)">
+
+          </app-blog-post-comment-list>
+
+          <app-blog-post-comment-form [showCancelButton]="false" (content)="onContentEmitted($event)"></app-blog-post-comment-form>
         </ng-container>
       </div>
     </div>

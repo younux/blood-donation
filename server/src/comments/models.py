@@ -35,6 +35,15 @@ class CommentManager(models.Manager):
         qs = super(CommentManager, self).filter(content_type=content_type, object_id=obj_id).filter(parent_id=None)
         return qs
 
+    def count_instance_comments(self, instance):
+        """
+            Counts the number of comments of the object instance.
+        """
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        obj_id = instance.id
+        count = super(CommentManager, self).filter(content_type=content_type, object_id=obj_id).count()
+        return count
+
     def create_by_model_type(self, model_type, slug, content, author, parent_obj=None):
         """
             Creates a new comment (contains some extra operations due to the use of content type)
@@ -88,7 +97,7 @@ class Comment(models.Model):
         """
             Return comment that are replies to the current comment (self)
         """
-        return Comment.objects.filter(parent_id=self)
+        return Comment.objects.filter(parent_id=self).order_by('timestamp')
 
     @property
     def is_parent(self):

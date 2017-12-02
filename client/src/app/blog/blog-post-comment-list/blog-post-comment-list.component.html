@@ -1,0 +1,18 @@
+<div *ngIf="commentsList" class="comments-container">
+  <ul *ngFor="let comment of commentsList" class="comments-list">
+    <li>
+      <app-blog-post-comment  [comment]="comment"
+                              (commentToReplyTo)="commentToReplyToId = $event"
+                              (replyData)="onReplyData($event)"
+                              [showCommentForm]="commentToReplyToId === comment.id">
+
+      </app-blog-post-comment>
+      <ul *ngFor="let reply of comment.replies">
+        <li>
+          <app-blog-post-comment [comment]="reply"></app-blog-post-comment>
+        </li>
+      </ul>
+
+    </li>
+  </ul>
+</div>

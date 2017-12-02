@@ -69,7 +69,7 @@ class PostListSerializer(ModelSerializer):
         """
             get comments for comments SerializerMethodField
         """
-        return Comment.objects.filter_by_instance(obj).count()
+        return Comment.objects.count_instance_comments(obj)
 
 class PostDetailUpdateDeleteSerializer(ModelSerializer):
     """
@@ -126,13 +126,13 @@ class PostDetailUpdateDeleteSerializer(ModelSerializer):
         """
             get comments for comments SerializerMethodField
         """
-        return Comment.objects.filter_by_instance(obj).count()
+        return Comment.objects.count_instance_comments(obj)
 
     def get_comments(self, obj):
         """
             get comments for comments SerializerMethodField
         """
-        c_qs = Comment.objects.filter_by_instance(obj)
+        c_qs = obj.comments
         comments = CommentDetailUpdateDeleteSerializer(c_qs, many=True).data
         return comments
 

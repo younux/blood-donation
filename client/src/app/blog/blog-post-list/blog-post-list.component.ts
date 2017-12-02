@@ -21,12 +21,15 @@ export class BlogPostListComponent implements OnInit {
   numPages: number; // equals to total pages count
 
   constructor(private blogService: BlogService,
+              private route: ActivatedRoute,
+              private router: Router,
               private alertService: AlertService) {
 
   }
 
   ngOnInit() {
-    this.blogService.listPosts().subscribe(
+    this.currentPage = Number(this.route.snapshot.queryParams['page'] || 1);
+    this.blogService.listPosts(this.currentPage).subscribe(
       (response) => {
         this.postsList = response.results;
         this.totalItems = response.count;
@@ -37,6 +40,26 @@ export class BlogPostListComponent implements OnInit {
       }
     );
 
+  }
+
+  updateCurrentPage(page) {
+    this.currentPage = page;
+    this.blogService.listPosts(this.currentPage).subscribe(
+      (response) => {
+        this.postsList = response.results;
+        this.totalItems = response.count;
+      },
+      (err) => {
+        const alerts = this.alertService.jsonToHtmlList(err);
+        this.alertService.error(alerts);
+      }
+    );
+    // update the url
+    this.router.navigate([], {queryParams: {'page': this.currentPage}});
+  }
+
+  onNumPages(numberOfPages: number) {
+    this.numPages = numberOfPages;
   }
 
 }

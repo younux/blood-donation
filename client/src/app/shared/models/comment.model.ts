@@ -4,7 +4,9 @@
 
 import {Author} from './author.model';
 
-export class CommentBase {
+
+export class BaseComment {
+
   id: number;
   author: Author;
   parentId: number;
@@ -17,9 +19,7 @@ export class CommentBase {
               parentId: number,
               content: string,
               timestamp: string,
-              replyCount?: number,
-              ){
-
+              replyCount?: number) {
     this.id = id;
     this.author = author;
     this.parentId = parentId;
@@ -30,14 +30,8 @@ export class CommentBase {
 
 }
 
-export class Comment {
-  id: number;
-  author: Author;
-  parentId: number;
-  content: string;
-  timestamp: string;
-  replyCount: number;
-  replies: Array<CommentBase>;
+export class Comment extends BaseComment {
+  replies: Array<BaseComment>;
 
   constructor(id: number,
               author: Author,
@@ -45,15 +39,8 @@ export class Comment {
               content: string,
               timestamp: string,
               replyCount?: number,
-              replies?: Array<CommentBase>,
-  ){
-
-    this.id = id;
-    this.author = author;
-    this.parentId = parentId;
-    this.content = content;
-    this.timestamp = timestamp;
-    this.replyCount = replyCount || null;
+              replies?: Array<BaseComment>) {
+    super(id, author, parentId, content, timestamp, replyCount);
     this.replies = replies || null;
   }
 }

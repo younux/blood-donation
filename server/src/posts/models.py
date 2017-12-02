@@ -102,7 +102,7 @@ class Post(models.Model):
         :return:
         """
         instance = self
-        qs = Comment.objects.filter_by_instance(instance)
+        qs = Comment.objects.filter_by_instance(instance).order_by('timestamp')
         return qs
 
     @property

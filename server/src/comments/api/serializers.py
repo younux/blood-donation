@@ -21,15 +21,40 @@ def create_comment_serializer(model_type='post', slug=None, parent_id=None, auth
 
             Extends ModelSerializer
         """
+
+        author = AuthorSerializer(read_only=True)
+        reply_count = SerializerMethodField(read_only=True)
+        replies = SerializerMethodField(read_only=True)
+
         class Meta:
             model = Comment
             fields = [
+                'id',
+                'author',
+                'parent_id',
                 'content',
+                'timestamp',
+                'reply_count',
+                'replies',
             ]
 
-            write_only_fields = [
-                'content',
-            ]
+            read_only_fields = ['id', 'author', 'parent_id', 'timestamp', 'reply_count','replies']
+
+        def get_reply_count(self, obj):
+            """
+                return counts the number of replies. For reply_count SerializerMethodField
+            """
+            if obj.is_parent:
+                return obj.children().count()
+            return 0
+
+        def get_replies(self, obj):
+            """
+                get replies comments (serialized) if the comment is a parent for replies SerializerMethodField
+            """
+            if obj.is_parent:
+                return CommentChildrenSerializer(obj.children(), many=True).data
+            return None
 
         def __init__(self, *args, **kwargs):
             self.model_type = model_type
@@ -124,7 +149,7 @@ class CommentDetailUpdateDeleteSerializer(ModelSerializer):
             'replies',
         ]
 
-        read_only_fields = ['id','parent_id', 'timestamp']
+        read_only_fields = ['id', 'author', 'parent_id','timestamp', 'reply_count', 'replies']
 
     def get_reply_count(self, obj):
         """

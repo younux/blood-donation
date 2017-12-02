@@ -1,0 +1,41 @@
+@import "../../../assets/scss/variables";
+
+.comments-container{
+  background-color: $secondary;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.comments-list{
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.comments-list li {
+  list-style-type: none;
+  margin-left: 0px;
+}
+.comments-list li:first-child {
+  margin-top: 24px;
+}
+.comments-list li + li {
+  margin-top: 24px;
+}
+.comments-list li ul {
+  list-style-type: none;
+  padding-left: 3em;
+  margin-left: 3em;
+  border-left: 1px solid $secondary-dark;
+}
+.comments-list li ul li {
+  position: relative;
+}
+.comments-list li ul li::before {
+  content: '';
+  width: 2em;
+  height: 1px;
+  border-bottom: 1px solid $secondary-dark;
+  position: absolute;
+  left: -3em;
+  top: 2em;
+}

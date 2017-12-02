@@ -11,6 +11,19 @@
           </div>
         </div>
       </div>
+
+      <div *ngIf="totalItems && totalItems>itemsPerPage" class="col-sm-offset-2 col-sm-8 text-center">
+        <pagination class="pagination-sm"
+                    [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+                    [(ngModel)]="currentPage" (ngModelChange)="updateCurrentPage($event)"
+                    (numPages)="onNumPages($event)"
+                    [maxSize]="maxSize"
+                    [boundaryLinks]="true" [rotate]="true"
+                    previousText="&lsaquo;" nextText="&rsaquo;"
+                    firstText="&laquo;" lastText="&raquo;">
+        </pagination>
+      </div>
+
     </div>
   </div>
 </section>

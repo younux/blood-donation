@@ -240,3 +240,5 @@ PASSWORD_RESET_ROUTE = "users/reset-password/reset"
 
 #Pagination Settings
 DONATION_LIST_PAGE_SIZE = 5
+POST_LIST_PAGE_SIZE = 5
+COMMENT_LIST_PAGE_SIZE = 5

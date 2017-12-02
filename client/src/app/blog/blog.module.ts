@@ -16,15 +16,21 @@ import { BlogPostDetailComponent } from './blog-post-detail/blog-post-detail.com
 
 
 import {ComponentsModule} from '../shared/components/components.module';
+import { BlogPostCommentListComponent } from './blog-post-comment-list/blog-post-comment-list.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     ComponentsModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PaginationModule.forRoot(),
   ],
-  declarations: [BlogComponent, BlogPostThumbnailComponent, BlogPostCommentComponent, BlogPostAuthorComponent, BlogPostBoxComponent, BlogPostCommentFormComponent, BlogPostListComponent, BlogPostDetailComponent],
+  declarations: [BlogComponent, BlogPostThumbnailComponent, BlogPostCommentComponent, BlogPostAuthorComponent, BlogPostBoxComponent, BlogPostCommentFormComponent, BlogPostListComponent, BlogPostDetailComponent, BlogPostCommentListComponent],
   exports: [BlogComponent],
   providers: [BlogService],
 })

@@ -18,8 +18,7 @@ export class BlogService {
 
   createPost(title: string,
              content: string,
-             publishDate: string
-              ) {
+             publishDate: string) {
     const queryUrl = `${this.apiUrl}posts/create/`;
     let data = {title: title, content: content, publish: publishDate};
     return this.http.post(queryUrl, JSON.stringify(data))
@@ -27,8 +26,11 @@ export class BlogService {
       .catch(this.handle_error);
   }
 
-  listPosts() {
-    const queryUrl = `${this.apiUrl}posts/`;
+  listPosts(page?: number) {
+    let queryUrl = `${this.apiUrl}posts/`;
+    if(page){
+      queryUrl = `${queryUrl}?page=${page}`;
+    }
     return this.http.get(queryUrl)
       .map(response => response.json())
       .catch(this.handle_error);
@@ -41,10 +43,10 @@ export class BlogService {
       .catch(this.handle_error);
   }
 
-  updatePost( slug: string,
-              title: string,
-              content: string,
-              publishDate: string) {
+  updatePost(slug: string,
+             title: string,
+             content: string,
+             publishDate: string) {
     const queryUrl = `${this.apiUrl}posts/${slug}/`;
     let data = {title: title, content: content, publish: publishDate};
     return this.http.put(queryUrl, JSON.stringify(data))
@@ -60,10 +62,23 @@ export class BlogService {
   }
 
 
+  createComment(slug: string,
+                parentId: number,
+                content: string){
+  let queryParams = [];
+  queryParams.push(`model_type=post`);
+  queryParams.push(`slug=${slug}`);
+  if(parentId){
+    queryParams.push(`parent_id=${parentId}`);
+  }
+  const queryUrl = `${this.apiUrl}comments/create/?${queryParams.join('&')}`;
+  const data = {content: content};
+  return this.http.post(queryUrl, JSON.stringify(data))
+    .map(response => response.json())
+    .catch(this.handle_error);
+  }
+
   private handle_error(error: any): any {
     return Observable.throw(error.json());
   }
-
-
-
 }

@@ -36,7 +36,7 @@ class PostCreateAPIView(CreateAPIView):
         """
             Overrides perform_create to add user when creating the post instance
         """
-        serializer.save(user = self.request.user)
+        serializer.save(author = self.request.user)
 
 
 class PostListAPIView(ListAPIView):
@@ -51,6 +51,7 @@ class PostListAPIView(ListAPIView):
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['title', 'content', 'user__first_name', 'user__last_name']
     pagination_class = PostPageNumberPagination
+    ordering = ['-publish']
 
     # This is for using Q search for example :http://127.0.0.1:6001/api/posts/?q=real
     def get_queryset(self, *args, **kwargs):

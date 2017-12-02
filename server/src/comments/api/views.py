@@ -15,8 +15,8 @@ from rest_framework.permissions import (
     IsAuthenticated,
     IsAuthenticatedOrReadOnly,
     )
-from posts.api.permissions import IsOwnerOrReadOnly
-from posts.api.paginations import PostLimitOffsetPagination, PostPageNumberPagination
+from .paginations import CommentPageNumberPagination
+from .permissions import IsOwnerOrReadOnly
 
 from comments.models import Comment
 from .serializers import (
@@ -67,7 +67,7 @@ class CommentListAPIView(ListAPIView):
     # For example http://127.0.0.1:6001/api/posts/?search=switch&ordering=-publish
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['content', 'user__first_name', 'user__last_name']
-    pagination_class = PostPageNumberPagination
+    pagination_class = CommentPageNumberPagination
 
     # This is for using Q search for examplle :http://127.0.0.1:6001/api/posts/?q=real
     def get_queryset(self, *args, **kwargs):
@@ -92,6 +92,8 @@ class CommentDetailUpdateDeleteAPIView(RetrieveAPIView, UpdateModelMixin, Destro
     """
     queryset = Comment.objects.filter(id__gte=0)
     serializer_class = CommentDetailUpdateDeleteSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
 
     def put(self, request, *args, **kwargs):
         """
