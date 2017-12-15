@@ -5,4 +5,3 @@ export * from './profile-activate/profile-activate.component';
 export * from './password-reset-request/password-reset-request.component';
 export * from './password-reset/password-reset.component';
 export * from './profile.component';
-export * from './profile.routes';

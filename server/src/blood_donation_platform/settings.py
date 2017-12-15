@@ -235,8 +235,8 @@ TWILIO_AUTH_TOKEN = credentials.TWILIO_AUTH_TOKEN
 TWILIO_PHONE_NUMBER = credentials.TWILIO_PHONE_NUMBER
 
 #Client relative routes
-ACCOUNT_ACTIVATION_ROUTE = "users/activate"
-PASSWORD_RESET_ROUTE = "users/reset-password/reset"
+ACCOUNT_ACTIVATION_ROUTE = "profiles/activate"
+PASSWORD_RESET_ROUTE = "profiles/reset-password/reset"
 
 #Pagination Settings
 DONATION_LIST_PAGE_SIZE = 5

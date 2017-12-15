@@ -63,7 +63,7 @@
 
 /* Form Elements */
 /*----------------*/
-input,
+input, select,
 textarea {
   height: 50px;
   margin: 0;
@@ -95,7 +95,7 @@ textarea {
   line-height: 30px;
 }
 
-input:focus,
+input:focus, select:focus,
 textarea:focus {
   outline: 0;
   background: $light;
@@ -105,16 +105,24 @@ textarea:focus {
   box-shadow: none;
 }
 
-input:-moz-placeholder, textarea:-moz-placeholder {
+input:-moz-placeholder, select:-moz-placeholder, textarea:-moz-placeholder {
   color: $tertiary;
 }
 
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+input:-ms-input-placeholder, select:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: $tertiary;
 }
 
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+input::-webkit-input-placeholder, select::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
   color: $tertiary;
+}
+
+#countryCode {
+  text-align: center;
+}
+
+#phoneNumber {
+  text-align: center;
 }
 
 /* Form progress bar CSS */

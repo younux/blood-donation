@@ -24,8 +24,6 @@ export const profileRoutes: Routes = [
       { path: 'activate/:key/:token', component: ProfileActivateComponent },
       { path: 'reset-password/request', component: PasswordResetRequestComponent},
       { path: 'reset-password/reset/:key/:token', component: PasswordResetComponent},
-
-
     ]
   }
 ];

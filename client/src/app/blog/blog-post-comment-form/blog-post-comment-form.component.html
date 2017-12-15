@@ -4,7 +4,7 @@
     <h4>Leave a reply</h4>
   </div>
 
-  <form role="form" [formGroup]="myForm"  (submit)="onFormSubmit()">
+  <form role="form" [formGroup]="myForm"  (ngSubmit)="onFormSubmit()">
     <div class="form-group">
       <textarea  [formControl]="myForm.controls['reply']"
                  class="form-control" id="reply"

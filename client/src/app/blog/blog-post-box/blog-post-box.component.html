@@ -20,9 +20,7 @@
         &nbsp; <i class="fa fa-comment-o"></i> {{post.commentsCount}} Comments
       </div>
 
-      <div>
-        {{post.content}}
-      </div>
+      <div [innerHtml]=" post.content | safeHtml"></div>
 
     </div>
 

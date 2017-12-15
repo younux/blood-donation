@@ -1,18 +1,18 @@
 # TODO
+
+- [x] Ajouter le champ gender pour Profile Model
+- [x] Adapter le template à angular.
+- [x] Implementer l'envoi de notification par email (gmail)
+- [x] Implementer l'envoi de notification par SMS
+- [x] Implementer verification e-mail lors de l'enregistrement.
+- [x] Implementer password reset.
+- [x] Implementer verification numéro téléphone lors de l'enregistrement.
 - [ ] Utiliser postgressql
 - [ ] Utiliser Django Internationalization i18n (ou utiliser des codes dans
 les envois de messages d'erreurs du serveur)
-- [ ] Ajouter le champ gender pour Profile Model
-- [x] Adapter le template à angular.
-- [ ] Implementer l'envoi de notification par email (gmail)
-- [ ] Implementer l'envoi de notification par SMS
-- [ ] Implementer verification e-mail lors de l'enregistrement.
 - [ ] Implementer suppression periodique des comptes non actives ?
-- [ ] Implementer password reset.
 - [ ] Integer Task Queue (Celery) and Message Broker (Redis or RabbitMQ)
  to do tasks asynchronously (send mails, notifications ...)
-
-
 
 # blood-donation-platform  
 

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../shared/services/alert.service";
 import {CustomValidators} from "../../shared/validators/custom-validators.validator";
 import {AuthenticationService} from "../../shared/services/authentication.service";
+import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 
 
 @Component({
@@ -19,11 +20,17 @@ export class ProfileRegisterComponent implements OnInit {
   myForm5: FormGroup;
   activeStep: number = 1;
   returnUrl: string;
-  phoneMask = ['(', '+', '3', '3', ')', '-', /\d/, '-', /\d/, /\d/,
-    '-', /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
+  phoneMask = [/\d/, ' ',  '-', ' ',  /\d/, /\d/, ' ', '-', ' ',
+    /\d/, /\d/, ' ',  '-', ' ',  /\d/, /\d/, ' ',  '-', ' ',  /\d/, /\d/];
+  unmaskedPhoneNumber: string;
   showSpinner: boolean = false;
   isVerifSmsSent: boolean = false;
   isPhoneNumVerified: boolean = false;
+  bsDatePickercolorTheme = 'theme-red';
+  bsDatePickerConfig: Partial<BsDatepickerConfig>;
+
+  temp: string;
+
 
   constructor(private fb: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -40,6 +47,7 @@ export class ProfileRegisterComponent implements OnInit {
   this.authenticationService.logout();
   // get return url from route parameters or default to '/home'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+  this.bsDatePickerConfig = Object.assign({}, { containerClass: this.bsDatePickercolorTheme });
   }
 
   createForms() {
@@ -51,7 +59,8 @@ export class ProfileRegisterComponent implements OnInit {
     );
 
     this.myForm2 = this.fb.group({
-        phoneNumber: [ null, [Validators.required]],
+        countryCode: ['+33'],
+        phoneNumber: [ null],
         code: [ null, Validators.required],
         }
     );
@@ -59,7 +68,7 @@ export class ProfileRegisterComponent implements OnInit {
     this.myForm3 = this.fb.group({
         firstName: [ null, Validators.required],
         lastName: [ null, Validators.required],
-        gender: [ null, Validators.required],
+        gender: ['M'],
         birthDate: [ null, Validators.required],
       }
     );
@@ -73,9 +82,9 @@ export class ProfileRegisterComponent implements OnInit {
       }),
     });
     this.myForm5 = this.fb.group({
-        bloodType: [ null, Validators.required],
-        emailNotification: [ null, Validators.required],
-        smsNotification: [ null, Validators.required],
+        bloodType: ['A+'],
+        emailNotification: [true],
+        smsNotification: [true],
       }
     );
   }
@@ -96,12 +105,14 @@ export class ProfileRegisterComponent implements OnInit {
   sendVerificationSMS(event: any) {
     // because phoneNumber may be disabled we should use getRawValue
     // when a control is disabled, we no longer can get the value using .value
-    const phoneNumber = this.myForm2.getRawValue().phoneNumber;
+    const phoneNumber = this.myForm2.getRawValue().countryCode + this.unmaskedPhoneNumber;
+    console.log(phoneNumber);
     if (phoneNumber) {
       this.showSpinner = true;
       this.authenticationService.phoneCodeRequest(phoneNumber).subscribe(
         data => {
           this.myForm2.controls['phoneNumber'].disable();
+          this.myForm2.controls['countryCode'].disable();
           this.showSpinner = false;
           this.isVerifSmsSent = true;
           this.alertService.success(`Verification code sent to ${phoneNumber}.
@@ -119,6 +130,7 @@ export class ProfileRegisterComponent implements OnInit {
   // enable phone number input to let the user enter new phone number
   changePhoneNumber(event: any) {
     this.myForm2.controls['phoneNumber'].enable();
+    this.myForm2.controls['countryCode'].enable();
     this.isVerifSmsSent = false;
   }
 
@@ -126,7 +138,7 @@ export class ProfileRegisterComponent implements OnInit {
   verifyCode(event: any) {
     // because phoneNumber is disabled we should user getRawValue
     // when disabled, we no longer can get the value using .value
-    const phoneNumber = this.myForm2.getRawValue().phoneNumber;
+    const phoneNumber = this.myForm2.getRawValue().countryCode + this.unmaskedPhoneNumber;
     const code = this.myForm2.value.code;
     if (code) {
       this.showSpinner = true;
@@ -151,21 +163,23 @@ export class ProfileRegisterComponent implements OnInit {
     if (this.myForm1.valid && this.myForm2.valid && this.myForm3.valid
                                                   && this.myForm4.valid && this.myForm5.valid ) {
       this.showSpinner = true;
+      const birthDate = new Date(this.myForm3.value.birthDate);
+      const birthDateStr = `${birthDate.getFullYear()}-${birthDate.getMonth() + 1}-${birthDate.getDate()}`;
       this.authenticationService.register(this.myForm1.value.username,
-                              this.myForm1.value.email,
-                              this.myForm1.value.password,
-                              this.myForm3.value.firstName,
-                              this.myForm3.value.lastName,
-                              this.myForm3.value.gender,
-                              this.myForm2.getRawValue().phoneNumber, // getRawValue because the control is disabled
-                              this.myForm4.value.address.street,
-                              this.myForm4.value.address.city,
-                              this.myForm4.value.address.country,
-                              this.myForm4.value.address.zipCode,
-                              this.myForm3.value.birthDate,
-                              this.myForm5.value.bloodType,
-                              this.myForm5.value.emailNotification,
-                              this.myForm5.value.smsNotification).subscribe(
+              this.myForm1.value.email,
+              this.myForm1.value.password,
+              this.myForm3.value.firstName,
+              this.myForm3.value.lastName,
+              this.myForm3.value.gender,
+              this.myForm2.getRawValue().countryCode + this.unmaskedPhoneNumber, // getRawValue because the control is disabled
+              this.myForm4.value.address.street,
+              this.myForm4.value.address.city,
+              this.myForm4.value.address.country,
+              this.myForm4.value.address.zipCode,
+              birthDateStr,
+              this.myForm5.value.bloodType,
+              this.myForm5.value.emailNotification,
+              this.myForm5.value.smsNotification).subscribe(
           data => {
             this.showSpinner = false;
             this.router.navigate([this.returnUrl]);

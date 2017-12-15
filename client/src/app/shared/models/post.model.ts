@@ -10,7 +10,6 @@ export class Post {
     author: Author;
     title: string;
     content: string;
-    html: string;
     publish: string;
     image: string;
     commentsCount: number;
@@ -20,7 +19,6 @@ export class Post {
                 author: Author,
                 title: string,
                 content: string,
-                html: string,
                 publish: string,
                 image: string,
                 commentsCount?: number,
@@ -31,7 +29,6 @@ export class Post {
       this.author = author;
       this.title = title;
       this.content = content;
-      this.html = html;
       this.publish = publish;
       this.image = image;
       this.commentsCount = commentsCount || null;

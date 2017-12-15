@@ -59,8 +59,6 @@ class Post(models.Model):
             blank=True,
             width_field="width_field",
             height_field="height_field")
-    height_field = models.IntegerField(default=0)
-    width_field = models.IntegerField(default=0)
     content = models.TextField()
     draft = models.BooleanField(default=False)
     publish = models.DateField(auto_now=False, auto_now_add=False)
@@ -85,15 +83,6 @@ class Post(models.Model):
 
     class Meta:
         ordering = ["-timestamp", "-updated"]
-
-    def get_markdown(self):
-        """
-            Convents instance content to html markdown
-        :return:
-        """
-        content = self.content
-        markdown_text = markdown(content)
-        return mark_safe(markdown_text)
 
     @property
     def comments(self):
@@ -140,8 +129,7 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
         instance.slug = create_slug(instance)
 
     if instance.content:
-        html_string = instance.get_markdown()
-        read_time_var = get_read_time(html_string)
+        read_time_var = get_read_time(instance.content)
         instance.read_time = read_time_var
 
 

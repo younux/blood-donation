@@ -48,6 +48,7 @@
                 <div class="form-group">
                   <label class="sr-only" for="username"> Username </label>
                   <input type="text" class="form-control" id="username" name="username" placeholder="Username..."
+                         autocomplete="off"
                          formControlName="username"/>
                   <app-field-error-display [myControl]="myForm1.controls['username']"></app-field-error-display>
                 </div>
@@ -55,6 +56,7 @@
                 <div class="form-group">
                   <label class="sr-only" for="email"> Email</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="Email..."
+                         autocomplete="off"
                          formControlName="email"/>
                   <app-field-error-display [myControl]="myForm1.controls['email']"></app-field-error-display>
                 </div>
@@ -87,15 +89,32 @@
               <form name="registerForm2" [formGroup]="myForm2">
 
                 <div class="form-group">
-                  <label class="sr-only" for="phoneNumber"> Phone Number</label>
-                  <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber"
-                         placeholder="Phone number..." formControlName="phoneNumber"/>
-                  <app-field-error-display [myControl]="myForm2.controls['phoneNumber']"></app-field-error-display>
+                  <div class="row">
+                    <div class="col-sm-offset-2 col-sm-3 col-xs-5">
+                      <label class="sr-only" for="countryCode"> Country Code </label>
+                      <select class="form-control" id="countryCode" name="countryCode"
+                              autocomplete="off"
+                              formControlName="countryCode">
+                        <option value="+33" label="+33"> </option>
+                        <option value="+212" label="+212"> </option>
+                      </select>
+                    </div>
+                    <div class="col-sm-5 col-xs-7">
+                      <label class="sr-only" for="phoneNumber"> Phone Number</label>
+                      <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                             autocomplete="off"
+                             placeholder="Phone number..." formControlName="phoneNumber"
+                             #inputMaskDir=inputMaskDirective appInputMask  [mask]="phoneMask"
+                             (onCompleteUnmaskedValue)="unmaskedPhoneNumber = $event"/>
+                      <app-field-error-display [myControl]="myForm2.controls['phoneNumber']"></app-field-error-display>
+                    </div>
+                  </div>
                 </div>
 
                 <div [hidden]="isPhoneNumVerified" class="form-group text-center">
                   <span>
-                    <button type="button" (click)="sendVerificationSMS($event)" class="btn btn-prim">
+                    <button [disabled]="!inputMaskDir.completed"  type="button"
+                            (click)="sendVerificationSMS($event)" class="btn btn-prim">
                       Send Verification SMS
                     </button>
                   </span>
@@ -113,7 +132,8 @@
                   <div class="form-group">
                     <label class="sr-only" for="code"> Code </label>
                     <input type="text" class="form-control" id="code" name="code"
-                           placeholder="Code..." formControlName="code"/>
+                           placeholder="Code..." autocomplete="off"
+                           formControlName="code"/>
                     <app-field-error-display [myControl]="myForm2.controls['code']"></app-field-error-display>
                   </div>
 
@@ -140,6 +160,7 @@
                 <div class="form-group">
                   <label class="sr-only" for="firstName"> First Name </label>
                   <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name..."
+                         autocomplete="off"
                          formControlName="firstName"/>
                   <app-field-error-display [myControl]="myForm3.controls['firstName']"></app-field-error-display>
                 </div>
@@ -147,21 +168,29 @@
                 <div class="form-group">
                   <label class="sr-only" for="lastName"> Last Name </label>
                   <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name..."
+                         autocomplete="off"
                          formControlName="lastName"/>
                   <app-field-error-display [myControl]="myForm3.controls['lastName']"></app-field-error-display>
                 </div>
 
+
                 <div class="form-group">
-                  <label class="sr-only" for="phoneNumber"> Gender </label>
-                  <input type="tel" class="form-control" id="gender" name="gender"
-                         placeholder="Your Gender..." formControlName="gender"/>
-                  <app-field-error-display [myControl]="myForm3.controls['gender']"></app-field-error-display>
+                  <label class="sr-only" for="gender"> Gender </label>
+                  <select class="form-control" id="gender" name="gender"
+                          placeholder="Your Gender..." autocomplete="off"
+                          formControlName="gender">
+                    <option value="M" label="Male"> </option>
+                    <option value="F" label="Female"> </option>
+                  </select>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="birthDate"> Birth Date </label>
-                  <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date"
-                         formControlName="birthDate"/>
+                  <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date"
+                         formControlName="birthDate"
+                         autocomplete="off"
+                         bsDatepicker
+                         [bsConfig]="bsDatePickerConfig"/>
                   <app-field-error-display [myControl]="myForm3.controls['birthDate']"></app-field-error-display>
                 </div>
 
@@ -227,23 +256,30 @@
 
                 <div class="form-group">
                   <label class="sr-only" for="bloodType"> Blood Type </label>
-                  <input type="text" class="form-control" id="bloodType" name="bloodType" placeholder="Blood Type"
-                         formControlName="bloodType"/>
-                  <app-field-error-display [myControl]="myForm5.controls['bloodType']"></app-field-error-display>
+                  <select class="form-control" id="bloodType" name="bloodType" placeholder="Blood Type"
+                          autocomplete="off"
+                          formControlName="bloodType">
+                    <option value="A+" label="A+"> </option>
+                    <option value="A-" label="A-"> </option>
+                    <option value="B+" label="B+"> </option>
+                    <option value="B-" label="B-"> </option>
+                    <option value="AB+" label="AB+"> </option>
+                    <option value="AB-" label="AB-"> </option>
+                    <option value="O+" label="O+"> </option>
+                    <option value="O-" label="O-"> </option>
+                  </select>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="emailNotification"> Email Notification </label>
                   <input type="checkbox" class="form-control" id="emailNotification" name="emailNotification"
                          formControlName="emailNotification"/>
-                  <app-field-error-display [myControl]="myForm5.controls['emailNotification']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
                   <label class="sr-only" for="smsNotification"> SMS Notification </label>
                   <input type="checkbox" class="form-control" id="smsNotification" name="smsNotification"
                          formControlName="smsNotification"/>
-                  <app-field-error-display [myControl]="myForm5.controls['smsNotification']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
@@ -265,4 +301,15 @@
 
 </section>
 
+<form>
+
+  <input type="text" class="form-control" name="teeel"
+         autocomplete="off"
+         placeholder="Phone number..." [(ngModel)]="temp"
+           appInputMask  [mask]="phoneMask"
+         (onCompleteUnmaskedValue)="printUnmaskedValue($event)"
+         (onCompleteHostValue)="printHostValue($event)"/>
+</form>
+
+<div> {{temp}}</div>
 

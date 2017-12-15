@@ -28,6 +28,8 @@
 
         $ python manage.py createsuperuser  (if you want to create a superuser)
 
+        $ python manage.py createcachetable  (création de la table de cache dans la BDD)
+
         $ python manage.py runserver
 
 1. To quit the virtual environment :

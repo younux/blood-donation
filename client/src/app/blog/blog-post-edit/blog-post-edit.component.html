@@ -1,0 +1,57 @@
+<app-banner content="Edit Post"></app-banner>
+
+<section class="section-relative">
+  <div class="container">
+    <div class="form-wrapper">
+      <div class="form-box">
+
+        <div class="form-top">
+          <div class="form-top-left">
+            <h1>Edit Post</h1>
+            <p> Type text :</p>
+          </div>
+          <div class="form-top-right">
+            <i class="fa fa-pencil"></i>
+          </div>
+        </div>
+
+        <form #postForm="ngForm" name="postForm" (ngSubmit)="onFormSubmit(postForm)">
+
+          <div class="form-group">
+            <label class="sr-only" for="title"> Title </label>
+            <input type="text" class="form-control" id="title" placeholder="Title..."
+                   autocomplete="off"
+                   name="title" ngModel required/>
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="publish"> Publish date </label>
+            <input type="text" class="form-control" id="publish" placeholder="Publish Day..."
+                   name="publish" ngModel required
+                   autocomplete="off"
+                   bsDatepicker
+                   [bsConfig]="bsDatePickerConfig"/>
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="content"> Content </label>
+            <p-editor id="content" [style]="{'height':'500px'}"
+                      name="content" ngModel required>
+            </p-editor>
+          </div>
+
+          <div class="form-group text-center">
+            <button [disabled]="!postForm.valid" type="submit" class="btn btn-prim"> Submit </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+

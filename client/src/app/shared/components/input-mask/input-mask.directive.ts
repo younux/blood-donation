@@ -2,9 +2,11 @@ import {
   Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
   SimpleChanges
 } from '@angular/core';
+import {NgControl} from '@angular/forms';
 
 @Directive({
-  selector: '[appInputMask]'
+  selector: '[appInputMask]',
+  exportAs: 'inputMaskDirective',
 })
 export class InputMaskDirective implements OnInit {
   /*
@@ -42,6 +44,8 @@ export class InputMaskDirective implements OnInit {
   value: string;
   // length of the mask
   len: number;
+  // boolean indicating if all the unmasked values are filled correctly
+  completed: boolean
   // position of the first non mask element : position of first element that the user will type
   // and that sould be tested (with regex)
   firstNonMaskPos: number;
@@ -62,7 +66,14 @@ export class InputMaskDirective implements OnInit {
   defaultBuffer: string;
 
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private control: NgControl) {
+    /* NgControl should be injected to make our directive applicable to form controls
+    *   If it is not injected, the directive won't work (it will change the element value and not
+    *   the control value).
+    *   To change the element value we should change the control value by using in our case ;
+    *   this.control.control.setValue(ourValue);
+    *   and not this.elementRef.nativeElement.value = ourValue;
+    * */
   }
 
   ngOnInit() {
@@ -98,7 +109,8 @@ export class InputMaskDirective implements OnInit {
     setTimeout(() => {
       let pos = this.checkVal(true);
       this.caret(pos);
-      if (this.isCompleted()) {
+      this.completed = this.isCompleted();
+      if (this.completed) {
         this.onCompleteUnmaskedValue.emit(this.getUnmaskedValue());
         this.onCompleteHostValue.emit(this.elementRef.nativeElement.value);
       }
@@ -131,11 +143,14 @@ export class InputMaskDirective implements OnInit {
       this.clearBuffer(begin, end);
       this.shiftL(begin, end - 1);
       e.preventDefault();
+      this.completed = this.isCompleted();
     } else if (k === 13) { // enter
       this.onBlur(e);
+      this.completed = this.isCompleted();
     } else if (k === 27) { // escape
-      this.elementRef.nativeElement.value = this.focusText;
+      this.control.control.setValue(this.focusText);
       this.caret(0, this.checkVal());
+      this.completed = this.isCompleted();
       e.preventDefault();
     }
   }
@@ -166,17 +181,13 @@ export class InputMaskDirective implements OnInit {
           this.buffer[p] = c;
           this.writeBuffer();
           next = this.seekNext(p);
-
           this.caret(next);
-          if (pos.begin <= this.lastRequiredNonMaskPos) {
-            completed = this.isCompleted();
-          }
         }
       }
       e.preventDefault();
     }
-
-    if (completed) {
+    this.completed = this.isCompleted();
+    if (this.completed) {
       this.onCompleteUnmaskedValue.emit(this.getUnmaskedValue());
       this.onCompleteHostValue.emit(this.elementRef.nativeElement.value);
 
@@ -188,7 +199,8 @@ export class InputMaskDirective implements OnInit {
     setTimeout(() => {
       let pos = this.checkVal(true);
       this.caret(pos);
-      if (this.isCompleted()) {
+      this.completed = this.isCompleted();
+      if (this.completed) {
         this.onCompleteUnmaskedValue.emit(this.getUnmaskedValue());
         this.onCompleteHostValue.emit(this.elementRef.nativeElement.value);
       }
@@ -235,10 +247,10 @@ export class InputMaskDirective implements OnInit {
     this.value = value;
     if (this.elementRef.nativeElement) {
       if (this.value === undefined || this.value == null) {
-        this.elementRef.nativeElement.value = '';
+        this.control.control.setValue('');
 
       } else {
-        this.elementRef.nativeElement.value = this.value;
+        this.control.control.setValue(this.value);
       }
       this.checkVal();
       this.focusText = this.elementRef.nativeElement.value;
@@ -247,7 +259,7 @@ export class InputMaskDirective implements OnInit {
 
   // write buffer content in input value
   writeBuffer() {
-    this.elementRef.nativeElement.value = this.buffer.join('');
+    this.control.control.setValue(this.buffer.join(''));
   }
 
   // try to place characters where they belong
@@ -285,7 +297,7 @@ export class InputMaskDirective implements OnInit {
         // Invalid value. Remove it and replace it with the
         // mask, which is the default behavior.
         if (this.elementRef.nativeElement.value) {
-          this.elementRef.nativeElement.value = '';
+          this.control.control.setValue('');
         }
         this.clearBuffer(0, this.len);
       } else {
@@ -295,7 +307,7 @@ export class InputMaskDirective implements OnInit {
       }
     } else {
       this.writeBuffer();
-      this.elementRef.nativeElement.value = this.elementRef.nativeElement.value.substring(0, lastMatch + 1);
+      this.control.control.setValue(this.elementRef.nativeElement.value.substring(0, lastMatch + 1));
     }
     return (this.len ? i : this.firstNonMaskPos);
   }

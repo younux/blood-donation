@@ -5,6 +5,7 @@ import { AuthGuardService } from '../shared/services/auth-guard.service';
 import {BlogComponent} from './blog.component';
 import {BlogPostListComponent} from './blog-post-list/blog-post-list.component';
 import {BlogPostDetailComponent} from './blog-post-detail/blog-post-detail.component';
+import {BlogPostEditComponent} from './blog-post-edit/blog-post-edit.component';
 
 export const blogRoutes: Routes = [
   {
@@ -12,6 +13,7 @@ export const blogRoutes: Routes = [
     children: [
       { path: '', redirectTo: 'all', pathMatch: 'full' },
       { path: 'all', component: BlogPostListComponent },
+      { path: 'edit', component: BlogPostEditComponent },
       { path: 'detail/:slug', component: BlogPostDetailComponent },
     ]
   }

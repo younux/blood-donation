@@ -4,18 +4,21 @@
 /*----------------*/
 
 .form-wrapper {
-  background-color: $light;
-  border: 1px solid $tertiary;
-  border-radius: 20px;
+  background-color: $secondary;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  //border: 1px solid $tertiary;
+
 }
 
 .form-box {
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
 .form-top {
   overflow: hidden;
   padding: 0 25px 15px 25px;
+  margin-bottom: 30px;
   background: $primary;
   color: $light;
   -moz-border-radius: 4px 4px 0 0;
@@ -61,16 +64,9 @@
   height: 100px;
 }
 
-#deadlineDay{
-  margin-top: 25px;
-}
-
-
 /* Form Elements */
 /*----------------*/
-
 input,
-select,
 textarea {
   height: 50px;
   margin: 0;
@@ -103,7 +99,6 @@ textarea {
 }
 
 input:focus,
-select:focus,
 textarea:focus {
   outline: 0;
   background: $light;
@@ -113,22 +108,15 @@ textarea:focus {
   box-shadow: none;
 }
 
-input:-moz-placeholder, select:-moz-placeholder, textarea:-moz-placeholder {
+input:-moz-placeholder, textarea:-moz-placeholder {
   color: $tertiary;
 }
 
-input:-ms-input-placeholder, select:-ms-input-placeholder, textarea:-ms-input-placeholder {
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color: $tertiary;
 }
 
-input::-webkit-input-placeholder, select::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: $tertiary;
 }
 
-#countryCode {
-  text-align: center;
-}
-
-#phoneNumber {
-  text-align: center;
-}

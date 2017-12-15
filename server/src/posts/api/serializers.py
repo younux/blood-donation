@@ -34,7 +34,6 @@ class PostListSerializer(ModelSerializer):
     """
     author = AuthorSerializer(read_only=True)
     image = SerializerMethodField()
-    html = SerializerMethodField()
     comments_count = SerializerMethodField()
     class Meta:
         model = Post
@@ -43,7 +42,6 @@ class PostListSerializer(ModelSerializer):
             'author',
             'title',
             'content',
-            'html',
             'publish',
             'image',
             'comments_count',
@@ -58,12 +56,6 @@ class PostListSerializer(ModelSerializer):
         except:
             image = None
         return image
-
-    def get_html(self, obj):
-        """
-            get html html SerializerMethodField
-        """
-        return obj.get_markdown()
 
     def get_comments_count(self, obj):
         """
@@ -80,7 +72,6 @@ class PostDetailUpdateDeleteSerializer(ModelSerializer):
 
     author = AuthorSerializer(read_only = True)
     image = SerializerMethodField()
-    html = SerializerMethodField()
     comments_count = SerializerMethodField()
     comments = SerializerMethodField()
     class Meta:
@@ -90,7 +81,6 @@ class PostDetailUpdateDeleteSerializer(ModelSerializer):
             'author',
             'title',
             'content',
-            'html',
             'publish',
             'image',
             'comments_count',
@@ -100,7 +90,6 @@ class PostDetailUpdateDeleteSerializer(ModelSerializer):
         read_only_fields = [
             'slug',
             'author',
-            'html',
             'image',
             'comments_count',
             'comments',
@@ -115,12 +104,6 @@ class PostDetailUpdateDeleteSerializer(ModelSerializer):
         except:
             image = None
         return image
-
-    def get_html(self, obj):
-        """
-            get html html SerializerMethodField
-        """
-        return obj.get_markdown()
 
     def get_comments_count(self, obj):
         """

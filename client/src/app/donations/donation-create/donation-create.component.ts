@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {DonationService} from "../../shared/services/donation.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../shared/services/alert.service";
+import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 
 @Component({
   selector: 'app-donation-create',
@@ -13,7 +14,11 @@ export class DonationCreateComponent implements OnInit {
 
   myForm: FormGroup;
   returnUrl: string;
-
+  phoneMask = [/\d/, ' ',  '-', ' ',  /\d/, /\d/, ' ', '-', ' ',
+              /\d/, /\d/, ' ',  '-', ' ',  /\d/, /\d/, ' ',  '-', ' ',  /\d/, /\d/];
+  unmaskedPhoneNumber: string;
+  bsDatePickercolorTheme = 'theme-red';
+  bsDatePickerConfig: Partial<BsDatepickerConfig>;
 
   constructor(private fb: FormBuilder,
               private donationService: DonationService,
@@ -22,22 +27,23 @@ export class DonationCreateComponent implements OnInit {
               private route: ActivatedRoute) {
     this.createForm();
 
-
   }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.bsDatePickerConfig = Object.assign({}, { containerClass: this.bsDatePickercolorTheme });
+
   }
 
   createForm() {
     this.myForm = this.fb.group({
-      //deadline: [null , Validators.required],
       deadlineDay: [null , Validators.required],
       deadlineTime: [ null , Validators.required],
       description: [null, Validators.required],
       city: [null, Validators.required],
-      phoneNumber: [null, Validators.required],
-      status: [null, Validators.required],
+      countryCode: ['+33'],
+      phoneNumber: [ null],
+      status: ['Urgent'],
     });
 
   }
@@ -50,7 +56,7 @@ export class DonationCreateComponent implements OnInit {
         deadline,
         passedForm.value.description,
         passedForm.value.city,
-        passedForm.value.phoneNumber,
+        passedForm.value.countryCode + this.unmaskedPhoneNumber,
         passedForm.value.status,
       )
         .subscribe(

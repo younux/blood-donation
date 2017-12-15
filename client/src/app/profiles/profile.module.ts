@@ -5,21 +5,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ComponentsModule } from '../shared/components/components.module';
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+
 import {
   ProfileRegisterComponent,
   ProfileLoginComponent,
   ProfileComponent,
-  ProfileMyComponent
+  ProfileMyComponent,
+  ProfileActivateComponent,
+  PasswordResetRequestComponent,
+  PasswordResetComponent,
 } from '.';
-import { ProfileActivateComponent } from './profile-activate/profile-activate.component';
-import { PasswordResetRequestComponent } from './password-reset-request/password-reset-request.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 const declarations = [
   ProfileRegisterComponent,
   ProfileLoginComponent,
   ProfileComponent,
-  ProfileMyComponent
+  ProfileMyComponent,
+  ProfileActivateComponent,
+  PasswordResetRequestComponent,
+  PasswordResetComponent,
 ];
 
 @NgModule({
@@ -28,10 +34,11 @@ const declarations = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    BsDatepickerModule.forRoot(),
   ],
-  declarations: [...declarations, ProfileActivateComponent, PasswordResetRequestComponent, PasswordResetComponent],
-  exports: [...declarations, ProfileActivateComponent, PasswordResetRequestComponent, PasswordResetComponent],
+  declarations: [...declarations],
+  exports: [...declarations],
   providers: []
 })
 export class ProfileModule {

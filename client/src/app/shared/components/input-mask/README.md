@@ -69,9 +69,27 @@ In component controller (componentName.component.ts) :
      
 In component template (componentName.component.html) :
  
-    <input type="text" appInputMask  [mask]="maskArray"
+    <input type="text" 
+          #inputMaskDir=inputMaskDirective appInputMask  [mask]="maskArray"
           (onCompleteUnmaskedValue)="printUnmaskedValue($event)"
           (onCompleteHostValue)="printHostValue($event)"/>
+
+The tmeplate binding to the directive (#inputMaskDir=inputMaskDirective) is used to
+have access to the directive and especially to 'completed' attribute which is a 
+boolean indicating if all the unmasked values are filled correctly. For example 
+it can be used to disable a button if the input is not correctly filled :
+
+      <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+             autocomplete="off"
+             placeholder="Phone number..." formControlName="phoneNumber"
+             #inputMaskDir=inputMaskDirective appInputMask  [mask]="phoneMask"
+             (onCompleteUnmaskedValue)="unmaskedPhoneNumber = $event"/>
+
+      <button [disabled]="!inputMaskDir.completed"  type="button"
+              (click)="sendVerificationSMS($event)" class="btn btn-prim">
+        Send Verification SMS
+      </button>
+
 
 When the user completes typing, for example (+33)-6-26-68-26-77 the console shows
 
