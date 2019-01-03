@@ -45,6 +45,8 @@
 
             <span class="donation-sub-content-title"> Ville : {{donation.city}} </span>
 
+            <span class="donation-sub-content-title"> Country : {{donation.country}} </span>
+
             <span class="donation-sub-content-title"> Statut : {{donation.status}} </span>
 
             <span class="donation-sub-content-title"> Créée :  {{donation.createdOn | date:'medium'}} </span>
@@ -91,10 +93,21 @@
 
           <h4 class="donation-content-title"> Maps </h4>
 
-          <div class="donation-map">
-            <img alt="" src="/assets/images/event_single.jpg">
+          <div class="donation-map" *ngIf="lat && lng">
+            <agm-map [latitude]="lat" [longitude]="lng" (boundsChange)="onBoundsChange($event)"
+                      (mapReady)="onMapReady($event)" >
+              <ng-container *ngFor="let bloodCenter of bloodCenters">
+                <agm-marker [latitude]="bloodCenter.latitude" [longitude]="bloodCenter.longitude">
+                  <agm-info-window>
+                    {{bloodCenter.name}} <br/>
+                    {{bloodCenter.address.street}} <br/>
+                    {{bloodCenter.address.city}} - {{bloodCenter.address.zipCode}} <br/>
+                    {{bloodCenter.address.country}}
+                  </agm-info-window>
+                </agm-marker>
+              </ng-container>
+            </agm-map>
           </div>
-
         </div>
 
       </div>

@@ -51,6 +51,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'email',
             'first_name',
             'last_name',
+            'is_moderator',
             'gender',
             'phone_number',
             'address',
@@ -223,6 +224,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'password',
             'first_name',
             'last_name',
+            'is_moderator',
             'gender',
             'phone_number',
             'address',
@@ -234,6 +236,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "first_name": {"read_only": True},
             "last_name": {"read_only": True},
+            "is_moderator": {"read_only": True},
             "gender": {"read_only": True},
             "phone_number": {"read_only": True},
             "birth_date": {"read_only": True},

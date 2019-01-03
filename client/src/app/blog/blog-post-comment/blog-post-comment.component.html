@@ -3,7 +3,7 @@
     <h5> {{comment.author.firstName}} {{comment.author.lastName}} </h5>
     <p>
       <span> {{comment.timestamp}} </span>
-      <a *ngIf="showRequestReplyButton" (click)="onClickReply($event)">Reply</a>
+      <a *ngIf="showRequestReplyButton && isAuthenciated" (click)="onClickReply($event)">Reply</a>
     </p>
   </header>
 

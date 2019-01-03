@@ -12,7 +12,6 @@ export class BlogService {
 
   constructor(private http: MyHttpService,
               @Inject('APP_API_URL') private apiUrl: string) {
-
   }
 
 

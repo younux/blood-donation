@@ -16,6 +16,7 @@ export class Donation {
   deadline: string;
   description: string;
   city: string;
+  country: string;
   phoneNumber: string;
   status: string;
 
@@ -26,6 +27,7 @@ export class Donation {
                 deadline: string,
                 description: string,
                 city: string,
+                country: string,
                 phoneNumber: string,
                 status: string) {
     this.id = id;
@@ -35,6 +37,7 @@ export class Donation {
     this.deadline = deadline;
     this.description = description;
     this.city = city;
+    this.country = country;
     this.phoneNumber = phoneNumber;
     this.status = status;
   }

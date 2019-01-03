@@ -18,14 +18,14 @@
         <form #postForm="ngForm" name="postForm" (ngSubmit)="onFormSubmit(postForm)">
 
           <div class="form-group">
-            <label class="sr-only" for="title"> Title </label>
+            <label for="title"> Title </label>
             <input type="text" class="form-control" id="title" placeholder="Title..."
                    autocomplete="off"
                    name="title" ngModel required/>
           </div>
 
           <div class="form-group">
-            <label class="sr-only" for="publish"> Publish date </label>
+            <label for="publish"> Publish date </label>
             <input type="text" class="form-control" id="publish" placeholder="Publish Day..."
                    name="publish" ngModel required
                    autocomplete="off"
@@ -34,7 +34,7 @@
           </div>
 
           <div class="form-group">
-            <label class="sr-only" for="content"> Content </label>
+            <label for="content"> Content </label>
             <p-editor id="content" [style]="{'height':'500px'}"
                       name="content" ngModel required>
             </p-editor>

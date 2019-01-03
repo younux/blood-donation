@@ -1,0 +1,69 @@
+@import "../../../assets/scss/variables";
+
+
+/************ side nav ***********/
+#sidebar{
+  background: $dark;
+  color: $light;
+  height: 100%;
+}
+#sidebar .sidebar-header{
+  padding: 20px;
+  background: $tertiary-dark;
+}
+#sidebarTitle{
+  font-size: 2em;
+}
+#close-icon{
+  cursor: pointer;
+}
+
+#sidebar .sidebar-components{
+  padding: 20px 0;
+  background-color: $dark;
+  margin-bottom: 0;
+}
+
+#sidebar ul li a {
+  color: $light;
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+  text-decoration: none;
+}
+
+#sidebar ul li a:focus {
+  outline-color: $light;
+}
+#sidebar ul li a:hover {
+  color: $dark;
+  background: $light;
+}
+
+#sidebar ul ul a {
+  font-size: 0.9em;
+  padding-left: 30px;
+  background: $tertiary-dark;
+}
+#sidebar .sidebar-components a[data-toggle="collapse"] {
+  position: relative;
+}
+#sidebar .sidebar-components a[aria-expanded="false"]::before {
+  content: '\25bc';
+  display: block;
+  position: absolute;
+  right: 20px;
+  font-size: 0.8em;
+}
+#sidebar .sidebar-components a[aria-expanded="true"]::before {
+  content: '\25b2';
+  display: block;
+  position: absolute;
+  right: 20px;
+  font-size: 0.8em;
+}
+
+
+
+
+

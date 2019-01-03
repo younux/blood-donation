@@ -1,4 +1,19 @@
-## The project has moved to a private repository.
+# TODO
+
+- [x] Ajouter le champ gender pour Profile Model
+- [x] Adapter le template à angular.
+- [x] Implementer l'envoi de notification par email (gmail)
+- [x] Implementer l'envoi de notification par SMS
+- [x] Implementer verification e-mail lors de l'enregistrement.
+- [x] Implementer password reset.
+- [x] Implementer verification numéro téléphone lors de l'enregistrement.
+- [ ] Utiliser postgressql
+- [ ] Utiliser Django Internationalization i18n (ou utiliser des codes dans
+les envois de messages d'erreurs du serveur)
+- [ ] Implementer suppression periodique des comptes non actives ?
+- [ ] Integer Task Queue (Celery) and Message Broker (Redis or RabbitMQ)
+ to do tasks asynchronously (send mails, notifications ...)
+- [ ] To Fix (bug) : in list donations or list blood centers, when going to page 2 and press previous button of the browser, the url changes but the list is not updated. It is because there is no subscription to the url changes. 
 
 # blood-donation-platform  
 

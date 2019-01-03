@@ -11,6 +11,7 @@ export class Profile {
   email: string;
   firstName: string;
   lastName: string;
+  isModerator: boolean;
   gender: string;
   phoneNumber: string;
   address: Address;
@@ -34,6 +35,7 @@ export class Profile {
       this.email = email;
       this.firstName = firstName;
       this.lastName = lastName;
+      this.isModerator = false;
       this.gender = gender;
       this.phoneNumber = phoneNumber;
       this.address = address;

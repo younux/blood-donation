@@ -16,3 +16,36 @@ class IsOwnerOrReadOnly(BasePermission):
 
         # Instance must have an attribute named `user`.
         return obj.author == request.user
+
+class IsModerator(BasePermission):
+    """
+       Global permission to only allow moderators to  to create, update or delete an object.
+    """
+    message = "You must be a moderator."
+
+    def has_permission(self, request, view):
+
+        if not request.user.is_authenticated :
+            return False
+
+        return request.user.is_moderator
+
+
+class IsModeratorOrReadOnly(BasePermission):
+    """
+       Global permission to only allow moderators to create, update or delete an object
+       otherwise read only.
+    """
+    message = "You must be a moderator."
+
+    def has_permission(self, request, view):
+
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        if not request.user.is_authenticated :
+            return False
+
+        return request.user.is_moderator

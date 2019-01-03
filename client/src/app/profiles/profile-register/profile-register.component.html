@@ -46,7 +46,7 @@
               <form name="registerForm1" [formGroup]="myForm1">
 
                 <div class="form-group">
-                  <label class="sr-only" for="username"> Username </label>
+                  <label for="username"> Username </label>
                   <input type="text" class="form-control" id="username" name="username" placeholder="Username..."
                          autocomplete="off"
                          formControlName="username"/>
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="email"> Email</label>
+                  <label for="email"> Email</label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="Email..."
                          autocomplete="off"
                          formControlName="email"/>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="password"> Password </label>
+                  <label for="password"> Password </label>
                   <input type="password" class="form-control" id="password" name="password" placeholder="Password..."
                          formControlName="password"/>
                   <app-field-error-display [myControl]="myForm1.controls['password']"></app-field-error-display>
@@ -91,7 +91,7 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col-sm-offset-2 col-sm-3 col-xs-5">
-                      <label class="sr-only" for="countryCode"> Country Code </label>
+                      <label for="countryCode"> Country Code </label>
                       <select class="form-control" id="countryCode" name="countryCode"
                               autocomplete="off"
                               formControlName="countryCode">
@@ -100,7 +100,7 @@
                       </select>
                     </div>
                     <div class="col-sm-5 col-xs-7">
-                      <label class="sr-only" for="phoneNumber"> Phone Number</label>
+                      <label for="phoneNumber"> Phone Number</label>
                       <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
                              autocomplete="off"
                              placeholder="Phone number..." formControlName="phoneNumber"
@@ -130,7 +130,7 @@
                 <div [hidden]="!isVerifSmsSent || isPhoneNumVerified">
 
                   <div class="form-group">
-                    <label class="sr-only" for="code"> Code </label>
+                    <label for="code"> Code </label>
                     <input type="text" class="form-control" id="code" name="code"
                            placeholder="Code..." autocomplete="off"
                            formControlName="code"/>
@@ -158,7 +158,7 @@
               <form name="registerForm3" [formGroup]="myForm3">
 
                 <div class="form-group">
-                  <label class="sr-only" for="firstName"> First Name </label>
+                  <label for="firstName"> First Name </label>
                   <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name..."
                          autocomplete="off"
                          formControlName="firstName"/>
@@ -166,7 +166,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="lastName"> Last Name </label>
+                  <label for="lastName"> Last Name </label>
                   <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name..."
                          autocomplete="off"
                          formControlName="lastName"/>
@@ -175,7 +175,7 @@
 
 
                 <div class="form-group">
-                  <label class="sr-only" for="gender"> Gender </label>
+                  <label for="gender"> Gender </label>
                   <select class="form-control" id="gender" name="gender"
                           placeholder="Your Gender..." autocomplete="off"
                           formControlName="gender">
@@ -185,7 +185,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="birthDate"> Birth Date </label>
+                  <label for="birthDate"> Birth Date </label>
                   <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="Birth Date"
                          formControlName="birthDate"
                          autocomplete="off"
@@ -209,7 +209,7 @@
                 <div formGroupName="address">
 
                   <div class="form-group">
-                    <label class="sr-only" for="street"> Street </label>
+                    <label for="street"> Street </label>
                     <input type="text" class="form-control" id="street" name="street" placeholder="Street..."
                            formControlName="street"/>
                     <app-field-error-display
@@ -217,7 +217,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="sr-only" for="city"> City </label>
+                    <label for="city"> City </label>
                     <input type="text" class="form-control" id="city" name="city" placeholder="City..."
                            formControlName="city"/>
                     <app-field-error-display
@@ -225,7 +225,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="sr-only" for="country"> Country </label>
+                    <label for="country"> Country </label>
                     <input type="text" class="form-control" id="country" name="country" placeholder="Country..."
                            formControlName="country"/>
                     <app-field-error-display
@@ -233,7 +233,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="sr-only" for="zipCode"> Zip Code </label>
+                    <label for="zipCode"> Zip Code </label>
                     <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
                            formControlName="zipCode"/>
                     <app-field-error-display
@@ -255,7 +255,7 @@
               <form name="registerForm4" [formGroup]="myForm5" (ngSubmit)="onSubmitForm()">
 
                 <div class="form-group">
-                  <label class="sr-only" for="bloodType"> Blood Type </label>
+                  <label for="bloodType"> Blood Type </label>
                   <select class="form-control" id="bloodType" name="bloodType" placeholder="Blood Type"
                           autocomplete="off"
                           formControlName="bloodType">
@@ -271,13 +271,13 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="emailNotification"> Email Notification </label>
+                  <label for="emailNotification"> Email Notification </label>
                   <input type="checkbox" class="form-control" id="emailNotification" name="emailNotification"
                          formControlName="emailNotification"/>
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="smsNotification"> SMS Notification </label>
+                  <label for="smsNotification"> SMS Notification </label>
                   <input type="checkbox" class="form-control" id="smsNotification" name="smsNotification"
                          formControlName="smsNotification"/>
                 </div>
@@ -300,16 +300,4 @@
   </div>
 
 </section>
-
-<form>
-
-  <input type="text" class="form-control" name="teeel"
-         autocomplete="off"
-         placeholder="Phone number..." [(ngModel)]="temp"
-           appInputMask  [mask]="phoneMask"
-         (onCompleteUnmaskedValue)="printUnmaskedValue($event)"
-         (onCompleteHostValue)="printHostValue($event)"/>
-</form>
-
-<div> {{temp}}</div>
 

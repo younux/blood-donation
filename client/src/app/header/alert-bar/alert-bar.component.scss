@@ -1,0 +1,11 @@
+:host ::ng-deep .alert{
+  margin: 0;
+}
+.fixed-alerts{
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+.alerts-box-shadow{
+  box-shadow: 0 1px 10px 0 grey;
+}

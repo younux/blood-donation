@@ -1,0 +1,62 @@
+<app-banner content="Blood centers"></app-banner>
+
+<section class="section-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="search-container text-center">
+          <form name="searchForm" [formGroup]="searchForm">
+            <div class="row">
+              <div class="col-lg-3 col-sm-6 col-xs-12">
+                <label for="name"> Name </label> <br/>
+                <input type="text" id="name" name="name" placeholder="Name..."
+                      autocomplete="off"
+                      formControlName="name"/>
+              </div>
+              <div class="col-lg-3 col-sm-6 col-xs-12">
+                <label for="city"> City </label> <br/>
+                <input type="text" id="city" name="city" placeholder="City..."
+                      autocomplete="off"
+                      formControlName="city"/>
+              </div>
+              <div class="col-lg-3 col-sm-6 col-xs-12">
+                <label for="country"> Country </label> <br/>
+                <input type="text" id="country" name="country" placeholder="Country..."
+                        autocomplete="off"
+                        formControlName="country"/>
+              </div>
+              <div class="col-lg-3 col-sm-6 col-xs-12">
+                <label for="zipCode"> Zip code </label> <br/>
+                <input type="text" id="zipCode" name="zipCode" placeholder="Zip code..."
+                        autocomplete="off"
+                        formControlName="zipCode"/>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <ng-container *ngIf="bloodCenters">
+        <div *ngFor="let bloodCenter of bloodCenters" class="col-sm-6">
+          <app-blood-center-thumbnail [bloodCenter]="bloodCenter" ></app-blood-center-thumbnail>
+        </div>
+      </ng-container>
+    </div>
+
+
+    <div *ngIf="totalItems && totalItems>itemsPerPage" class="col-xs-12 text-center">
+      <pagination class="pagination-sm"
+                  [totalItems]="totalItems" [itemsPerPage]="itemsPerPage"
+                  [(ngModel)]="currentPage" (ngModelChange)="updateCurrentPage($event)"
+                  (numPages)="onNumPages($event)"
+                  [maxSize]="maxSize"
+                  [boundaryLinks]="true" [rotate]="true"
+                  previousText="&lsaquo;" nextText="&rsaquo;"
+                  firstText="&laquo;" lastText="&raquo;">
+      </pagination>
+    </div>
+
+  </div>
+</section>
+
+

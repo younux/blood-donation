@@ -95,7 +95,10 @@ textarea {
   -ms-transition: all .3s;
   transition: all .3s;
 }
-
+label {
+  font-size: 16px;
+  padding-left: 5px;
+}
 textarea {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -107,7 +110,7 @@ select:focus,
 textarea:focus {
   outline: 0;
   background: $light;
-  border: 3px solid $tertiary;
+  border: 3px solid $dark;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;

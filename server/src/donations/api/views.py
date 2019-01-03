@@ -88,11 +88,11 @@ class DonationListAPIView(ListAPIView):
     pagination_class = DonationPageNumberPagination
     # For filtering (search, order, ...) see : http://www.django-rest-framework.org/api-guide/filtering/
     # General search : http://127.0.0.1:8000/api/donations/?search=alex&ordering=-city
-    filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ['applicant__username', 'applicant__email',
-                     'applicant__first_name', 'applicant__last_name',
-                     'applicant__blood_type', 'deadline', 'city',
-                     ]
+    filter_backends = [OrderingFilter] # [SearchFilter, OrderingFilter] to use search_fields bellow
+    # search_fields = ['applicant__username', 'applicant__email',
+    #                  'applicant__first_name', 'applicant__last_name',
+    #                  'applicant__blood_type', 'deadline', 'city',
+    #                  ]
     ordering_fields = ['deadline', 'created_on']
     ordering = ['deadline'] # This is the defaul ordering. It also prevents from having the warning :
     # /Users/younes/Projects/blood-donation-platform/server/lib/python3.6/site-packages/rest_framework/pagin

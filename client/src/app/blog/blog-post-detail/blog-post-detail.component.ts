@@ -15,12 +15,21 @@ import {BaseComment, Comment} from "../../shared/models/comment.model";
 export class BlogPostDetailComponent implements OnInit {
 
   post: Post;
+  isAuthenticated: boolean;
+
 
   constructor(private blogService: BlogService,
               private alertService: AlertService,
+              private authenticationService: AuthenticationService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isAuthenticated = false;
+    this.authenticationService.isAuthenticated().subscribe(
+      (isAuthenticatedValue) => {
+        this.isAuthenticated = isAuthenticatedValue;
+      }
+    );
 
     const slug = this.route.snapshot.params['slug'];
     this.blogService.getPost(slug).subscribe(

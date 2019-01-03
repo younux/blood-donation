@@ -39,7 +39,7 @@ export class BlogPostEditComponent implements OnInit {
                                   dateStr).subscribe(
         (data) => {
           this.router.navigate([this.returnUrl]);
-          this.alertService.success('You have successfully created a new post')
+          this.alertService.success('You have successfully created a new post');
         },
         (err) => {
           const alerts = this.alertService.jsonToHtmlList(err);

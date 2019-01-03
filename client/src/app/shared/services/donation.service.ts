@@ -20,11 +20,13 @@ export class DonationService  {
   createDonation(deadline: string,
                  description: string,
                  city: string,
+                 country: string,
                  phoneNumber: string,
                  status: string) {
 
     const queryUrl = `${this.apiUrl}donations/create/`;
-    let data = {deadline: deadline, description: description, city: city, phoneNumber: phoneNumber, status: status};
+    let data = {deadline: deadline, description: description, city: city,
+             country: country, phoneNumber: phoneNumber, status: status};
     return this.http.post(queryUrl, JSON.stringify(data))
       .map(response => response.json())
       .catch(this.handle_error);

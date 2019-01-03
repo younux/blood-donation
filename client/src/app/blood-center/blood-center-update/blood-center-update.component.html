@@ -1,0 +1,115 @@
+<app-banner content="Update Blood Center"></app-banner>
+
+<section [hidden]="!bloodCenter" class="section-relative">
+  <div class="container">
+    <div class="form-wrapper">
+      <div class="form-box">
+
+        <div class="form-top">
+          <div class="form-top-left">
+            <h1>Update Blood Center</h1>
+            <p> Type text :</p>
+          </div>
+          <div class="form-top-right">
+            <i class="fa fa-pencil"></i>
+          </div>
+        </div>
+
+        <form name="bloodCenterForm" [formGroup]="bloodCenterForm" (ngSubmit)="onBloodCenterFormSubmit()">
+
+          <div class="form-group">
+            <label for="name"> Name of the blood center </label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name..."
+                   autocomplete="off"
+                   formControlName="name"/>
+            <app-field-error-display
+              [myControl]="bloodCenterForm.controls['name']">
+            </app-field-error-display>
+          </div>
+
+          <div class="form-group">
+            <label for="location"> Use the input bellow to find the location on
+              maps or indicate it directly on the map. Make sure that the red marker is placed
+              on the map.</label>
+            <input #loactionInput type="text" id="location" class="form-control" name="location"
+                   placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off"/>
+          </div>
+
+          <div *ngIf="bloodCenter" class="maps-container">
+            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onMapClicked($event)">
+              <agm-marker *ngIf="isLocationSelected" [latitude]="lat" [longitude]="lng">
+                <agm-info-window>put text heeeeere </agm-info-window>
+              </agm-marker>
+            </agm-map>
+          </div>
+
+          <h3> <i class="fa fa-exclamation-triangle"></i> If the address is not correctly filled by Google Maps
+            after selecting the position on the map, please adjust it manually.</h3>
+
+          <div formGroupName="address">
+
+            <div class="form-group">
+              <label for="street"> Street </label>
+              <input type="text" class="form-control" id="street" name="street" placeholder="Street..."
+                     formControlName="street"/>
+              <app-field-error-display
+                [myControl]="bloodCenterForm.controls['address'].controls['street']"></app-field-error-display>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="city"> City </label>
+                  <input type="text" class="form-control" id="city" name="city" placeholder="City..."
+                         formControlName="city"/>
+                  <app-field-error-display
+                    [myControl]="bloodCenterForm.controls['address'].controls['city']"></app-field-error-display>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="country"> Country </label>
+                  <input type="text" class="form-control" id="country" name="country" placeholder="Country..."
+                         formControlName="country"/>
+                  <app-field-error-display
+                    [myControl]="bloodCenterForm.controls['address'].controls['country']"></app-field-error-display>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="zipCode"> Zip Code </label>
+                  <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
+                         formControlName="zipCode"/>
+                  <app-field-error-display
+                    [myControl]="bloodCenterForm.controls['address'].controls['zipCode']"></app-field-error-display>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+
+            </div>
+            <div class="col-sm-6">
+
+            </div>
+
+          </div>
+
+          <div class="text-center">
+              <button [disabled]="!bloodCenterForm.valid || !isLocationSelected" type="submit" class="btn btn-prim"> Update </button>
+
+              <button type="button" class="btn btn-prim" (click)="onClickDelete()"> Delete </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+

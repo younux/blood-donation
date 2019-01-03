@@ -79,14 +79,16 @@ export class DonationListAllComponent implements OnInit {
     if (this.orderingOption) {
       routerQueryParams['ordering'] = this.orderingOption;
     }
-    if (this.filteringOptions['city']) {
-      routerQueryParams['city'] = this.filteringOptions['city'];
-    }
-    if (this.filteringOptions['keyWord']) {
-      routerQueryParams['keyWord'] = this.filteringOptions['keyWord'];
-    }
-    if (this.filteringOptions['bloodType']) {
-      routerQueryParams['bloodType'] = this.filteringOptions['bloodType'].join('_');
+    if (this.filteringOptions) {
+      if (this.filteringOptions['city']) {
+        routerQueryParams['city'] = this.filteringOptions['city'];
+      }
+      if (this.filteringOptions['keyWord']) {
+        routerQueryParams['keyWord'] = this.filteringOptions['keyWord'];
+      }
+      if (this.filteringOptions['bloodType']) {
+        routerQueryParams['bloodType'] = this.filteringOptions['bloodType'].join('_');
+      }
     }
     // Send list request with a query params string
     this.donationService.listDonations(routerQueryParams).subscribe(
@@ -101,7 +103,6 @@ export class DonationListAllComponent implements OnInit {
       });
     // update route paramters
     this.router.navigate([], {queryParams: routerQueryParams});
-
   }
 
   onOrderingOptionChange(option: any) {
@@ -140,7 +141,6 @@ export class DonationListAllComponent implements OnInit {
     this.router.navigate([], {queryParams: routerQueryParams});
 
   }
-
 
   updateCurrentPage(page) {
     this.currentPage = page;

@@ -17,7 +17,7 @@ from .serializers import (
     PostDetailUpdateDeleteSerializer,
     PostCreateSerializer
     )
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsModerator
 from .paginations import PostPageNumberPagination
 
 
@@ -30,7 +30,7 @@ class PostCreateAPIView(CreateAPIView):
     """
     queryset = Post.objects.all()
     serializer_class = PostCreateSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsModerator]
 
     def perform_create(self, serializer):
         """

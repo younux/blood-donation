@@ -1,0 +1,62 @@
+<app-banner content="Blood center detail"></app-banner>
+
+<section *ngIf="bloodCenter" class="section-relative">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="blood-center-detail clearfix">
+
+        <div class="blood-center-box-title">
+          <h2> {{bloodCenter.name}}</h2>
+        </div>
+
+        <div class="col-sm-4">
+
+          <h4 class="blood-center-content-title"> Address </h4>
+
+          <p class="blood-center-content-info">
+            <span class="blood-center-sub-content-title"> {{bloodCenter.address.street}} </span>
+
+            <span class="blood-center-sub-content-title">
+              {{bloodCenter.address.city}} - {{bloodCenter.address.zipCode}}
+            </span>
+
+            <span class="blood-center-sub-content-title"> {{bloodCenter.address.country}} </span>
+          </p>
+        </div>
+
+
+        <div class="col-sm-8">
+
+          <h4 class="blood-center-content-title"> Location </h4>
+
+          <div class="blood-center-map">
+              <agm-map [latitude]="bloodCenter.latitude" [longitude]="bloodCenter.longitude">
+                <agm-marker [latitude]="bloodCenter.latitude" [longitude]="bloodCenter.longitude">
+                  <agm-info-window>
+                    {{bloodCenter.address.street}} <br/>
+                    {{bloodCenter.address.city}} - {{bloodCenter.address.zipCode}} <br/>
+                    {{bloodCenter.address.country}}
+                  </agm-info-window>
+                </agm-marker>
+              </agm-map>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="form-group text-center">
+        <button type="button" class="btn btn-prim" [routerLink]="['/blood-centers', 'update', bloodCenter.id]" > Update </button>
+      </div>
+    </div>
+
+  </div>
+
+</section>

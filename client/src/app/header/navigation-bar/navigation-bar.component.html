@@ -1,110 +1,50 @@
-<section class="header-wrapper navgiation-wrapper">
+<div class="navbar navbar-default"
+     [ngClass]="{'navbar-fixed-top': fixed, 'navbar-box-shadow': fixed}">
+  <div class="container">
 
-  <div class="navbar navbar-default">
-    <div class="container">
+    <div class="navbar-header menu-icon-container hidden-md hidden-lg"
+         (click)="onMenuIconClick()">
+        <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+    </div>
 
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#my-choices-target">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target="#my-profile-target">
-          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-        </button>
-        <a class="logo" [routerLink]="['/']">
+    <div class="navbar-header logo">
+        <a [routerLink]="['/']">
           <img alt="" src="/assets/images/logo.png">
         </a>
-      </div>
-
-      <div class="navbar-collapse collapse navbar-left" id="my-choices-target">
-
-        <ul class="nav navbar-nav">
-          <li>
-            <a [routerLink]="['donations']">Donations</a>
-          </li>
-
-          <li *ngIf="isAuthenticated">
-            <a [routerLink]="['donations','create']">Create Donation</a>
-          </li>
-
-          <li>
-            <a  [routerLink]="['about']">About Us</a>
-          </li>
-
-          <li>
-            <a  [routerLink]="['contact']">Contact</a>
-          </li>
-
-          <li>
-            <a  [routerLink]="['faq']">FAQ</a>
-          </li>
-
-          <li>
-            <a  [routerLink]="['blog']">Blog</a>
-          </li>
-
-          <li>
-            <a  [routerLink]="['blog/edit']">Create Blog</a>
-          </li>
-        </ul>
-
-      </div>
-
-
-      <div class="navbar-collapse collapse navbar-right" id="my-profile-target">
-
-        <ul class="nav navbar-nav" >
-          <li *ngIf="!isAuthenticated" class="drop">
-            <a  >
-              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-              My Profile
-            </a>
-            <ul class="drop-down">
-              <li *ngIf="!isAuthenticated">
-                <a [routerLink]="['profiles', 'register']">
-                  Register
-                </a>
-              </li>
-
-              <li *ngIf="!isAuthenticated">
-                <a [routerLink]="['profiles', 'login']">
-                  Login
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li *ngIf="isAuthenticated" class="drop">
-            <a  >
-              <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-              {{myPofile.username}}
-            </a>
-            <ul class="drop-down">
-              <li>
-                <a [routerLink]="['profiles', 'my']">
-                  My profile
-                </a>
-              </li>
-              <li>
-                <a [routerLink]="['donations','my']">
-                  My donations
-                </a>
-              </li>
-              <li role="separator" class="divider"></li>
-              <li>
-                <a [routerLink]="[]" (click)="logout($event)">
-                  Log out
-                </a>
-              </li>
-            </ul>
-          </li>
-
-        </ul>
-
-      </div>
-
     </div>
+
+    <div class="navbar-elm hidden-sm hidden-xs">
+      <ul class="nav navbar-nav">
+        <li>
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['donations']">Donations</a>
+        </li>
+
+        <li>
+          <a [routerLink]="['about']">About Us</a>
+        </li>
+
+        <li>
+          <a [routerLink]="['contact']">Contact</a>
+        </li>
+
+        <li>
+          <a [routerLink]="['faq']">FAQ</a>
+        </li>
+
+        <li>
+          <a [routerLink]="['blog']">Blog</a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="profile-icon-container" (click)="onProfileIconClick()">
+      <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+    </div>
+
   </div>
 
-</section>
+</div>

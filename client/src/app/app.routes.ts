@@ -7,7 +7,7 @@ import { FaqComponent} from './faq/faq.component';
 import { donationRoutes } from './donations/donation.routes';
 import { profileRoutes } from './profiles/profile.routes';
 import { blogRoutes } from './blog/blog.routes';
-
+import { bloodCenterRoutes } from './blood-center/blood-center.routes';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +15,7 @@ export const appRoutes: Routes = [
   ...profileRoutes,
   ...donationRoutes,
   ...blogRoutes,
+  ...bloodCenterRoutes,
   { path: 'about' , component: AboutComponent},
   { path: 'contact' , component: ContactComponent},
   { path: 'faq' , component: FaqComponent},

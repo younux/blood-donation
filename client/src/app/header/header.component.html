@@ -1,4 +1,20 @@
-<header class="main-header clearfix" data-sticky_header="1">
-  <app-top-bar></app-top-bar>
-  <app-navigation-bar></app-navigation-bar>
-</header> <!-- end main-header  -->
+<app-loader></app-loader>
+<header>
+  <app-top-bar #topBar ></app-top-bar>
+  <div [ngStyle]="{ 'height' : fixed ? navigationBarHeight + 'px': 'auto'}">
+    <app-navigation-bar #navigationBar
+                        [fixed]="fixed"
+                        (toggleLeftSideBar)="onToggleLeftSideBar()"
+                        (toggleRightSideBar)="onToggleRightSideBar()">
+    </app-navigation-bar>
+  </div>
+</header>
+<div [ngStyle]="{ 'height' : fixed ? alertBarHeight + 'px': 'auto',
+                  'top' : fixed ? navigationBarHeight + 'px': 'auto'}">
+  <app-alert-bar #alertBar [topFixed]="navigationBarHeight"
+                 [fixed]="fixed"
+                 (onClosed)="onAlertClosed($event)">
+
+  </app-alert-bar>
+</div>
+

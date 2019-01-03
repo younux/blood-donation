@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {BaseComment, Comment} from "../../shared/models/comment.model";
+import {AuthenticationService} from "../../shared/services/authentication.service";
 
 @Component({
   selector: 'app-blog-post-comment',
@@ -14,10 +15,15 @@ export class BlogPostCommentComponent implements OnInit {
   @Output() commentToReplyTo = new EventEmitter<number>();
   @Output() replyData = new EventEmitter<any>();
   showRequestReplyButton: boolean;
+  isAuthenciated: boolean;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authenticationService.isAuthenticated().subscribe(
+      (isAuthenciatedValue) => {
+        this.isAuthenciated = isAuthenciatedValue;
+      });
     if (this.comment.parentId) {
       this.showRequestReplyButton = false;
     } else {

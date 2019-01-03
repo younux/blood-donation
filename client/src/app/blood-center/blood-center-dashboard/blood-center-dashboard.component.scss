@@ -1,0 +1,73 @@
+@import "../../../assets/scss/variables";
+
+.options{
+  display: inline-flex;
+  width: 100%;
+}
+.blood-centers, .add-blood-centers{
+  width: 45%;
+  height: 300px;
+  margin: 2.5%;
+  border: 5px solid $dark;
+  border-radius: 20px;
+  background-color: $primary;
+  opacity: 0.5;
+}
+.blood-centers:hover, .add-blood-centers:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+.blood-centers h2, .add-blood-centers h2 {
+  font-size: 50px;
+}
+.blood-centers img, .add-blood-centers img {
+  max-width: 80%;
+  max-height: 80%;
+}
+.add-blood-centers img {
+  margin-top: 5%;
+}
+
+/*************** Responsive styling ************/
+
+// bootstrap xs
+@media (max-width: 767px) {
+  .options{
+    display: block;
+  }
+  .blood-centers, .add-blood-centers{
+    width: 100%;
+    height: auto;
+  }
+  .add-blood-centers img {
+    margin-bottom: 5%;
+  }
+}
+
+// bootstrap sm
+@media (min-width: 768px) and (max-width: 991px) {
+  .options{
+    display: block;
+  }
+  .blood-centers, .add-blood-centers{
+    width: 100%;
+    height: auto;
+  }
+  .add-blood-centers img {
+    margin-bottom: 5%;
+  }
+}
+
+// bootstrap md
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+// bootstrap lg
+@media (min-width: 1200px) {
+
+}
+
+
+
+

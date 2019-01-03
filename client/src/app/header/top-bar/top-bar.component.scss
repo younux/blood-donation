@@ -5,7 +5,7 @@
 }
 .top-bar {
   background: $primary;
-  line-height: 42px;
+  line-height: 20px;
   color: $light;
   font-size: 14px;
 }
@@ -24,9 +24,10 @@
 .top-bar-social {
   float: right;
   margin-right: 12px;
+  margin-top: 5px;
+  margin-bottom: 6px;
   color: $light;
   font-size: 16px;
-  margin-top: 5px;
   border: 0px solid $light;
   letter-spacing: 1px;
   text-transform: uppercase;

@@ -27,6 +27,7 @@ class DonationSerializer(serializers.ModelSerializer):
             'deadline',
             'description',
             'city',
+            'country',
             'phone_number',
             'status',
         ]

@@ -22,7 +22,6 @@ class Address(models.Model):
     def __str__(self):
         return self.street + " - " + self.city
 
-
 class UserManager(UserManager):
     """
         UserManager
@@ -79,6 +78,7 @@ class User(AbstractUser):
     )
 
     # The additional attributes we wish to include.
+    is_moderator        = models.BooleanField(verbose_name="Moderator status", default=False)
     gender              = models.CharField(verbose_name="Gender", max_length=1, choices=GENDER_CHOICES)
     phone_number        = models.CharField(verbose_name="Phone number", max_length=20)
     address             = models.OneToOneField(Address, on_delete=models.CASCADE, null=True)

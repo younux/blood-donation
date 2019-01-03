@@ -25,7 +25,7 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-6">
                     <div class="form-group">
-                      <label class="sr-only" for="deadlineDay"> Deadline Day </label>
+                      <label for="deadlineDay"> Deadline Day </label>
                       <input type="text" class="form-control" id="deadlineDay" name="deadlineDay"
                              placeholder="Deadline Day..."
                              formControlName="deadlineDay"
@@ -37,7 +37,7 @@
 
                   <div class="col-xs-offset-4 col-xs-6 col-sm-6 col-sm-offset-0">
                     <div class="form-group">
-                      <label class="sr-only" for="deadlineTime"> Deadline </label>
+                      <label for="deadlineTime"> Deadline </label>
                       <timepicker id="deadlineTime" formControlName="deadlineTime"></timepicker>
                       <app-field-error-display [myControl]="myForm.get('deadlineTime')"></app-field-error-display>
                     </div>
@@ -45,28 +45,28 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="description"> Description </label>
+                  <label for="description"> Description </label>
                   <input type="text" class="form-control" id="description" name="description" placeholder="Description..."
                          [formControl]="myForm.controls['description']"/>
                   <app-field-error-display [myControl]="myForm.controls['description']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="city"> City </label>
+                  <label for="city"> City </label>
                   <input type="text" class="form-control" id="city" name="city" placeholder="City..."
                          [formControl]="myForm.controls['city']"/>
                   <app-field-error-display [myControl]="myForm.controls['city']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="phoneNumber"> Phone number </label>
+                  <label for="phoneNumber"> Phone number </label>
                   <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number..."
                          [formControl]="myForm.controls['phoneNumber']"/>
                   <app-field-error-display [myControl]="myForm.controls['phoneNumber']"></app-field-error-display>
                 </div>
 
                 <div class="form-group">
-                  <label class="sr-only" for="status"> Status </label>
+                  <label for="status"> Status </label>
                   <input type="text" class="form-control" id="status" name="status" placeholder="Status..."
                          [formControl]="myForm.controls['status']"/>
                   <app-field-error-display [myControl]="myForm.controls['status']"></app-field-error-display>

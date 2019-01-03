@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'donations.apps.DonationsConfig',
     'posts.apps.PostsConfig',
     'comments.apps.CommentsConfig',
+    'blood_centers.apps.BloodCentersConfig',
 ]
 
 MIDDLEWARE = [
@@ -188,7 +189,7 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
     ),
 
@@ -242,3 +243,4 @@ PASSWORD_RESET_ROUTE = "profiles/reset-password/reset"
 DONATION_LIST_PAGE_SIZE = 5
 POST_LIST_PAGE_SIZE = 5
 COMMENT_LIST_PAGE_SIZE = 5
+BLOOD_CENTER_LIST_PAGE_SIZE = 10

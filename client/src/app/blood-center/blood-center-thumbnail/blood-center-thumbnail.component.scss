@@ -1,0 +1,98 @@
+@import "../../../assets/scss/variables";
+
+.blood-center-thumbnail {
+  background: $light;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+  border: 2px solid $dark;
+  border-radius: 20px;
+}
+.blood-center-image-container img{
+  min-height: 100%;
+  min-width: 100%;
+
+}
+.blood-center-infos {
+  padding: 10px 64px 0 0;
+}
+
+.blood-center-name{
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.blood-center-name a{
+  border: 2px solid $dark;
+  border-radius: 0px;
+  background: $dark;
+  color: $light;
+  display: inline-block;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 2px 20px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+}
+.blood-center-address{
+  font-size: 16px;
+}
+.blood-center-footer {
+  margin-bottom: 10px;
+}
+
+#location-shortcut {
+  color: $primary;
+  margin-right: 3px;
+  padding-right: 8px;
+  text-decoration: none;
+}
+#information-icon img{
+  position: absolute;
+  right: 1%;
+  bottom: 4%;
+}
+
+#information-icon :hover{
+  cursor: pointer;
+}
+
+
+
+/* RESPONSIVE STYLING */
+/***********************************************************************************************/
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (max-width: 991px) {
+  .blood-center-thumbnail {
+    clear: both;
+  }
+  .blood-center-name{
+    padding-left: 10px;
+  }
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {
+  .blood-center-thumbnail {
+    clear: both;
+  }
+  .blood-center-name{
+    padding-left: 10px;
+  }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .blood-center-thumbnail {
+    clear: both;
+  }
+  .blood-center-name{
+    padding-left: 10px;
+  }
+  .blood-center-name a{
+    font-size: 20px;
+  }
+}
+

@@ -48,12 +48,15 @@ class CommentCreateAPIView(CreateAPIView):
         """
             Overrides get_serializer_class
 
-            This necessary as the creation serializers will be fenerated dynamically using the given model type
+            This necessary as the creation serializers will be generated dynamically using the given model type
         """
-        model_type = self.request.GET.get("model_type")
-        slug = self.request.GET.get("slug")
-        parent_id = self.request.GET.get("parent_id")
-        return create_comment_serializer(model_type=model_type, slug=slug, parent_id=parent_id, author=self.request.user)
+        if self.request:
+            model_type = self.request.GET.get("model_type")
+            slug = self.request.GET.get("slug")
+            parent_id = self.request.GET.get("parent_id")
+            return create_comment_serializer(model_type=model_type, slug=slug, parent_id=parent_id, author=self.request.user)
+        else: # this is introduced due to an issue when using DRF docs
+            return create_comment_serializer()
 
 
 class CommentListAPIView(ListAPIView):

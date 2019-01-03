@@ -106,7 +106,6 @@ export class ProfileRegisterComponent implements OnInit {
     // because phoneNumber may be disabled we should use getRawValue
     // when a control is disabled, we no longer can get the value using .value
     const phoneNumber = this.myForm2.getRawValue().countryCode + this.unmaskedPhoneNumber;
-    console.log(phoneNumber);
     if (phoneNumber) {
       this.showSpinner = true;
       this.authenticationService.phoneCodeRequest(phoneNumber).subscribe(

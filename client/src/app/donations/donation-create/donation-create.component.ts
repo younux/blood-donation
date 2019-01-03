@@ -41,6 +41,7 @@ export class DonationCreateComponent implements OnInit {
       deadlineTime: [ null , Validators.required],
       description: [null, Validators.required],
       city: [null, Validators.required],
+      country: [null, Validators.required],
       countryCode: ['+33'],
       phoneNumber: [ null],
       status: ['Urgent'],
@@ -56,6 +57,7 @@ export class DonationCreateComponent implements OnInit {
         deadline,
         passedForm.value.description,
         passedForm.value.city,
+        passedForm.value.country,
         passedForm.value.countryCode + this.unmaskedPhoneNumber,
         passedForm.value.status,
       )

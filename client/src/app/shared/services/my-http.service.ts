@@ -11,7 +11,7 @@ import 'rxjs/add/observable/throw';
 import {Router} from "@angular/router";
 import {AuthenticationStatusEmitterService} from "./authentication-status-emitter.service";
 import {LocalStorageService} from "./local-storage.service";
-import {LoaderService} from "./loader.service";
+import {LoaderService} from "../../header/loader/loader.service";
 
 const DEFAULT_HEADER_NAME = 'Authorization';
 const DEFAULT_HEADER_PREFIX = 'JWT';

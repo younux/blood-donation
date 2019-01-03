@@ -1,9 +1,18 @@
-<app-loader></app-loader>
-<app-header></app-header>
-<app-alert-display> </app-alert-display>
-<section class="section-main">
-  <router-outlet></router-outlet>
-</section>
-<app-footer></app-footer>
+<mat-sidenav-container>
+  <mat-sidenav class="sidebar" #leftSideNav position="start" mode="over" [fixedInViewport]="true" fixedTopGap="0">
+    <app-left-side-bar (closeMenu)="leftSideNav.toggle()"></app-left-side-bar>
+  </mat-sidenav>
+  <mat-sidenav class="sidebar" #rightSideNav position="end" mode="over" [fixedInViewport]="true" fixedTopGap="0">
+    <app-right-side-bar (closeMenu)="rightSideNav.toggle()"></app-right-side-bar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (toggleLeftSideBar)="leftSideNav.toggle()" (toggleRightSideBar)="rightSideNav.toggle()"></app-header>
+    <section class="section-main">
+      <router-outlet></router-outlet>
+    </section>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
 
 

@@ -1,37 +1,51 @@
 @import "../../../assets/scss/variables";
 
 
-.navgiation-wrapper {
-  background: $light;
-}
+/******** navigation bar container ************/
 .navbar-default {
+  // height: 100px;
+  background-color: $light;
+  overflow: hidden;
+  height: 100px;
+  background-color: $light;
   border: none;
-  background: transparent;
   margin-bottom: 0px;
   padding: 12px 0;
 }
-.navbar-header {
-  width: 20%;
-  //text-align: center;
-  clear: both;
-  float: left;
-  margin: 0 ;
+.navbar-box-shadow{
+  box-shadow: 0 1px 10px 0 grey;
 }
-.navbar-toggle {
-  margin: 22px 0 0 0;
-  padding: 5px;
+.navbar-header{
+  display: inline-block;
 }
-.icon-bar {
-  height: 1px;
+
+/******** Menu Icon ************/
+
+.menu-icon-container{
+  display: inline-block;
+  cursor: pointer;
+  padding-top: 15px;
 }
+
+/******** Profile icon ************/
+.profile-icon-container{
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+/******** Logo ************/
+
 .logo {
   margin-top: 32px;
   margin-bottom: 0;
   margin-top: 10px;
   display: inline-block;
-  //text-align: center;
-  width: 10%;
 }
+
+/******** navbar elements ************/
 .navbar-nav {
   margin-top: 10px;
 }
@@ -44,9 +58,6 @@
   color: $tertiary-dark;
   text-transform: uppercase;
   padding-bottom: 24px;
-}
-.navbar-nav > li > a:hover {
-  color: $dark;
 }
 li.drop {
   position: relative;
@@ -119,142 +130,30 @@ li:hover > ul.drop-down {
   opacity: 1;
 }
 
-/* Responsive styling */
+/*************** Responsive styling ************/
 
-/* Tablet Portrait size to standard 960 (devices and browsers) */
-@media only screen and (max-width: 991px) {
-  li ul.drop-down {
-    top: 68px;
-  }
-  .navbar-header {
-    width: 100%;
-    text-align: center;
-    clear: both;
-    float: none ;
-    margin: 0 ;
-  }
-  .navbar-toggle {
-    margin: 22px 0 0 0;
-    padding: 5px;
-  }
-  .icon-bar {
-    height: 1px;
-  }
-  .navbar-right {
-    float: none;
-    padding: 0;
-    margin: 12px 70px 0 0;
-  }
-  .navbar-collapse {
-    text-align: center;
-  }
-  .navbar-nav > li {
-    margin-left: 0;
-  }
-  .nav > li > a {
-    padding: 15px 12px;
-    padding-bottom: 22px;
-  }
-  logo {
-    text-align: center;
+// bootstrap xs
+@media (max-width: 767px) {
+  .logo{
+    margin-left: 25%;
   }
 }
-/* All Mobile Sizes (devices and browser) */
-@media only screen and (max-width: 767px) {
-  .navbar-toggle {
-    margin-top: 24px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    border-radius: 0px;
-    -webkit-background-clip: padding-box;
-    -moz-background-clip: padding;
-    background-clip: padding-box;
-  }
-  .icon-bar {
-    color: $primary;
-  }
-  .navbar-right {
-    width: 100%;
-    text-align: left;
-  }
-  .navbar-collapse {
-    background: $tertiary-dark;
-    margin-top: 12px;
-    padding: 12px 0;
-  }
-  li ul.drop-down,
-  li ul.drop-down li ul.drop-down.level3 {
-    background: transparent;
-    border: none;
-    -webkit-transform: rotateX(0deg);
-    -moz-transform: rotateX(0deg);
-    -ms-transform: rotateX(0deg);
-    -o-transform: rotateX(0deg);
-    transform: rotateX(0deg);
-    position: relative;
-    width: auto;
-    visibility: visible;
-    opacity: 1;
-    top: inherit;
-    left: inherit;
-  }
-  li ul.drop-down li a,
-  li ul.drop-down li ul.drop-down.level3 li a {
-    background: none;
-    color: $light;
-    font-size: 16px;
-    text-transform: inherit;
-    padding: 4px 20px;
-  }
-  li ul.drop-down li a:hover,
-  li ul.drop-down li ul.drop-down.level3 li a:hover {
-    color: $light;
-  }
-  .navbar-nav {
-    margin: 0px;
-    width: 100%;
-    text-align: left;
-    background: rgba(0, 0, 0, 0.7);
-  }
-  .navbar-nav li a {
-    font-weight: bold;
-    color: $primary;
-  }
-  .drop-down li a {
-    color: $light;
-  }
-  .logo {
-    text-align: center;
+
+// bootstrap sm
+@media (min-width: 768px) and (max-width: 991px) {
+  .logo{
+    margin-left: 25%;
   }
 }
-/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
-@media only screen and (min-width: 0px) and (max-width: 479px) {
-  .navbar-toggle {
-    margin: 20px 0 0 0;
-    padding: 5px 3px;
-  }
-  .icon-bar {
-    height: 1px;
-  }
-  .navbar-nav {
-    margin: 0px;
-    width: 100%;
-    text-align: left;
-    background: rgba(0, 0, 0, 0.7);
-  }
-  .navbar-nav li {
-    margin-left: 0px;
-  }
-  .navbar-nav li a {
-    font-weight: bold;
-    color: $primary;
-  }
-  .navbar-nav .drop-down li a {
-    color: $light;
-  }
-  .logo {
-    text-align: center;
-    width: 75%;
-    text-align: center;
-  }
+
+// bootstrap md
+@media (min-width: 992px) and (max-width: 1199px) {
+
 }
+
+// bootstrap lg
+@media (min-width: 1200px) {
+
+}
+
+

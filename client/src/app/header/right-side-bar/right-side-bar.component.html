@@ -1,0 +1,72 @@
+<div id="sidebar">
+
+  <div class="sidebar-header">
+    <div id="sidebarTitle">
+      <span id="close-icon" (click)="onCloseClick()" >
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </span>
+      <ng-container *ngIf="!isAuthenticated">
+        My profile
+      </ng-container>
+      <ng-container *ngIf="isAuthenticated">
+        {{myPofile.username}}
+      </ng-container>
+    </div>
+  </div>
+
+  <ul class="sidebar-components list-unstyled">
+    <ng-container *ngIf="!isAuthenticated">
+      <li>
+        <a [routerLink]="['profiles', 'register']">
+          Register
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['profiles', 'login']">
+          Login
+        </a>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="isAuthenticated">
+      <li>
+        <a [routerLink]="['profiles', 'my']">
+          My profile
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['donations','my']">
+          My donations
+        </a>
+      </li>
+      <li *ngIf="isAuthenticated">
+        <a [routerLink]="['donations','create']">
+          Create Donation
+        </a>
+      </li>
+      <li *ngIf="isModerator">
+        <a [routerLink]="['/blog', 'edit']">
+          Create Blog
+        </a>
+      </li>
+      <li *ngIf="isModerator">
+        <a [routerLink]="['/blood-centers']">Blood centers</a>
+      </li>
+      <li role="separator" class="divider"></li>
+      <li>
+        <a [routerLink]="[]" (click)="logout($event)">
+          Log out
+        </a>
+      </li>
+    </ng-container>
+
+    <li>
+      <a class="sidebar-dropdown" href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false">Pages</a>
+      <ul class="collapse list-unstyled" id="homeSubmenu2">
+        <li><a>Page</a></li>
+        <li><a>Page</a></li>
+        <li><a>Page</a></li>
+      </ul>
+    </li>
+  </ul>
+
+</div>

@@ -15,7 +15,7 @@
 
           </app-blog-post-comment-list>
 
-          <app-blog-post-comment-form [showCancelButton]="false" (content)="onContentEmitted($event)"></app-blog-post-comment-form>
+          <app-blog-post-comment-form *ngIf="isAuthenticated" [showCancelButton]="false" (content)="onContentEmitted($event)"></app-blog-post-comment-form>
         </ng-container>
       </div>
     </div>

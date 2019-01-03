@@ -1,0 +1,46 @@
+<div id="sidebar">
+
+  <div class="sidebar-header">
+    <div id="sidebarTitle">
+      <span id="close-icon" (click)="onCloseClick()" >
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </span>
+      Side nav header
+    </div>
+  </div>
+
+  <ul class="sidebar-components list-unstyled">
+    <li>
+      <a [routerLink]="['/']">Home</a>
+    </li>
+    <li>
+      <a [routerLink]="['donations']">Donations</a>
+    </li>
+
+    <li>
+      <a [routerLink]="['about']">About Us</a>
+    </li>
+
+    <li>
+      <a [routerLink]="['contact']">Contact</a>
+    </li>
+
+    <li>
+      <a [routerLink]="['faq']">FAQ</a>
+    </li>
+
+    <li>
+      <a class="sidebar-dropdown" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+      <ul class="collapse list-unstyled" id="homeSubmenu">
+        <li><a>Page</a></li>
+        <li><a>Page</a></li>
+        <li><a>Page</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a [routerLink]="['blog']">Blog</a>
+    </li>
+
+  </ul>
+</div>

@@ -1,0 +1,47 @@
+<div class="blood-center-thumbnail">
+  <div class="row">
+
+    <div class="col-md-4 hidden-sm hidden-xs">
+      <div class="blood-center-image-container  padding-md-xs">
+        <a>
+          <img src="../../../assets/images/hospital-medium.png">
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-sm-12 col-xs-12">
+      <div class="blood-center-detail-container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="blood-center-name">
+              <a class="text-center"> {{bloodCenter.name}} </a>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="blood-center-infos">
+              <div class="blood-center-address text-center">
+                {{bloodCenter.address.street}}<br/>
+                {{bloodCenter.address.city}}, {{bloodCenter.address.zipCode}}<br/>
+                {{bloodCenter.address.country}} <br/>
+              </div>
+              <div class="col-md-12">
+                <div class="blood-center-footer">
+                  <a id="location-shortcut"class="text-bold">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    {{bloodCenter.address.city}}, {{bloodCenter.address.country}}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <a id="information-icon" [routerLink]="['/blood-centers', 'detail', bloodCenter.id]">
+    <img src="../../../assets/images/information_64.png">
+  </a>
+
+</div>

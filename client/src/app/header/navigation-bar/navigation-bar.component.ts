@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from '../../shared/services/authentication.service';
-import {Profile} from '../../shared/models/profile.model';
-import {AlertService} from '../../shared/services/alert.service';
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -10,24 +7,22 @@ import {AlertService} from '../../shared/services/alert.service';
 })
 export class NavigationBarComponent implements OnInit {
 
-  isAuthenticated: boolean;
-  myPofile: Profile;
+  @Input() fixed: boolean = false; // if it should be fixed in the viewport
+  @Output() toggleLeftSideBar: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() toggleRightSideBar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private authenticationService: AuthenticationService,
-              private alertService: AlertService) { }
+
+  constructor(public el: ElementRef) { }
 
   ngOnInit() {
-    this.isAuthenticated = false;
-    this.authenticationService.isAuthenticated().subscribe(isAuthenticatedValue => {
-      this.isAuthenticated = isAuthenticatedValue;
-      this.myPofile = this.authenticationService.profile;
-
-    });
   }
 
-  logout() {
-    this.authenticationService.logout();
-    this.alertService.success('You have successfully logged out');
+  onMenuIconClick(){
+    this.toggleLeftSideBar.emit(true);
+  }
+
+  onProfileIconClick(){
+    this.toggleRightSideBar.emit(true);
   }
 
 }

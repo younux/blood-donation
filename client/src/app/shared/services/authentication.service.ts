@@ -114,6 +114,14 @@ export class AuthenticationService {
     return this.authenticationStatusEmitter.isAuthenticatedValue();
   }
 
+  isModerator(): boolean {
+    if(this.profile && this.profile.isModerator) {
+      return true;
+    } else{
+      return false;
+    }
+  }
+
   activate(key: string, token: string) {
     const queryUrl = `${this.apiUrl}accounts/activate/`;
     const sentData = {'key': key, 'token': token};

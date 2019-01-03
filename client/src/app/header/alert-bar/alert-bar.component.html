@@ -1,0 +1,19 @@
+<div class="alert-bar"
+      [ngClass]="{'fixed-alerts': fixed, 'alerts-box-shadow': fixed}"
+     [ngStyle]="{ 'top' : fixed ? topFixed + 'px': 'auto'}">
+  <div *ngIf="message">
+    <ng-container *ngIf=" message.type === 'success'">
+      <alert type="success" [dismissible]="true"
+             (onClosed)="onAlertClosed()">
+        <span [innerHtml]="message.text"></span>
+      </alert>
+    </ng-container>
+    <ng-container *ngIf=" message.type === 'error'">
+      <alert type="danger" [dismissible]="true"
+             (onClosed)="onAlertClosed()">
+        <span [innerHtml]="message.text"></span>
+      </alert>
+    </ng-container>
+  </div>
+</div>
+
