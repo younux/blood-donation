@@ -10,9 +10,9 @@ export class AboutComponent implements OnInit {
   pageHeaderContent = "About us";
 
   headingTitle = "Notre équipe";
-  headingContent = "Notre est composée d'ingénieurs talentueux";
+  headingContent = "Notre équipe est composée d'ingénieurs talentueux";
 
-  memberName1 = "YOUNES BENHOUMICH";
+  memberName1 = "XXXXXX XXXXXX";
   memberRole1 = "Co-Founder";
   memberImg1 = "/assets/images/team_9.jpg";
   memberFacebook1 ="aaaa";
@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit {
   memberGooglePlus1 ="aaa";
   memberLinkedin1 ="aa";
 
-  memberName2 = "YOUNES BENHOUMICH";
+  memberName2 = "XXXXXX XXXXXX";
   memberRole2 = "Co-Founder";
   memberImg2 = "/assets/images/team_9.jpg";
   memberFacebook2 ="aaaa";
@@ -28,7 +28,7 @@ export class AboutComponent implements OnInit {
   memberGooglePlus2 ="aaaaa";
   memberLinkedin2 ="aaaa";
 
-  memberName3 = "YOUNES BENHOUMICH";
+  memberName3 = "XXXXXX XXXXXX";
   memberRole3 = "Co-Founder";
   memberImg3 = "/assets/images/team_9.jpg";
   memberFacebook3 ="aaaa";
